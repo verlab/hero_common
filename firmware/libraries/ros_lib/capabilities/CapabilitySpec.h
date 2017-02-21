@@ -1,0 +1,102 @@
+#ifndef _ROS_capabilities_CapabilitySpec_h
+#define _ROS_capabilities_CapabilitySpec_h
+
+#include <stdint.h>
+#include <string.h>
+#include <stdlib.h>
+#include "ros/msg.h"
+
+namespace capabilities
+{
+
+  class CapabilitySpec : public ros::Msg
+  {
+    public:
+      const char* package;
+      const char* type;
+      const char* content;
+      const char* default_provider;
+
+    CapabilitySpec():
+      package(""),
+      type(""),
+      content(""),
+      default_provider("")
+    {
+    }
+
+    virtual int serialize(unsigned char *outbuffer) const
+    {
+      int offset = 0;
+      uint32_t length_package = strlen(this->package);
+      memcpy(outbuffer + offset, &length_package, sizeof(uint32_t));
+      offset += 4;
+      memcpy(outbuffer + offset, this->package, length_package);
+      offset += length_package;
+      uint32_t length_type = strlen(this->type);
+      memcpy(outbuffer + offset, &length_type, sizeof(uint32_t));
+      offset += 4;
+      memcpy(outbuffer + offset, this->type, length_type);
+      offset += length_type;
+      uint32_t length_content = strlen(this->content);
+      memcpy(outbuffer + offset, &length_content, sizeof(uint32_t));
+      offset += 4;
+      memcpy(outbuffer + offset, this->content, length_content);
+      offset += length_content;
+      uint32_t length_default_provider = strlen(this->default_provider);
+      memcpy(outbuffer + offset, &length_default_provider, sizeof(uint32_t));
+      offset += 4;
+      memcpy(outbuffer + offset, this->default_provider, length_default_provider);
+      offset += length_default_provider;
+      return offset;
+    }
+
+    virtual int deserialize(unsigned char *inbuffer)
+    {
+      int offset = 0;
+      uint32_t length_package;
+      memcpy(&length_package, (inbuffer + offset), sizeof(uint32_t));
+      offset += 4;
+      for(unsigned int k= offset; k< offset+length_package; ++k){
+          inbuffer[k-1]=inbuffer[k];
+      }
+      inbuffer[offset+length_package-1]=0;
+      this->package = (char *)(inbuffer + offset-1);
+      offset += length_package;
+      uint32_t length_type;
+      memcpy(&length_type, (inbuffer + offset), sizeof(uint32_t));
+      offset += 4;
+      for(unsigned int k= offset; k< offset+length_type; ++k){
+          inbuffer[k-1]=inbuffer[k];
+      }
+      inbuffer[offset+length_type-1]=0;
+      this->type = (char *)(inbuffer + offset-1);
+      offset += length_type;
+      uint32_t length_content;
+      memcpy(&length_content, (inbuffer + offset), sizeof(uint32_t));
+      offset += 4;
+      for(unsigned int k= offset; k< offset+length_content; ++k){
+          inbuffer[k-1]=inbuffer[k];
+      }
+      inbuffer[offset+length_content-1]=0;
+      this->content = (char *)(inbuffer + offset-1);
+      offset += length_content;
+      uint32_t length_default_provider;
+      memcpy(&length_default_provider, (inbuffer + offset), sizeof(uint32_t));
+      offset += 4;
+      for(unsigned int k= offset; k< offset+length_default_provider; ++k){
+          inbuffer[k-1]=inbuffer[k];
+      }
+      inbuffer[offset+length_default_provider-1]=0;
+      this->default_provider = (char *)(inbuffer + offset-1);
+      offset += length_default_provider;
+     return offset;
+    }
+
+    const char * getType(){ return "capabilities/CapabilitySpec"; };
+    const char * getMD5(){ return "410c606586817322b7ad85c73e4a4c9f"; };
+
+  };
+
+}
+#endif

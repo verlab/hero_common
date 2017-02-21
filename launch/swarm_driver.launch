@@ -1,0 +1,9 @@
+<launch>
+  <arg name="port" default="/dev/ttyACM0" />
+  <arg name="baud" default="9600" />
+  <node pkg="rosserial_server" type="serial_node" name="swarm_driver" output="screen">
+    	<param name="port" value="$(arg port)" />
+	<param name="baud" value="$(arg baud)"/>
+  </node>
+  <node pkg="rosserial_python" type="message_info_service.py" name="rosserial_message_info" />
+</launch>
