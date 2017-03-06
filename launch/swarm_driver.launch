@@ -1,9 +1,19 @@
+<!--
+	rosserial_python: A Python-based implementation (recommended for PC usage).
+	rosserial_server: A C++ implementation based on the ShapeShifter message, some limitations compared to rosserial_python but recommended for high-performance applications.
+-->
+
 <launch>
-  <arg name="port" default="/dev/ttyACM0" />
-  <arg name="baud" default="9600" />
-  <node pkg="rosserial_server" type="serial_node" name="swarm_driver" output="screen">
-    	<param name="port" value="$(arg port)" />
-	<param name="baud" value="$(arg baud)"/>
-  </node>
-  <node pkg="rosserial_python" type="message_info_service.py" name="rosserial_message_info" />
+	<arg name="port" default="/dev/ttyACM0" />
+	<arg name="baud" default="57600"/>
+	
+
+	<node pkg="rosserial_python" type="serial_node.py" name="swarm_driver" output="screen">
+		<param name="port" value="$(arg port)" />
+		<param name="baud" value="$(arg baud)"/>
+	</node>
+
+	<!--node pkg="rosserial_python" type="message_info_service.py" name="rosserial_message_info" /-->
 </launch>
+
+
