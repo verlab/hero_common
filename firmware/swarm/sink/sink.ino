@@ -41,6 +41,7 @@
 /************************************************************************
  * Hardware Configuration
  * Set up nRF24L01 radio on SPI bus plus pins 9 & 10
+ * <http://maniacbug.github.io/RF24/classRF24.html>
  ************************************************************************/
 RF24 radio(9,10);
 /************************************************************************/
@@ -122,9 +123,11 @@ void loop() {
   if(radio.available()){    
     uint8_t data;
     radio.read( &data, sizeof(uint8_t));
-    receive_id.data = data;
-    swarm_id.publish(&receive_id);
-    printf("[Status]Found robot number #%d\n", data);
+    if (data > 0){
+      receive_id.data = data;
+      swarm_id.publish(&receive_id);
+      printf("[Status]Found robot number #%d\n", data);
+    }
   }
 
   /* First, stop listening so we can talk. */
@@ -149,4 +152,6 @@ void callback(const swarm_driver::Command& msg){
     digitalWrite(7, HIGH-digitalRead(7));   
   }
 }
+/************************************************************************/
+/* T H E  E N D */
 /************************************************************************/
