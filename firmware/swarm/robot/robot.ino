@@ -113,9 +113,9 @@ void setup() {
   attachInterrupt(0, check_radio, FALLING);
 
   /* Publish to the sink the id of this robot */
-  radio.stopListening();
-  radio.write(&id, sizeof(uint8_t));
-  radio.startListening();
+  //radio.stopListening();
+  //radio.write(&id, sizeof(uint8_t));
+  //radio.startListening();
 }
 /************************************************************************/
 
