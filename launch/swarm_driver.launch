@@ -8,7 +8,7 @@
 	<arg name="baud" default="57600"/>
 	
 
-	<node pkg="rosserial_python" type="serial_node.py" name="swarm_driver" output="screen">
+	<node pkg="rosserial_python" type="serial_node.py" name="swarm_comm" output="screen">
 		<param name="port" value="$(arg port)" />
 		<param name="baud" value="$(arg baud)"/>
 	</node>
