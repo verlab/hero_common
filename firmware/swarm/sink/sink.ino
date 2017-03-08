@@ -93,6 +93,7 @@ void setup() {
   /* optionally, increase the delay between retries & # of retries */
   //radio.setRetries(15,15);
 
+radio.enableAckPayload();
   /* optionally, reduce the payload size.  seems to improve reliability */
   //radio.setPayloadSize(sizeof(Protocol));
 
@@ -130,12 +131,8 @@ void loop() {
     }
   }
 
-  /* First, stop listening so we can talk. */
-  radio.stopListening();
   /* Sync ROS System */
   nh.spinOnce();
-  /* Now, resume listening so we catch the next packets. */
-  radio.startListening();
 }
 /************************************************************************/
 
@@ -143,10 +140,14 @@ void loop() {
  * C A L L B A C K S
  ************************************************************************/
 void callback(const swarm_driver::Command& msg){
+  /* First, stop listening so we can talk. */
+  radio.stopListening();
   /* Copy datas from ROS interface */
   Protocol pkt = {msg.robot_id, msg.wheel_right, msg.wheel_left};
   /* Write to radio */
   bool ok = radio.write(&pkt, sizeof(Protocol));
+  /* Now, resume listening so we catch the next packets. */
+  radio.startListening();
   /* Blink once if message could be sent */
   if (ok){
     digitalWrite(7, HIGH-digitalRead(7));   
