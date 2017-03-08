@@ -73,7 +73,10 @@ void setup() {
 
   /* Setup servo motor */
   wheel_right.attach(6);
+  wheel_left.attach(7);
+  
   wheel_right.write(98);
+  wheel_left.write(98);
 
   /* Setup and configure rf radio */
   radio.begin();
@@ -84,10 +87,15 @@ void setup() {
   radio.setPALevel(RF24_PA_LOW);
   
   /* optionally, increase the delay between retries & # of retries */
-  //radio.setRetries(15,15);
+  radio.setRetries(15,15);
 
   /* optionally, reduce the payload size.  seems to improve reliability */
   //radio.setPayloadSize(sizeof(Protocol));
+  
+  /* Enable custom payloads on the acknowledge packets.
+   * Ack payloads are a handy way to return data back to senders without manually changing the radio modes on both units.
+   */
+  radio.enableAckPayload();
 
   /* Open pipes to other nodes for communication */
   radio.openWritingPipe(address[1]);
@@ -103,6 +111,11 @@ void setup() {
 
   /* Attach interrupt handler to interrupt #0 (using pin 2) on BOTH the sender and receiver */
   attachInterrupt(0, check_radio, FALLING);
+
+  /* Publish to the sink the id of this robot */
+  radio.stopListening();
+  radio.write(&id, sizeof(uint8_t));
+  radio.startListening();
 }
 /************************************************************************/
 
@@ -110,21 +123,8 @@ void setup() {
  * M A I N  L O 0 P
  ************************************************************************/
 void loop() {
-  /* First, stop listening so we can talk. */
-  //radio.stopListening();
-  
   /* Non-blocking write to the open writing pipe. */
   //radio.startWrite(&id, sizeof(uint8_t));
-  
-  /* Call this when you get an interrupt to find out why. 
-   * Tells you what caused the interrupt, and clears the state of interrupts. 
-   */
-  //bool tx_ok, tx_fail, rx_ready;
-  //radio.whatHappened  ( tx_ok, tx_fail, rx_ready );
-  //printf("[Status] %d %d %d\n", tx_ok, tx_fail, rx_ready);
-  
-  /* Now, resume listening so we catch the next packets. */
-  //radio.startListening();
 }
 /************************************************************************/
 
@@ -132,8 +132,15 @@ void loop() {
  * C A L L B A C K S
  ************************************************************************/
 void check_radio(void){
+  /* Call this when you get an interrupt to find out why. 
+   * Tells you what caused the interrupt, and clears the state of interrupts. 
+   */
+  bool tx_ok, tx_fail, rx_ready;
+  radio.whatHappened ( tx_ok, tx_fail, rx_ready );
+  printf("[Status] %d %d %d %d\n", tx_ok, tx_fail, rx_ready, radio.available());
+  
   /* Check the read pipe for message */
-  if ( radio.available()){
+  if (rx_ready || radio.available()){
     /* Read the message */
     Protocol msg;
     radio.read( &msg, sizeof(Protocol));
@@ -146,6 +153,7 @@ void check_radio(void){
     
     /* Control the wheels */
     wheel_right.write((int)msg.data1);
+    wheel_left.write((int)msg.data2);
     
     printf("----------------------\n");
     printf("[Status] Become data:\n");  
