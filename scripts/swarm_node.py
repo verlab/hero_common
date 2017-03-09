@@ -50,8 +50,8 @@ class Robot(object):
 		# Command publish to control the robot
 		cmd = Command()
 		cmd.robot_id = self.robot_id
-		cmd.wheel_right = (wr + 1) * 98
-		cmd.wheel_left = (wl + 1) * 98
+		cmd.wheel_right = (-wr + 1) * 94
+		cmd.wheel_left = (wl + 1) * 97
 		# Publishing 
 		self.swarm_commands.publish(cmd)
 

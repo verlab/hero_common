@@ -59,7 +59,7 @@ void check_radio(void);
 /************************************************************************
  * Servo motor driver
  ************************************************************************/
-Servo wheel_right, wheel_left;
+Servo empty, wheel_right, wheel_left;
 /************************************************************************/
 
 /************************************************************************
@@ -75,8 +75,8 @@ void setup() {
   wheel_right.attach(6);
   wheel_left.attach(7);
   
-  wheel_right.write(98);
-  wheel_left.write(98);
+  wheel_right.write(94);
+  wheel_left.write(97);
 
   /* Setup and configure rf radio */
   radio.begin();
