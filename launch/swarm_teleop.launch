@@ -1,0 +1,9 @@
+<!--> Use speed 0.2 and turn 0.040 <-->
+
+<launch>
+
+    <node pkg="turtlebot_teleop" type="turtlebot_teleop_key" name="turtlebot_teleop_keyboard" output="screen">
+        <remap from="turtlebot_teleop_keyboard/cmd_vel" to="/robot_11/cmd_vel"/>
+    </node>
+
+</launch>
