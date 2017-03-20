@@ -12,9 +12,12 @@ namespace rocon_app_manager_msgs
   class PublicInterface : public ros::Msg
   {
     public:
-      const char* connection_type;
-      const char* data_type;
-      const char* name;
+      typedef const char* _connection_type_type;
+      _connection_type_type connection_type;
+      typedef const char* _data_type_type;
+      _data_type_type data_type;
+      typedef const char* _name_type;
+      _name_type name;
 
     PublicInterface():
       connection_type(""),
@@ -27,17 +30,17 @@ namespace rocon_app_manager_msgs
     {
       int offset = 0;
       uint32_t length_connection_type = strlen(this->connection_type);
-      memcpy(outbuffer + offset, &length_connection_type, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_connection_type);
       offset += 4;
       memcpy(outbuffer + offset, this->connection_type, length_connection_type);
       offset += length_connection_type;
       uint32_t length_data_type = strlen(this->data_type);
-      memcpy(outbuffer + offset, &length_data_type, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_data_type);
       offset += 4;
       memcpy(outbuffer + offset, this->data_type, length_data_type);
       offset += length_data_type;
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
@@ -48,7 +51,7 @@ namespace rocon_app_manager_msgs
     {
       int offset = 0;
       uint32_t length_connection_type;
-      memcpy(&length_connection_type, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_connection_type, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_connection_type; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -57,7 +60,7 @@ namespace rocon_app_manager_msgs
       this->connection_type = (char *)(inbuffer + offset-1);
       offset += length_connection_type;
       uint32_t length_data_type;
-      memcpy(&length_data_type, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_data_type, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_data_type; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -66,7 +69,7 @@ namespace rocon_app_manager_msgs
       this->data_type = (char *)(inbuffer + offset-1);
       offset += length_data_type;
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];

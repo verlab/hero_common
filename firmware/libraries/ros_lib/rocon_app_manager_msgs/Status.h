@@ -15,16 +15,22 @@ namespace rocon_app_manager_msgs
   class Status : public ros::Msg
   {
     public:
-      const char* application_namespace;
-      const char* remote_controller;
-      const char* rapp_status;
-      rocon_app_manager_msgs::Rapp rapp;
-      uint8_t published_interfaces_length;
-      rocon_app_manager_msgs::PublishedInterface st_published_interfaces;
-      rocon_app_manager_msgs::PublishedInterface * published_interfaces;
-      uint8_t published_parameters_length;
-      rocon_std_msgs::KeyValue st_published_parameters;
-      rocon_std_msgs::KeyValue * published_parameters;
+      typedef const char* _application_namespace_type;
+      _application_namespace_type application_namespace;
+      typedef const char* _remote_controller_type;
+      _remote_controller_type remote_controller;
+      typedef const char* _rapp_status_type;
+      _rapp_status_type rapp_status;
+      typedef rocon_app_manager_msgs::Rapp _rapp_type;
+      _rapp_type rapp;
+      uint32_t published_interfaces_length;
+      typedef rocon_app_manager_msgs::PublishedInterface _published_interfaces_type;
+      _published_interfaces_type st_published_interfaces;
+      _published_interfaces_type * published_interfaces;
+      uint32_t published_parameters_length;
+      typedef rocon_std_msgs::KeyValue _published_parameters_type;
+      _published_parameters_type st_published_parameters;
+      _published_parameters_type * published_parameters;
       enum { RAPP_STOPPED = stopped };
       enum { RAPP_RUNNING = running };
 
@@ -42,33 +48,35 @@ namespace rocon_app_manager_msgs
     {
       int offset = 0;
       uint32_t length_application_namespace = strlen(this->application_namespace);
-      memcpy(outbuffer + offset, &length_application_namespace, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_application_namespace);
       offset += 4;
       memcpy(outbuffer + offset, this->application_namespace, length_application_namespace);
       offset += length_application_namespace;
       uint32_t length_remote_controller = strlen(this->remote_controller);
-      memcpy(outbuffer + offset, &length_remote_controller, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_remote_controller);
       offset += 4;
       memcpy(outbuffer + offset, this->remote_controller, length_remote_controller);
       offset += length_remote_controller;
       uint32_t length_rapp_status = strlen(this->rapp_status);
-      memcpy(outbuffer + offset, &length_rapp_status, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_rapp_status);
       offset += 4;
       memcpy(outbuffer + offset, this->rapp_status, length_rapp_status);
       offset += length_rapp_status;
       offset += this->rapp.serialize(outbuffer + offset);
-      *(outbuffer + offset++) = published_interfaces_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < published_interfaces_length; i++){
+      *(outbuffer + offset + 0) = (this->published_interfaces_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->published_interfaces_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->published_interfaces_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->published_interfaces_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->published_interfaces_length);
+      for( uint32_t i = 0; i < published_interfaces_length; i++){
       offset += this->published_interfaces[i].serialize(outbuffer + offset);
       }
-      *(outbuffer + offset++) = published_parameters_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < published_parameters_length; i++){
+      *(outbuffer + offset + 0) = (this->published_parameters_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->published_parameters_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->published_parameters_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->published_parameters_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->published_parameters_length);
+      for( uint32_t i = 0; i < published_parameters_length; i++){
       offset += this->published_parameters[i].serialize(outbuffer + offset);
       }
       return offset;
@@ -78,7 +86,7 @@ namespace rocon_app_manager_msgs
     {
       int offset = 0;
       uint32_t length_application_namespace;
-      memcpy(&length_application_namespace, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_application_namespace, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_application_namespace; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -87,7 +95,7 @@ namespace rocon_app_manager_msgs
       this->application_namespace = (char *)(inbuffer + offset-1);
       offset += length_application_namespace;
       uint32_t length_remote_controller;
-      memcpy(&length_remote_controller, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_remote_controller, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_remote_controller; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -96,7 +104,7 @@ namespace rocon_app_manager_msgs
       this->remote_controller = (char *)(inbuffer + offset-1);
       offset += length_remote_controller;
       uint32_t length_rapp_status;
-      memcpy(&length_rapp_status, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_rapp_status, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_rapp_status; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -105,21 +113,27 @@ namespace rocon_app_manager_msgs
       this->rapp_status = (char *)(inbuffer + offset-1);
       offset += length_rapp_status;
       offset += this->rapp.deserialize(inbuffer + offset);
-      uint8_t published_interfaces_lengthT = *(inbuffer + offset++);
+      uint32_t published_interfaces_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      published_interfaces_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      published_interfaces_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      published_interfaces_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->published_interfaces_length);
       if(published_interfaces_lengthT > published_interfaces_length)
         this->published_interfaces = (rocon_app_manager_msgs::PublishedInterface*)realloc(this->published_interfaces, published_interfaces_lengthT * sizeof(rocon_app_manager_msgs::PublishedInterface));
-      offset += 3;
       published_interfaces_length = published_interfaces_lengthT;
-      for( uint8_t i = 0; i < published_interfaces_length; i++){
+      for( uint32_t i = 0; i < published_interfaces_length; i++){
       offset += this->st_published_interfaces.deserialize(inbuffer + offset);
         memcpy( &(this->published_interfaces[i]), &(this->st_published_interfaces), sizeof(rocon_app_manager_msgs::PublishedInterface));
       }
-      uint8_t published_parameters_lengthT = *(inbuffer + offset++);
+      uint32_t published_parameters_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      published_parameters_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      published_parameters_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      published_parameters_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->published_parameters_length);
       if(published_parameters_lengthT > published_parameters_length)
         this->published_parameters = (rocon_std_msgs::KeyValue*)realloc(this->published_parameters, published_parameters_lengthT * sizeof(rocon_std_msgs::KeyValue));
-      offset += 3;
       published_parameters_length = published_parameters_lengthT;
-      for( uint8_t i = 0; i < published_parameters_length; i++){
+      for( uint32_t i = 0; i < published_parameters_length; i++){
       offset += this->st_published_parameters.deserialize(inbuffer + offset);
         memcpy( &(this->published_parameters[i]), &(this->st_published_parameters), sizeof(rocon_std_msgs::KeyValue));
       }

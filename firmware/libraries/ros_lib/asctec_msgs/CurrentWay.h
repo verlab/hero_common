@@ -13,16 +13,26 @@ namespace asctec_msgs
   class CurrentWay : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      uint8_t dummy1;
-      uint8_t properties;
-      uint16_t nr_of_wp;
-      uint8_t current_wp;
-      uint8_t current_wp_memlocation;
-      uint8_t status;
-      uint8_t dummy2;
-      uint16_t navigation_status;
-      uint16_t distance_to_wp;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef uint8_t _dummy1_type;
+      _dummy1_type dummy1;
+      typedef uint8_t _properties_type;
+      _properties_type properties;
+      typedef uint16_t _nr_of_wp_type;
+      _nr_of_wp_type nr_of_wp;
+      typedef uint8_t _current_wp_type;
+      _current_wp_type current_wp;
+      typedef uint8_t _current_wp_memlocation_type;
+      _current_wp_memlocation_type current_wp_memlocation;
+      typedef uint8_t _status_type;
+      _status_type status;
+      typedef uint8_t _dummy2_type;
+      _dummy2_type dummy2;
+      typedef uint16_t _navigation_status_type;
+      _navigation_status_type navigation_status;
+      typedef uint16_t _distance_to_wp_type;
+      _distance_to_wp_type distance_to_wp;
 
     CurrentWay():
       header(),

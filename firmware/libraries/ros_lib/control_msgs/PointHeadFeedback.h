@@ -12,7 +12,8 @@ namespace control_msgs
   class PointHeadFeedback : public ros::Msg
   {
     public:
-      float pointing_angle_error;
+      typedef float _pointing_angle_error_type;
+      _pointing_angle_error_type pointing_angle_error;
 
     PointHeadFeedback():
       pointing_angle_error(0)

@@ -13,7 +13,8 @@ static const char GETSEMANTICINTERFACES[] = "capabilities/GetSemanticInterfaces"
   class GetSemanticInterfacesRequest : public ros::Msg
   {
     public:
-      const char* interface;
+      typedef const char* _interface_type;
+      _interface_type interface;
 
     GetSemanticInterfacesRequest():
       interface("")
@@ -24,7 +25,7 @@ static const char GETSEMANTICINTERFACES[] = "capabilities/GetSemanticInterfaces"
     {
       int offset = 0;
       uint32_t length_interface = strlen(this->interface);
-      memcpy(outbuffer + offset, &length_interface, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_interface);
       offset += 4;
       memcpy(outbuffer + offset, this->interface, length_interface);
       offset += length_interface;
@@ -35,7 +36,7 @@ static const char GETSEMANTICINTERFACES[] = "capabilities/GetSemanticInterfaces"
     {
       int offset = 0;
       uint32_t length_interface;
-      memcpy(&length_interface, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_interface, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_interface; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -54,9 +55,10 @@ static const char GETSEMANTICINTERFACES[] = "capabilities/GetSemanticInterfaces"
   class GetSemanticInterfacesResponse : public ros::Msg
   {
     public:
-      uint8_t semantic_interfaces_length;
-      char* st_semantic_interfaces;
-      char* * semantic_interfaces;
+      uint32_t semantic_interfaces_length;
+      typedef char* _semantic_interfaces_type;
+      _semantic_interfaces_type st_semantic_interfaces;
+      _semantic_interfaces_type * semantic_interfaces;
 
     GetSemanticInterfacesResponse():
       semantic_interfaces_length(0), semantic_interfaces(NULL)
@@ -66,13 +68,14 @@ static const char GETSEMANTICINTERFACES[] = "capabilities/GetSemanticInterfaces"
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      *(outbuffer + offset++) = semantic_interfaces_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < semantic_interfaces_length; i++){
+      *(outbuffer + offset + 0) = (this->semantic_interfaces_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->semantic_interfaces_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->semantic_interfaces_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->semantic_interfaces_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->semantic_interfaces_length);
+      for( uint32_t i = 0; i < semantic_interfaces_length; i++){
       uint32_t length_semantic_interfacesi = strlen(this->semantic_interfaces[i]);
-      memcpy(outbuffer + offset, &length_semantic_interfacesi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_semantic_interfacesi);
       offset += 4;
       memcpy(outbuffer + offset, this->semantic_interfaces[i], length_semantic_interfacesi);
       offset += length_semantic_interfacesi;
@@ -83,14 +86,17 @@ static const char GETSEMANTICINTERFACES[] = "capabilities/GetSemanticInterfaces"
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      uint8_t semantic_interfaces_lengthT = *(inbuffer + offset++);
+      uint32_t semantic_interfaces_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      semantic_interfaces_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      semantic_interfaces_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      semantic_interfaces_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->semantic_interfaces_length);
       if(semantic_interfaces_lengthT > semantic_interfaces_length)
         this->semantic_interfaces = (char**)realloc(this->semantic_interfaces, semantic_interfaces_lengthT * sizeof(char*));
-      offset += 3;
       semantic_interfaces_length = semantic_interfaces_lengthT;
-      for( uint8_t i = 0; i < semantic_interfaces_length; i++){
+      for( uint32_t i = 0; i < semantic_interfaces_length; i++){
       uint32_t length_st_semantic_interfaces;
-      memcpy(&length_st_semantic_interfaces, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_semantic_interfaces, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_semantic_interfaces; ++k){
           inbuffer[k-1]=inbuffer[k];

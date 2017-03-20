@@ -30,8 +30,8 @@ uint8_t id = 11;
  ************************************************************************/
  struct Protocol{
     uint8_t robotId;
-    uint8_t data1;
-    uint8_t data2;
+    int8_t data1;
+    int8_t data2;
 };
 /************************************************************************/
 
@@ -60,6 +60,8 @@ void check_radio(void);
  * Servo motor driver
  ************************************************************************/
 Servo empty, wheel_right, wheel_left;
+int wheel_right_m = 1545;
+int wheel_left_m = 1500;
 /************************************************************************/
 
 /************************************************************************
@@ -74,10 +76,10 @@ void setup() {
   /* Setup servo motor */
   wheel_right.attach(6);
   wheel_left.attach(7);
+ 
+  wheel_right.writeMicroseconds(wheel_right_m);
+  wheel_left.writeMicroseconds(wheel_left_m);
   
-  wheel_right.write(97);
-  wheel_left.write(93);
-
   /* Setup and configure rf radio */
   radio.begin();
 
@@ -152,12 +154,14 @@ void check_radio(void){
     }
     
     /* Control the wheels */
-    wheel_right.write((int)msg.data1);
-    wheel_left.write((int)msg.data2);
+    int wheel_right_data = wheel_right_m + map((int)msg.data1, -127, 127, -500, 500);
+    int wheel_left_data = wheel_left_m + map((int)msg.data2, -127, 127, -500, 500);
+    wheel_right.writeMicroseconds(wheel_right_data);
+    wheel_left.writeMicroseconds(wheel_left_data);
     
     printf("----------------------\n");
     printf("[Status] Become data:\n");  
-    printf("[Status] Data: {%d, %d, %d}\n", msg.robotId, msg.data1, msg.data2);
+    printf("[Status] Data: {%d, %d, %d}\n", msg.robotId, wheel_right_data, wheel_left_data);
     printf("----------------------\n");
   }
 }

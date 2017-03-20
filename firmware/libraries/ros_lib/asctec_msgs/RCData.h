@@ -13,10 +13,12 @@ namespace asctec_msgs
   class RCData : public ros::Msg
   {
     public:
-      std_msgs::Header header;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
       int16_t channels_in[8];
       int16_t channels_out[8];
-      int16_t lock;
+      typedef int16_t _lock_type;
+      _lock_type lock;
 
     RCData():
       header(),
@@ -30,7 +32,7 @@ namespace asctec_msgs
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
-      for( uint8_t i = 0; i < 8; i++){
+      for( uint32_t i = 0; i < 8; i++){
       union {
         int16_t real;
         uint16_t base;
@@ -40,7 +42,7 @@ namespace asctec_msgs
       *(outbuffer + offset + 1) = (u_channels_ini.base >> (8 * 1)) & 0xFF;
       offset += sizeof(this->channels_in[i]);
       }
-      for( uint8_t i = 0; i < 8; i++){
+      for( uint32_t i = 0; i < 8; i++){
       union {
         int16_t real;
         uint16_t base;
@@ -65,7 +67,7 @@ namespace asctec_msgs
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
-      for( uint8_t i = 0; i < 8; i++){
+      for( uint32_t i = 0; i < 8; i++){
       union {
         int16_t real;
         uint16_t base;
@@ -76,7 +78,7 @@ namespace asctec_msgs
       this->channels_in[i] = u_channels_ini.real;
       offset += sizeof(this->channels_in[i]);
       }
-      for( uint8_t i = 0; i < 8; i++){
+      for( uint32_t i = 0; i < 8; i++){
       union {
         int16_t real;
         uint16_t base;

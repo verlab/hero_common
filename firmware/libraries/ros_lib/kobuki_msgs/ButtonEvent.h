@@ -12,8 +12,10 @@ namespace kobuki_msgs
   class ButtonEvent : public ros::Msg
   {
     public:
-      uint8_t button;
-      uint8_t state;
+      typedef uint8_t _button_type;
+      _button_type button;
+      typedef uint8_t _state_type;
+      _state_type state;
       enum { Button0 =  0 };
       enum { Button1 =  1 };
       enum { Button2 =  2 };

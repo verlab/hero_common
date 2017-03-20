@@ -14,7 +14,8 @@ static const char LISTDISCOVEREDSERVICES[] = "zeroconf_msgs/ListDiscoveredServic
   class ListDiscoveredServicesRequest : public ros::Msg
   {
     public:
-      const char* service_type;
+      typedef const char* _service_type_type;
+      _service_type_type service_type;
 
     ListDiscoveredServicesRequest():
       service_type("")
@@ -25,7 +26,7 @@ static const char LISTDISCOVEREDSERVICES[] = "zeroconf_msgs/ListDiscoveredServic
     {
       int offset = 0;
       uint32_t length_service_type = strlen(this->service_type);
-      memcpy(outbuffer + offset, &length_service_type, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_service_type);
       offset += 4;
       memcpy(outbuffer + offset, this->service_type, length_service_type);
       offset += length_service_type;
@@ -36,7 +37,7 @@ static const char LISTDISCOVEREDSERVICES[] = "zeroconf_msgs/ListDiscoveredServic
     {
       int offset = 0;
       uint32_t length_service_type;
-      memcpy(&length_service_type, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_service_type, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_service_type; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -55,9 +56,10 @@ static const char LISTDISCOVEREDSERVICES[] = "zeroconf_msgs/ListDiscoveredServic
   class ListDiscoveredServicesResponse : public ros::Msg
   {
     public:
-      uint8_t services_length;
-      zeroconf_msgs::DiscoveredService st_services;
-      zeroconf_msgs::DiscoveredService * services;
+      uint32_t services_length;
+      typedef zeroconf_msgs::DiscoveredService _services_type;
+      _services_type st_services;
+      _services_type * services;
 
     ListDiscoveredServicesResponse():
       services_length(0), services(NULL)
@@ -67,11 +69,12 @@ static const char LISTDISCOVEREDSERVICES[] = "zeroconf_msgs/ListDiscoveredServic
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      *(outbuffer + offset++) = services_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < services_length; i++){
+      *(outbuffer + offset + 0) = (this->services_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->services_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->services_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->services_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->services_length);
+      for( uint32_t i = 0; i < services_length; i++){
       offset += this->services[i].serialize(outbuffer + offset);
       }
       return offset;
@@ -80,12 +83,15 @@ static const char LISTDISCOVEREDSERVICES[] = "zeroconf_msgs/ListDiscoveredServic
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      uint8_t services_lengthT = *(inbuffer + offset++);
+      uint32_t services_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      services_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      services_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      services_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->services_length);
       if(services_lengthT > services_length)
         this->services = (zeroconf_msgs::DiscoveredService*)realloc(this->services, services_lengthT * sizeof(zeroconf_msgs::DiscoveredService));
-      offset += 3;
       services_length = services_lengthT;
-      for( uint8_t i = 0; i < services_length; i++){
+      for( uint32_t i = 0; i < services_length; i++){
       offset += this->st_services.deserialize(inbuffer + offset);
         memcpy( &(this->services[i]), &(this->st_services), sizeof(zeroconf_msgs::DiscoveredService));
       }

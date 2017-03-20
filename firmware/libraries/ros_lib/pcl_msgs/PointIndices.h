@@ -13,10 +13,12 @@ namespace pcl_msgs
   class PointIndices : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      uint8_t indices_length;
-      int32_t st_indices;
-      int32_t * indices;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      uint32_t indices_length;
+      typedef int32_t _indices_type;
+      _indices_type st_indices;
+      _indices_type * indices;
 
     PointIndices():
       header(),
@@ -28,11 +30,12 @@ namespace pcl_msgs
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
-      *(outbuffer + offset++) = indices_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < indices_length; i++){
+      *(outbuffer + offset + 0) = (this->indices_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->indices_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->indices_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->indices_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->indices_length);
+      for( uint32_t i = 0; i < indices_length; i++){
       union {
         int32_t real;
         uint32_t base;
@@ -51,12 +54,15 @@ namespace pcl_msgs
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
-      uint8_t indices_lengthT = *(inbuffer + offset++);
+      uint32_t indices_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      indices_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      indices_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      indices_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->indices_length);
       if(indices_lengthT > indices_length)
         this->indices = (int32_t*)realloc(this->indices, indices_lengthT * sizeof(int32_t));
-      offset += 3;
       indices_length = indices_lengthT;
-      for( uint8_t i = 0; i < indices_length; i++){
+      for( uint32_t i = 0; i < indices_length; i++){
       union {
         int32_t real;
         uint32_t base;

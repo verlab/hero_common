@@ -14,8 +14,10 @@ namespace rocon_service_pair_msgs
   class TestiesPairRequest : public ros::Msg
   {
     public:
-      uuid_msgs::UniqueID id;
-      rocon_service_pair_msgs::TestiesRequest request;
+      typedef uuid_msgs::UniqueID _id_type;
+      _id_type id;
+      typedef rocon_service_pair_msgs::TestiesRequest _request_type;
+      _request_type request;
 
     TestiesPairRequest():
       id(),

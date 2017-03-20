@@ -13,8 +13,10 @@ namespace rocon_std_msgs
   class Float32Stamped : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      float data;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef float _data_type;
+      _data_type data;
 
     Float32Stamped():
       header(),

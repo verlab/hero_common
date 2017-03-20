@@ -12,7 +12,8 @@ namespace rocon_interaction_msgs
   class PairingStatus : public ros::Msg
   {
     public:
-      const char* active_pairing;
+      typedef const char* _active_pairing_type;
+      _active_pairing_type active_pairing;
 
     PairingStatus():
       active_pairing("")
@@ -23,7 +24,7 @@ namespace rocon_interaction_msgs
     {
       int offset = 0;
       uint32_t length_active_pairing = strlen(this->active_pairing);
-      memcpy(outbuffer + offset, &length_active_pairing, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_active_pairing);
       offset += 4;
       memcpy(outbuffer + offset, this->active_pairing, length_active_pairing);
       offset += length_active_pairing;
@@ -34,7 +35,7 @@ namespace rocon_interaction_msgs
     {
       int offset = 0;
       uint32_t length_active_pairing;
-      memcpy(&length_active_pairing, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_active_pairing, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_active_pairing; ++k){
           inbuffer[k-1]=inbuffer[k];

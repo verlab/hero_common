@@ -39,12 +39,14 @@ static const char GETRAPPLIST[] = "rocon_app_manager_msgs/GetRappList";
   class GetRappListResponse : public ros::Msg
   {
     public:
-      uint8_t available_rapps_length;
-      rocon_app_manager_msgs::Rapp st_available_rapps;
-      rocon_app_manager_msgs::Rapp * available_rapps;
-      uint8_t running_rapps_length;
-      rocon_app_manager_msgs::Rapp st_running_rapps;
-      rocon_app_manager_msgs::Rapp * running_rapps;
+      uint32_t available_rapps_length;
+      typedef rocon_app_manager_msgs::Rapp _available_rapps_type;
+      _available_rapps_type st_available_rapps;
+      _available_rapps_type * available_rapps;
+      uint32_t running_rapps_length;
+      typedef rocon_app_manager_msgs::Rapp _running_rapps_type;
+      _running_rapps_type st_running_rapps;
+      _running_rapps_type * running_rapps;
 
     GetRappListResponse():
       available_rapps_length(0), available_rapps(NULL),
@@ -55,18 +57,20 @@ static const char GETRAPPLIST[] = "rocon_app_manager_msgs/GetRappList";
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      *(outbuffer + offset++) = available_rapps_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < available_rapps_length; i++){
+      *(outbuffer + offset + 0) = (this->available_rapps_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->available_rapps_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->available_rapps_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->available_rapps_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->available_rapps_length);
+      for( uint32_t i = 0; i < available_rapps_length; i++){
       offset += this->available_rapps[i].serialize(outbuffer + offset);
       }
-      *(outbuffer + offset++) = running_rapps_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < running_rapps_length; i++){
+      *(outbuffer + offset + 0) = (this->running_rapps_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->running_rapps_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->running_rapps_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->running_rapps_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->running_rapps_length);
+      for( uint32_t i = 0; i < running_rapps_length; i++){
       offset += this->running_rapps[i].serialize(outbuffer + offset);
       }
       return offset;
@@ -75,21 +79,27 @@ static const char GETRAPPLIST[] = "rocon_app_manager_msgs/GetRappList";
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      uint8_t available_rapps_lengthT = *(inbuffer + offset++);
+      uint32_t available_rapps_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      available_rapps_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      available_rapps_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      available_rapps_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->available_rapps_length);
       if(available_rapps_lengthT > available_rapps_length)
         this->available_rapps = (rocon_app_manager_msgs::Rapp*)realloc(this->available_rapps, available_rapps_lengthT * sizeof(rocon_app_manager_msgs::Rapp));
-      offset += 3;
       available_rapps_length = available_rapps_lengthT;
-      for( uint8_t i = 0; i < available_rapps_length; i++){
+      for( uint32_t i = 0; i < available_rapps_length; i++){
       offset += this->st_available_rapps.deserialize(inbuffer + offset);
         memcpy( &(this->available_rapps[i]), &(this->st_available_rapps), sizeof(rocon_app_manager_msgs::Rapp));
       }
-      uint8_t running_rapps_lengthT = *(inbuffer + offset++);
+      uint32_t running_rapps_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      running_rapps_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      running_rapps_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      running_rapps_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->running_rapps_length);
       if(running_rapps_lengthT > running_rapps_length)
         this->running_rapps = (rocon_app_manager_msgs::Rapp*)realloc(this->running_rapps, running_rapps_lengthT * sizeof(rocon_app_manager_msgs::Rapp));
-      offset += 3;
       running_rapps_length = running_rapps_lengthT;
-      for( uint8_t i = 0; i < running_rapps_length; i++){
+      for( uint32_t i = 0; i < running_rapps_length; i++){
       offset += this->st_running_rapps.deserialize(inbuffer + offset);
         memcpy( &(this->running_rapps[i]), &(this->st_running_rapps), sizeof(rocon_app_manager_msgs::Rapp));
       }

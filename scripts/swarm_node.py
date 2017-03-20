@@ -17,6 +17,7 @@ from swarm_driver.msg import Command
 from geometry_msgs.msg import Twist
 from std_msgs.msg import UInt8
 
+import numpy as np
 
 class Robot(object):
 	def __init__(self, robot_id):
@@ -26,9 +27,9 @@ class Robot(object):
 		# Publisher the low-level commands to robots
 		self.swarm_commands = rospy.Publisher('/swarm/command', Command, queue_size=1)
 		# Wheel Radio (cm)
-		self.wheel_diameter = 4
+		self.wheel_diameter = 6.64
 		# Separation between wheels (cm)
-		self.wheel_separtion = 5.3
+		self.wheel_separtion = 6.6
 		# Max linear speed
 		self.max_linear = self.wheel_diameter
 		# Max angular speed
@@ -47,11 +48,14 @@ class Robot(object):
 		# Kinematic model for differential robot.
 		wl = (linear - (self.wheel_separtion / 2.) * angular) / self.wheel_diameter
 		wr = (linear + (self.wheel_separtion / 2.) * angular) / self.wheel_diameter
+		wr = max(-0.5, min(wr, 0.5))
+		wl = max(-0.5, min(wl, 0.5))
 		# Command publish to control the robot
 		cmd = Command()
 		cmd.robot_id = self.robot_id
-		cmd.wheel_right = (-wr + 1) * 97
-		cmd.wheel_left = (wl + 1) * 93
+		cmd.wheel_right = np.int8((-wr) * 255)
+		cmd.wheel_left = np.int8((wl) * 255)
+		print cmd
 		# Publishing 
 		self.swarm_commands.publish(cmd)
 

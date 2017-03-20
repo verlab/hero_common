@@ -13,7 +13,8 @@ static const char SETPOWER[] = "realsense_camera/SetPower";
   class SetPowerRequest : public ros::Msg
   {
     public:
-      bool power_on;
+      typedef bool _power_on_type;
+      _power_on_type power_on;
 
     SetPowerRequest():
       power_on(0)
@@ -55,7 +56,8 @@ static const char SETPOWER[] = "realsense_camera/SetPower";
   class SetPowerResponse : public ros::Msg
   {
     public:
-      bool success;
+      typedef bool _success_type;
+      _success_type success;
 
     SetPowerResponse():
       success(0)

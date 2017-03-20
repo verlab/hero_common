@@ -13,18 +13,30 @@ namespace ros_tamiya
   class Gps_msg : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      const char* fix_quality;
-      const char* fix3d;
-      const char* status;
-      int32_t sat_num;
-      float latitude;
-      float longitude;
-      int32_t utmzone;
-      float X;
-      float Y;
-      float speed;
-      float orientation;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef const char* _fix_quality_type;
+      _fix_quality_type fix_quality;
+      typedef const char* _fix3d_type;
+      _fix3d_type fix3d;
+      typedef const char* _status_type;
+      _status_type status;
+      typedef int32_t _sat_num_type;
+      _sat_num_type sat_num;
+      typedef float _latitude_type;
+      _latitude_type latitude;
+      typedef float _longitude_type;
+      _longitude_type longitude;
+      typedef int32_t _utmzone_type;
+      _utmzone_type utmzone;
+      typedef float _X_type;
+      _X_type X;
+      typedef float _Y_type;
+      _Y_type Y;
+      typedef float _speed_type;
+      _speed_type speed;
+      typedef float _orientation_type;
+      _orientation_type orientation;
 
     Gps_msg():
       header(),
@@ -47,17 +59,17 @@ namespace ros_tamiya
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
       uint32_t length_fix_quality = strlen(this->fix_quality);
-      memcpy(outbuffer + offset, &length_fix_quality, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_fix_quality);
       offset += 4;
       memcpy(outbuffer + offset, this->fix_quality, length_fix_quality);
       offset += length_fix_quality;
       uint32_t length_fix3d = strlen(this->fix3d);
-      memcpy(outbuffer + offset, &length_fix3d, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_fix3d);
       offset += 4;
       memcpy(outbuffer + offset, this->fix3d, length_fix3d);
       offset += length_fix3d;
       uint32_t length_status = strlen(this->status);
-      memcpy(outbuffer + offset, &length_status, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_status);
       offset += 4;
       memcpy(outbuffer + offset, this->status, length_status);
       offset += length_status;
@@ -149,7 +161,7 @@ namespace ros_tamiya
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
       uint32_t length_fix_quality;
-      memcpy(&length_fix_quality, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_fix_quality, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_fix_quality; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -158,7 +170,7 @@ namespace ros_tamiya
       this->fix_quality = (char *)(inbuffer + offset-1);
       offset += length_fix_quality;
       uint32_t length_fix3d;
-      memcpy(&length_fix3d, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_fix3d, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_fix3d; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -167,7 +179,7 @@ namespace ros_tamiya
       this->fix3d = (char *)(inbuffer + offset-1);
       offset += length_fix3d;
       uint32_t length_status;
-      memcpy(&length_status, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_status, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_status; ++k){
           inbuffer[k-1]=inbuffer[k];

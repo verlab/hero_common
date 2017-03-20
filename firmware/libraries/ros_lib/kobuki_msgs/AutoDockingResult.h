@@ -12,7 +12,8 @@ namespace kobuki_msgs
   class AutoDockingResult : public ros::Msg
   {
     public:
-      const char* text;
+      typedef const char* _text_type;
+      _text_type text;
 
     AutoDockingResult():
       text("")
@@ -23,7 +24,7 @@ namespace kobuki_msgs
     {
       int offset = 0;
       uint32_t length_text = strlen(this->text);
-      memcpy(outbuffer + offset, &length_text, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_text);
       offset += 4;
       memcpy(outbuffer + offset, this->text, length_text);
       offset += length_text;
@@ -34,7 +35,7 @@ namespace kobuki_msgs
     {
       int offset = 0;
       uint32_t length_text;
-      memcpy(&length_text, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_text, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_text; ++k){
           inbuffer[k-1]=inbuffer[k];

@@ -12,8 +12,10 @@ namespace kobuki_msgs
   class BumperEvent : public ros::Msg
   {
     public:
-      uint8_t bumper;
-      uint8_t state;
+      typedef uint8_t _bumper_type;
+      _bumper_type bumper;
+      typedef uint8_t _state_type;
+      _state_type state;
       enum { LEFT =  0 };
       enum { CENTER =  1 };
       enum { RIGHT =  2 };

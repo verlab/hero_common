@@ -14,10 +14,12 @@ namespace multiplanner_msgs
   class Paths : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      uint8_t paths_length;
-      nav_msgs::Path st_paths;
-      nav_msgs::Path * paths;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      uint32_t paths_length;
+      typedef nav_msgs::Path _paths_type;
+      _paths_type st_paths;
+      _paths_type * paths;
 
     Paths():
       header(),
@@ -29,11 +31,12 @@ namespace multiplanner_msgs
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
-      *(outbuffer + offset++) = paths_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < paths_length; i++){
+      *(outbuffer + offset + 0) = (this->paths_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->paths_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->paths_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->paths_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->paths_length);
+      for( uint32_t i = 0; i < paths_length; i++){
       offset += this->paths[i].serialize(outbuffer + offset);
       }
       return offset;
@@ -43,12 +46,15 @@ namespace multiplanner_msgs
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
-      uint8_t paths_lengthT = *(inbuffer + offset++);
+      uint32_t paths_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      paths_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      paths_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      paths_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->paths_length);
       if(paths_lengthT > paths_length)
         this->paths = (nav_msgs::Path*)realloc(this->paths, paths_lengthT * sizeof(nav_msgs::Path));
-      offset += 3;
       paths_length = paths_lengthT;
-      for( uint8_t i = 0; i < paths_length; i++){
+      for( uint32_t i = 0; i < paths_length; i++){
       offset += this->st_paths.deserialize(inbuffer + offset);
         memcpy( &(this->paths[i]), &(this->st_paths), sizeof(nav_msgs::Path));
       }

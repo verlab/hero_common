@@ -13,12 +13,16 @@ namespace capabilities
   class RunningCapability : public ros::Msg
   {
     public:
-      capabilities::Capability capability;
-      uint8_t dependent_capabilities_length;
-      capabilities::Capability st_dependent_capabilities;
-      capabilities::Capability * dependent_capabilities;
-      const char* started_by;
-      int32_t pid;
+      typedef capabilities::Capability _capability_type;
+      _capability_type capability;
+      uint32_t dependent_capabilities_length;
+      typedef capabilities::Capability _dependent_capabilities_type;
+      _dependent_capabilities_type st_dependent_capabilities;
+      _dependent_capabilities_type * dependent_capabilities;
+      typedef const char* _started_by_type;
+      _started_by_type started_by;
+      typedef int32_t _pid_type;
+      _pid_type pid;
 
     RunningCapability():
       capability(),
@@ -32,15 +36,16 @@ namespace capabilities
     {
       int offset = 0;
       offset += this->capability.serialize(outbuffer + offset);
-      *(outbuffer + offset++) = dependent_capabilities_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < dependent_capabilities_length; i++){
+      *(outbuffer + offset + 0) = (this->dependent_capabilities_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->dependent_capabilities_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->dependent_capabilities_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->dependent_capabilities_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->dependent_capabilities_length);
+      for( uint32_t i = 0; i < dependent_capabilities_length; i++){
       offset += this->dependent_capabilities[i].serialize(outbuffer + offset);
       }
       uint32_t length_started_by = strlen(this->started_by);
-      memcpy(outbuffer + offset, &length_started_by, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_started_by);
       offset += 4;
       memcpy(outbuffer + offset, this->started_by, length_started_by);
       offset += length_started_by;
@@ -61,17 +66,20 @@ namespace capabilities
     {
       int offset = 0;
       offset += this->capability.deserialize(inbuffer + offset);
-      uint8_t dependent_capabilities_lengthT = *(inbuffer + offset++);
+      uint32_t dependent_capabilities_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      dependent_capabilities_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      dependent_capabilities_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      dependent_capabilities_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->dependent_capabilities_length);
       if(dependent_capabilities_lengthT > dependent_capabilities_length)
         this->dependent_capabilities = (capabilities::Capability*)realloc(this->dependent_capabilities, dependent_capabilities_lengthT * sizeof(capabilities::Capability));
-      offset += 3;
       dependent_capabilities_length = dependent_capabilities_lengthT;
-      for( uint8_t i = 0; i < dependent_capabilities_length; i++){
+      for( uint32_t i = 0; i < dependent_capabilities_length; i++){
       offset += this->st_dependent_capabilities.deserialize(inbuffer + offset);
         memcpy( &(this->dependent_capabilities[i]), &(this->st_dependent_capabilities), sizeof(capabilities::Capability));
       }
       uint32_t length_started_by;
-      memcpy(&length_started_by, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_started_by, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_started_by; ++k){
           inbuffer[k-1]=inbuffer[k];

@@ -13,22 +13,38 @@ namespace asctec_msgs
   class GPSDataAdvanced : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      int32_t latitude;
-      int32_t longitude;
-      int32_t height;
-      int32_t speed_x;
-      int32_t speed_y;
-      int32_t heading;
-      int32_t horizontal_accuracy;
-      int32_t vertical_accuracy;
-      int32_t speed_accuracy;
-      int32_t numSV;
-      int32_t status;
-      int32_t latitude_best_estimate;
-      int32_t longitude_best_estimate;
-      int32_t speed_x_best_estimate;
-      int32_t speed_y_best_estimate;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef int32_t _latitude_type;
+      _latitude_type latitude;
+      typedef int32_t _longitude_type;
+      _longitude_type longitude;
+      typedef int32_t _height_type;
+      _height_type height;
+      typedef int32_t _speed_x_type;
+      _speed_x_type speed_x;
+      typedef int32_t _speed_y_type;
+      _speed_y_type speed_y;
+      typedef int32_t _heading_type;
+      _heading_type heading;
+      typedef int32_t _horizontal_accuracy_type;
+      _horizontal_accuracy_type horizontal_accuracy;
+      typedef int32_t _vertical_accuracy_type;
+      _vertical_accuracy_type vertical_accuracy;
+      typedef int32_t _speed_accuracy_type;
+      _speed_accuracy_type speed_accuracy;
+      typedef int32_t _numSV_type;
+      _numSV_type numSV;
+      typedef int32_t _status_type;
+      _status_type status;
+      typedef int32_t _latitude_best_estimate_type;
+      _latitude_best_estimate_type latitude_best_estimate;
+      typedef int32_t _longitude_best_estimate_type;
+      _longitude_best_estimate_type longitude_best_estimate;
+      typedef int32_t _speed_x_best_estimate_type;
+      _speed_x_best_estimate_type speed_x_best_estimate;
+      typedef int32_t _speed_y_best_estimate_type;
+      _speed_y_best_estimate_type speed_y_best_estimate;
 
     GPSDataAdvanced():
       header(),

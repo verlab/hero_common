@@ -13,7 +13,8 @@ static const char SETWATCHERPERIOD[] = "gateway_msgs/SetWatcherPeriod";
   class SetWatcherPeriodRequest : public ros::Msg
   {
     public:
-      float period;
+      typedef float _period_type;
+      _period_type period;
 
     SetWatcherPeriodRequest():
       period(0)
@@ -61,7 +62,8 @@ static const char SETWATCHERPERIOD[] = "gateway_msgs/SetWatcherPeriod";
   class SetWatcherPeriodResponse : public ros::Msg
   {
     public:
-      float last_period;
+      typedef float _last_period_type;
+      _last_period_type last_period;
 
     SetWatcherPeriodResponse():
       last_period(0)

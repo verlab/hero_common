@@ -38,7 +38,8 @@ static const char CAMERACONFIGURATION[] = "realsense_camera/CameraConfiguration"
   class CameraConfigurationResponse : public ros::Msg
   {
     public:
-      const char* configuration_str;
+      typedef const char* _configuration_str_type;
+      _configuration_str_type configuration_str;
 
     CameraConfigurationResponse():
       configuration_str("")
@@ -49,7 +50,7 @@ static const char CAMERACONFIGURATION[] = "realsense_camera/CameraConfiguration"
     {
       int offset = 0;
       uint32_t length_configuration_str = strlen(this->configuration_str);
-      memcpy(outbuffer + offset, &length_configuration_str, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_configuration_str);
       offset += 4;
       memcpy(outbuffer + offset, this->configuration_str, length_configuration_str);
       offset += length_configuration_str;
@@ -60,7 +61,7 @@ static const char CAMERACONFIGURATION[] = "realsense_camera/CameraConfiguration"
     {
       int offset = 0;
       uint32_t length_configuration_str;
-      memcpy(&length_configuration_str, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_configuration_str, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_configuration_str; ++k){
           inbuffer[k-1]=inbuffer[k];

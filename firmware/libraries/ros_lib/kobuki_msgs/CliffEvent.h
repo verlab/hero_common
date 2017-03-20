@@ -12,9 +12,12 @@ namespace kobuki_msgs
   class CliffEvent : public ros::Msg
   {
     public:
-      uint8_t sensor;
-      uint8_t state;
-      uint16_t bottom;
+      typedef uint8_t _sensor_type;
+      _sensor_type sensor;
+      typedef uint8_t _state_type;
+      _state_type state;
+      typedef uint16_t _bottom_type;
+      _bottom_type bottom;
       enum { LEFT =  0 };
       enum { CENTER =  1 };
       enum { RIGHT =  2 };

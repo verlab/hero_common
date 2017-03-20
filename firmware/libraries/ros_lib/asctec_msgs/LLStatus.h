@@ -13,17 +13,28 @@ namespace asctec_msgs
   class LLStatus : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      int16_t battery_voltage_1;
-      int16_t battery_voltage_2;
-      int16_t status;
-      int16_t cpu_load;
-      int8_t compass_enabled;
-      int8_t chksum_error;
-      int8_t flying;
-      int8_t motors_on;
-      int16_t flightMode;
-      int16_t up_time;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef int16_t _battery_voltage_1_type;
+      _battery_voltage_1_type battery_voltage_1;
+      typedef int16_t _battery_voltage_2_type;
+      _battery_voltage_2_type battery_voltage_2;
+      typedef int16_t _status_type;
+      _status_type status;
+      typedef int16_t _cpu_load_type;
+      _cpu_load_type cpu_load;
+      typedef int8_t _compass_enabled_type;
+      _compass_enabled_type compass_enabled;
+      typedef int8_t _chksum_error_type;
+      _chksum_error_type chksum_error;
+      typedef int8_t _flying_type;
+      _flying_type flying;
+      typedef int8_t _motors_on_type;
+      _motors_on_type motors_on;
+      typedef int16_t _flightMode_type;
+      _flightMode_type flightMode;
+      typedef int16_t _up_time_type;
+      _up_time_type up_time;
 
     LLStatus():
       header(),

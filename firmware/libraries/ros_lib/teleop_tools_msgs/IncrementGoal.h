@@ -12,9 +12,10 @@ namespace teleop_tools_msgs
   class IncrementGoal : public ros::Msg
   {
     public:
-      uint8_t increment_by_length;
-      float st_increment_by;
-      float * increment_by;
+      uint32_t increment_by_length;
+      typedef float _increment_by_type;
+      _increment_by_type st_increment_by;
+      _increment_by_type * increment_by;
 
     IncrementGoal():
       increment_by_length(0), increment_by(NULL)
@@ -24,11 +25,12 @@ namespace teleop_tools_msgs
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      *(outbuffer + offset++) = increment_by_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < increment_by_length; i++){
+      *(outbuffer + offset + 0) = (this->increment_by_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->increment_by_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->increment_by_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->increment_by_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->increment_by_length);
+      for( uint32_t i = 0; i < increment_by_length; i++){
       union {
         float real;
         uint32_t base;
@@ -46,12 +48,15 @@ namespace teleop_tools_msgs
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      uint8_t increment_by_lengthT = *(inbuffer + offset++);
+      uint32_t increment_by_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      increment_by_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      increment_by_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      increment_by_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->increment_by_length);
       if(increment_by_lengthT > increment_by_length)
         this->increment_by = (float*)realloc(this->increment_by, increment_by_lengthT * sizeof(float));
-      offset += 3;
       increment_by_length = increment_by_lengthT;
-      for( uint8_t i = 0; i < increment_by_length; i++){
+      for( uint32_t i = 0; i < increment_by_length; i++){
       union {
         float real;
         uint32_t base;

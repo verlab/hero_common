@@ -38,7 +38,8 @@ static const char EMPTYSTRING[] = "rocon_std_msgs/EmptyString";
   class EmptyStringResponse : public ros::Msg
   {
     public:
-      const char* data;
+      typedef const char* _data_type;
+      _data_type data;
 
     EmptyStringResponse():
       data("")
@@ -49,7 +50,7 @@ static const char EMPTYSTRING[] = "rocon_std_msgs/EmptyString";
     {
       int offset = 0;
       uint32_t length_data = strlen(this->data);
-      memcpy(outbuffer + offset, &length_data, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_data);
       offset += 4;
       memcpy(outbuffer + offset, this->data, length_data);
       offset += length_data;
@@ -60,7 +61,7 @@ static const char EMPTYSTRING[] = "rocon_std_msgs/EmptyString";
     {
       int offset = 0;
       uint32_t length_data;
-      memcpy(&length_data, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_data, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_data; ++k){
           inbuffer[k-1]=inbuffer[k];

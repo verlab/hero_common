@@ -14,8 +14,10 @@ namespace rocon_std_msgs
   class StringsPair : public ros::Msg
   {
     public:
-      rocon_std_msgs::StringsPairRequest pair_request;
-      rocon_std_msgs::StringsPairResponse pair_response;
+      typedef rocon_std_msgs::StringsPairRequest _pair_request_type;
+      _pair_request_type pair_request;
+      typedef rocon_std_msgs::StringsPairResponse _pair_response_type;
+      _pair_response_type pair_response;
 
     StringsPair():
       pair_request(),

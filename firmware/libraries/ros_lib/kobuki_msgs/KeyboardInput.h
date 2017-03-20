@@ -12,7 +12,8 @@ namespace kobuki_msgs
   class KeyboardInput : public ros::Msg
   {
     public:
-      uint8_t pressedKey;
+      typedef uint8_t _pressedKey_type;
+      _pressedKey_type pressedKey;
       enum { KeyCode_Right =  67      };
       enum { KeyCode_Left =  68      };
       enum { KeyCode_Up =  65      };

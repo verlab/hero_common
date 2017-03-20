@@ -13,7 +13,8 @@ static const char STARTPAIRING[] = "rocon_interaction_msgs/StartPairing";
   class StartPairingRequest : public ros::Msg
   {
     public:
-      const char* name;
+      typedef const char* _name_type;
+      _name_type name;
 
     StartPairingRequest():
       name("")
@@ -24,7 +25,7 @@ static const char STARTPAIRING[] = "rocon_interaction_msgs/StartPairing";
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
@@ -35,7 +36,7 @@ static const char STARTPAIRING[] = "rocon_interaction_msgs/StartPairing";
     {
       int offset = 0;
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -54,8 +55,10 @@ static const char STARTPAIRING[] = "rocon_interaction_msgs/StartPairing";
   class StartPairingResponse : public ros::Msg
   {
     public:
-      int32_t result;
-      const char* message;
+      typedef int32_t _result_type;
+      _result_type result;
+      typedef const char* _message_type;
+      _message_type message;
 
     StartPairingResponse():
       result(0),
@@ -77,7 +80,7 @@ static const char STARTPAIRING[] = "rocon_interaction_msgs/StartPairing";
       *(outbuffer + offset + 3) = (u_result.base >> (8 * 3)) & 0xFF;
       offset += sizeof(this->result);
       uint32_t length_message = strlen(this->message);
-      memcpy(outbuffer + offset, &length_message, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_message);
       offset += 4;
       memcpy(outbuffer + offset, this->message, length_message);
       offset += length_message;
@@ -99,7 +102,7 @@ static const char STARTPAIRING[] = "rocon_interaction_msgs/StartPairing";
       this->result = u_result.real;
       offset += sizeof(this->result);
       uint32_t length_message;
-      memcpy(&length_message, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_message, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_message; ++k){
           inbuffer[k-1]=inbuffer[k];

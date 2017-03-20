@@ -15,13 +15,16 @@ static const char SETINTERACTIONS[] = "rocon_interaction_msgs/SetInteractions";
   class SetInteractionsRequest : public ros::Msg
   {
     public:
-      uint8_t pairings_length;
-      rocon_interaction_msgs::Pairing st_pairings;
-      rocon_interaction_msgs::Pairing * pairings;
-      uint8_t interactions_length;
-      rocon_interaction_msgs::Interaction st_interactions;
-      rocon_interaction_msgs::Interaction * interactions;
-      bool load;
+      uint32_t pairings_length;
+      typedef rocon_interaction_msgs::Pairing _pairings_type;
+      _pairings_type st_pairings;
+      _pairings_type * pairings;
+      uint32_t interactions_length;
+      typedef rocon_interaction_msgs::Interaction _interactions_type;
+      _interactions_type st_interactions;
+      _interactions_type * interactions;
+      typedef bool _load_type;
+      _load_type load;
 
     SetInteractionsRequest():
       pairings_length(0), pairings(NULL),
@@ -33,18 +36,20 @@ static const char SETINTERACTIONS[] = "rocon_interaction_msgs/SetInteractions";
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      *(outbuffer + offset++) = pairings_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < pairings_length; i++){
+      *(outbuffer + offset + 0) = (this->pairings_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->pairings_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->pairings_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->pairings_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->pairings_length);
+      for( uint32_t i = 0; i < pairings_length; i++){
       offset += this->pairings[i].serialize(outbuffer + offset);
       }
-      *(outbuffer + offset++) = interactions_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < interactions_length; i++){
+      *(outbuffer + offset + 0) = (this->interactions_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->interactions_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->interactions_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->interactions_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->interactions_length);
+      for( uint32_t i = 0; i < interactions_length; i++){
       offset += this->interactions[i].serialize(outbuffer + offset);
       }
       union {
@@ -60,21 +65,27 @@ static const char SETINTERACTIONS[] = "rocon_interaction_msgs/SetInteractions";
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      uint8_t pairings_lengthT = *(inbuffer + offset++);
+      uint32_t pairings_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      pairings_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      pairings_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      pairings_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->pairings_length);
       if(pairings_lengthT > pairings_length)
         this->pairings = (rocon_interaction_msgs::Pairing*)realloc(this->pairings, pairings_lengthT * sizeof(rocon_interaction_msgs::Pairing));
-      offset += 3;
       pairings_length = pairings_lengthT;
-      for( uint8_t i = 0; i < pairings_length; i++){
+      for( uint32_t i = 0; i < pairings_length; i++){
       offset += this->st_pairings.deserialize(inbuffer + offset);
         memcpy( &(this->pairings[i]), &(this->st_pairings), sizeof(rocon_interaction_msgs::Pairing));
       }
-      uint8_t interactions_lengthT = *(inbuffer + offset++);
+      uint32_t interactions_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      interactions_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      interactions_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      interactions_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->interactions_length);
       if(interactions_lengthT > interactions_length)
         this->interactions = (rocon_interaction_msgs::Interaction*)realloc(this->interactions, interactions_lengthT * sizeof(rocon_interaction_msgs::Interaction));
-      offset += 3;
       interactions_length = interactions_lengthT;
-      for( uint8_t i = 0; i < interactions_length; i++){
+      for( uint32_t i = 0; i < interactions_length; i++){
       offset += this->st_interactions.deserialize(inbuffer + offset);
         memcpy( &(this->interactions[i]), &(this->st_interactions), sizeof(rocon_interaction_msgs::Interaction));
       }
@@ -97,7 +108,8 @@ static const char SETINTERACTIONS[] = "rocon_interaction_msgs/SetInteractions";
   class SetInteractionsResponse : public ros::Msg
   {
     public:
-      bool result;
+      typedef bool _result_type;
+      _result_type result;
 
     SetInteractionsResponse():
       result(0)

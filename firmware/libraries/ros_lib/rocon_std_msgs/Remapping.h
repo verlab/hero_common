@@ -12,8 +12,10 @@ namespace rocon_std_msgs
   class Remapping : public ros::Msg
   {
     public:
-      const char* remap_from;
-      const char* remap_to;
+      typedef const char* _remap_from_type;
+      _remap_from_type remap_from;
+      typedef const char* _remap_to_type;
+      _remap_to_type remap_to;
 
     Remapping():
       remap_from(""),
@@ -25,12 +27,12 @@ namespace rocon_std_msgs
     {
       int offset = 0;
       uint32_t length_remap_from = strlen(this->remap_from);
-      memcpy(outbuffer + offset, &length_remap_from, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_remap_from);
       offset += 4;
       memcpy(outbuffer + offset, this->remap_from, length_remap_from);
       offset += length_remap_from;
       uint32_t length_remap_to = strlen(this->remap_to);
-      memcpy(outbuffer + offset, &length_remap_to, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_remap_to);
       offset += 4;
       memcpy(outbuffer + offset, this->remap_to, length_remap_to);
       offset += length_remap_to;
@@ -41,7 +43,7 @@ namespace rocon_std_msgs
     {
       int offset = 0;
       uint32_t length_remap_from;
-      memcpy(&length_remap_from, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_remap_from, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_remap_from; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -50,7 +52,7 @@ namespace rocon_std_msgs
       this->remap_from = (char *)(inbuffer + offset-1);
       offset += length_remap_from;
       uint32_t length_remap_to;
-      memcpy(&length_remap_to, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_remap_to, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_remap_to; ++k){
           inbuffer[k-1]=inbuffer[k];

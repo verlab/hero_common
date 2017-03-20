@@ -38,7 +38,8 @@ static const char GETMOTORSONOFF[] = "mav_srvs/GetMotorsOnOff";
   class GetMotorsOnOffResponse : public ros::Msg
   {
     public:
-      bool on;
+      typedef bool _on_type;
+      _on_type on;
 
     GetMotorsOnOffResponse():
       on(0)

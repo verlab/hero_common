@@ -13,12 +13,16 @@ namespace rocon_interaction_msgs
   class RemoconStatus : public ros::Msg
   {
     public:
-      rocon_std_msgs::MasterInfo platform_info;
-      const char* uuid;
-      uint8_t running_interactions_length;
-      int32_t st_running_interactions;
-      int32_t * running_interactions;
-      const char* version;
+      typedef rocon_std_msgs::MasterInfo _platform_info_type;
+      _platform_info_type platform_info;
+      typedef const char* _uuid_type;
+      _uuid_type uuid;
+      uint32_t running_interactions_length;
+      typedef int32_t _running_interactions_type;
+      _running_interactions_type st_running_interactions;
+      _running_interactions_type * running_interactions;
+      typedef const char* _version_type;
+      _version_type version;
 
     RemoconStatus():
       platform_info(),
@@ -33,15 +37,16 @@ namespace rocon_interaction_msgs
       int offset = 0;
       offset += this->platform_info.serialize(outbuffer + offset);
       uint32_t length_uuid = strlen(this->uuid);
-      memcpy(outbuffer + offset, &length_uuid, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_uuid);
       offset += 4;
       memcpy(outbuffer + offset, this->uuid, length_uuid);
       offset += length_uuid;
-      *(outbuffer + offset++) = running_interactions_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < running_interactions_length; i++){
+      *(outbuffer + offset + 0) = (this->running_interactions_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->running_interactions_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->running_interactions_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->running_interactions_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->running_interactions_length);
+      for( uint32_t i = 0; i < running_interactions_length; i++){
       union {
         int32_t real;
         uint32_t base;
@@ -54,7 +59,7 @@ namespace rocon_interaction_msgs
       offset += sizeof(this->running_interactions[i]);
       }
       uint32_t length_version = strlen(this->version);
-      memcpy(outbuffer + offset, &length_version, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_version);
       offset += 4;
       memcpy(outbuffer + offset, this->version, length_version);
       offset += length_version;
@@ -66,7 +71,7 @@ namespace rocon_interaction_msgs
       int offset = 0;
       offset += this->platform_info.deserialize(inbuffer + offset);
       uint32_t length_uuid;
-      memcpy(&length_uuid, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_uuid, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_uuid; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -74,12 +79,15 @@ namespace rocon_interaction_msgs
       inbuffer[offset+length_uuid-1]=0;
       this->uuid = (char *)(inbuffer + offset-1);
       offset += length_uuid;
-      uint8_t running_interactions_lengthT = *(inbuffer + offset++);
+      uint32_t running_interactions_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      running_interactions_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      running_interactions_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      running_interactions_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->running_interactions_length);
       if(running_interactions_lengthT > running_interactions_length)
         this->running_interactions = (int32_t*)realloc(this->running_interactions, running_interactions_lengthT * sizeof(int32_t));
-      offset += 3;
       running_interactions_length = running_interactions_lengthT;
-      for( uint8_t i = 0; i < running_interactions_length; i++){
+      for( uint32_t i = 0; i < running_interactions_length; i++){
       union {
         int32_t real;
         uint32_t base;
@@ -94,7 +102,7 @@ namespace rocon_interaction_msgs
         memcpy( &(this->running_interactions[i]), &(this->st_running_interactions), sizeof(int32_t));
       }
       uint32_t length_version;
-      memcpy(&length_version, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_version, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_version; ++k){
           inbuffer[k-1]=inbuffer[k];

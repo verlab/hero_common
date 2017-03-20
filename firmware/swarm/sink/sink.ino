@@ -33,8 +33,8 @@
  ************************************************************************/
  struct Protocol{
     uint8_t robotId;
-    uint8_t data1;
-    uint8_t data2;
+    int8_t data1;
+    int8_t data2;
   };
 /************************************************************************/
 
@@ -93,7 +93,7 @@ void setup() {
   /* optionally, increase the delay between retries & # of retries */
   //radio.setRetries(15,15);
 
-radio.enableAckPayload();
+  radio.enableAckPayload();
   /* optionally, reduce the payload size.  seems to improve reliability */
   //radio.setPayloadSize(sizeof(Protocol));
 

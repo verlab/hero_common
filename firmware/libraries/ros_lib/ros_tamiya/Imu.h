@@ -13,13 +13,20 @@ namespace ros_tamiya
   class Imu : public ros::Msg
   {
     public:
-      geometry_msgs::Point32 gyroscope;
-      geometry_msgs::Point32 accelerometer;
-      geometry_msgs::Point32 magnetometer;
-      float heading;
-      float temperature;
-      float altitude;
-      float pressure;
+      typedef geometry_msgs::Point32 _gyroscope_type;
+      _gyroscope_type gyroscope;
+      typedef geometry_msgs::Point32 _accelerometer_type;
+      _accelerometer_type accelerometer;
+      typedef geometry_msgs::Point32 _magnetometer_type;
+      _magnetometer_type magnetometer;
+      typedef float _heading_type;
+      _heading_type heading;
+      typedef float _temperature_type;
+      _temperature_type temperature;
+      typedef float _altitude_type;
+      _altitude_type altitude;
+      typedef float _pressure_type;
+      _pressure_type pressure;
 
     Imu():
       gyroscope(),

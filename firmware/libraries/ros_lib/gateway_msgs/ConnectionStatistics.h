@@ -12,18 +12,30 @@ namespace gateway_msgs
   class ConnectionStatistics : public ros::Msg
   {
     public:
-      bool gateway_available;
-      int64_t time_since_last_seen;
-      float ping_latency_min;
-      float ping_latency_max;
-      float ping_latency_avg;
-      float ping_latency_mdev;
-      bool network_info_available;
-      int8_t network_type;
-      float wireless_bitrate;
-      int8_t wireless_link_quality;
-      float wireless_signal_level;
-      float wireless_noise_level;
+      typedef bool _gateway_available_type;
+      _gateway_available_type gateway_available;
+      typedef int64_t _time_since_last_seen_type;
+      _time_since_last_seen_type time_since_last_seen;
+      typedef float _ping_latency_min_type;
+      _ping_latency_min_type ping_latency_min;
+      typedef float _ping_latency_max_type;
+      _ping_latency_max_type ping_latency_max;
+      typedef float _ping_latency_avg_type;
+      _ping_latency_avg_type ping_latency_avg;
+      typedef float _ping_latency_mdev_type;
+      _ping_latency_mdev_type ping_latency_mdev;
+      typedef bool _network_info_available_type;
+      _network_info_available_type network_info_available;
+      typedef int8_t _network_type_type;
+      _network_type_type network_type;
+      typedef float _wireless_bitrate_type;
+      _wireless_bitrate_type wireless_bitrate;
+      typedef int8_t _wireless_link_quality_type;
+      _wireless_link_quality_type wireless_link_quality;
+      typedef float _wireless_signal_level_type;
+      _wireless_signal_level_type wireless_signal_level;
+      typedef float _wireless_noise_level_type;
+      _wireless_noise_level_type wireless_noise_level;
       enum { WIRED =  1 };
       enum { WIRELESS =  2 };
       enum { MAX_TTL =  86400 };

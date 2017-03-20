@@ -15,9 +15,12 @@ namespace teleop_tools_msgs
   class IncrementAction : public ros::Msg
   {
     public:
-      teleop_tools_msgs::IncrementActionGoal action_goal;
-      teleop_tools_msgs::IncrementActionResult action_result;
-      teleop_tools_msgs::IncrementActionFeedback action_feedback;
+      typedef teleop_tools_msgs::IncrementActionGoal _action_goal_type;
+      _action_goal_type action_goal;
+      typedef teleop_tools_msgs::IncrementActionResult _action_result_type;
+      _action_result_type action_result;
+      typedef teleop_tools_msgs::IncrementActionFeedback _action_feedback_type;
+      _action_feedback_type action_feedback;
 
     IncrementAction():
       action_goal(),

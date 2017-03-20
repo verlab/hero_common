@@ -13,7 +13,8 @@ static const char SETCTRLTYPE[] = "mav_srvs/SetCtrlType";
   class SetCtrlTypeRequest : public ros::Msg
   {
     public:
-      uint8_t ctrl_type;
+      typedef uint8_t _ctrl_type_type;
+      _ctrl_type_type ctrl_type;
 
     SetCtrlTypeRequest():
       ctrl_type(0)

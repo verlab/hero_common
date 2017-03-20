@@ -13,19 +13,32 @@ namespace asctec_msgs
   class IMURawData : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      int32_t pressure;
-      int16_t gyro_x;
-      int16_t gyro_y;
-      int16_t gyro_z;
-      int16_t mag_x;
-      int16_t mag_y;
-      int16_t mag_z;
-      int16_t acc_x;
-      int16_t acc_y;
-      int16_t acc_z;
-      int16_t temp_gyro;
-      int32_t temp_ADC;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef int32_t _pressure_type;
+      _pressure_type pressure;
+      typedef int16_t _gyro_x_type;
+      _gyro_x_type gyro_x;
+      typedef int16_t _gyro_y_type;
+      _gyro_y_type gyro_y;
+      typedef int16_t _gyro_z_type;
+      _gyro_z_type gyro_z;
+      typedef int16_t _mag_x_type;
+      _mag_x_type mag_x;
+      typedef int16_t _mag_y_type;
+      _mag_y_type mag_y;
+      typedef int16_t _mag_z_type;
+      _mag_z_type mag_z;
+      typedef int16_t _acc_x_type;
+      _acc_x_type acc_x;
+      typedef int16_t _acc_y_type;
+      _acc_y_type acc_y;
+      typedef int16_t _acc_z_type;
+      _acc_z_type acc_z;
+      typedef int16_t _temp_gyro_type;
+      _temp_gyro_type temp_gyro;
+      typedef int32_t _temp_ADC_type;
+      _temp_ADC_type temp_ADC;
 
     IMURawData():
       header(),

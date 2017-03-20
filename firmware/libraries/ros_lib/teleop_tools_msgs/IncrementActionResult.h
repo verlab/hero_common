@@ -15,9 +15,12 @@ namespace teleop_tools_msgs
   class IncrementActionResult : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      actionlib_msgs::GoalStatus status;
-      teleop_tools_msgs::IncrementResult result;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef actionlib_msgs::GoalStatus _status_type;
+      _status_type status;
+      typedef teleop_tools_msgs::IncrementResult _result_type;
+      _result_type result;
 
     IncrementActionResult():
       header(),

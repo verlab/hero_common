@@ -14,10 +14,12 @@ static const char REMOTE[] = "gateway_msgs/Remote";
   class RemoteRequest : public ros::Msg
   {
     public:
-      uint8_t remotes_length;
-      gateway_msgs::RemoteRule st_remotes;
-      gateway_msgs::RemoteRule * remotes;
-      bool cancel;
+      uint32_t remotes_length;
+      typedef gateway_msgs::RemoteRule _remotes_type;
+      _remotes_type st_remotes;
+      _remotes_type * remotes;
+      typedef bool _cancel_type;
+      _cancel_type cancel;
 
     RemoteRequest():
       remotes_length(0), remotes(NULL),
@@ -28,11 +30,12 @@ static const char REMOTE[] = "gateway_msgs/Remote";
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      *(outbuffer + offset++) = remotes_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < remotes_length; i++){
+      *(outbuffer + offset + 0) = (this->remotes_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->remotes_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->remotes_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->remotes_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->remotes_length);
+      for( uint32_t i = 0; i < remotes_length; i++){
       offset += this->remotes[i].serialize(outbuffer + offset);
       }
       union {
@@ -48,12 +51,15 @@ static const char REMOTE[] = "gateway_msgs/Remote";
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      uint8_t remotes_lengthT = *(inbuffer + offset++);
+      uint32_t remotes_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      remotes_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      remotes_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      remotes_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->remotes_length);
       if(remotes_lengthT > remotes_length)
         this->remotes = (gateway_msgs::RemoteRule*)realloc(this->remotes, remotes_lengthT * sizeof(gateway_msgs::RemoteRule));
-      offset += 3;
       remotes_length = remotes_lengthT;
-      for( uint8_t i = 0; i < remotes_length; i++){
+      for( uint32_t i = 0; i < remotes_length; i++){
       offset += this->st_remotes.deserialize(inbuffer + offset);
         memcpy( &(this->remotes[i]), &(this->st_remotes), sizeof(gateway_msgs::RemoteRule));
       }
@@ -76,8 +82,10 @@ static const char REMOTE[] = "gateway_msgs/Remote";
   class RemoteResponse : public ros::Msg
   {
     public:
-      int8_t result;
-      const char* error_message;
+      typedef int8_t _result_type;
+      _result_type result;
+      typedef const char* _error_message_type;
+      _error_message_type error_message;
 
     RemoteResponse():
       result(0),
@@ -96,7 +104,7 @@ static const char REMOTE[] = "gateway_msgs/Remote";
       *(outbuffer + offset + 0) = (u_result.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->result);
       uint32_t length_error_message = strlen(this->error_message);
-      memcpy(outbuffer + offset, &length_error_message, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_error_message);
       offset += 4;
       memcpy(outbuffer + offset, this->error_message, length_error_message);
       offset += length_error_message;
@@ -115,7 +123,7 @@ static const char REMOTE[] = "gateway_msgs/Remote";
       this->result = u_result.real;
       offset += sizeof(this->result);
       uint32_t length_error_message;
-      memcpy(&length_error_message, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_error_message, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_error_message; ++k){
           inbuffer[k-1]=inbuffer[k];

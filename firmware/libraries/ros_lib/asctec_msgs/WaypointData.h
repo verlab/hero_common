@@ -13,19 +13,32 @@ namespace asctec_msgs
   class WaypointData : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      uint8_t wp_number;
-      uint8_t dummy_1;
-      uint16_t dummy_2;
-      uint8_t properties;
-      uint8_t max_speed;
-      uint16_t time;
-      uint16_t pos_acc;
-      int16_t chksum;
-      int32_t X;
-      int32_t Y;
-      int32_t yaw;
-      int32_t height;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef uint8_t _wp_number_type;
+      _wp_number_type wp_number;
+      typedef uint8_t _dummy_1_type;
+      _dummy_1_type dummy_1;
+      typedef uint16_t _dummy_2_type;
+      _dummy_2_type dummy_2;
+      typedef uint8_t _properties_type;
+      _properties_type properties;
+      typedef uint8_t _max_speed_type;
+      _max_speed_type max_speed;
+      typedef uint16_t _time_type;
+      _time_type time;
+      typedef uint16_t _pos_acc_type;
+      _pos_acc_type pos_acc;
+      typedef int16_t _chksum_type;
+      _chksum_type chksum;
+      typedef int32_t _X_type;
+      _X_type X;
+      typedef int32_t _Y_type;
+      _Y_type Y;
+      typedef int32_t _yaw_type;
+      _yaw_type yaw;
+      typedef int32_t _height_type;
+      _height_type height;
       enum { WPPROP_ABSCOORDS = 1 };
       enum { WPPROP_HEIGHTENABLED = 2 };
       enum { WPPROP_YAWENABLED = 4 };

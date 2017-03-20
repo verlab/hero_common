@@ -12,7 +12,8 @@ namespace kobuki_msgs
   class PowerSystemEvent : public ros::Msg
   {
     public:
-      uint8_t event;
+      typedef uint8_t _event_type;
+      _event_type event;
       enum { UNPLUGGED =  0 };
       enum { PLUGGED_TO_ADAPTER =  1 };
       enum { PLUGGED_TO_DOCKBASE =  2 };

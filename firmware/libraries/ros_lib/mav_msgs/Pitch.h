@@ -12,7 +12,8 @@ namespace mav_msgs
   class Pitch : public ros::Msg
   {
     public:
-      float pitch;
+      typedef float _pitch_type;
+      _pitch_type pitch;
 
     Pitch():
       pitch(0)

@@ -14,8 +14,10 @@ namespace rocon_service_pair_msgs
   class TestiesPair : public ros::Msg
   {
     public:
-      rocon_service_pair_msgs::TestiesPairRequest pair_request;
-      rocon_service_pair_msgs::TestiesPairResponse pair_response;
+      typedef rocon_service_pair_msgs::TestiesPairRequest _pair_request_type;
+      _pair_request_type pair_request;
+      typedef rocon_service_pair_msgs::TestiesPairResponse _pair_response_type;
+      _pair_response_type pair_response;
 
     TestiesPair():
       pair_request(),

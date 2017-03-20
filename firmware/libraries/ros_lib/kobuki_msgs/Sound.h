@@ -12,7 +12,8 @@ namespace kobuki_msgs
   class Sound : public ros::Msg
   {
     public:
-      uint8_t value;
+      typedef uint8_t _value_type;
+      _value_type value;
       enum { ON =  0 };
       enum { OFF =  1 };
       enum { RECHARGE =  2 };

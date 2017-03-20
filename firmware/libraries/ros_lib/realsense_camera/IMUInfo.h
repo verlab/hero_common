@@ -13,7 +13,8 @@ namespace realsense_camera
   class IMUInfo : public ros::Msg
   {
     public:
-      std_msgs::Header header;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
       float data[12];
       float noise_variances[3];
       float bias_variances[3];
@@ -30,13 +31,13 @@ namespace realsense_camera
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
-      for( uint8_t i = 0; i < 12; i++){
+      for( uint32_t i = 0; i < 12; i++){
       offset += serializeAvrFloat64(outbuffer + offset, this->data[i]);
       }
-      for( uint8_t i = 0; i < 3; i++){
+      for( uint32_t i = 0; i < 3; i++){
       offset += serializeAvrFloat64(outbuffer + offset, this->noise_variances[i]);
       }
-      for( uint8_t i = 0; i < 3; i++){
+      for( uint32_t i = 0; i < 3; i++){
       offset += serializeAvrFloat64(outbuffer + offset, this->bias_variances[i]);
       }
       return offset;
@@ -46,13 +47,13 @@ namespace realsense_camera
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
-      for( uint8_t i = 0; i < 12; i++){
+      for( uint32_t i = 0; i < 12; i++){
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->data[i]));
       }
-      for( uint8_t i = 0; i < 3; i++){
+      for( uint32_t i = 0; i < 3; i++){
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->noise_variances[i]));
       }
-      for( uint8_t i = 0; i < 3; i++){
+      for( uint32_t i = 0; i < 3; i++){
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->bias_variances[i]));
       }
      return offset;

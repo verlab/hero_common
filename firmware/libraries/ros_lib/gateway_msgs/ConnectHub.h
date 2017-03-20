@@ -13,7 +13,8 @@ static const char CONNECTHUB[] = "gateway_msgs/ConnectHub";
   class ConnectHubRequest : public ros::Msg
   {
     public:
-      const char* uri;
+      typedef const char* _uri_type;
+      _uri_type uri;
 
     ConnectHubRequest():
       uri("")
@@ -24,7 +25,7 @@ static const char CONNECTHUB[] = "gateway_msgs/ConnectHub";
     {
       int offset = 0;
       uint32_t length_uri = strlen(this->uri);
-      memcpy(outbuffer + offset, &length_uri, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_uri);
       offset += 4;
       memcpy(outbuffer + offset, this->uri, length_uri);
       offset += length_uri;
@@ -35,7 +36,7 @@ static const char CONNECTHUB[] = "gateway_msgs/ConnectHub";
     {
       int offset = 0;
       uint32_t length_uri;
-      memcpy(&length_uri, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_uri, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_uri; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -54,8 +55,10 @@ static const char CONNECTHUB[] = "gateway_msgs/ConnectHub";
   class ConnectHubResponse : public ros::Msg
   {
     public:
-      int8_t result;
-      const char* error_message;
+      typedef int8_t _result_type;
+      _result_type result;
+      typedef const char* _error_message_type;
+      _error_message_type error_message;
 
     ConnectHubResponse():
       result(0),
@@ -74,7 +77,7 @@ static const char CONNECTHUB[] = "gateway_msgs/ConnectHub";
       *(outbuffer + offset + 0) = (u_result.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->result);
       uint32_t length_error_message = strlen(this->error_message);
-      memcpy(outbuffer + offset, &length_error_message, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_error_message);
       offset += 4;
       memcpy(outbuffer + offset, this->error_message, length_error_message);
       offset += length_error_message;
@@ -93,7 +96,7 @@ static const char CONNECTHUB[] = "gateway_msgs/ConnectHub";
       this->result = u_result.real;
       offset += sizeof(this->result);
       uint32_t length_error_message;
-      memcpy(&length_error_message, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_error_message, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_error_message; ++k){
           inbuffer[k-1]=inbuffer[k];

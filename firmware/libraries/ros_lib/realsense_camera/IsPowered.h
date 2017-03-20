@@ -38,7 +38,8 @@ static const char ISPOWERED[] = "realsense_camera/IsPowered";
   class IsPoweredResponse : public ros::Msg
   {
     public:
-      bool is_powered;
+      typedef bool _is_powered_type;
+      _is_powered_type is_powered;
 
     IsPoweredResponse():
       is_powered(0)

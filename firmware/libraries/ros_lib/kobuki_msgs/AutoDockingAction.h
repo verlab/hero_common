@@ -15,9 +15,12 @@ namespace kobuki_msgs
   class AutoDockingAction : public ros::Msg
   {
     public:
-      kobuki_msgs::AutoDockingActionGoal action_goal;
-      kobuki_msgs::AutoDockingActionResult action_result;
-      kobuki_msgs::AutoDockingActionFeedback action_feedback;
+      typedef kobuki_msgs::AutoDockingActionGoal _action_goal_type;
+      _action_goal_type action_goal;
+      typedef kobuki_msgs::AutoDockingActionResult _action_result_type;
+      _action_result_type action_result;
+      typedef kobuki_msgs::AutoDockingActionFeedback _action_feedback_type;
+      _action_feedback_type action_feedback;
 
     AutoDockingAction():
       action_goal(),

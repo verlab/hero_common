@@ -13,8 +13,10 @@ static const char GETPROVIDERS[] = "capabilities/GetProviders";
   class GetProvidersRequest : public ros::Msg
   {
     public:
-      const char* interface;
-      bool include_semantic;
+      typedef const char* _interface_type;
+      _interface_type interface;
+      typedef bool _include_semantic_type;
+      _include_semantic_type include_semantic;
 
     GetProvidersRequest():
       interface(""),
@@ -26,7 +28,7 @@ static const char GETPROVIDERS[] = "capabilities/GetProviders";
     {
       int offset = 0;
       uint32_t length_interface = strlen(this->interface);
-      memcpy(outbuffer + offset, &length_interface, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_interface);
       offset += 4;
       memcpy(outbuffer + offset, this->interface, length_interface);
       offset += length_interface;
@@ -44,7 +46,7 @@ static const char GETPROVIDERS[] = "capabilities/GetProviders";
     {
       int offset = 0;
       uint32_t length_interface;
-      memcpy(&length_interface, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_interface, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_interface; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -71,10 +73,12 @@ static const char GETPROVIDERS[] = "capabilities/GetProviders";
   class GetProvidersResponse : public ros::Msg
   {
     public:
-      uint8_t providers_length;
-      char* st_providers;
-      char* * providers;
-      const char* default_provider;
+      uint32_t providers_length;
+      typedef char* _providers_type;
+      _providers_type st_providers;
+      _providers_type * providers;
+      typedef const char* _default_provider_type;
+      _default_provider_type default_provider;
 
     GetProvidersResponse():
       providers_length(0), providers(NULL),
@@ -85,19 +89,20 @@ static const char GETPROVIDERS[] = "capabilities/GetProviders";
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      *(outbuffer + offset++) = providers_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < providers_length; i++){
+      *(outbuffer + offset + 0) = (this->providers_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->providers_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->providers_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->providers_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->providers_length);
+      for( uint32_t i = 0; i < providers_length; i++){
       uint32_t length_providersi = strlen(this->providers[i]);
-      memcpy(outbuffer + offset, &length_providersi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_providersi);
       offset += 4;
       memcpy(outbuffer + offset, this->providers[i], length_providersi);
       offset += length_providersi;
       }
       uint32_t length_default_provider = strlen(this->default_provider);
-      memcpy(outbuffer + offset, &length_default_provider, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_default_provider);
       offset += 4;
       memcpy(outbuffer + offset, this->default_provider, length_default_provider);
       offset += length_default_provider;
@@ -107,14 +112,17 @@ static const char GETPROVIDERS[] = "capabilities/GetProviders";
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      uint8_t providers_lengthT = *(inbuffer + offset++);
+      uint32_t providers_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      providers_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      providers_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      providers_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->providers_length);
       if(providers_lengthT > providers_length)
         this->providers = (char**)realloc(this->providers, providers_lengthT * sizeof(char*));
-      offset += 3;
       providers_length = providers_lengthT;
-      for( uint8_t i = 0; i < providers_length; i++){
+      for( uint32_t i = 0; i < providers_length; i++){
       uint32_t length_st_providers;
-      memcpy(&length_st_providers, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_providers, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_providers; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -125,7 +133,7 @@ static const char GETPROVIDERS[] = "capabilities/GetProviders";
         memcpy( &(this->providers[i]), &(this->st_providers), sizeof(char*));
       }
       uint32_t length_default_provider;
-      memcpy(&length_default_provider, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_default_provider, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_default_provider; ++k){
           inbuffer[k-1]=inbuffer[k];

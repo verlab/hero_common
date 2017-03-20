@@ -38,9 +38,10 @@ static const char GETINTERFACES[] = "capabilities/GetInterfaces";
   class GetInterfacesResponse : public ros::Msg
   {
     public:
-      uint8_t interfaces_length;
-      char* st_interfaces;
-      char* * interfaces;
+      uint32_t interfaces_length;
+      typedef char* _interfaces_type;
+      _interfaces_type st_interfaces;
+      _interfaces_type * interfaces;
 
     GetInterfacesResponse():
       interfaces_length(0), interfaces(NULL)
@@ -50,13 +51,14 @@ static const char GETINTERFACES[] = "capabilities/GetInterfaces";
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      *(outbuffer + offset++) = interfaces_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < interfaces_length; i++){
+      *(outbuffer + offset + 0) = (this->interfaces_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->interfaces_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->interfaces_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->interfaces_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->interfaces_length);
+      for( uint32_t i = 0; i < interfaces_length; i++){
       uint32_t length_interfacesi = strlen(this->interfaces[i]);
-      memcpy(outbuffer + offset, &length_interfacesi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_interfacesi);
       offset += 4;
       memcpy(outbuffer + offset, this->interfaces[i], length_interfacesi);
       offset += length_interfacesi;
@@ -67,14 +69,17 @@ static const char GETINTERFACES[] = "capabilities/GetInterfaces";
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      uint8_t interfaces_lengthT = *(inbuffer + offset++);
+      uint32_t interfaces_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      interfaces_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      interfaces_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      interfaces_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->interfaces_length);
       if(interfaces_lengthT > interfaces_length)
         this->interfaces = (char**)realloc(this->interfaces, interfaces_lengthT * sizeof(char*));
-      offset += 3;
       interfaces_length = interfaces_lengthT;
-      for( uint8_t i = 0; i < interfaces_length; i++){
+      for( uint32_t i = 0; i < interfaces_length; i++){
       uint32_t length_st_interfaces;
-      memcpy(&length_st_interfaces, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_interfaces, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_interfaces; ++k){
           inbuffer[k-1]=inbuffer[k];

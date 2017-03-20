@@ -12,8 +12,10 @@ namespace control_msgs
   class GripperCommand : public ros::Msg
   {
     public:
-      float position;
-      float max_effort;
+      typedef float _position_type;
+      _position_type position;
+      typedef float _max_effort_type;
+      _max_effort_type max_effort;
 
     GripperCommand():
       position(0),

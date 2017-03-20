@@ -14,8 +14,10 @@ namespace rocon_std_msgs
   class StringsPairRequest : public ros::Msg
   {
     public:
-      uuid_msgs::UniqueID id;
-      rocon_std_msgs::StringsRequest request;
+      typedef uuid_msgs::UniqueID _id_type;
+      _id_type id;
+      typedef rocon_std_msgs::StringsRequest _request_type;
+      _request_type request;
 
     StringsPairRequest():
       id(),

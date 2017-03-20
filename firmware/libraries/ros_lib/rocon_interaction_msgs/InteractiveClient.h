@@ -14,12 +14,16 @@ namespace rocon_interaction_msgs
   class InteractiveClient : public ros::Msg
   {
     public:
-      const char* name;
-      uuid_msgs::UniqueID id;
-      rocon_std_msgs::MasterInfo platform_info;
-      uint8_t running_interactions_length;
-      char* st_running_interactions;
-      char* * running_interactions;
+      typedef const char* _name_type;
+      _name_type name;
+      typedef uuid_msgs::UniqueID _id_type;
+      _id_type id;
+      typedef rocon_std_msgs::MasterInfo _platform_info_type;
+      _platform_info_type platform_info;
+      uint32_t running_interactions_length;
+      typedef char* _running_interactions_type;
+      _running_interactions_type st_running_interactions;
+      _running_interactions_type * running_interactions;
 
     InteractiveClient():
       name(""),
@@ -33,19 +37,20 @@ namespace rocon_interaction_msgs
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
       offset += this->id.serialize(outbuffer + offset);
       offset += this->platform_info.serialize(outbuffer + offset);
-      *(outbuffer + offset++) = running_interactions_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < running_interactions_length; i++){
+      *(outbuffer + offset + 0) = (this->running_interactions_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->running_interactions_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->running_interactions_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->running_interactions_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->running_interactions_length);
+      for( uint32_t i = 0; i < running_interactions_length; i++){
       uint32_t length_running_interactionsi = strlen(this->running_interactions[i]);
-      memcpy(outbuffer + offset, &length_running_interactionsi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_running_interactionsi);
       offset += 4;
       memcpy(outbuffer + offset, this->running_interactions[i], length_running_interactionsi);
       offset += length_running_interactionsi;
@@ -57,7 +62,7 @@ namespace rocon_interaction_msgs
     {
       int offset = 0;
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -67,14 +72,17 @@ namespace rocon_interaction_msgs
       offset += length_name;
       offset += this->id.deserialize(inbuffer + offset);
       offset += this->platform_info.deserialize(inbuffer + offset);
-      uint8_t running_interactions_lengthT = *(inbuffer + offset++);
+      uint32_t running_interactions_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      running_interactions_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      running_interactions_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      running_interactions_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->running_interactions_length);
       if(running_interactions_lengthT > running_interactions_length)
         this->running_interactions = (char**)realloc(this->running_interactions, running_interactions_lengthT * sizeof(char*));
-      offset += 3;
       running_interactions_length = running_interactions_lengthT;
-      for( uint8_t i = 0; i < running_interactions_length; i++){
+      for( uint32_t i = 0; i < running_interactions_length; i++){
       uint32_t length_st_running_interactions;
-      memcpy(&length_st_running_interactions, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_running_interactions, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_running_interactions; ++k){
           inbuffer[k-1]=inbuffer[k];

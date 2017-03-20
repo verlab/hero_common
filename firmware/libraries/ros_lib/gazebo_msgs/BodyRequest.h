@@ -13,7 +13,8 @@ static const char BODYREQUEST[] = "gazebo_msgs/BodyRequest";
   class BodyRequestRequest : public ros::Msg
   {
     public:
-      const char* body_name;
+      typedef const char* _body_name_type;
+      _body_name_type body_name;
 
     BodyRequestRequest():
       body_name("")
@@ -24,7 +25,7 @@ static const char BODYREQUEST[] = "gazebo_msgs/BodyRequest";
     {
       int offset = 0;
       uint32_t length_body_name = strlen(this->body_name);
-      memcpy(outbuffer + offset, &length_body_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_body_name);
       offset += 4;
       memcpy(outbuffer + offset, this->body_name, length_body_name);
       offset += length_body_name;
@@ -35,7 +36,7 @@ static const char BODYREQUEST[] = "gazebo_msgs/BodyRequest";
     {
       int offset = 0;
       uint32_t length_body_name;
-      memcpy(&length_body_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_body_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_body_name; ++k){
           inbuffer[k-1]=inbuffer[k];

@@ -13,7 +13,8 @@ static const char INIT[] = "rocon_app_manager_msgs/Init";
   class InitRequest : public ros::Msg
   {
     public:
-      const char* name;
+      typedef const char* _name_type;
+      _name_type name;
 
     InitRequest():
       name("")
@@ -24,7 +25,7 @@ static const char INIT[] = "rocon_app_manager_msgs/Init";
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
@@ -35,7 +36,7 @@ static const char INIT[] = "rocon_app_manager_msgs/Init";
     {
       int offset = 0;
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -54,7 +55,8 @@ static const char INIT[] = "rocon_app_manager_msgs/Init";
   class InitResponse : public ros::Msg
   {
     public:
-      bool result;
+      typedef bool _result_type;
+      _result_type result;
 
     InitResponse():
       result(0)

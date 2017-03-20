@@ -13,7 +13,8 @@ static const char STOPCAPABILITY[] = "capabilities/StopCapability";
   class StopCapabilityRequest : public ros::Msg
   {
     public:
-      const char* capability;
+      typedef const char* _capability_type;
+      _capability_type capability;
 
     StopCapabilityRequest():
       capability("")
@@ -24,7 +25,7 @@ static const char STOPCAPABILITY[] = "capabilities/StopCapability";
     {
       int offset = 0;
       uint32_t length_capability = strlen(this->capability);
-      memcpy(outbuffer + offset, &length_capability, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_capability);
       offset += 4;
       memcpy(outbuffer + offset, this->capability, length_capability);
       offset += length_capability;
@@ -35,7 +36,7 @@ static const char STOPCAPABILITY[] = "capabilities/StopCapability";
     {
       int offset = 0;
       uint32_t length_capability;
-      memcpy(&length_capability, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_capability, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_capability; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -54,7 +55,8 @@ static const char STOPCAPABILITY[] = "capabilities/StopCapability";
   class StopCapabilityResponse : public ros::Msg
   {
     public:
-      bool successful;
+      typedef bool _successful_type;
+      _successful_type successful;
 
     StopCapabilityResponse():
       successful(0)

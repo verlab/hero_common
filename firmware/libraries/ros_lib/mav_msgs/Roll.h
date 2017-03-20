@@ -12,7 +12,8 @@ namespace mav_msgs
   class Roll : public ros::Msg
   {
     public:
-      float roll;
+      typedef float _roll_type;
+      _roll_type roll;
 
     Roll():
       roll(0)

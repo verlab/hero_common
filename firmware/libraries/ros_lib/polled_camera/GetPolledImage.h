@@ -16,11 +16,16 @@ static const char GETPOLLEDIMAGE[] = "polled_camera/GetPolledImage";
   class GetPolledImageRequest : public ros::Msg
   {
     public:
-      const char* response_namespace;
-      ros::Duration timeout;
-      uint32_t binning_x;
-      uint32_t binning_y;
-      sensor_msgs::RegionOfInterest roi;
+      typedef const char* _response_namespace_type;
+      _response_namespace_type response_namespace;
+      typedef ros::Duration _timeout_type;
+      _timeout_type timeout;
+      typedef uint32_t _binning_x_type;
+      _binning_x_type binning_x;
+      typedef uint32_t _binning_y_type;
+      _binning_y_type binning_y;
+      typedef sensor_msgs::RegionOfInterest _roi_type;
+      _roi_type roi;
 
     GetPolledImageRequest():
       response_namespace(""),
@@ -35,7 +40,7 @@ static const char GETPOLLEDIMAGE[] = "polled_camera/GetPolledImage";
     {
       int offset = 0;
       uint32_t length_response_namespace = strlen(this->response_namespace);
-      memcpy(outbuffer + offset, &length_response_namespace, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_response_namespace);
       offset += 4;
       memcpy(outbuffer + offset, this->response_namespace, length_response_namespace);
       offset += length_response_namespace;
@@ -67,7 +72,7 @@ static const char GETPOLLEDIMAGE[] = "polled_camera/GetPolledImage";
     {
       int offset = 0;
       uint32_t length_response_namespace;
-      memcpy(&length_response_namespace, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_response_namespace, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_response_namespace; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -107,9 +112,12 @@ static const char GETPOLLEDIMAGE[] = "polled_camera/GetPolledImage";
   class GetPolledImageResponse : public ros::Msg
   {
     public:
-      bool success;
-      const char* status_message;
-      ros::Time stamp;
+      typedef bool _success_type;
+      _success_type success;
+      typedef const char* _status_message_type;
+      _status_message_type status_message;
+      typedef ros::Time _stamp_type;
+      _stamp_type stamp;
 
     GetPolledImageResponse():
       success(0),
@@ -129,7 +137,7 @@ static const char GETPOLLEDIMAGE[] = "polled_camera/GetPolledImage";
       *(outbuffer + offset + 0) = (u_success.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->success);
       uint32_t length_status_message = strlen(this->status_message);
-      memcpy(outbuffer + offset, &length_status_message, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_status_message);
       offset += 4;
       memcpy(outbuffer + offset, this->status_message, length_status_message);
       offset += length_status_message;
@@ -158,7 +166,7 @@ static const char GETPOLLEDIMAGE[] = "polled_camera/GetPolledImage";
       this->success = u_success.real;
       offset += sizeof(this->success);
       uint32_t length_status_message;
-      memcpy(&length_status_message, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_status_message, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_status_message; ++k){
           inbuffer[k-1]=inbuffer[k];

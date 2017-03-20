@@ -12,7 +12,8 @@ namespace mav_msgs
   class YawRate : public ros::Msg
   {
     public:
-      float yaw_rate;
+      typedef float _yaw_rate_type;
+      _yaw_rate_type yaw_rate;
 
     YawRate():
       yaw_rate(0)

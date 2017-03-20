@@ -12,24 +12,38 @@ namespace zeroconf_msgs
   class DiscoveredService : public ros::Msg
   {
     public:
-      const char* name;
-      const char* type;
-      const char* domain;
-      const char* description;
-      const char* hostname;
-      uint8_t ipv4_addresses_length;
-      char* st_ipv4_addresses;
-      char* * ipv4_addresses;
-      uint8_t ipv6_addresses_length;
-      char* st_ipv6_addresses;
-      char* * ipv6_addresses;
-      int32_t port;
-      uint32_t cookie;
-      bool is_local;
-      bool our_own;
-      bool wide_area;
-      bool multicast;
-      bool cached;
+      typedef const char* _name_type;
+      _name_type name;
+      typedef const char* _type_type;
+      _type_type type;
+      typedef const char* _domain_type;
+      _domain_type domain;
+      typedef const char* _description_type;
+      _description_type description;
+      typedef const char* _hostname_type;
+      _hostname_type hostname;
+      uint32_t ipv4_addresses_length;
+      typedef char* _ipv4_addresses_type;
+      _ipv4_addresses_type st_ipv4_addresses;
+      _ipv4_addresses_type * ipv4_addresses;
+      uint32_t ipv6_addresses_length;
+      typedef char* _ipv6_addresses_type;
+      _ipv6_addresses_type st_ipv6_addresses;
+      _ipv6_addresses_type * ipv6_addresses;
+      typedef int32_t _port_type;
+      _port_type port;
+      typedef uint32_t _cookie_type;
+      _cookie_type cookie;
+      typedef bool _is_local_type;
+      _is_local_type is_local;
+      typedef bool _our_own_type;
+      _our_own_type our_own;
+      typedef bool _wide_area_type;
+      _wide_area_type wide_area;
+      typedef bool _multicast_type;
+      _multicast_type multicast;
+      typedef bool _cached_type;
+      _cached_type cached;
 
     DiscoveredService():
       name(""),
@@ -53,48 +67,50 @@ namespace zeroconf_msgs
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
       uint32_t length_type = strlen(this->type);
-      memcpy(outbuffer + offset, &length_type, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_type);
       offset += 4;
       memcpy(outbuffer + offset, this->type, length_type);
       offset += length_type;
       uint32_t length_domain = strlen(this->domain);
-      memcpy(outbuffer + offset, &length_domain, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_domain);
       offset += 4;
       memcpy(outbuffer + offset, this->domain, length_domain);
       offset += length_domain;
       uint32_t length_description = strlen(this->description);
-      memcpy(outbuffer + offset, &length_description, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_description);
       offset += 4;
       memcpy(outbuffer + offset, this->description, length_description);
       offset += length_description;
       uint32_t length_hostname = strlen(this->hostname);
-      memcpy(outbuffer + offset, &length_hostname, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_hostname);
       offset += 4;
       memcpy(outbuffer + offset, this->hostname, length_hostname);
       offset += length_hostname;
-      *(outbuffer + offset++) = ipv4_addresses_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < ipv4_addresses_length; i++){
+      *(outbuffer + offset + 0) = (this->ipv4_addresses_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->ipv4_addresses_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->ipv4_addresses_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->ipv4_addresses_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->ipv4_addresses_length);
+      for( uint32_t i = 0; i < ipv4_addresses_length; i++){
       uint32_t length_ipv4_addressesi = strlen(this->ipv4_addresses[i]);
-      memcpy(outbuffer + offset, &length_ipv4_addressesi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_ipv4_addressesi);
       offset += 4;
       memcpy(outbuffer + offset, this->ipv4_addresses[i], length_ipv4_addressesi);
       offset += length_ipv4_addressesi;
       }
-      *(outbuffer + offset++) = ipv6_addresses_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < ipv6_addresses_length; i++){
+      *(outbuffer + offset + 0) = (this->ipv6_addresses_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->ipv6_addresses_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->ipv6_addresses_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->ipv6_addresses_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->ipv6_addresses_length);
+      for( uint32_t i = 0; i < ipv6_addresses_length; i++){
       uint32_t length_ipv6_addressesi = strlen(this->ipv6_addresses[i]);
-      memcpy(outbuffer + offset, &length_ipv6_addressesi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_ipv6_addressesi);
       offset += 4;
       memcpy(outbuffer + offset, this->ipv6_addresses[i], length_ipv6_addressesi);
       offset += length_ipv6_addressesi;
@@ -156,7 +172,7 @@ namespace zeroconf_msgs
     {
       int offset = 0;
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -165,7 +181,7 @@ namespace zeroconf_msgs
       this->name = (char *)(inbuffer + offset-1);
       offset += length_name;
       uint32_t length_type;
-      memcpy(&length_type, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_type, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_type; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -174,7 +190,7 @@ namespace zeroconf_msgs
       this->type = (char *)(inbuffer + offset-1);
       offset += length_type;
       uint32_t length_domain;
-      memcpy(&length_domain, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_domain, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_domain; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -183,7 +199,7 @@ namespace zeroconf_msgs
       this->domain = (char *)(inbuffer + offset-1);
       offset += length_domain;
       uint32_t length_description;
-      memcpy(&length_description, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_description, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_description; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -192,7 +208,7 @@ namespace zeroconf_msgs
       this->description = (char *)(inbuffer + offset-1);
       offset += length_description;
       uint32_t length_hostname;
-      memcpy(&length_hostname, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_hostname, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_hostname; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -200,14 +216,17 @@ namespace zeroconf_msgs
       inbuffer[offset+length_hostname-1]=0;
       this->hostname = (char *)(inbuffer + offset-1);
       offset += length_hostname;
-      uint8_t ipv4_addresses_lengthT = *(inbuffer + offset++);
+      uint32_t ipv4_addresses_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      ipv4_addresses_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      ipv4_addresses_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      ipv4_addresses_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->ipv4_addresses_length);
       if(ipv4_addresses_lengthT > ipv4_addresses_length)
         this->ipv4_addresses = (char**)realloc(this->ipv4_addresses, ipv4_addresses_lengthT * sizeof(char*));
-      offset += 3;
       ipv4_addresses_length = ipv4_addresses_lengthT;
-      for( uint8_t i = 0; i < ipv4_addresses_length; i++){
+      for( uint32_t i = 0; i < ipv4_addresses_length; i++){
       uint32_t length_st_ipv4_addresses;
-      memcpy(&length_st_ipv4_addresses, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_ipv4_addresses, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_ipv4_addresses; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -217,14 +236,17 @@ namespace zeroconf_msgs
       offset += length_st_ipv4_addresses;
         memcpy( &(this->ipv4_addresses[i]), &(this->st_ipv4_addresses), sizeof(char*));
       }
-      uint8_t ipv6_addresses_lengthT = *(inbuffer + offset++);
+      uint32_t ipv6_addresses_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      ipv6_addresses_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      ipv6_addresses_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      ipv6_addresses_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->ipv6_addresses_length);
       if(ipv6_addresses_lengthT > ipv6_addresses_length)
         this->ipv6_addresses = (char**)realloc(this->ipv6_addresses, ipv6_addresses_lengthT * sizeof(char*));
-      offset += 3;
       ipv6_addresses_length = ipv6_addresses_lengthT;
-      for( uint8_t i = 0; i < ipv6_addresses_length; i++){
+      for( uint32_t i = 0; i < ipv6_addresses_length; i++){
       uint32_t length_st_ipv6_addresses;
-      memcpy(&length_st_ipv6_addresses, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_ipv6_addresses, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_ipv6_addresses; ++k){
           inbuffer[k-1]=inbuffer[k];

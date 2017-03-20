@@ -12,7 +12,8 @@ namespace kobuki_msgs
   class Led : public ros::Msg
   {
     public:
-      uint8_t value;
+      typedef uint8_t _value_type;
+      _value_type value;
       enum { BLACK =  0 };
       enum { GREEN =  1 };
       enum { ORANGE =  2 };

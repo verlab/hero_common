@@ -13,10 +13,14 @@ namespace create_node
   class BatteryState : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      int8_t temperature;
-      uint16_t charge;
-      uint16_t capacity;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef int8_t _temperature_type;
+      _temperature_type temperature;
+      typedef uint16_t _charge_type;
+      _charge_type charge;
+      typedef uint16_t _capacity_type;
+      _capacity_type capacity;
 
     BatteryState():
       header(),

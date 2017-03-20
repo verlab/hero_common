@@ -12,7 +12,8 @@ namespace mav_msgs
   class Thrust : public ros::Msg
   {
     public:
-      float thrust;
+      typedef float _thrust_type;
+      _thrust_type thrust;
 
     Thrust():
       thrust(0)

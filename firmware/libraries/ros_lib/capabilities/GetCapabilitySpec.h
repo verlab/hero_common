@@ -14,7 +14,8 @@ static const char GETCAPABILITYSPEC[] = "capabilities/GetCapabilitySpec";
   class GetCapabilitySpecRequest : public ros::Msg
   {
     public:
-      const char* capability_spec;
+      typedef const char* _capability_spec_type;
+      _capability_spec_type capability_spec;
 
     GetCapabilitySpecRequest():
       capability_spec("")
@@ -25,7 +26,7 @@ static const char GETCAPABILITYSPEC[] = "capabilities/GetCapabilitySpec";
     {
       int offset = 0;
       uint32_t length_capability_spec = strlen(this->capability_spec);
-      memcpy(outbuffer + offset, &length_capability_spec, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_capability_spec);
       offset += 4;
       memcpy(outbuffer + offset, this->capability_spec, length_capability_spec);
       offset += length_capability_spec;
@@ -36,7 +37,7 @@ static const char GETCAPABILITYSPEC[] = "capabilities/GetCapabilitySpec";
     {
       int offset = 0;
       uint32_t length_capability_spec;
-      memcpy(&length_capability_spec, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_capability_spec, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_capability_spec; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -55,7 +56,8 @@ static const char GETCAPABILITYSPEC[] = "capabilities/GetCapabilitySpec";
   class GetCapabilitySpecResponse : public ros::Msg
   {
     public:
-      capabilities::CapabilitySpec capability_spec;
+      typedef capabilities::CapabilitySpec _capability_spec_type;
+      _capability_spec_type capability_spec;
 
     GetCapabilitySpecResponse():
       capability_spec()

@@ -12,9 +12,10 @@ namespace pcl_msgs
   class Vertices : public ros::Msg
   {
     public:
-      uint8_t vertices_length;
-      uint32_t st_vertices;
-      uint32_t * vertices;
+      uint32_t vertices_length;
+      typedef uint32_t _vertices_type;
+      _vertices_type st_vertices;
+      _vertices_type * vertices;
 
     Vertices():
       vertices_length(0), vertices(NULL)
@@ -24,11 +25,12 @@ namespace pcl_msgs
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      *(outbuffer + offset++) = vertices_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < vertices_length; i++){
+      *(outbuffer + offset + 0) = (this->vertices_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->vertices_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->vertices_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->vertices_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->vertices_length);
+      for( uint32_t i = 0; i < vertices_length; i++){
       *(outbuffer + offset + 0) = (this->vertices[i] >> (8 * 0)) & 0xFF;
       *(outbuffer + offset + 1) = (this->vertices[i] >> (8 * 1)) & 0xFF;
       *(outbuffer + offset + 2) = (this->vertices[i] >> (8 * 2)) & 0xFF;
@@ -41,12 +43,15 @@ namespace pcl_msgs
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      uint8_t vertices_lengthT = *(inbuffer + offset++);
+      uint32_t vertices_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      vertices_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      vertices_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      vertices_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->vertices_length);
       if(vertices_lengthT > vertices_length)
         this->vertices = (uint32_t*)realloc(this->vertices, vertices_lengthT * sizeof(uint32_t));
-      offset += 3;
       vertices_length = vertices_lengthT;
-      for( uint8_t i = 0; i < vertices_length; i++){
+      for( uint32_t i = 0; i < vertices_length; i++){
       this->st_vertices =  ((uint32_t) (*(inbuffer + offset)));
       this->st_vertices |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
       this->st_vertices |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);

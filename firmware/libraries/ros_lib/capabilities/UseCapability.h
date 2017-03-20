@@ -13,9 +13,12 @@ static const char USECAPABILITY[] = "capabilities/UseCapability";
   class UseCapabilityRequest : public ros::Msg
   {
     public:
-      const char* capability;
-      const char* preferred_provider;
-      const char* bond_id;
+      typedef const char* _capability_type;
+      _capability_type capability;
+      typedef const char* _preferred_provider_type;
+      _preferred_provider_type preferred_provider;
+      typedef const char* _bond_id_type;
+      _bond_id_type bond_id;
 
     UseCapabilityRequest():
       capability(""),
@@ -28,17 +31,17 @@ static const char USECAPABILITY[] = "capabilities/UseCapability";
     {
       int offset = 0;
       uint32_t length_capability = strlen(this->capability);
-      memcpy(outbuffer + offset, &length_capability, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_capability);
       offset += 4;
       memcpy(outbuffer + offset, this->capability, length_capability);
       offset += length_capability;
       uint32_t length_preferred_provider = strlen(this->preferred_provider);
-      memcpy(outbuffer + offset, &length_preferred_provider, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_preferred_provider);
       offset += 4;
       memcpy(outbuffer + offset, this->preferred_provider, length_preferred_provider);
       offset += length_preferred_provider;
       uint32_t length_bond_id = strlen(this->bond_id);
-      memcpy(outbuffer + offset, &length_bond_id, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_bond_id);
       offset += 4;
       memcpy(outbuffer + offset, this->bond_id, length_bond_id);
       offset += length_bond_id;
@@ -49,7 +52,7 @@ static const char USECAPABILITY[] = "capabilities/UseCapability";
     {
       int offset = 0;
       uint32_t length_capability;
-      memcpy(&length_capability, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_capability, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_capability; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -58,7 +61,7 @@ static const char USECAPABILITY[] = "capabilities/UseCapability";
       this->capability = (char *)(inbuffer + offset-1);
       offset += length_capability;
       uint32_t length_preferred_provider;
-      memcpy(&length_preferred_provider, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_preferred_provider, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_preferred_provider; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -67,7 +70,7 @@ static const char USECAPABILITY[] = "capabilities/UseCapability";
       this->preferred_provider = (char *)(inbuffer + offset-1);
       offset += length_preferred_provider;
       uint32_t length_bond_id;
-      memcpy(&length_bond_id, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_bond_id, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_bond_id; ++k){
           inbuffer[k-1]=inbuffer[k];

@@ -12,10 +12,14 @@ namespace kobuki_msgs
   class ControllerInfo : public ros::Msg
   {
     public:
-      uint8_t type;
-      float p_gain;
-      float i_gain;
-      float d_gain;
+      typedef uint8_t _type_type;
+      _type_type type;
+      typedef float _p_gain_type;
+      _p_gain_type p_gain;
+      typedef float _i_gain_type;
+      _i_gain_type i_gain;
+      typedef float _d_gain_type;
+      _d_gain_type d_gain;
       enum { DEFAULT =   0 };
       enum { USER_CONFIGURED =   1 };
 

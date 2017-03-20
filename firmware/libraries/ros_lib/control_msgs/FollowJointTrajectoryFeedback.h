@@ -14,13 +14,18 @@ namespace control_msgs
   class FollowJointTrajectoryFeedback : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      uint8_t joint_names_length;
-      char* st_joint_names;
-      char* * joint_names;
-      trajectory_msgs::JointTrajectoryPoint desired;
-      trajectory_msgs::JointTrajectoryPoint actual;
-      trajectory_msgs::JointTrajectoryPoint error;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      uint32_t joint_names_length;
+      typedef char* _joint_names_type;
+      _joint_names_type st_joint_names;
+      _joint_names_type * joint_names;
+      typedef trajectory_msgs::JointTrajectoryPoint _desired_type;
+      _desired_type desired;
+      typedef trajectory_msgs::JointTrajectoryPoint _actual_type;
+      _actual_type actual;
+      typedef trajectory_msgs::JointTrajectoryPoint _error_type;
+      _error_type error;
 
     FollowJointTrajectoryFeedback():
       header(),
@@ -35,13 +40,14 @@ namespace control_msgs
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
-      *(outbuffer + offset++) = joint_names_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < joint_names_length; i++){
+      *(outbuffer + offset + 0) = (this->joint_names_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->joint_names_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->joint_names_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->joint_names_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->joint_names_length);
+      for( uint32_t i = 0; i < joint_names_length; i++){
       uint32_t length_joint_namesi = strlen(this->joint_names[i]);
-      memcpy(outbuffer + offset, &length_joint_namesi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_joint_namesi);
       offset += 4;
       memcpy(outbuffer + offset, this->joint_names[i], length_joint_namesi);
       offset += length_joint_namesi;
@@ -56,14 +62,17 @@ namespace control_msgs
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
-      uint8_t joint_names_lengthT = *(inbuffer + offset++);
+      uint32_t joint_names_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      joint_names_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      joint_names_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      joint_names_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->joint_names_length);
       if(joint_names_lengthT > joint_names_length)
         this->joint_names = (char**)realloc(this->joint_names, joint_names_lengthT * sizeof(char*));
-      offset += 3;
       joint_names_length = joint_names_lengthT;
-      for( uint8_t i = 0; i < joint_names_length; i++){
+      for( uint32_t i = 0; i < joint_names_length; i++){
       uint32_t length_st_joint_names;
-      memcpy(&length_st_joint_names, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_joint_names, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_joint_names; ++k){
           inbuffer[k-1]=inbuffer[k];

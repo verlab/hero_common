@@ -12,9 +12,12 @@ namespace swarm_driver
   class Command : public ros::Msg
   {
     public:
-      uint8_t robot_id;
-      uint8_t wheel_right;
-      uint8_t wheel_left;
+      typedef uint8_t _robot_id_type;
+      _robot_id_type robot_id;
+      typedef int8_t _wheel_right_type;
+      _wheel_right_type wheel_right;
+      typedef int8_t _wheel_left_type;
+      _wheel_left_type wheel_left;
 
     Command():
       robot_id(0),
@@ -28,9 +31,19 @@ namespace swarm_driver
       int offset = 0;
       *(outbuffer + offset + 0) = (this->robot_id >> (8 * 0)) & 0xFF;
       offset += sizeof(this->robot_id);
-      *(outbuffer + offset + 0) = (this->wheel_right >> (8 * 0)) & 0xFF;
+      union {
+        int8_t real;
+        uint8_t base;
+      } u_wheel_right;
+      u_wheel_right.real = this->wheel_right;
+      *(outbuffer + offset + 0) = (u_wheel_right.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->wheel_right);
-      *(outbuffer + offset + 0) = (this->wheel_left >> (8 * 0)) & 0xFF;
+      union {
+        int8_t real;
+        uint8_t base;
+      } u_wheel_left;
+      u_wheel_left.real = this->wheel_left;
+      *(outbuffer + offset + 0) = (u_wheel_left.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->wheel_left);
       return offset;
     }
@@ -40,15 +53,27 @@ namespace swarm_driver
       int offset = 0;
       this->robot_id =  ((uint8_t) (*(inbuffer + offset)));
       offset += sizeof(this->robot_id);
-      this->wheel_right =  ((uint8_t) (*(inbuffer + offset)));
+      union {
+        int8_t real;
+        uint8_t base;
+      } u_wheel_right;
+      u_wheel_right.base = 0;
+      u_wheel_right.base |= ((uint8_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      this->wheel_right = u_wheel_right.real;
       offset += sizeof(this->wheel_right);
-      this->wheel_left =  ((uint8_t) (*(inbuffer + offset)));
+      union {
+        int8_t real;
+        uint8_t base;
+      } u_wheel_left;
+      u_wheel_left.base = 0;
+      u_wheel_left.base |= ((uint8_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      this->wheel_left = u_wheel_left.real;
       offset += sizeof(this->wheel_left);
      return offset;
     }
 
     const char * getType(){ return "swarm_driver/Command"; };
-    const char * getMD5(){ return "9b5f0d2673ef536e966e7b091fe3f66e"; };
+    const char * getMD5(){ return "d76b8052249a64fe0c4d7bda68ee48ae"; };
 
   };
 

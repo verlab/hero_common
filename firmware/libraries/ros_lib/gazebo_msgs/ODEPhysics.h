@@ -12,16 +12,26 @@ namespace gazebo_msgs
   class ODEPhysics : public ros::Msg
   {
     public:
-      bool auto_disable_bodies;
-      uint32_t sor_pgs_precon_iters;
-      uint32_t sor_pgs_iters;
-      float sor_pgs_w;
-      float sor_pgs_rms_error_tol;
-      float contact_surface_layer;
-      float contact_max_correcting_vel;
-      float cfm;
-      float erp;
-      uint32_t max_contacts;
+      typedef bool _auto_disable_bodies_type;
+      _auto_disable_bodies_type auto_disable_bodies;
+      typedef uint32_t _sor_pgs_precon_iters_type;
+      _sor_pgs_precon_iters_type sor_pgs_precon_iters;
+      typedef uint32_t _sor_pgs_iters_type;
+      _sor_pgs_iters_type sor_pgs_iters;
+      typedef float _sor_pgs_w_type;
+      _sor_pgs_w_type sor_pgs_w;
+      typedef float _sor_pgs_rms_error_tol_type;
+      _sor_pgs_rms_error_tol_type sor_pgs_rms_error_tol;
+      typedef float _contact_surface_layer_type;
+      _contact_surface_layer_type contact_surface_layer;
+      typedef float _contact_max_correcting_vel_type;
+      _contact_max_correcting_vel_type contact_max_correcting_vel;
+      typedef float _cfm_type;
+      _cfm_type cfm;
+      typedef float _erp_type;
+      _erp_type erp;
+      typedef uint32_t _max_contacts_type;
+      _max_contacts_type max_contacts;
 
     ODEPhysics():
       auto_disable_bodies(0),

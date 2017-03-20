@@ -13,8 +13,10 @@ static const char STARTCAPABILITY[] = "capabilities/StartCapability";
   class StartCapabilityRequest : public ros::Msg
   {
     public:
-      const char* capability;
-      const char* preferred_provider;
+      typedef const char* _capability_type;
+      _capability_type capability;
+      typedef const char* _preferred_provider_type;
+      _preferred_provider_type preferred_provider;
 
     StartCapabilityRequest():
       capability(""),
@@ -26,12 +28,12 @@ static const char STARTCAPABILITY[] = "capabilities/StartCapability";
     {
       int offset = 0;
       uint32_t length_capability = strlen(this->capability);
-      memcpy(outbuffer + offset, &length_capability, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_capability);
       offset += 4;
       memcpy(outbuffer + offset, this->capability, length_capability);
       offset += length_capability;
       uint32_t length_preferred_provider = strlen(this->preferred_provider);
-      memcpy(outbuffer + offset, &length_preferred_provider, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_preferred_provider);
       offset += 4;
       memcpy(outbuffer + offset, this->preferred_provider, length_preferred_provider);
       offset += length_preferred_provider;
@@ -42,7 +44,7 @@ static const char STARTCAPABILITY[] = "capabilities/StartCapability";
     {
       int offset = 0;
       uint32_t length_capability;
-      memcpy(&length_capability, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_capability, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_capability; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -51,7 +53,7 @@ static const char STARTCAPABILITY[] = "capabilities/StartCapability";
       this->capability = (char *)(inbuffer + offset-1);
       offset += length_capability;
       uint32_t length_preferred_provider;
-      memcpy(&length_preferred_provider, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_preferred_provider, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_preferred_provider; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -70,7 +72,8 @@ static const char STARTCAPABILITY[] = "capabilities/StartCapability";
   class StartCapabilityResponse : public ros::Msg
   {
     public:
-      bool successful;
+      typedef bool _successful_type;
+      _successful_type successful;
 
     StartCapabilityResponse():
       successful(0)

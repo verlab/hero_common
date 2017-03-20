@@ -12,10 +12,14 @@ namespace control_msgs
   class JointTolerance : public ros::Msg
   {
     public:
-      const char* name;
-      float position;
-      float velocity;
-      float acceleration;
+      typedef const char* _name_type;
+      _name_type name;
+      typedef float _position_type;
+      _position_type position;
+      typedef float _velocity_type;
+      _velocity_type velocity;
+      typedef float _acceleration_type;
+      _acceleration_type acceleration;
 
     JointTolerance():
       name(""),
@@ -29,7 +33,7 @@ namespace control_msgs
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
@@ -43,7 +47,7 @@ namespace control_msgs
     {
       int offset = 0;
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];

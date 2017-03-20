@@ -14,10 +14,14 @@ namespace gazebo_msgs
   class LinkState : public ros::Msg
   {
     public:
-      const char* link_name;
-      geometry_msgs::Pose pose;
-      geometry_msgs::Twist twist;
-      const char* reference_frame;
+      typedef const char* _link_name_type;
+      _link_name_type link_name;
+      typedef geometry_msgs::Pose _pose_type;
+      _pose_type pose;
+      typedef geometry_msgs::Twist _twist_type;
+      _twist_type twist;
+      typedef const char* _reference_frame_type;
+      _reference_frame_type reference_frame;
 
     LinkState():
       link_name(""),
@@ -31,14 +35,14 @@ namespace gazebo_msgs
     {
       int offset = 0;
       uint32_t length_link_name = strlen(this->link_name);
-      memcpy(outbuffer + offset, &length_link_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_link_name);
       offset += 4;
       memcpy(outbuffer + offset, this->link_name, length_link_name);
       offset += length_link_name;
       offset += this->pose.serialize(outbuffer + offset);
       offset += this->twist.serialize(outbuffer + offset);
       uint32_t length_reference_frame = strlen(this->reference_frame);
-      memcpy(outbuffer + offset, &length_reference_frame, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_reference_frame);
       offset += 4;
       memcpy(outbuffer + offset, this->reference_frame, length_reference_frame);
       offset += length_reference_frame;
@@ -49,7 +53,7 @@ namespace gazebo_msgs
     {
       int offset = 0;
       uint32_t length_link_name;
-      memcpy(&length_link_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_link_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_link_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -60,7 +64,7 @@ namespace gazebo_msgs
       offset += this->pose.deserialize(inbuffer + offset);
       offset += this->twist.deserialize(inbuffer + offset);
       uint32_t length_reference_frame;
-      memcpy(&length_reference_frame, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_reference_frame, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_reference_frame; ++k){
           inbuffer[k-1]=inbuffer[k];

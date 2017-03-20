@@ -13,8 +13,10 @@ namespace gateway_msgs
   class RemoteRuleWithStatus : public ros::Msg
   {
     public:
-      gateway_msgs::RemoteRule remote_rule;
-      const char* status;
+      typedef gateway_msgs::RemoteRule _remote_rule_type;
+      _remote_rule_type remote_rule;
+      typedef const char* _status_type;
+      _status_type status;
       enum { UNKNOWN = unknown };
       enum { PENDING = pending };
       enum { ACCEPTED = accepted };
@@ -32,7 +34,7 @@ namespace gateway_msgs
       int offset = 0;
       offset += this->remote_rule.serialize(outbuffer + offset);
       uint32_t length_status = strlen(this->status);
-      memcpy(outbuffer + offset, &length_status, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_status);
       offset += 4;
       memcpy(outbuffer + offset, this->status, length_status);
       offset += length_status;
@@ -44,7 +46,7 @@ namespace gateway_msgs
       int offset = 0;
       offset += this->remote_rule.deserialize(inbuffer + offset);
       uint32_t length_status;
-      memcpy(&length_status, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_status, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_status; ++k){
           inbuffer[k-1]=inbuffer[k];

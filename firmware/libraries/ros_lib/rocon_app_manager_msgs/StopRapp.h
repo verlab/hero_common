@@ -38,9 +38,12 @@ static const char STOPRAPP[] = "rocon_app_manager_msgs/StopRapp";
   class StopRappResponse : public ros::Msg
   {
     public:
-      bool stopped;
-      int32_t error_code;
-      const char* message;
+      typedef bool _stopped_type;
+      _stopped_type stopped;
+      typedef int32_t _error_code_type;
+      _error_code_type error_code;
+      typedef const char* _message_type;
+      _message_type message;
 
     StopRappResponse():
       stopped(0),
@@ -70,7 +73,7 @@ static const char STOPRAPP[] = "rocon_app_manager_msgs/StopRapp";
       *(outbuffer + offset + 3) = (u_error_code.base >> (8 * 3)) & 0xFF;
       offset += sizeof(this->error_code);
       uint32_t length_message = strlen(this->message);
-      memcpy(outbuffer + offset, &length_message, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_message);
       offset += 4;
       memcpy(outbuffer + offset, this->message, length_message);
       offset += length_message;
@@ -100,7 +103,7 @@ static const char STOPRAPP[] = "rocon_app_manager_msgs/StopRapp";
       this->error_code = u_error_code.real;
       offset += sizeof(this->error_code);
       uint32_t length_message;
-      memcpy(&length_message, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_message, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_message; ++k){
           inbuffer[k-1]=inbuffer[k];

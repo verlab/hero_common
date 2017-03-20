@@ -1,3 +1,3 @@
 uint8 robot_id
-uint8 wheel_right
-uint8 wheel_left
+int8 wheel_right
+int8 wheel_left

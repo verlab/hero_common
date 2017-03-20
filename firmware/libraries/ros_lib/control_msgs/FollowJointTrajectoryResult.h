@@ -12,8 +12,10 @@ namespace control_msgs
   class FollowJointTrajectoryResult : public ros::Msg
   {
     public:
-      int32_t error_code;
-      const char* error_string;
+      typedef int32_t _error_code_type;
+      _error_code_type error_code;
+      typedef const char* _error_string_type;
+      _error_string_type error_string;
       enum { SUCCESSFUL =  0 };
       enum { INVALID_GOAL =  -1 };
       enum { INVALID_JOINTS =  -2 };
@@ -41,7 +43,7 @@ namespace control_msgs
       *(outbuffer + offset + 3) = (u_error_code.base >> (8 * 3)) & 0xFF;
       offset += sizeof(this->error_code);
       uint32_t length_error_string = strlen(this->error_string);
-      memcpy(outbuffer + offset, &length_error_string, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_error_string);
       offset += 4;
       memcpy(outbuffer + offset, this->error_string, length_error_string);
       offset += length_error_string;
@@ -63,7 +65,7 @@ namespace control_msgs
       this->error_code = u_error_code.real;
       offset += sizeof(this->error_code);
       uint32_t length_error_string;
-      memcpy(&length_error_string, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_error_string, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_error_string; ++k){
           inbuffer[k-1]=inbuffer[k];

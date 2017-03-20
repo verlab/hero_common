@@ -13,13 +13,20 @@ namespace asctec_msgs
   class CtrlInput : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      int16_t pitch;
-      int16_t roll;
-      int16_t yaw;
-      int16_t thrust;
-      int16_t ctrl;
-      int16_t chksum;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef int16_t _pitch_type;
+      _pitch_type pitch;
+      typedef int16_t _roll_type;
+      _roll_type roll;
+      typedef int16_t _yaw_type;
+      _yaw_type yaw;
+      typedef int16_t _thrust_type;
+      _thrust_type thrust;
+      typedef int16_t _ctrl_type;
+      _ctrl_type ctrl;
+      typedef int16_t _chksum_type;
+      _chksum_type chksum;
 
     CtrlInput():
       header(),

@@ -14,7 +14,8 @@ static const char GETLINKPROPERTIES[] = "gazebo_msgs/GetLinkProperties";
   class GetLinkPropertiesRequest : public ros::Msg
   {
     public:
-      const char* link_name;
+      typedef const char* _link_name_type;
+      _link_name_type link_name;
 
     GetLinkPropertiesRequest():
       link_name("")
@@ -25,7 +26,7 @@ static const char GETLINKPROPERTIES[] = "gazebo_msgs/GetLinkProperties";
     {
       int offset = 0;
       uint32_t length_link_name = strlen(this->link_name);
-      memcpy(outbuffer + offset, &length_link_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_link_name);
       offset += 4;
       memcpy(outbuffer + offset, this->link_name, length_link_name);
       offset += length_link_name;
@@ -36,7 +37,7 @@ static const char GETLINKPROPERTIES[] = "gazebo_msgs/GetLinkProperties";
     {
       int offset = 0;
       uint32_t length_link_name;
-      memcpy(&length_link_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_link_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_link_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -55,17 +56,28 @@ static const char GETLINKPROPERTIES[] = "gazebo_msgs/GetLinkProperties";
   class GetLinkPropertiesResponse : public ros::Msg
   {
     public:
-      geometry_msgs::Pose com;
-      bool gravity_mode;
-      float mass;
-      float ixx;
-      float ixy;
-      float ixz;
-      float iyy;
-      float iyz;
-      float izz;
-      bool success;
-      const char* status_message;
+      typedef geometry_msgs::Pose _com_type;
+      _com_type com;
+      typedef bool _gravity_mode_type;
+      _gravity_mode_type gravity_mode;
+      typedef float _mass_type;
+      _mass_type mass;
+      typedef float _ixx_type;
+      _ixx_type ixx;
+      typedef float _ixy_type;
+      _ixy_type ixy;
+      typedef float _ixz_type;
+      _ixz_type ixz;
+      typedef float _iyy_type;
+      _iyy_type iyy;
+      typedef float _iyz_type;
+      _iyz_type iyz;
+      typedef float _izz_type;
+      _izz_type izz;
+      typedef bool _success_type;
+      _success_type success;
+      typedef const char* _status_message_type;
+      _status_message_type status_message;
 
     GetLinkPropertiesResponse():
       com(),
@@ -108,7 +120,7 @@ static const char GETLINKPROPERTIES[] = "gazebo_msgs/GetLinkProperties";
       *(outbuffer + offset + 0) = (u_success.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->success);
       uint32_t length_status_message = strlen(this->status_message);
-      memcpy(outbuffer + offset, &length_status_message, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_status_message);
       offset += 4;
       memcpy(outbuffer + offset, this->status_message, length_status_message);
       offset += length_status_message;
@@ -143,7 +155,7 @@ static const char GETLINKPROPERTIES[] = "gazebo_msgs/GetLinkProperties";
       this->success = u_success.real;
       offset += sizeof(this->success);
       uint32_t length_status_message;
-      memcpy(&length_status_message, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_status_message, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_status_message; ++k){
           inbuffer[k-1]=inbuffer[k];

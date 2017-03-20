@@ -39,8 +39,10 @@ static const char GETIMUINFO[] = "realsense_camera/GetIMUInfo";
   class GetIMUInfoResponse : public ros::Msg
   {
     public:
-      realsense_camera::IMUInfo accel;
-      realsense_camera::IMUInfo gyro;
+      typedef realsense_camera::IMUInfo _accel_type;
+      _accel_type accel;
+      typedef realsense_camera::IMUInfo _gyro_type;
+      _gyro_type gyro;
 
     GetIMUInfoResponse():
       accel(),

@@ -38,7 +38,8 @@ static const char GETNODELETMANAGERNAME[] = "capabilities/GetNodeletManagerName"
   class GetNodeletManagerNameResponse : public ros::Msg
   {
     public:
-      const char* nodelet_manager_name;
+      typedef const char* _nodelet_manager_name_type;
+      _nodelet_manager_name_type nodelet_manager_name;
 
     GetNodeletManagerNameResponse():
       nodelet_manager_name("")
@@ -49,7 +50,7 @@ static const char GETNODELETMANAGERNAME[] = "capabilities/GetNodeletManagerName"
     {
       int offset = 0;
       uint32_t length_nodelet_manager_name = strlen(this->nodelet_manager_name);
-      memcpy(outbuffer + offset, &length_nodelet_manager_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_nodelet_manager_name);
       offset += 4;
       memcpy(outbuffer + offset, this->nodelet_manager_name, length_nodelet_manager_name);
       offset += length_nodelet_manager_name;
@@ -60,7 +61,7 @@ static const char GETNODELETMANAGERNAME[] = "capabilities/GetNodeletManagerName"
     {
       int offset = 0;
       uint32_t length_nodelet_manager_name;
-      memcpy(&length_nodelet_manager_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_nodelet_manager_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_nodelet_manager_name; ++k){
           inbuffer[k-1]=inbuffer[k];

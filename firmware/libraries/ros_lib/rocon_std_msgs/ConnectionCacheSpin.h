@@ -12,8 +12,10 @@ namespace rocon_std_msgs
   class ConnectionCacheSpin : public ros::Msg
   {
     public:
-      float spin_freq;
-      float spin_timer;
+      typedef float _spin_freq_type;
+      _spin_freq_type spin_freq;
+      typedef float _spin_timer_type;
+      _spin_timer_type spin_timer;
 
     ConnectionCacheSpin():
       spin_freq(0),

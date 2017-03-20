@@ -12,7 +12,8 @@ namespace kobuki_msgs
   class RobotStateEvent : public ros::Msg
   {
     public:
-      uint8_t state;
+      typedef uint8_t _state_type;
+      _state_type state;
       enum { ONLINE =  1 };
       enum { OFFLINE =  0 };
 

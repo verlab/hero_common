@@ -13,8 +13,10 @@ static const char BADTWOINTS[] = "rospy_tutorials/BadTwoInts";
   class BadTwoIntsRequest : public ros::Msg
   {
     public:
-      int64_t a;
-      int32_t b;
+      typedef int64_t _a_type;
+      _a_type a;
+      typedef int32_t _b_type;
+      _b_type b;
 
     BadTwoIntsRequest():
       a(0),
@@ -92,7 +94,8 @@ static const char BADTWOINTS[] = "rospy_tutorials/BadTwoInts";
   class BadTwoIntsResponse : public ros::Msg
   {
     public:
-      int32_t sum;
+      typedef int32_t _sum_type;
+      _sum_type sum;
 
     BadTwoIntsResponse():
       sum(0)

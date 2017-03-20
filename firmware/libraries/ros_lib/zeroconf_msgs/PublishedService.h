@@ -12,11 +12,16 @@ namespace zeroconf_msgs
   class PublishedService : public ros::Msg
   {
     public:
-      const char* name;
-      const char* type;
-      const char* domain;
-      int32_t port;
-      const char* description;
+      typedef const char* _name_type;
+      _name_type name;
+      typedef const char* _type_type;
+      _type_type type;
+      typedef const char* _domain_type;
+      _domain_type domain;
+      typedef int32_t _port_type;
+      _port_type port;
+      typedef const char* _description_type;
+      _description_type description;
 
     PublishedService():
       name(""),
@@ -31,17 +36,17 @@ namespace zeroconf_msgs
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
       uint32_t length_type = strlen(this->type);
-      memcpy(outbuffer + offset, &length_type, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_type);
       offset += 4;
       memcpy(outbuffer + offset, this->type, length_type);
       offset += length_type;
       uint32_t length_domain = strlen(this->domain);
-      memcpy(outbuffer + offset, &length_domain, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_domain);
       offset += 4;
       memcpy(outbuffer + offset, this->domain, length_domain);
       offset += length_domain;
@@ -56,7 +61,7 @@ namespace zeroconf_msgs
       *(outbuffer + offset + 3) = (u_port.base >> (8 * 3)) & 0xFF;
       offset += sizeof(this->port);
       uint32_t length_description = strlen(this->description);
-      memcpy(outbuffer + offset, &length_description, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_description);
       offset += 4;
       memcpy(outbuffer + offset, this->description, length_description);
       offset += length_description;
@@ -67,7 +72,7 @@ namespace zeroconf_msgs
     {
       int offset = 0;
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -76,7 +81,7 @@ namespace zeroconf_msgs
       this->name = (char *)(inbuffer + offset-1);
       offset += length_name;
       uint32_t length_type;
-      memcpy(&length_type, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_type, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_type; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -85,7 +90,7 @@ namespace zeroconf_msgs
       this->type = (char *)(inbuffer + offset-1);
       offset += length_type;
       uint32_t length_domain;
-      memcpy(&length_domain, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_domain, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_domain; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -105,7 +110,7 @@ namespace zeroconf_msgs
       this->port = u_port.real;
       offset += sizeof(this->port);
       uint32_t length_description;
-      memcpy(&length_description, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_description, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_description; ++k){
           inbuffer[k-1]=inbuffer[k];

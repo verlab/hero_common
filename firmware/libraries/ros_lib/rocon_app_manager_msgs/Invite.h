@@ -13,9 +13,12 @@ static const char INVITE[] = "rocon_app_manager_msgs/Invite";
   class InviteRequest : public ros::Msg
   {
     public:
-      const char* remote_target_name;
-      const char* application_namespace;
-      bool cancel;
+      typedef const char* _remote_target_name_type;
+      _remote_target_name_type remote_target_name;
+      typedef const char* _application_namespace_type;
+      _application_namespace_type application_namespace;
+      typedef bool _cancel_type;
+      _cancel_type cancel;
 
     InviteRequest():
       remote_target_name(""),
@@ -28,12 +31,12 @@ static const char INVITE[] = "rocon_app_manager_msgs/Invite";
     {
       int offset = 0;
       uint32_t length_remote_target_name = strlen(this->remote_target_name);
-      memcpy(outbuffer + offset, &length_remote_target_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_remote_target_name);
       offset += 4;
       memcpy(outbuffer + offset, this->remote_target_name, length_remote_target_name);
       offset += length_remote_target_name;
       uint32_t length_application_namespace = strlen(this->application_namespace);
-      memcpy(outbuffer + offset, &length_application_namespace, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_application_namespace);
       offset += 4;
       memcpy(outbuffer + offset, this->application_namespace, length_application_namespace);
       offset += length_application_namespace;
@@ -51,7 +54,7 @@ static const char INVITE[] = "rocon_app_manager_msgs/Invite";
     {
       int offset = 0;
       uint32_t length_remote_target_name;
-      memcpy(&length_remote_target_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_remote_target_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_remote_target_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -60,7 +63,7 @@ static const char INVITE[] = "rocon_app_manager_msgs/Invite";
       this->remote_target_name = (char *)(inbuffer + offset-1);
       offset += length_remote_target_name;
       uint32_t length_application_namespace;
-      memcpy(&length_application_namespace, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_application_namespace, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_application_namespace; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -87,9 +90,12 @@ static const char INVITE[] = "rocon_app_manager_msgs/Invite";
   class InviteResponse : public ros::Msg
   {
     public:
-      bool result;
-      int32_t error_code;
-      const char* message;
+      typedef bool _result_type;
+      _result_type result;
+      typedef int32_t _error_code_type;
+      _error_code_type error_code;
+      typedef const char* _message_type;
+      _message_type message;
 
     InviteResponse():
       result(0),
@@ -119,7 +125,7 @@ static const char INVITE[] = "rocon_app_manager_msgs/Invite";
       *(outbuffer + offset + 3) = (u_error_code.base >> (8 * 3)) & 0xFF;
       offset += sizeof(this->error_code);
       uint32_t length_message = strlen(this->message);
-      memcpy(outbuffer + offset, &length_message, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_message);
       offset += 4;
       memcpy(outbuffer + offset, this->message, length_message);
       offset += length_message;
@@ -149,7 +155,7 @@ static const char INVITE[] = "rocon_app_manager_msgs/Invite";
       this->error_code = u_error_code.real;
       offset += sizeof(this->error_code);
       uint32_t length_message;
-      memcpy(&length_message, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_message, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_message; ++k){
           inbuffer[k-1]=inbuffer[k];

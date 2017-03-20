@@ -13,7 +13,8 @@ static const char REMOVELISTENER[] = "zeroconf_msgs/RemoveListener";
   class RemoveListenerRequest : public ros::Msg
   {
     public:
-      const char* service_type;
+      typedef const char* _service_type_type;
+      _service_type_type service_type;
 
     RemoveListenerRequest():
       service_type("")
@@ -24,7 +25,7 @@ static const char REMOVELISTENER[] = "zeroconf_msgs/RemoveListener";
     {
       int offset = 0;
       uint32_t length_service_type = strlen(this->service_type);
-      memcpy(outbuffer + offset, &length_service_type, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_service_type);
       offset += 4;
       memcpy(outbuffer + offset, this->service_type, length_service_type);
       offset += length_service_type;
@@ -35,7 +36,7 @@ static const char REMOVELISTENER[] = "zeroconf_msgs/RemoveListener";
     {
       int offset = 0;
       uint32_t length_service_type;
-      memcpy(&length_service_type, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_service_type, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_service_type; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -54,7 +55,8 @@ static const char REMOVELISTENER[] = "zeroconf_msgs/RemoveListener";
   class RemoveListenerResponse : public ros::Msg
   {
     public:
-      bool result;
+      typedef bool _result_type;
+      _result_type result;
 
     RemoveListenerResponse():
       result(0)

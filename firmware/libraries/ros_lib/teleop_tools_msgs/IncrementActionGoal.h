@@ -15,9 +15,12 @@ namespace teleop_tools_msgs
   class IncrementActionGoal : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      actionlib_msgs::GoalID goal_id;
-      teleop_tools_msgs::IncrementGoal goal;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef actionlib_msgs::GoalID _goal_id_type;
+      _goal_id_type goal_id;
+      typedef teleop_tools_msgs::IncrementGoal _goal_type;
+      _goal_type goal;
 
     IncrementActionGoal():
       header(),

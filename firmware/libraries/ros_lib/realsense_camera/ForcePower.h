@@ -13,7 +13,8 @@ static const char FORCEPOWER[] = "realsense_camera/ForcePower";
   class ForcePowerRequest : public ros::Msg
   {
     public:
-      bool power_on;
+      typedef bool _power_on_type;
+      _power_on_type power_on;
 
     ForcePowerRequest():
       power_on(0)

@@ -12,8 +12,10 @@ namespace create_node
   class Drive : public ros::Msg
   {
     public:
-      float velocity;
-      float radius;
+      typedef float _velocity_type;
+      _velocity_type velocity;
+      typedef float _radius_type;
+      _radius_type radius;
 
     Drive():
       velocity(0),

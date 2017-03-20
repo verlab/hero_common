@@ -38,7 +38,8 @@ static const char ESTABLISHBOND[] = "capabilities/EstablishBond";
   class EstablishBondResponse : public ros::Msg
   {
     public:
-      const char* bond_id;
+      typedef const char* _bond_id_type;
+      _bond_id_type bond_id;
 
     EstablishBondResponse():
       bond_id("")
@@ -49,7 +50,7 @@ static const char ESTABLISHBOND[] = "capabilities/EstablishBond";
     {
       int offset = 0;
       uint32_t length_bond_id = strlen(this->bond_id);
-      memcpy(outbuffer + offset, &length_bond_id, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_bond_id);
       offset += 4;
       memcpy(outbuffer + offset, this->bond_id, length_bond_id);
       offset += length_bond_id;
@@ -60,7 +61,7 @@ static const char ESTABLISHBOND[] = "capabilities/EstablishBond";
     {
       int offset = 0;
       uint32_t length_bond_id;
-      memcpy(&length_bond_id, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_bond_id, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_bond_id; ++k){
           inbuffer[k-1]=inbuffer[k];

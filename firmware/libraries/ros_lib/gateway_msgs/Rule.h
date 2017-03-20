@@ -12,9 +12,12 @@ namespace gateway_msgs
   class Rule : public ros::Msg
   {
     public:
-      const char* type;
-      const char* name;
-      const char* node;
+      typedef const char* _type_type;
+      _type_type type;
+      typedef const char* _name_type;
+      _name_type name;
+      typedef const char* _node_type;
+      _node_type node;
 
     Rule():
       type(""),
@@ -27,17 +30,17 @@ namespace gateway_msgs
     {
       int offset = 0;
       uint32_t length_type = strlen(this->type);
-      memcpy(outbuffer + offset, &length_type, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_type);
       offset += 4;
       memcpy(outbuffer + offset, this->type, length_type);
       offset += length_type;
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
       uint32_t length_node = strlen(this->node);
-      memcpy(outbuffer + offset, &length_node, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_node);
       offset += 4;
       memcpy(outbuffer + offset, this->node, length_node);
       offset += length_node;
@@ -48,7 +51,7 @@ namespace gateway_msgs
     {
       int offset = 0;
       uint32_t length_type;
-      memcpy(&length_type, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_type, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_type; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -57,7 +60,7 @@ namespace gateway_msgs
       this->type = (char *)(inbuffer + offset-1);
       offset += length_type;
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -66,7 +69,7 @@ namespace gateway_msgs
       this->name = (char *)(inbuffer + offset-1);
       offset += length_name;
       uint32_t length_node;
-      memcpy(&length_node, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_node, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_node; ++k){
           inbuffer[k-1]=inbuffer[k];

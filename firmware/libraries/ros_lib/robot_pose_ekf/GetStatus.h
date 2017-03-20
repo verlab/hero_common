@@ -38,7 +38,8 @@ static const char GETSTATUS[] = "robot_pose_ekf/GetStatus";
   class GetStatusResponse : public ros::Msg
   {
     public:
-      const char* status;
+      typedef const char* _status_type;
+      _status_type status;
 
     GetStatusResponse():
       status("")
@@ -49,7 +50,7 @@ static const char GETSTATUS[] = "robot_pose_ekf/GetStatus";
     {
       int offset = 0;
       uint32_t length_status = strlen(this->status);
-      memcpy(outbuffer + offset, &length_status, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_status);
       offset += 4;
       memcpy(outbuffer + offset, this->status, length_status);
       offset += length_status;
@@ -60,7 +61,7 @@ static const char GETSTATUS[] = "robot_pose_ekf/GetStatus";
     {
       int offset = 0;
       uint32_t length_status;
-      memcpy(&length_status, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_status, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_status; ++k){
           inbuffer[k-1]=inbuffer[k];

@@ -13,10 +13,12 @@ namespace pcl_msgs
   class ModelCoefficients : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      uint8_t values_length;
-      float st_values;
-      float * values;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      uint32_t values_length;
+      typedef float _values_type;
+      _values_type st_values;
+      _values_type * values;
 
     ModelCoefficients():
       header(),
@@ -28,11 +30,12 @@ namespace pcl_msgs
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
-      *(outbuffer + offset++) = values_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < values_length; i++){
+      *(outbuffer + offset + 0) = (this->values_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->values_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->values_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->values_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->values_length);
+      for( uint32_t i = 0; i < values_length; i++){
       union {
         float real;
         uint32_t base;
@@ -51,12 +54,15 @@ namespace pcl_msgs
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
-      uint8_t values_lengthT = *(inbuffer + offset++);
+      uint32_t values_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      values_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      values_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      values_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->values_length);
       if(values_lengthT > values_length)
         this->values = (float*)realloc(this->values, values_lengthT * sizeof(float));
-      offset += 3;
       values_length = values_lengthT;
-      for( uint8_t i = 0; i < values_length; i++){
+      for( uint32_t i = 0; i < values_length; i++){
       union {
         float real;
         uint32_t base;

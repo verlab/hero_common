@@ -13,10 +13,14 @@ static const char CHANGEDESPOSE[] = "mav_srvs/ChangeDesPose";
   class ChangeDesPoseRequest : public ros::Msg
   {
     public:
-      float delta_x;
-      float delta_y;
-      float delta_z;
-      float delta_yaw;
+      typedef float _delta_x_type;
+      _delta_x_type delta_x;
+      typedef float _delta_y_type;
+      _delta_y_type delta_y;
+      typedef float _delta_z_type;
+      _delta_z_type delta_z;
+      typedef float _delta_yaw_type;
+      _delta_yaw_type delta_yaw;
 
     ChangeDesPoseRequest():
       delta_x(0),

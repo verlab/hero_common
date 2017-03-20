@@ -13,11 +13,16 @@ namespace mav_msgs
   class Height : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      float height;
-      float height_variance;
-      float climb;
-      float climb_variance;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef float _height_type;
+      _height_type height;
+      typedef float _height_variance_type;
+      _height_variance_type height_variance;
+      typedef float _climb_type;
+      _climb_type climb;
+      typedef float _climb_variance_type;
+      _climb_variance_type climb_variance;
 
     Height():
       header(),

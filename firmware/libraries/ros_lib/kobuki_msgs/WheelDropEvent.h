@@ -12,8 +12,10 @@ namespace kobuki_msgs
   class WheelDropEvent : public ros::Msg
   {
     public:
-      uint8_t wheel;
-      uint8_t state;
+      typedef uint8_t _wheel_type;
+      _wheel_type wheel;
+      typedef uint8_t _state_type;
+      _state_type state;
       enum { LEFT =  0 };
       enum { RIGHT =  1 };
       enum { RAISED =  0 };

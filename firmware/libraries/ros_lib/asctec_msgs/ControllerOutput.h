@@ -13,11 +13,16 @@ namespace asctec_msgs
   class ControllerOutput : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      int32_t nick;
-      int32_t roll;
-      int32_t yaw;
-      int32_t thrust;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef int32_t _nick_type;
+      _nick_type nick;
+      typedef int32_t _roll_type;
+      _roll_type roll;
+      typedef int32_t _yaw_type;
+      _yaw_type yaw;
+      typedef int32_t _thrust_type;
+      _thrust_type thrust;
 
     ControllerOutput():
       header(),

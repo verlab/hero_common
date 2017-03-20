@@ -14,9 +14,10 @@ static const char REMOTEGATEWAYINFO[] = "gateway_msgs/RemoteGatewayInfo";
   class RemoteGatewayInfoRequest : public ros::Msg
   {
     public:
-      uint8_t gateways_length;
-      char* st_gateways;
-      char* * gateways;
+      uint32_t gateways_length;
+      typedef char* _gateways_type;
+      _gateways_type st_gateways;
+      _gateways_type * gateways;
 
     RemoteGatewayInfoRequest():
       gateways_length(0), gateways(NULL)
@@ -26,13 +27,14 @@ static const char REMOTEGATEWAYINFO[] = "gateway_msgs/RemoteGatewayInfo";
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      *(outbuffer + offset++) = gateways_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < gateways_length; i++){
+      *(outbuffer + offset + 0) = (this->gateways_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->gateways_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->gateways_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->gateways_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->gateways_length);
+      for( uint32_t i = 0; i < gateways_length; i++){
       uint32_t length_gatewaysi = strlen(this->gateways[i]);
-      memcpy(outbuffer + offset, &length_gatewaysi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_gatewaysi);
       offset += 4;
       memcpy(outbuffer + offset, this->gateways[i], length_gatewaysi);
       offset += length_gatewaysi;
@@ -43,14 +45,17 @@ static const char REMOTEGATEWAYINFO[] = "gateway_msgs/RemoteGatewayInfo";
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      uint8_t gateways_lengthT = *(inbuffer + offset++);
+      uint32_t gateways_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      gateways_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      gateways_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      gateways_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->gateways_length);
       if(gateways_lengthT > gateways_length)
         this->gateways = (char**)realloc(this->gateways, gateways_lengthT * sizeof(char*));
-      offset += 3;
       gateways_length = gateways_lengthT;
-      for( uint8_t i = 0; i < gateways_length; i++){
+      for( uint32_t i = 0; i < gateways_length; i++){
       uint32_t length_st_gateways;
-      memcpy(&length_st_gateways, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_gateways, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_gateways; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -71,9 +76,10 @@ static const char REMOTEGATEWAYINFO[] = "gateway_msgs/RemoteGatewayInfo";
   class RemoteGatewayInfoResponse : public ros::Msg
   {
     public:
-      uint8_t gateways_length;
-      gateway_msgs::RemoteGateway st_gateways;
-      gateway_msgs::RemoteGateway * gateways;
+      uint32_t gateways_length;
+      typedef gateway_msgs::RemoteGateway _gateways_type;
+      _gateways_type st_gateways;
+      _gateways_type * gateways;
 
     RemoteGatewayInfoResponse():
       gateways_length(0), gateways(NULL)
@@ -83,11 +89,12 @@ static const char REMOTEGATEWAYINFO[] = "gateway_msgs/RemoteGatewayInfo";
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      *(outbuffer + offset++) = gateways_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < gateways_length; i++){
+      *(outbuffer + offset + 0) = (this->gateways_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->gateways_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->gateways_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->gateways_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->gateways_length);
+      for( uint32_t i = 0; i < gateways_length; i++){
       offset += this->gateways[i].serialize(outbuffer + offset);
       }
       return offset;
@@ -96,12 +103,15 @@ static const char REMOTEGATEWAYINFO[] = "gateway_msgs/RemoteGatewayInfo";
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      uint8_t gateways_lengthT = *(inbuffer + offset++);
+      uint32_t gateways_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      gateways_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      gateways_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      gateways_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->gateways_length);
       if(gateways_lengthT > gateways_length)
         this->gateways = (gateway_msgs::RemoteGateway*)realloc(this->gateways, gateways_lengthT * sizeof(gateway_msgs::RemoteGateway));
-      offset += 3;
       gateways_length = gateways_lengthT;
-      for( uint8_t i = 0; i < gateways_length; i++){
+      for( uint32_t i = 0; i < gateways_length; i++){
       offset += this->st_gateways.deserialize(inbuffer + offset);
         memcpy( &(this->gateways[i]), &(this->st_gateways), sizeof(gateway_msgs::RemoteGateway));
       }

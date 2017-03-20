@@ -13,29 +13,46 @@ namespace kobuki_msgs
   class SensorState : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      uint16_t time_stamp;
-      uint8_t bumper;
-      uint8_t wheel_drop;
-      uint8_t cliff;
-      uint16_t left_encoder;
-      uint16_t right_encoder;
-      int8_t left_pwm;
-      int8_t right_pwm;
-      uint8_t buttons;
-      uint8_t charger;
-      uint8_t battery;
-      uint8_t bottom_length;
-      uint16_t st_bottom;
-      uint16_t * bottom;
-      uint8_t current_length;
-      uint8_t st_current;
-      uint8_t * current;
-      uint8_t over_current;
-      uint16_t digital_input;
-      uint8_t analog_input_length;
-      uint16_t st_analog_input;
-      uint16_t * analog_input;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef uint16_t _time_stamp_type;
+      _time_stamp_type time_stamp;
+      typedef uint8_t _bumper_type;
+      _bumper_type bumper;
+      typedef uint8_t _wheel_drop_type;
+      _wheel_drop_type wheel_drop;
+      typedef uint8_t _cliff_type;
+      _cliff_type cliff;
+      typedef uint16_t _left_encoder_type;
+      _left_encoder_type left_encoder;
+      typedef uint16_t _right_encoder_type;
+      _right_encoder_type right_encoder;
+      typedef int8_t _left_pwm_type;
+      _left_pwm_type left_pwm;
+      typedef int8_t _right_pwm_type;
+      _right_pwm_type right_pwm;
+      typedef uint8_t _buttons_type;
+      _buttons_type buttons;
+      typedef uint8_t _charger_type;
+      _charger_type charger;
+      typedef uint8_t _battery_type;
+      _battery_type battery;
+      uint32_t bottom_length;
+      typedef uint16_t _bottom_type;
+      _bottom_type st_bottom;
+      _bottom_type * bottom;
+      uint32_t current_length;
+      typedef uint8_t _current_type;
+      _current_type st_current;
+      _current_type * current;
+      typedef uint8_t _over_current_type;
+      _over_current_type over_current;
+      typedef uint16_t _digital_input_type;
+      _digital_input_type digital_input;
+      uint32_t analog_input_length;
+      typedef uint16_t _analog_input_type;
+      _analog_input_type st_analog_input;
+      _analog_input_type * analog_input;
       enum { BUMPER_RIGHT =  1 };
       enum { BUMPER_CENTRE =  2 };
       enum { BUMPER_LEFT =  4 };
@@ -121,20 +138,22 @@ namespace kobuki_msgs
       offset += sizeof(this->charger);
       *(outbuffer + offset + 0) = (this->battery >> (8 * 0)) & 0xFF;
       offset += sizeof(this->battery);
-      *(outbuffer + offset++) = bottom_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < bottom_length; i++){
+      *(outbuffer + offset + 0) = (this->bottom_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->bottom_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->bottom_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->bottom_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->bottom_length);
+      for( uint32_t i = 0; i < bottom_length; i++){
       *(outbuffer + offset + 0) = (this->bottom[i] >> (8 * 0)) & 0xFF;
       *(outbuffer + offset + 1) = (this->bottom[i] >> (8 * 1)) & 0xFF;
       offset += sizeof(this->bottom[i]);
       }
-      *(outbuffer + offset++) = current_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < current_length; i++){
+      *(outbuffer + offset + 0) = (this->current_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->current_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->current_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->current_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->current_length);
+      for( uint32_t i = 0; i < current_length; i++){
       *(outbuffer + offset + 0) = (this->current[i] >> (8 * 0)) & 0xFF;
       offset += sizeof(this->current[i]);
       }
@@ -143,11 +162,12 @@ namespace kobuki_msgs
       *(outbuffer + offset + 0) = (this->digital_input >> (8 * 0)) & 0xFF;
       *(outbuffer + offset + 1) = (this->digital_input >> (8 * 1)) & 0xFF;
       offset += sizeof(this->digital_input);
-      *(outbuffer + offset++) = analog_input_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < analog_input_length; i++){
+      *(outbuffer + offset + 0) = (this->analog_input_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->analog_input_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->analog_input_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->analog_input_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->analog_input_length);
+      for( uint32_t i = 0; i < analog_input_length; i++){
       *(outbuffer + offset + 0) = (this->analog_input[i] >> (8 * 0)) & 0xFF;
       *(outbuffer + offset + 1) = (this->analog_input[i] >> (8 * 1)) & 0xFF;
       offset += sizeof(this->analog_input[i]);
@@ -196,23 +216,29 @@ namespace kobuki_msgs
       offset += sizeof(this->charger);
       this->battery =  ((uint8_t) (*(inbuffer + offset)));
       offset += sizeof(this->battery);
-      uint8_t bottom_lengthT = *(inbuffer + offset++);
+      uint32_t bottom_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      bottom_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      bottom_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      bottom_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->bottom_length);
       if(bottom_lengthT > bottom_length)
         this->bottom = (uint16_t*)realloc(this->bottom, bottom_lengthT * sizeof(uint16_t));
-      offset += 3;
       bottom_length = bottom_lengthT;
-      for( uint8_t i = 0; i < bottom_length; i++){
+      for( uint32_t i = 0; i < bottom_length; i++){
       this->st_bottom =  ((uint16_t) (*(inbuffer + offset)));
       this->st_bottom |= ((uint16_t) (*(inbuffer + offset + 1))) << (8 * 1);
       offset += sizeof(this->st_bottom);
         memcpy( &(this->bottom[i]), &(this->st_bottom), sizeof(uint16_t));
       }
-      uint8_t current_lengthT = *(inbuffer + offset++);
+      uint32_t current_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      current_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      current_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      current_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->current_length);
       if(current_lengthT > current_length)
         this->current = (uint8_t*)realloc(this->current, current_lengthT * sizeof(uint8_t));
-      offset += 3;
       current_length = current_lengthT;
-      for( uint8_t i = 0; i < current_length; i++){
+      for( uint32_t i = 0; i < current_length; i++){
       this->st_current =  ((uint8_t) (*(inbuffer + offset)));
       offset += sizeof(this->st_current);
         memcpy( &(this->current[i]), &(this->st_current), sizeof(uint8_t));
@@ -222,12 +248,15 @@ namespace kobuki_msgs
       this->digital_input =  ((uint16_t) (*(inbuffer + offset)));
       this->digital_input |= ((uint16_t) (*(inbuffer + offset + 1))) << (8 * 1);
       offset += sizeof(this->digital_input);
-      uint8_t analog_input_lengthT = *(inbuffer + offset++);
+      uint32_t analog_input_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      analog_input_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      analog_input_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      analog_input_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->analog_input_length);
       if(analog_input_lengthT > analog_input_length)
         this->analog_input = (uint16_t*)realloc(this->analog_input, analog_input_lengthT * sizeof(uint16_t));
-      offset += 3;
       analog_input_length = analog_input_lengthT;
-      for( uint8_t i = 0; i < analog_input_length; i++){
+      for( uint32_t i = 0; i < analog_input_length; i++){
       this->st_analog_input =  ((uint16_t) (*(inbuffer + offset)));
       this->st_analog_input |= ((uint16_t) (*(inbuffer + offset + 1))) << (8 * 1);
       offset += sizeof(this->st_analog_input);

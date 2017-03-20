@@ -13,7 +13,8 @@ static const char SETTURTLEBOTMODE[] = "create_node/SetTurtlebotMode";
   class SetTurtlebotModeRequest : public ros::Msg
   {
     public:
-      uint8_t mode;
+      typedef uint8_t _mode_type;
+      _mode_type mode;
 
     SetTurtlebotModeRequest():
       mode(0)
@@ -44,7 +45,8 @@ static const char SETTURTLEBOTMODE[] = "create_node/SetTurtlebotMode";
   class SetTurtlebotModeResponse : public ros::Msg
   {
     public:
-      bool valid_mode;
+      typedef bool _valid_mode_type;
+      _valid_mode_type valid_mode;
 
     SetTurtlebotModeResponse():
       valid_mode(0)

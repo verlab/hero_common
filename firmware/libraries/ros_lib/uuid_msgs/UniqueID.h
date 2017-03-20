@@ -22,7 +22,7 @@ namespace uuid_msgs
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      for( uint8_t i = 0; i < 16; i++){
+      for( uint32_t i = 0; i < 16; i++){
       *(outbuffer + offset + 0) = (this->uuid[i] >> (8 * 0)) & 0xFF;
       offset += sizeof(this->uuid[i]);
       }
@@ -32,7 +32,7 @@ namespace uuid_msgs
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      for( uint8_t i = 0; i < 16; i++){
+      for( uint32_t i = 0; i < 16; i++){
       this->uuid[i] =  ((uint8_t) (*(inbuffer + offset)));
       offset += sizeof(this->uuid[i]);
       }

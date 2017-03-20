@@ -13,8 +13,10 @@ namespace rocon_service_pair_msgs
   class TestiesResponse : public ros::Msg
   {
     public:
-      uuid_msgs::UniqueID id;
-      const char* data;
+      typedef uuid_msgs::UniqueID _id_type;
+      _id_type id;
+      typedef const char* _data_type;
+      _data_type data;
 
     TestiesResponse():
       id(),
@@ -27,7 +29,7 @@ namespace rocon_service_pair_msgs
       int offset = 0;
       offset += this->id.serialize(outbuffer + offset);
       uint32_t length_data = strlen(this->data);
-      memcpy(outbuffer + offset, &length_data, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_data);
       offset += 4;
       memcpy(outbuffer + offset, this->data, length_data);
       offset += length_data;
@@ -39,7 +41,7 @@ namespace rocon_service_pair_msgs
       int offset = 0;
       offset += this->id.deserialize(inbuffer + offset);
       uint32_t length_data;
-      memcpy(&length_data, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_data, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_data; ++k){
           inbuffer[k-1]=inbuffer[k];

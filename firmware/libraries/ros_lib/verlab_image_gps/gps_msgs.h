@@ -13,20 +13,34 @@ namespace verlab_image_gps
   class gps_msgs : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      int32_t latitude;
-      int32_t longitude;
-      int32_t height;
-      int32_t speed_x;
-      int32_t speed_y;
-      int32_t heading;
-      int32_t position_accuracy;
-      int32_t height_accuracy;
-      int32_t speed_accuracy;
-      int32_t sat_num;
-      int32_t status;
-      int32_t time_of_week;
-      int32_t week;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef int32_t _latitude_type;
+      _latitude_type latitude;
+      typedef int32_t _longitude_type;
+      _longitude_type longitude;
+      typedef int32_t _height_type;
+      _height_type height;
+      typedef int32_t _speed_x_type;
+      _speed_x_type speed_x;
+      typedef int32_t _speed_y_type;
+      _speed_y_type speed_y;
+      typedef int32_t _heading_type;
+      _heading_type heading;
+      typedef int32_t _position_accuracy_type;
+      _position_accuracy_type position_accuracy;
+      typedef int32_t _height_accuracy_type;
+      _height_accuracy_type height_accuracy;
+      typedef int32_t _speed_accuracy_type;
+      _speed_accuracy_type speed_accuracy;
+      typedef int32_t _sat_num_type;
+      _sat_num_type sat_num;
+      typedef int32_t _status_type;
+      _status_type status;
+      typedef int32_t _time_of_week_type;
+      _time_of_week_type time_of_week;
+      typedef int32_t _week_type;
+      _week_type week;
 
     gps_msgs():
       header(),

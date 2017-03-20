@@ -14,24 +14,38 @@ namespace rocon_interaction_msgs
   class Interaction : public ros::Msg
   {
     public:
-      const char* name;
-      const char* command;
-      const char* compatibility;
-      const char* group;
-      const char* description;
-      rocon_std_msgs::Icon icon;
-      const char* namespace;
-      uint8_t remappings_length;
-      rocon_std_msgs::Remapping st_remappings;
-      rocon_std_msgs::Remapping * remappings;
-      const char* parameters;
-      int32_t max;
-      bool bringup_pairing;
-      bool teardown_pairing;
-      uint8_t required_pairings_length;
-      char* st_required_pairings;
-      char* * required_pairings;
-      int32_t hash;
+      typedef const char* _name_type;
+      _name_type name;
+      typedef const char* _command_type;
+      _command_type command;
+      typedef const char* _compatibility_type;
+      _compatibility_type compatibility;
+      typedef const char* _group_type;
+      _group_type group;
+      typedef const char* _description_type;
+      _description_type description;
+      typedef rocon_std_msgs::Icon _icon_type;
+      _icon_type icon;
+      typedef const char* _namespace_type;
+      _namespace_type namespace;
+      uint32_t remappings_length;
+      typedef rocon_std_msgs::Remapping _remappings_type;
+      _remappings_type st_remappings;
+      _remappings_type * remappings;
+      typedef const char* _parameters_type;
+      _parameters_type parameters;
+      typedef int32_t _max_type;
+      _max_type max;
+      typedef bool _bringup_pairing_type;
+      _bringup_pairing_type bringup_pairing;
+      typedef bool _teardown_pairing_type;
+      _teardown_pairing_type teardown_pairing;
+      uint32_t required_pairings_length;
+      typedef char* _required_pairings_type;
+      _required_pairings_type st_required_pairings;
+      _required_pairings_type * required_pairings;
+      typedef int32_t _hash_type;
+      _hash_type hash;
       enum { UNLIMITED_INTERACTIONS =  -1 };
 
     Interaction():
@@ -56,45 +70,46 @@ namespace rocon_interaction_msgs
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
       uint32_t length_command = strlen(this->command);
-      memcpy(outbuffer + offset, &length_command, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_command);
       offset += 4;
       memcpy(outbuffer + offset, this->command, length_command);
       offset += length_command;
       uint32_t length_compatibility = strlen(this->compatibility);
-      memcpy(outbuffer + offset, &length_compatibility, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_compatibility);
       offset += 4;
       memcpy(outbuffer + offset, this->compatibility, length_compatibility);
       offset += length_compatibility;
       uint32_t length_group = strlen(this->group);
-      memcpy(outbuffer + offset, &length_group, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_group);
       offset += 4;
       memcpy(outbuffer + offset, this->group, length_group);
       offset += length_group;
       uint32_t length_description = strlen(this->description);
-      memcpy(outbuffer + offset, &length_description, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_description);
       offset += 4;
       memcpy(outbuffer + offset, this->description, length_description);
       offset += length_description;
       offset += this->icon.serialize(outbuffer + offset);
       uint32_t length_namespace = strlen(this->namespace);
-      memcpy(outbuffer + offset, &length_namespace, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_namespace);
       offset += 4;
       memcpy(outbuffer + offset, this->namespace, length_namespace);
       offset += length_namespace;
-      *(outbuffer + offset++) = remappings_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < remappings_length; i++){
+      *(outbuffer + offset + 0) = (this->remappings_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->remappings_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->remappings_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->remappings_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->remappings_length);
+      for( uint32_t i = 0; i < remappings_length; i++){
       offset += this->remappings[i].serialize(outbuffer + offset);
       }
       uint32_t length_parameters = strlen(this->parameters);
-      memcpy(outbuffer + offset, &length_parameters, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_parameters);
       offset += 4;
       memcpy(outbuffer + offset, this->parameters, length_parameters);
       offset += length_parameters;
@@ -122,13 +137,14 @@ namespace rocon_interaction_msgs
       u_teardown_pairing.real = this->teardown_pairing;
       *(outbuffer + offset + 0) = (u_teardown_pairing.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->teardown_pairing);
-      *(outbuffer + offset++) = required_pairings_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < required_pairings_length; i++){
+      *(outbuffer + offset + 0) = (this->required_pairings_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->required_pairings_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->required_pairings_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->required_pairings_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->required_pairings_length);
+      for( uint32_t i = 0; i < required_pairings_length; i++){
       uint32_t length_required_pairingsi = strlen(this->required_pairings[i]);
-      memcpy(outbuffer + offset, &length_required_pairingsi, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_required_pairingsi);
       offset += 4;
       memcpy(outbuffer + offset, this->required_pairings[i], length_required_pairingsi);
       offset += length_required_pairingsi;
@@ -150,7 +166,7 @@ namespace rocon_interaction_msgs
     {
       int offset = 0;
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -159,7 +175,7 @@ namespace rocon_interaction_msgs
       this->name = (char *)(inbuffer + offset-1);
       offset += length_name;
       uint32_t length_command;
-      memcpy(&length_command, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_command, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_command; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -168,7 +184,7 @@ namespace rocon_interaction_msgs
       this->command = (char *)(inbuffer + offset-1);
       offset += length_command;
       uint32_t length_compatibility;
-      memcpy(&length_compatibility, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_compatibility, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_compatibility; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -177,7 +193,7 @@ namespace rocon_interaction_msgs
       this->compatibility = (char *)(inbuffer + offset-1);
       offset += length_compatibility;
       uint32_t length_group;
-      memcpy(&length_group, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_group, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_group; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -186,7 +202,7 @@ namespace rocon_interaction_msgs
       this->group = (char *)(inbuffer + offset-1);
       offset += length_group;
       uint32_t length_description;
-      memcpy(&length_description, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_description, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_description; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -196,7 +212,7 @@ namespace rocon_interaction_msgs
       offset += length_description;
       offset += this->icon.deserialize(inbuffer + offset);
       uint32_t length_namespace;
-      memcpy(&length_namespace, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_namespace, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_namespace; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -204,17 +220,20 @@ namespace rocon_interaction_msgs
       inbuffer[offset+length_namespace-1]=0;
       this->namespace = (char *)(inbuffer + offset-1);
       offset += length_namespace;
-      uint8_t remappings_lengthT = *(inbuffer + offset++);
+      uint32_t remappings_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      remappings_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      remappings_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      remappings_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->remappings_length);
       if(remappings_lengthT > remappings_length)
         this->remappings = (rocon_std_msgs::Remapping*)realloc(this->remappings, remappings_lengthT * sizeof(rocon_std_msgs::Remapping));
-      offset += 3;
       remappings_length = remappings_lengthT;
-      for( uint8_t i = 0; i < remappings_length; i++){
+      for( uint32_t i = 0; i < remappings_length; i++){
       offset += this->st_remappings.deserialize(inbuffer + offset);
         memcpy( &(this->remappings[i]), &(this->st_remappings), sizeof(rocon_std_msgs::Remapping));
       }
       uint32_t length_parameters;
-      memcpy(&length_parameters, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_parameters, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_parameters; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -249,14 +268,17 @@ namespace rocon_interaction_msgs
       u_teardown_pairing.base |= ((uint8_t) (*(inbuffer + offset + 0))) << (8 * 0);
       this->teardown_pairing = u_teardown_pairing.real;
       offset += sizeof(this->teardown_pairing);
-      uint8_t required_pairings_lengthT = *(inbuffer + offset++);
+      uint32_t required_pairings_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      required_pairings_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      required_pairings_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      required_pairings_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->required_pairings_length);
       if(required_pairings_lengthT > required_pairings_length)
         this->required_pairings = (char**)realloc(this->required_pairings, required_pairings_lengthT * sizeof(char*));
-      offset += 3;
       required_pairings_length = required_pairings_lengthT;
-      for( uint8_t i = 0; i < required_pairings_length; i++){
+      for( uint32_t i = 0; i < required_pairings_length; i++){
       uint32_t length_st_required_pairings;
-      memcpy(&length_st_required_pairings, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_st_required_pairings, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_st_required_pairings; ++k){
           inbuffer[k-1]=inbuffer[k];

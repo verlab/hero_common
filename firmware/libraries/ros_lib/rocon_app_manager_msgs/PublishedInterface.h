@@ -13,8 +13,10 @@ namespace rocon_app_manager_msgs
   class PublishedInterface : public ros::Msg
   {
     public:
-      rocon_app_manager_msgs::PublicInterface interface;
-      const char* name;
+      typedef rocon_app_manager_msgs::PublicInterface _interface_type;
+      _interface_type interface;
+      typedef const char* _name_type;
+      _name_type name;
 
     PublishedInterface():
       interface(),
@@ -27,7 +29,7 @@ namespace rocon_app_manager_msgs
       int offset = 0;
       offset += this->interface.serialize(outbuffer + offset);
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
@@ -39,7 +41,7 @@ namespace rocon_app_manager_msgs
       int offset = 0;
       offset += this->interface.deserialize(inbuffer + offset);
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];

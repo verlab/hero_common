@@ -14,7 +14,8 @@ static const char SAVEMAP[] = "map_msgs/SaveMap";
   class SaveMapRequest : public ros::Msg
   {
     public:
-      std_msgs::String filename;
+      typedef std_msgs::String _filename_type;
+      _filename_type filename;
 
     SaveMapRequest():
       filename()

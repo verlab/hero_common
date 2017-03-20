@@ -38,7 +38,8 @@ static const char GETSERIAL[] = "openni2_camera/GetSerial";
   class GetSerialResponse : public ros::Msg
   {
     public:
-      const char* serial;
+      typedef const char* _serial_type;
+      _serial_type serial;
 
     GetSerialResponse():
       serial("")
@@ -49,7 +50,7 @@ static const char GETSERIAL[] = "openni2_camera/GetSerial";
     {
       int offset = 0;
       uint32_t length_serial = strlen(this->serial);
-      memcpy(outbuffer + offset, &length_serial, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_serial);
       offset += 4;
       memcpy(outbuffer + offset, this->serial, length_serial);
       offset += length_serial;
@@ -60,7 +61,7 @@ static const char GETSERIAL[] = "openni2_camera/GetSerial";
     {
       int offset = 0;
       uint32_t length_serial;
-      memcpy(&length_serial, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_serial, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_serial; ++k){
           inbuffer[k-1]=inbuffer[k];

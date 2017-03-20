@@ -12,8 +12,10 @@ namespace ros_tamiya
   class Motor : public ros::Msg
   {
     public:
-      int32_t motor_position;
-      int32_t sterring_position;
+      typedef int32_t _motor_position_type;
+      _motor_position_type motor_position;
+      typedef int32_t _sterring_position_type;
+      _sterring_position_type sterring_position;
 
     Motor():
       motor_position(0),

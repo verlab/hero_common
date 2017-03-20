@@ -15,9 +15,12 @@ namespace control_msgs
   class SingleJointPositionActionFeedback : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      actionlib_msgs::GoalStatus status;
-      control_msgs::SingleJointPositionFeedback feedback;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef actionlib_msgs::GoalStatus _status_type;
+      _status_type status;
+      typedef control_msgs::SingleJointPositionFeedback _feedback_type;
+      _feedback_type feedback;
 
     SingleJointPositionActionFeedback():
       header(),

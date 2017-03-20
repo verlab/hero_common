@@ -12,8 +12,10 @@ namespace kobuki_msgs
   class AutoDockingFeedback : public ros::Msg
   {
     public:
-      const char* state;
-      const char* text;
+      typedef const char* _state_type;
+      _state_type state;
+      typedef const char* _text_type;
+      _text_type text;
 
     AutoDockingFeedback():
       state(""),
@@ -25,12 +27,12 @@ namespace kobuki_msgs
     {
       int offset = 0;
       uint32_t length_state = strlen(this->state);
-      memcpy(outbuffer + offset, &length_state, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_state);
       offset += 4;
       memcpy(outbuffer + offset, this->state, length_state);
       offset += length_state;
       uint32_t length_text = strlen(this->text);
-      memcpy(outbuffer + offset, &length_text, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_text);
       offset += 4;
       memcpy(outbuffer + offset, this->text, length_text);
       offset += length_text;
@@ -41,7 +43,7 @@ namespace kobuki_msgs
     {
       int offset = 0;
       uint32_t length_state;
-      memcpy(&length_state, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_state, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_state; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -50,7 +52,7 @@ namespace kobuki_msgs
       this->state = (char *)(inbuffer + offset-1);
       offset += length_state;
       uint32_t length_text;
-      memcpy(&length_text, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_text, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_text; ++k){
           inbuffer[k-1]=inbuffer[k];

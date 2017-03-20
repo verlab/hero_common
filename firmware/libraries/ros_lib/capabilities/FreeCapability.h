@@ -13,8 +13,10 @@ static const char FREECAPABILITY[] = "capabilities/FreeCapability";
   class FreeCapabilityRequest : public ros::Msg
   {
     public:
-      const char* capability;
-      const char* bond_id;
+      typedef const char* _capability_type;
+      _capability_type capability;
+      typedef const char* _bond_id_type;
+      _bond_id_type bond_id;
 
     FreeCapabilityRequest():
       capability(""),
@@ -26,12 +28,12 @@ static const char FREECAPABILITY[] = "capabilities/FreeCapability";
     {
       int offset = 0;
       uint32_t length_capability = strlen(this->capability);
-      memcpy(outbuffer + offset, &length_capability, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_capability);
       offset += 4;
       memcpy(outbuffer + offset, this->capability, length_capability);
       offset += length_capability;
       uint32_t length_bond_id = strlen(this->bond_id);
-      memcpy(outbuffer + offset, &length_bond_id, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_bond_id);
       offset += 4;
       memcpy(outbuffer + offset, this->bond_id, length_bond_id);
       offset += length_bond_id;
@@ -42,7 +44,7 @@ static const char FREECAPABILITY[] = "capabilities/FreeCapability";
     {
       int offset = 0;
       uint32_t length_capability;
-      memcpy(&length_capability, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_capability, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_capability; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -51,7 +53,7 @@ static const char FREECAPABILITY[] = "capabilities/FreeCapability";
       this->capability = (char *)(inbuffer + offset-1);
       offset += length_capability;
       uint32_t length_bond_id;
-      memcpy(&length_bond_id, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_bond_id, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_bond_id; ++k){
           inbuffer[k-1]=inbuffer[k];

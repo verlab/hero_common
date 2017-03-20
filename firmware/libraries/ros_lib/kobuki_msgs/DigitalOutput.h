@@ -24,7 +24,7 @@ namespace kobuki_msgs
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      for( uint8_t i = 0; i < 4; i++){
+      for( uint32_t i = 0; i < 4; i++){
       union {
         bool real;
         uint8_t base;
@@ -33,7 +33,7 @@ namespace kobuki_msgs
       *(outbuffer + offset + 0) = (u_valuesi.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->values[i]);
       }
-      for( uint8_t i = 0; i < 4; i++){
+      for( uint32_t i = 0; i < 4; i++){
       union {
         bool real;
         uint8_t base;
@@ -48,7 +48,7 @@ namespace kobuki_msgs
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      for( uint8_t i = 0; i < 4; i++){
+      for( uint32_t i = 0; i < 4; i++){
       union {
         bool real;
         uint8_t base;
@@ -58,7 +58,7 @@ namespace kobuki_msgs
       this->values[i] = u_valuesi.real;
       offset += sizeof(this->values[i]);
       }
-      for( uint8_t i = 0; i < 4; i++){
+      for( uint32_t i = 0; i < 4; i++){
       union {
         bool real;
         uint8_t base;

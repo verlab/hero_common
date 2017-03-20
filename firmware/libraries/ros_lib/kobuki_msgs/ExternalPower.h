@@ -12,8 +12,10 @@ namespace kobuki_msgs
   class ExternalPower : public ros::Msg
   {
     public:
-      uint8_t source;
-      uint8_t state;
+      typedef uint8_t _source_type;
+      _source_type source;
+      typedef uint8_t _state_type;
+      _state_type state;
       enum { PWR_3_3V1A =  0  };
       enum { PWR_5V1A =  1  };
       enum { PWR_12V5A =  2  };

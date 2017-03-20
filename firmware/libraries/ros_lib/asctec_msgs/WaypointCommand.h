@@ -13,8 +13,10 @@ namespace asctec_msgs
   class WaypointCommand : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      const char* cmd;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef const char* _cmd_type;
+      _cmd_type cmd;
 
     WaypointCommand():
       header(),
@@ -27,7 +29,7 @@ namespace asctec_msgs
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
       uint32_t length_cmd = strlen(this->cmd);
-      memcpy(outbuffer + offset, &length_cmd, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_cmd);
       offset += 4;
       memcpy(outbuffer + offset, this->cmd, length_cmd);
       offset += length_cmd;
@@ -39,7 +41,7 @@ namespace asctec_msgs
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
       uint32_t length_cmd;
-      memcpy(&length_cmd, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_cmd, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_cmd; ++k){
           inbuffer[k-1]=inbuffer[k];

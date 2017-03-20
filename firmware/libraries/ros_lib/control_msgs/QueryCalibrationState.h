@@ -38,7 +38,8 @@ static const char QUERYCALIBRATIONSTATE[] = "control_msgs/QueryCalibrationState"
   class QueryCalibrationStateResponse : public ros::Msg
   {
     public:
-      bool is_calibrated;
+      typedef bool _is_calibrated_type;
+      _is_calibrated_type is_calibrated;
 
     QueryCalibrationStateResponse():
       is_calibrated(0)

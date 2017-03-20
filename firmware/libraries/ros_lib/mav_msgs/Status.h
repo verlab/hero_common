@@ -13,8 +13,10 @@ namespace mav_msgs
   class Status : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      uint8_t flight_state;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef uint8_t _flight_state_type;
+      _flight_state_type flight_state;
 
     Status():
       header(),

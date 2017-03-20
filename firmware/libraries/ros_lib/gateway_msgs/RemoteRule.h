@@ -13,8 +13,10 @@ namespace gateway_msgs
   class RemoteRule : public ros::Msg
   {
     public:
-      const char* gateway;
-      gateway_msgs::Rule rule;
+      typedef const char* _gateway_type;
+      _gateway_type gateway;
+      typedef gateway_msgs::Rule _rule_type;
+      _rule_type rule;
 
     RemoteRule():
       gateway(""),
@@ -26,7 +28,7 @@ namespace gateway_msgs
     {
       int offset = 0;
       uint32_t length_gateway = strlen(this->gateway);
-      memcpy(outbuffer + offset, &length_gateway, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_gateway);
       offset += 4;
       memcpy(outbuffer + offset, this->gateway, length_gateway);
       offset += length_gateway;
@@ -38,7 +40,7 @@ namespace gateway_msgs
     {
       int offset = 0;
       uint32_t length_gateway;
-      memcpy(&length_gateway, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_gateway, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_gateway; ++k){
           inbuffer[k-1]=inbuffer[k];

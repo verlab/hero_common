@@ -14,7 +14,8 @@ static const char REMOVESERVICE[] = "zeroconf_msgs/RemoveService";
   class RemoveServiceRequest : public ros::Msg
   {
     public:
-      zeroconf_msgs::PublishedService service;
+      typedef zeroconf_msgs::PublishedService _service_type;
+      _service_type service;
 
     RemoveServiceRequest():
       service()
@@ -43,7 +44,8 @@ static const char REMOVESERVICE[] = "zeroconf_msgs/RemoveService";
   class RemoveServiceResponse : public ros::Msg
   {
     public:
-      bool result;
+      typedef bool _result_type;
+      _result_type result;
 
     RemoveServiceResponse():
       result(0)

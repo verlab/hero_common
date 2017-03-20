@@ -39,9 +39,10 @@ static const char GETPAIRINGS[] = "rocon_interaction_msgs/GetPairings";
   class GetPairingsResponse : public ros::Msg
   {
     public:
-      uint8_t pairings_length;
-      rocon_interaction_msgs::Pairing st_pairings;
-      rocon_interaction_msgs::Pairing * pairings;
+      uint32_t pairings_length;
+      typedef rocon_interaction_msgs::Pairing _pairings_type;
+      _pairings_type st_pairings;
+      _pairings_type * pairings;
 
     GetPairingsResponse():
       pairings_length(0), pairings(NULL)
@@ -51,11 +52,12 @@ static const char GETPAIRINGS[] = "rocon_interaction_msgs/GetPairings";
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      *(outbuffer + offset++) = pairings_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < pairings_length; i++){
+      *(outbuffer + offset + 0) = (this->pairings_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->pairings_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->pairings_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->pairings_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->pairings_length);
+      for( uint32_t i = 0; i < pairings_length; i++){
       offset += this->pairings[i].serialize(outbuffer + offset);
       }
       return offset;
@@ -64,12 +66,15 @@ static const char GETPAIRINGS[] = "rocon_interaction_msgs/GetPairings";
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      uint8_t pairings_lengthT = *(inbuffer + offset++);
+      uint32_t pairings_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      pairings_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      pairings_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      pairings_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->pairings_length);
       if(pairings_lengthT > pairings_length)
         this->pairings = (rocon_interaction_msgs::Pairing*)realloc(this->pairings, pairings_lengthT * sizeof(rocon_interaction_msgs::Pairing));
-      offset += 3;
       pairings_length = pairings_lengthT;
-      for( uint8_t i = 0; i < pairings_length; i++){
+      for( uint32_t i = 0; i < pairings_length; i++){
       offset += this->st_pairings.deserialize(inbuffer + offset);
         memcpy( &(this->pairings[i]), &(this->st_pairings), sizeof(rocon_interaction_msgs::Pairing));
       }

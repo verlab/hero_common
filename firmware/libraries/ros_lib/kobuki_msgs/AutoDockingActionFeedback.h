@@ -15,9 +15,12 @@ namespace kobuki_msgs
   class AutoDockingActionFeedback : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      actionlib_msgs::GoalStatus status;
-      kobuki_msgs::AutoDockingFeedback feedback;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef actionlib_msgs::GoalStatus _status_type;
+      _status_type status;
+      typedef kobuki_msgs::AutoDockingFeedback _feedback_type;
+      _feedback_type feedback;
 
     AutoDockingActionFeedback():
       header(),

@@ -13,9 +13,10 @@ namespace rocon_std_msgs
   class ConnectionsList : public ros::Msg
   {
     public:
-      uint8_t connections_length;
-      rocon_std_msgs::Connection st_connections;
-      rocon_std_msgs::Connection * connections;
+      uint32_t connections_length;
+      typedef rocon_std_msgs::Connection _connections_type;
+      _connections_type st_connections;
+      _connections_type * connections;
 
     ConnectionsList():
       connections_length(0), connections(NULL)
@@ -25,11 +26,12 @@ namespace rocon_std_msgs
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      *(outbuffer + offset++) = connections_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < connections_length; i++){
+      *(outbuffer + offset + 0) = (this->connections_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->connections_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->connections_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->connections_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->connections_length);
+      for( uint32_t i = 0; i < connections_length; i++){
       offset += this->connections[i].serialize(outbuffer + offset);
       }
       return offset;
@@ -38,12 +40,15 @@ namespace rocon_std_msgs
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      uint8_t connections_lengthT = *(inbuffer + offset++);
+      uint32_t connections_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      connections_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      connections_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      connections_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->connections_length);
       if(connections_lengthT > connections_length)
         this->connections = (rocon_std_msgs::Connection*)realloc(this->connections, connections_lengthT * sizeof(rocon_std_msgs::Connection));
-      offset += 3;
       connections_length = connections_lengthT;
-      for( uint8_t i = 0; i < connections_length; i++){
+      for( uint32_t i = 0; i < connections_length; i++){
       offset += this->st_connections.deserialize(inbuffer + offset);
         memcpy( &(this->connections[i]), &(this->st_connections), sizeof(rocon_std_msgs::Connection));
       }

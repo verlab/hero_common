@@ -12,13 +12,18 @@ namespace kobuki_msgs
   class VersionInfo : public ros::Msg
   {
     public:
-      const char* hardware;
-      const char* firmware;
-      const char* software;
-      uint8_t udid_length;
-      uint32_t st_udid;
-      uint32_t * udid;
-      uint64_t features;
+      typedef const char* _hardware_type;
+      _hardware_type hardware;
+      typedef const char* _firmware_type;
+      _firmware_type firmware;
+      typedef const char* _software_type;
+      _software_type software;
+      uint32_t udid_length;
+      typedef uint32_t _udid_type;
+      _udid_type st_udid;
+      _udid_type * udid;
+      typedef uint64_t _features_type;
+      _features_type features;
       enum { SMOOTH_MOVE_START =  0000000000000001 };
       enum { GYROSCOPE_3D_DATA =  0000000000000002 };
 
@@ -35,25 +40,26 @@ namespace kobuki_msgs
     {
       int offset = 0;
       uint32_t length_hardware = strlen(this->hardware);
-      memcpy(outbuffer + offset, &length_hardware, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_hardware);
       offset += 4;
       memcpy(outbuffer + offset, this->hardware, length_hardware);
       offset += length_hardware;
       uint32_t length_firmware = strlen(this->firmware);
-      memcpy(outbuffer + offset, &length_firmware, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_firmware);
       offset += 4;
       memcpy(outbuffer + offset, this->firmware, length_firmware);
       offset += length_firmware;
       uint32_t length_software = strlen(this->software);
-      memcpy(outbuffer + offset, &length_software, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_software);
       offset += 4;
       memcpy(outbuffer + offset, this->software, length_software);
       offset += length_software;
-      *(outbuffer + offset++) = udid_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < udid_length; i++){
+      *(outbuffer + offset + 0) = (this->udid_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->udid_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->udid_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->udid_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->udid_length);
+      for( uint32_t i = 0; i < udid_length; i++){
       *(outbuffer + offset + 0) = (this->udid[i] >> (8 * 0)) & 0xFF;
       *(outbuffer + offset + 1) = (this->udid[i] >> (8 * 1)) & 0xFF;
       *(outbuffer + offset + 2) = (this->udid[i] >> (8 * 2)) & 0xFF;
@@ -77,7 +83,7 @@ namespace kobuki_msgs
     {
       int offset = 0;
       uint32_t length_hardware;
-      memcpy(&length_hardware, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_hardware, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_hardware; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -86,7 +92,7 @@ namespace kobuki_msgs
       this->hardware = (char *)(inbuffer + offset-1);
       offset += length_hardware;
       uint32_t length_firmware;
-      memcpy(&length_firmware, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_firmware, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_firmware; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -95,7 +101,7 @@ namespace kobuki_msgs
       this->firmware = (char *)(inbuffer + offset-1);
       offset += length_firmware;
       uint32_t length_software;
-      memcpy(&length_software, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_software, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_software; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -103,12 +109,15 @@ namespace kobuki_msgs
       inbuffer[offset+length_software-1]=0;
       this->software = (char *)(inbuffer + offset-1);
       offset += length_software;
-      uint8_t udid_lengthT = *(inbuffer + offset++);
+      uint32_t udid_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      udid_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      udid_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      udid_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->udid_length);
       if(udid_lengthT > udid_length)
         this->udid = (uint32_t*)realloc(this->udid, udid_lengthT * sizeof(uint32_t));
-      offset += 3;
       udid_length = udid_lengthT;
-      for( uint8_t i = 0; i < udid_length; i++){
+      for( uint32_t i = 0; i < udid_length; i++){
       this->st_udid =  ((uint32_t) (*(inbuffer + offset)));
       this->st_udid |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
       this->st_udid |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);

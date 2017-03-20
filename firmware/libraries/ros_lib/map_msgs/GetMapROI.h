@@ -14,10 +14,14 @@ static const char GETMAPROI[] = "map_msgs/GetMapROI";
   class GetMapROIRequest : public ros::Msg
   {
     public:
-      float x;
-      float y;
-      float l_x;
-      float l_y;
+      typedef float _x_type;
+      _x_type x;
+      typedef float _y_type;
+      _y_type y;
+      typedef float _l_x_type;
+      _l_x_type l_x;
+      typedef float _l_y_type;
+      _l_y_type l_y;
 
     GetMapROIRequest():
       x(0),
@@ -55,7 +59,8 @@ static const char GETMAPROI[] = "map_msgs/GetMapROI";
   class GetMapROIResponse : public ros::Msg
   {
     public:
-      nav_msgs::OccupancyGrid sub_map;
+      typedef nav_msgs::OccupancyGrid _sub_map_type;
+      _sub_map_type sub_map;
 
     GetMapROIResponse():
       sub_map()

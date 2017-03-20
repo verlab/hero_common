@@ -39,9 +39,10 @@ static const char GETRUNNINGCAPABILITIES[] = "capabilities/GetRunningCapabilitie
   class GetRunningCapabilitiesResponse : public ros::Msg
   {
     public:
-      uint8_t running_capabilities_length;
-      capabilities::RunningCapability st_running_capabilities;
-      capabilities::RunningCapability * running_capabilities;
+      uint32_t running_capabilities_length;
+      typedef capabilities::RunningCapability _running_capabilities_type;
+      _running_capabilities_type st_running_capabilities;
+      _running_capabilities_type * running_capabilities;
 
     GetRunningCapabilitiesResponse():
       running_capabilities_length(0), running_capabilities(NULL)
@@ -51,11 +52,12 @@ static const char GETRUNNINGCAPABILITIES[] = "capabilities/GetRunningCapabilitie
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      *(outbuffer + offset++) = running_capabilities_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < running_capabilities_length; i++){
+      *(outbuffer + offset + 0) = (this->running_capabilities_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->running_capabilities_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->running_capabilities_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->running_capabilities_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->running_capabilities_length);
+      for( uint32_t i = 0; i < running_capabilities_length; i++){
       offset += this->running_capabilities[i].serialize(outbuffer + offset);
       }
       return offset;
@@ -64,12 +66,15 @@ static const char GETRUNNINGCAPABILITIES[] = "capabilities/GetRunningCapabilitie
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      uint8_t running_capabilities_lengthT = *(inbuffer + offset++);
+      uint32_t running_capabilities_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      running_capabilities_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      running_capabilities_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      running_capabilities_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->running_capabilities_length);
       if(running_capabilities_lengthT > running_capabilities_length)
         this->running_capabilities = (capabilities::RunningCapability*)realloc(this->running_capabilities, running_capabilities_lengthT * sizeof(capabilities::RunningCapability));
-      offset += 3;
       running_capabilities_length = running_capabilities_lengthT;
-      for( uint8_t i = 0; i < running_capabilities_length; i++){
+      for( uint32_t i = 0; i < running_capabilities_length; i++){
       offset += this->st_running_capabilities.deserialize(inbuffer + offset);
         memcpy( &(this->running_capabilities[i]), &(this->st_running_capabilities), sizeof(capabilities::RunningCapability));
       }

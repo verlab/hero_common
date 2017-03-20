@@ -15,9 +15,12 @@ namespace control_msgs
   class SingleJointPositionAction : public ros::Msg
   {
     public:
-      control_msgs::SingleJointPositionActionGoal action_goal;
-      control_msgs::SingleJointPositionActionResult action_result;
-      control_msgs::SingleJointPositionActionFeedback action_feedback;
+      typedef control_msgs::SingleJointPositionActionGoal _action_goal_type;
+      _action_goal_type action_goal;
+      typedef control_msgs::SingleJointPositionActionResult _action_result_type;
+      _action_result_type action_result;
+      typedef control_msgs::SingleJointPositionActionFeedback _action_feedback_type;
+      _action_feedback_type action_feedback;
 
     SingleJointPositionAction():
       action_goal(),

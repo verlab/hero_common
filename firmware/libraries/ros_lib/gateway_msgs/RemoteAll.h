@@ -14,11 +14,14 @@ static const char REMOTEALL[] = "gateway_msgs/RemoteAll";
   class RemoteAllRequest : public ros::Msg
   {
     public:
-      const char* gateway;
-      uint8_t blacklist_length;
-      gateway_msgs::Rule st_blacklist;
-      gateway_msgs::Rule * blacklist;
-      bool cancel;
+      typedef const char* _gateway_type;
+      _gateway_type gateway;
+      uint32_t blacklist_length;
+      typedef gateway_msgs::Rule _blacklist_type;
+      _blacklist_type st_blacklist;
+      _blacklist_type * blacklist;
+      typedef bool _cancel_type;
+      _cancel_type cancel;
 
     RemoteAllRequest():
       gateway(""),
@@ -31,15 +34,16 @@ static const char REMOTEALL[] = "gateway_msgs/RemoteAll";
     {
       int offset = 0;
       uint32_t length_gateway = strlen(this->gateway);
-      memcpy(outbuffer + offset, &length_gateway, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_gateway);
       offset += 4;
       memcpy(outbuffer + offset, this->gateway, length_gateway);
       offset += length_gateway;
-      *(outbuffer + offset++) = blacklist_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < blacklist_length; i++){
+      *(outbuffer + offset + 0) = (this->blacklist_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->blacklist_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->blacklist_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->blacklist_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->blacklist_length);
+      for( uint32_t i = 0; i < blacklist_length; i++){
       offset += this->blacklist[i].serialize(outbuffer + offset);
       }
       union {
@@ -56,7 +60,7 @@ static const char REMOTEALL[] = "gateway_msgs/RemoteAll";
     {
       int offset = 0;
       uint32_t length_gateway;
-      memcpy(&length_gateway, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_gateway, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_gateway; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -64,12 +68,15 @@ static const char REMOTEALL[] = "gateway_msgs/RemoteAll";
       inbuffer[offset+length_gateway-1]=0;
       this->gateway = (char *)(inbuffer + offset-1);
       offset += length_gateway;
-      uint8_t blacklist_lengthT = *(inbuffer + offset++);
+      uint32_t blacklist_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      blacklist_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      blacklist_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      blacklist_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->blacklist_length);
       if(blacklist_lengthT > blacklist_length)
         this->blacklist = (gateway_msgs::Rule*)realloc(this->blacklist, blacklist_lengthT * sizeof(gateway_msgs::Rule));
-      offset += 3;
       blacklist_length = blacklist_lengthT;
-      for( uint8_t i = 0; i < blacklist_length; i++){
+      for( uint32_t i = 0; i < blacklist_length; i++){
       offset += this->st_blacklist.deserialize(inbuffer + offset);
         memcpy( &(this->blacklist[i]), &(this->st_blacklist), sizeof(gateway_msgs::Rule));
       }
@@ -92,8 +99,10 @@ static const char REMOTEALL[] = "gateway_msgs/RemoteAll";
   class RemoteAllResponse : public ros::Msg
   {
     public:
-      int8_t result;
-      const char* error_message;
+      typedef int8_t _result_type;
+      _result_type result;
+      typedef const char* _error_message_type;
+      _error_message_type error_message;
 
     RemoteAllResponse():
       result(0),
@@ -112,7 +121,7 @@ static const char REMOTEALL[] = "gateway_msgs/RemoteAll";
       *(outbuffer + offset + 0) = (u_result.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->result);
       uint32_t length_error_message = strlen(this->error_message);
-      memcpy(outbuffer + offset, &length_error_message, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_error_message);
       offset += 4;
       memcpy(outbuffer + offset, this->error_message, length_error_message);
       offset += length_error_message;
@@ -131,7 +140,7 @@ static const char REMOTEALL[] = "gateway_msgs/RemoteAll";
       this->result = u_result.real;
       offset += sizeof(this->result);
       uint32_t length_error_message;
-      memcpy(&length_error_message, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_error_message, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_error_message; ++k){
           inbuffer[k-1]=inbuffer[k];

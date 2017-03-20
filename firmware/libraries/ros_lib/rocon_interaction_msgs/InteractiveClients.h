@@ -13,12 +13,14 @@ namespace rocon_interaction_msgs
   class InteractiveClients : public ros::Msg
   {
     public:
-      uint8_t idle_clients_length;
-      rocon_interaction_msgs::InteractiveClient st_idle_clients;
-      rocon_interaction_msgs::InteractiveClient * idle_clients;
-      uint8_t running_clients_length;
-      rocon_interaction_msgs::InteractiveClient st_running_clients;
-      rocon_interaction_msgs::InteractiveClient * running_clients;
+      uint32_t idle_clients_length;
+      typedef rocon_interaction_msgs::InteractiveClient _idle_clients_type;
+      _idle_clients_type st_idle_clients;
+      _idle_clients_type * idle_clients;
+      uint32_t running_clients_length;
+      typedef rocon_interaction_msgs::InteractiveClient _running_clients_type;
+      _running_clients_type st_running_clients;
+      _running_clients_type * running_clients;
 
     InteractiveClients():
       idle_clients_length(0), idle_clients(NULL),
@@ -29,18 +31,20 @@ namespace rocon_interaction_msgs
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      *(outbuffer + offset++) = idle_clients_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < idle_clients_length; i++){
+      *(outbuffer + offset + 0) = (this->idle_clients_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->idle_clients_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->idle_clients_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->idle_clients_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->idle_clients_length);
+      for( uint32_t i = 0; i < idle_clients_length; i++){
       offset += this->idle_clients[i].serialize(outbuffer + offset);
       }
-      *(outbuffer + offset++) = running_clients_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < running_clients_length; i++){
+      *(outbuffer + offset + 0) = (this->running_clients_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->running_clients_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->running_clients_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->running_clients_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->running_clients_length);
+      for( uint32_t i = 0; i < running_clients_length; i++){
       offset += this->running_clients[i].serialize(outbuffer + offset);
       }
       return offset;
@@ -49,21 +53,27 @@ namespace rocon_interaction_msgs
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      uint8_t idle_clients_lengthT = *(inbuffer + offset++);
+      uint32_t idle_clients_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      idle_clients_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      idle_clients_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      idle_clients_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->idle_clients_length);
       if(idle_clients_lengthT > idle_clients_length)
         this->idle_clients = (rocon_interaction_msgs::InteractiveClient*)realloc(this->idle_clients, idle_clients_lengthT * sizeof(rocon_interaction_msgs::InteractiveClient));
-      offset += 3;
       idle_clients_length = idle_clients_lengthT;
-      for( uint8_t i = 0; i < idle_clients_length; i++){
+      for( uint32_t i = 0; i < idle_clients_length; i++){
       offset += this->st_idle_clients.deserialize(inbuffer + offset);
         memcpy( &(this->idle_clients[i]), &(this->st_idle_clients), sizeof(rocon_interaction_msgs::InteractiveClient));
       }
-      uint8_t running_clients_lengthT = *(inbuffer + offset++);
+      uint32_t running_clients_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      running_clients_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      running_clients_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      running_clients_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->running_clients_length);
       if(running_clients_lengthT > running_clients_length)
         this->running_clients = (rocon_interaction_msgs::InteractiveClient*)realloc(this->running_clients, running_clients_lengthT * sizeof(rocon_interaction_msgs::InteractiveClient));
-      offset += 3;
       running_clients_length = running_clients_lengthT;
-      for( uint8_t i = 0; i < running_clients_length; i++){
+      for( uint32_t i = 0; i < running_clients_length; i++){
       offset += this->st_running_clients.deserialize(inbuffer + offset);
         memcpy( &(this->running_clients[i]), &(this->st_running_clients), sizeof(rocon_interaction_msgs::InteractiveClient));
       }

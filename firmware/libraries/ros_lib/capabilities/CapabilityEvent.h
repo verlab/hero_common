@@ -13,11 +13,16 @@ namespace capabilities
   class CapabilityEvent : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      const char* capability;
-      const char* provider;
-      const char* type;
-      int32_t pid;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef const char* _capability_type;
+      _capability_type capability;
+      typedef const char* _provider_type;
+      _provider_type provider;
+      typedef const char* _type_type;
+      _type_type type;
+      typedef int32_t _pid_type;
+      _pid_type pid;
       enum { LAUNCHED = "launched" };
       enum { STOPPED = "stopped" };
       enum { TERMINATED = "terminated" };
@@ -37,17 +42,17 @@ namespace capabilities
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
       uint32_t length_capability = strlen(this->capability);
-      memcpy(outbuffer + offset, &length_capability, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_capability);
       offset += 4;
       memcpy(outbuffer + offset, this->capability, length_capability);
       offset += length_capability;
       uint32_t length_provider = strlen(this->provider);
-      memcpy(outbuffer + offset, &length_provider, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_provider);
       offset += 4;
       memcpy(outbuffer + offset, this->provider, length_provider);
       offset += length_provider;
       uint32_t length_type = strlen(this->type);
-      memcpy(outbuffer + offset, &length_type, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_type);
       offset += 4;
       memcpy(outbuffer + offset, this->type, length_type);
       offset += length_type;
@@ -69,7 +74,7 @@ namespace capabilities
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
       uint32_t length_capability;
-      memcpy(&length_capability, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_capability, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_capability; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -78,7 +83,7 @@ namespace capabilities
       this->capability = (char *)(inbuffer + offset-1);
       offset += length_capability;
       uint32_t length_provider;
-      memcpy(&length_provider, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_provider, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_provider; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -87,7 +92,7 @@ namespace capabilities
       this->provider = (char *)(inbuffer + offset-1);
       offset += length_provider;
       uint32_t length_type;
-      memcpy(&length_type, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_type, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_type; ++k){
           inbuffer[k-1]=inbuffer[k];

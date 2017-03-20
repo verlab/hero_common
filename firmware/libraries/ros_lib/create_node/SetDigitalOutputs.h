@@ -13,9 +13,12 @@ static const char SETDIGITALOUTPUTS[] = "create_node/SetDigitalOutputs";
   class SetDigitalOutputsRequest : public ros::Msg
   {
     public:
-      uint8_t digital_out_0;
-      uint8_t digital_out_1;
-      uint8_t digital_out_2;
+      typedef uint8_t _digital_out_0_type;
+      _digital_out_0_type digital_out_0;
+      typedef uint8_t _digital_out_1_type;
+      _digital_out_1_type digital_out_1;
+      typedef uint8_t _digital_out_2_type;
+      _digital_out_2_type digital_out_2;
 
     SetDigitalOutputsRequest():
       digital_out_0(0),
@@ -56,7 +59,8 @@ static const char SETDIGITALOUTPUTS[] = "create_node/SetDigitalOutputs";
   class SetDigitalOutputsResponse : public ros::Msg
   {
     public:
-      bool done;
+      typedef bool _done_type;
+      _done_type done;
 
     SetDigitalOutputsResponse():
       done(0)

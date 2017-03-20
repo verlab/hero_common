@@ -38,7 +38,8 @@ static const char GETFLIGHTSTATE[] = "mav_srvs/GetFlightState";
   class GetFlightStateResponse : public ros::Msg
   {
     public:
-      uint8_t state;
+      typedef uint8_t _state_type;
+      _state_type state;
 
     GetFlightStateResponse():
       state(0)

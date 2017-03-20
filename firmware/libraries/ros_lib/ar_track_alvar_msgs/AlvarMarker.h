@@ -14,10 +14,14 @@ namespace ar_track_alvar_msgs
   class AlvarMarker : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      uint32_t id;
-      uint32_t confidence;
-      geometry_msgs::PoseStamped pose;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef uint32_t _id_type;
+      _id_type id;
+      typedef uint32_t _confidence_type;
+      _confidence_type confidence;
+      typedef geometry_msgs::PoseStamped _pose_type;
+      _pose_type pose;
 
     AlvarMarker():
       header(),

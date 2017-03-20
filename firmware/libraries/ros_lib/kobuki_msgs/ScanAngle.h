@@ -13,8 +13,10 @@ namespace kobuki_msgs
   class ScanAngle : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      float scan_angle;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef float _scan_angle_type;
+      _scan_angle_type scan_angle;
 
     ScanAngle():
       header(),

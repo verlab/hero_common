@@ -14,7 +14,8 @@ static const char ADDSERVICE[] = "zeroconf_msgs/AddService";
   class AddServiceRequest : public ros::Msg
   {
     public:
-      zeroconf_msgs::PublishedService service;
+      typedef zeroconf_msgs::PublishedService _service_type;
+      _service_type service;
 
     AddServiceRequest():
       service()
@@ -43,7 +44,8 @@ static const char ADDSERVICE[] = "zeroconf_msgs/AddService";
   class AddServiceResponse : public ros::Msg
   {
     public:
-      bool result;
+      typedef bool _result_type;
+      _result_type result;
 
     AddServiceResponse():
       result(0)

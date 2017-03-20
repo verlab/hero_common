@@ -12,8 +12,10 @@ namespace capabilities
   class Capability : public ros::Msg
   {
     public:
-      const char* capability;
-      const char* provider;
+      typedef const char* _capability_type;
+      _capability_type capability;
+      typedef const char* _provider_type;
+      _provider_type provider;
 
     Capability():
       capability(""),
@@ -25,12 +27,12 @@ namespace capabilities
     {
       int offset = 0;
       uint32_t length_capability = strlen(this->capability);
-      memcpy(outbuffer + offset, &length_capability, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_capability);
       offset += 4;
       memcpy(outbuffer + offset, this->capability, length_capability);
       offset += length_capability;
       uint32_t length_provider = strlen(this->provider);
-      memcpy(outbuffer + offset, &length_provider, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_provider);
       offset += 4;
       memcpy(outbuffer + offset, this->provider, length_provider);
       offset += length_provider;
@@ -41,7 +43,7 @@ namespace capabilities
     {
       int offset = 0;
       uint32_t length_capability;
-      memcpy(&length_capability, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_capability, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_capability; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -50,7 +52,7 @@ namespace capabilities
       this->capability = (char *)(inbuffer + offset-1);
       offset += length_capability;
       uint32_t length_provider;
-      memcpy(&length_provider, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_provider, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_provider; ++k){
           inbuffer[k-1]=inbuffer[k];
