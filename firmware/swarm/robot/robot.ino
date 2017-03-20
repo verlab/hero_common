@@ -75,8 +75,8 @@ void setup() {
   wheel_right.attach(6);
   wheel_left.attach(7);
   
-  wheel_right.write(94);
-  wheel_left.write(97);
+  wheel_right.write(97);
+  wheel_left.write(93);
 
   /* Setup and configure rf radio */
   radio.begin();

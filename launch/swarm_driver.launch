@@ -13,6 +13,8 @@
 		<param name="baud" value="$(arg baud)"/>
 	</node>
 
+	<node pkg="swarm_driver" type="swarm_node.py" name="swarm_node" output="screen"/>
+	
 	<!--node pkg="rosserial_python" type="message_info_service.py" name="rosserial_message_info" /-->
 </launch>
 
