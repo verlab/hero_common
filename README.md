@@ -14,7 +14,10 @@ This project contributes to an open source ROS-based framework for swarm robotic
 
 # How to install Swarm Robots Node
 - Using git (or download the zip file) clone this repository into ros workspace.
-- Compile with catkin_make.
+- Compile with: 
+```
+$ catkin_make
+```
 
 # How to install the firmware
 - Open the arduino IDE. 
@@ -27,12 +30,16 @@ This project contributes to an open source ROS-based framework for swarm robotic
 ## Robots Firmware
 - Open the robot code inside the sketchbook.
 - Change the ID variable to one that you want.
-- Connect the robot via and upload the code.
+- Connect the robot via usb and upload the code.
 
 # How to start the framework
 - Run the swarm_node.launch file with:
 ```
 $ roslaunch swarm_driver swarm_node.launch
+```
+- Run the swarm_teleop.launch file to control it:
+```
+$ roslaunch swarm_driver swarm_teleop.launch
 ```
  
 # TODO LIST
