@@ -23,9 +23,10 @@
 /************************************************************************/
 
 /************************************************************************
- * Device ID
+ * Defines
  ************************************************************************/
-#define ID 00
+#define SINK_ID 00
+#define LED_PIN 8
 /************************************************************************/
 
 /************************************************************************
@@ -75,7 +76,7 @@ void setup() {
   printf("[Status] Starting Sink Node\n");
 
   /* Pinout setup */
-  pinMode(7, OUTPUT);
+  pinMode(LED_PIN, OUTPUT);
   
   /* Starting ros node */
   nh.initNode();
@@ -112,7 +113,7 @@ void setup() {
   radio.printDetails();
   
   /* Start led with high */
-  digitalWrite(7, HIGH);  
+  digitalWrite(LED_PIN, HIGH);  
 }
 /************************************************************************/
 
@@ -127,7 +128,7 @@ void loop() {
     if (data > 0){
       receive_id.data = data;
       swarm_id.publish(&receive_id);
-      printf("[Status]Found robot number #%d\n", data);
+      //printf("[Status]Found robot number #%d\n", data);
     }
   }
 
@@ -150,7 +151,7 @@ void callback(const swarm_driver::Command& msg){
   radio.startListening();
   /* Blink once if message could be sent */
   if (ok){
-    digitalWrite(7, HIGH-digitalRead(7));   
+    digitalWrite(LED_PIN, HIGH-digitalRead(LED_PIN));   
   }
 }
 /************************************************************************/

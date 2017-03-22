@@ -69,7 +69,7 @@ int wheel_left_m = 1500;
  ************************************************************************/
 void setup() {
   /* Serial initialization */
-  Serial.begin(57600);
+  Serial.begin(115200);
   printf_begin();
   printf("[Status] Starting Robot Node\n");
 
@@ -89,7 +89,7 @@ void setup() {
   radio.setPALevel(RF24_PA_LOW);
   
   /* optionally, increase the delay between retries & # of retries */
-  radio.setRetries(15,15);
+  //radio.setRetries(15,15);
 
   /* optionally, reduce the payload size.  seems to improve reliability */
   //radio.setPayloadSize(sizeof(Protocol));
@@ -115,9 +115,9 @@ void setup() {
   attachInterrupt(0, check_radio, FALLING);
 
   /* Publish to the sink the id of this robot */
-  //radio.stopListening();
-  //radio.write(&id, sizeof(uint8_t));
-  //radio.startListening();
+  radio.stopListening();
+  radio.write(&id, sizeof(uint8_t));
+  radio.startListening();
 }
 /************************************************************************/
 
@@ -140,7 +140,7 @@ void check_radio(void){
   bool tx_ok, tx_fail, rx_ready;
   radio.whatHappened ( tx_ok, tx_fail, rx_ready );
   printf("[Status] %d %d %d %d\n", tx_ok, tx_fail, rx_ready, radio.available());
-  
+
   /* Check the read pipe for message */
   if (rx_ready || radio.available()){
     /* Read the message */
@@ -163,7 +163,12 @@ void check_radio(void){
     printf("[Status] Become data:\n");  
     printf("[Status] Data: {%d, %d, %d}\n", msg.robotId, wheel_right_data, wheel_left_data);
     printf("----------------------\n");
+    
+    radio.stopListening();
+    radio.write(&id, sizeof(uint8_t));
+    radio.startListening();
   }
+  
 }
 /************************************************************************/
 /* T H E  E N D */

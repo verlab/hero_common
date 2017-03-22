@@ -55,7 +55,6 @@ class Robot(object):
 		cmd.robot_id = self.robot_id
 		cmd.wheel_right = np.int8((-wr) * 255)
 		cmd.wheel_left = np.int8((wl) * 255)
-		print cmd
 		# Publishing 
 		self.swarm_commands.publish(cmd)
 
