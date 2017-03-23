@@ -44,8 +44,10 @@ $ roslaunch swarm_driver swarm_teleop.launch
  
 # TODO LIST
 - [ ] Add proximity sensors on robot.
+- [ ] Add RGB Led.
 - [ ] Build a small model of the robot.
 - [ ] Implement a method to compute the odometry.
 - [ ] Add new magnetic joints
 - [ ] Location system (cameras)
 - [ ] Swarm controller in ROS 
+- [x] Implement mode to automatic find the enable robots in environment.

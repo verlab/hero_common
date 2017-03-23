@@ -116,7 +116,7 @@ void setup() {
 
   /* Publish to the sink the id of this robot */
   radio.stopListening();
-  radio.write(&id, sizeof(uint8_t));
+  while (!radio.write(&id, sizeof(uint8_t))) delayMicroseconds(500);
   radio.startListening();
 }
 /************************************************************************/

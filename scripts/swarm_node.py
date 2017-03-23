@@ -61,14 +61,31 @@ class Robot(object):
 
 class SwarmDriver(object):
 	def __init__(self):
-		# list of all robots findable in enviroment
-		self.robot_ids = [11, 12, 13]
+		# Instanciated a list of all robots enable in enviroment
 		self.robots = []
-		for _id in self.robot_ids:
-			self.robots.append(Robot(_id))
+		# Subscribe to swarm ID topic
+		rospy.Subscriber('/swarm/id', UInt8, self.search_robots)
+
+
+	# Check if the robot was instanciated before
+	def was_this_robot_enable(self, _id):
+		for robot in self.robots:
+			if robot.robot_id == _id:
+				return True
+		return False
+
+	# Read the topic /swarm/id to find new enable robots
+	def search_robots(self, data):
+		if not self.was_this_robot_enable(data.data):
+			print '\x1b[6;30;42m', '[Status] System has found Robot', data.data, '\x1b[0m'
+			self.robots.append(Robot(data.data))
+
+	def list_all_robots(self):
+		for robot in self.robots:
+			print '\x1b[6;30;41m', '[Status]: Robot', robot.robot_id, 'is enable.', '\x1b[0m'
 
 	def run(self):
-		print "[Status] Running :", self.robot_ids
+		self.list_all_robots()
 		while not rospy.is_shutdown():
 			pass
 
