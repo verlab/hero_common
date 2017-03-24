@@ -512,7 +512,7 @@ void RF24::startWrite( const void* buf, uint8_t len )
   uint8_t old_config = read_register(CONFIG);
   write_register(CONFIG, ( old_config | _BV(PWR_UP) ) & ~_BV(PRIM_RX) );
   if ((old_config & _BV(PWR_UP)) == 0)
-    delayMicroseconds(1500);
+    delayMicroseconds(150);
 
   // Send the payload
   write_payload( buf, len );

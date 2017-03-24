@@ -10,6 +10,7 @@ This project contributes to an open source ROS-based framework for swarm robotic
 # Dependencies
 - ROS Kinect
 - rosserial
+- RF24 (https://github.com/maniacbug/RF24.git)
 - Arduino IDE (to install the firmware)
 
 # How to install Swarm Robots Node
@@ -33,10 +34,15 @@ $ catkin_make
 - Connect the robot via usb and upload the code.
 
 # How to start the framework
+- Fixing package dependencies:
+```
+$ rosdep install swarm_driver
+```
 - Run the swarm_node.launch file with:
 ```
 $ roslaunch swarm_driver swarm_node.launch
 ```
+- Turn on the robots.
 - Run the swarm_teleop.launch file to control it:
 ```
 $ roslaunch swarm_driver swarm_teleop.launch
@@ -47,7 +53,9 @@ $ roslaunch swarm_driver swarm_teleop.launch
 - [ ] Add RGB Led.
 - [ ] Build a small model of the robot.
 - [ ] Implement a method to compute the odometry.
-- [ ] Add new magnetic joints
-- [ ] Location system (cameras)
-- [ ] Swarm controller in ROS 
+- [ ] Add new magnetic joints.
+- [ ] Location system (cameras).
+- [ ] Swarm controller in ROS.
+- [ ] Fix baud rate problem between rosserial python and arduino (only work with 57600).
+- [x] Implement mode to (simutaneous) receive data from Sensors and control the robot.
 - [x] Implement mode to automatic find the enable robots in environment.
