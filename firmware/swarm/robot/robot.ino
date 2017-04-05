@@ -15,7 +15,7 @@
 #include <SPI.h>
 #include "nRF24L01.h"
 #include "RF24.h" // 
-//#include "printf.h"
+#include "printf.h"
 #include <Servo.h>
 /************************************************************************/
 
@@ -78,9 +78,9 @@ Servo wheel_right, wheel_left;
  ************************************************************************/
 void setup() {
   /* Serial initialization */
-  //Serial.begin(115200);
-  //printf_begin();
-  //printf("[Robot] Starting Robot Node\n");
+  Serial.begin(115200);
+  printf_begin();
+  printf("[Robot] Starting Robot Node\n");
 
   /* Setup servo motor */
   wheel_right.attach(WHEEL_R_PIN);
@@ -114,7 +114,12 @@ void setup() {
   /* Open pipes to other nodes for communication */
   radio.openWritingPipe(WRITE_ADDRESS);
   delayMicroseconds(150);
+  radio.openReadingPipe(0, READ_ADDRESS);
   radio.openReadingPipe(1, READ_ADDRESS);
+  radio.openReadingPipe(2, READ_ADDRESS);
+  radio.openReadingPipe(3, READ_ADDRESS);
+  radio.openReadingPipe(4, READ_ADDRESS);
+  radio.openReadingPipe(5, READ_ADDRESS);
   delayMicroseconds(150);
 
   /* Start listening */
@@ -138,9 +143,7 @@ void setup() {
  * M A I N  L O 0 P
  ************************************************************************/
 void loop() {
-  /* Do nothing */
-  /* Non-blocking write to the open writing pipe. */
-  //radio.startWrite(&id, sizeof(uint8_t));
+  /* Do nothing and wait for inturruptions */
 }
 /************************************************************************/
 
@@ -164,7 +167,7 @@ void check_radio(void){
 
     /* Check if it is to this robot */
     if (msg._id != ROBOT_ID){ // message isn't to me
-      //printf("[Status] Msg isn't to me!\n");
+      printf("[Status] Msg isn't to me!\n");
       return;
     }
     
@@ -176,7 +179,7 @@ void check_radio(void){
         
         //printf("----------------------\n");
         //printf("[Status] Become data:\n");  
-        //printf("[Status] Data: {%d, %d, %d}\n", msg._id, msg._data1, msg._data2);
+        printf("[Status] Data: {%d, %d, %d}\n", msg._id, msg._data1, msg._data2);
         //printf("----------------------\n");
       break;
       case REQUEST_TYPE:

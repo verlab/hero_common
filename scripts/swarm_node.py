@@ -23,7 +23,9 @@ class Robot(object):
 	def __init__(self, robot_id):
 		self.robot_id = robot_id
 		# Subscribe to Command Velocity Topic
-		rospy.Subscriber('/robot_' + str(self.robot_id) + '/cmd_vel', Twist, self.handler_velocity)
+		#rospy.Subscriber('/robot_' + str(self.robot_id) + '/cmd_vel', Twist, self.handler_velocity)
+		rospy.Subscriber('/cmd_vel', Twist, self.handler_velocity)
+
 		# Publisher the Sensors states
 		self.pub_sensors = rospy.Publisher('/robot_' + str(self.robot_id) + '/sensor', Sensors, queue_size=10)
 		# Sensors state
@@ -107,7 +109,7 @@ class SwarmDriver(object):
 
 	def run(self):
 		print '\x1b[6;30;43m', '[Status]: Swarm Manager is working! Please turn on the robots...', '\x1b[0m'
-		rate = rospy.Rate(2) # 2hz
+		rate = rospy.Rate(2) # 5hz
 		while not rospy.is_shutdown():
 			self.request_sensors()
 			rate.sleep()

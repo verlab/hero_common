@@ -132,7 +132,12 @@ void setup() {
    */
   radio.openWritingPipe(WRITE_ADDRESS);
   delayMicroseconds(150);
+  radio.openReadingPipe(0, READ_ADDRESS);
   radio.openReadingPipe(1, READ_ADDRESS);
+  radio.openReadingPipe(2, READ_ADDRESS);
+  radio.openReadingPipe(3, READ_ADDRESS);
+  radio.openReadingPipe(4, READ_ADDRESS);
+  radio.openReadingPipe(5, READ_ADDRESS);
   delayMicroseconds(150);
 
   /* Start listening */
@@ -163,6 +168,7 @@ void loop() {
       case IDENTIFICATION_TYPE:
         id_msg.data = msg._id;
         id_pub.publish(&id_msg);
+        digitalWrite(RED_LED_PIN, HIGH-digitalRead(RED_LED_PIN));   
       break;
       default:
       break;

@@ -43,9 +43,9 @@ $ rosdep install swarm_driver
 $ roslaunch swarm_driver swarm_node.launch
 ```
 - Turn on the robots.
-- Run the swarm_teleop.launch file to control it:
+- Run the swarm_teleop.launch file to control it and set the specific robot id:
 ```
-$ roslaunch swarm_driver swarm_teleop.launch
+$ roslaunch swarm_driver swarm_teleop.launch robot_id:=11
 ```
  
 # TODO LIST
