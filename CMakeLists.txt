@@ -48,9 +48,9 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
 add_message_files(
    FILES
-   Command.msg
-   Sensors.msg
-#   Message2.msg
+   Velocity.msg
+   Proximity.msg
+   Led.msg
 )
 
 ## Generate services in the 'srv' folder
