@@ -15,9 +15,9 @@
 
 /* Do nothing */
 WifiHardware::WifiHardware(void){
-	this->ssid = "******";
-	this->password = "**********";
-	this->server = IPAddress(150, 164, 212, 68);
+	this->ssid = "hero";
+	this->password = "hero_network";
+	this->server = IPAddress(192, 168, 1, 137);
 }
 
 /* Connecting to ROS server. This probably includes TCP server/client setup. */
