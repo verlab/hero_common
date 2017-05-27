@@ -11,24 +11,32 @@
  * Federal University of Minas Gerais - Brazil
  ************************************************************************/
  
-/************************************************************************/
 #include <ros.h>
-#include <WifiHardware.h>
+#include "WifiHardware.h"
 #include <Servo.h>
+
 /* Message types */
-#include <swarm_driver/Velocity.h>
+#include <geometry_msgs/Twist.h>
 #include <swarm_driver/Proximity.h>
 #include <swarm_driver/Led.h>
-/************************************************************************/
 
 /************************************************************************
  * Defines
  ************************************************************************/
+#define DEBUG 1
+
+/* Basic setup */
+IPAddress ROS_MASTER_ADDRESS(192, 168, 1, 10);;
+uint16_t ROS_MASTER_PORT = 11411;
+char* WIFI_SSID = "hero";
+char* WIFI_PASSWD = "hero_network";
+#define ROBOT_ID "1"
+
 /* Robot Identification Setup */
-#define ROBOT_NAME  "/hero_1"
-#define VELOCITY_TOPIC "/hero_1/cmd_vel"
-#define LED_TOPIC "/hero_1/led"
-#define PROXIMITY_TOPIC "/hero_1/proximity"
+#define ROBOT_NAME  "/hero_" ROBOT_ID
+#define VELOCITY_TOPIC "/hero_" ROBOT_ID "/cmd_vel"
+#define LED_TOPIC "/hero_" ROBOT_ID "/led"
+#define PROXIMITY_TOPIC "/hero_" ROBOT_ID "/proximity"
 
 /* Wheel pinout Setup */
 #define WHEEL_R_PIN 4     /* Pin to connect right motor pin D1*/
@@ -55,11 +63,10 @@ Servo wheel_right, wheel_left;
  ************************************************************************/
 ros::NodeHandle_<WifiHardware> nh;
 
-void velocity_cb(const swarm_driver::Velocity& msg);
+void velocity_cb(const geometry_msgs::Twist& msg);
 void led_cb(const swarm_driver::Led& msg);
 
-
-ros::Subscriber<swarm_driver::Velocity> velocity_sub(VELOCITY_TOPIC, velocity_cb);
+ros::Subscriber<geometry_msgs::Twist> velocity_sub(VELOCITY_TOPIC, velocity_cb);
 ros::Subscriber<swarm_driver::Led> led_sub(LED_TOPIC, led_cb);
 
 swarm_driver::Proximity proximity_msg;
@@ -70,6 +77,10 @@ ros::Publisher proximity_pub(PROXIMITY_TOPIC, &proximity_msg);
  * Arduino Setup
  ************************************************************************/
 void setup() {
+  Serial.begin(115200);
+  nh.getHardware()->setROSConnection(ROS_MASTER_ADDRESS, ROS_MASTER_PORT);
+  nh.getHardware()->connectWifi(WIFI_SSID, WIFI_PASSWD);
+  
   /* Starting ros node */
   nh.initNode();
   nh.advertise(proximity_pub);
@@ -115,10 +126,10 @@ void loop(){
 /************************************************************************
  * C A L L B A C K S
  ************************************************************************/
-void velocity_cb(const swarm_driver::Velocity& msg){
+void velocity_cb(const geometry_msgs::Twist& msg){
   /* set motor velocities */
-  float linear = _max(_min(msg.linear, WHEEL_DIAMETER), -WHEEL_DIAMETER);
-  float angular = _max(_min(msg.angular, 2*WHEEL_DIAMETER/WHEEL_SEPARATION), -2*WHEEL_DIAMETER/WHEEL_SEPARATION);
+  float linear = _max(_min(msg.linear.x, WHEEL_DIAMETER), -WHEEL_DIAMETER);
+  float angular = _max(_min(msg.angular.z, 2*WHEEL_DIAMETER/WHEEL_SEPARATION), -2*WHEEL_DIAMETER/WHEEL_SEPARATION);
 
   float wl = (linear - ((float)WHEEL_SEPARATION/2.0) * angular) / (float)WHEEL_DIAMETER;
   float wr = (linear + ((float)WHEEL_SEPARATION/2.0) * angular) / (float)WHEEL_DIAMETER;
