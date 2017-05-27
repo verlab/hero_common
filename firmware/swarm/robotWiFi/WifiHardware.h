@@ -32,8 +32,9 @@ class WifiHardware {
     void connectWifi(const char* ssid, const char* password) {
       int WiFiCounter = 0;
       if(DEBUG){
-        Serial.print("Connecting to ");
-        Serial.println(ssid);
+        Serial.print("Connecting to: '");
+        Serial.print(ssid);
+        Serial.print("' WiFi network ");
       }
       
       WiFi.disconnect();
