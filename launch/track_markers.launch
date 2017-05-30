@@ -1,12 +1,13 @@
 <launch>
 
 	<node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
-    	<param name="video_device" value="/dev/video2" />
-    	<param name="image_width" value="1600" />
-    	<param name="image_height" value="1200" />
+    	<param name="video_device" value="/dev/video3" />
+    	<param name="image_width" value="800" />
+    	<param name="image_height" value="600" />
     	<param name="pixel_format" value="yuyv" />
     	<param name="camera_frame_id" value="usb_cam" />
     	<param name="io_method" value="mmap"/>
+    	<param name="camera_info_url" value="package://swarm_driver/calibration/camera_calibration.yaml"/>
   	</node>
 
 	<arg name="marker_size" default="6.0" />
