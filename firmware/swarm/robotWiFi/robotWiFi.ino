@@ -25,11 +25,11 @@
  ************************************************************************/
 /* Basic setup */
 #define DEBUG 1
-IPAddress ROS_MASTER_ADDRESS(192, 168, 1, 10);;
-uint16_t ROS_MASTER_PORT = 11411;
+IPAddress ROS_MASTER_ADDRESS(192, 168, 1, 10);
+uint16_t ROS_MASTER_PORT = 11412;
 char* WIFI_SSID = "hero";
 char* WIFI_PASSWD = "hero_network";
-#define ROBOT_ID "2"
+#define ROBOT_ID "1"
 #define WHEEL_DIAMETER 4.9
 #define WHEEL_SEPARATION 8
 float WHEEL_CIRCUNFERENCE = 3.14 * WHEEL_DIAMETER;
@@ -175,6 +175,7 @@ void velocity_cb(const geometry_msgs::Twist& msg){
 
   float wr = _map2(wr0, -2.0, 2.0, -500, 500);
   float wl = _map2(wl0, -2.0, 2.0, -500, 500);
+  
   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));   // Turn the LED on (Note that LOW is the voltage level
 
   /* Control the wheels */

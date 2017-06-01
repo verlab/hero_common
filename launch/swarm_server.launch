@@ -1,0 +1,12 @@
+<launch>
+  	<node pkg="swarm_driver" type="serial_node.py" name="serial_node_0" output="screen">
+  		<param name="fork_server" value="False"/>
+    	<param name="port" value="tcp"/>
+    	<param name="tcp_port" value="11411"/>
+  	</node>
+  	<node pkg="swarm_driver" type="serial_node.py" name="serial_node_1" output="screen">
+  		<param name="fork_server" value="False"/>
+    	<param name="port" value="tcp"/>
+    	<param name="tcp_port" value="11412"/>
+  	</node>
+</launch>
