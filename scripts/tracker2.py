@@ -18,18 +18,18 @@ def MarkersCallback(markers):
 	global goalMsg
 
 	for marker in markers.markers:
-		if marker.id == 2:
+		if marker.id == 1:
 			poseMsg = marker.pose
 
-		if marker.id == 4:
+		if marker.id == 6:
 			goalMsg = marker.pose
 
 
 def run():
-	rospy.init_node('tracker', anonymous=True)
+	rospy.init_node('tracker2', anonymous=True)
 
-	pub = rospy.Publisher('/hero_2/cmd_vel', Twist, queue_size=10)
-	pub_pose = rospy.Publisher('/hero_2/odom', Odometry, queue_size=10)
+	pub = rospy.Publisher('/hero_1/cmd_vel', Twist, queue_size=10)
+	pub_pose = rospy.Publisher('/hero_1/odom', Odometry, queue_size=10)
 
 	rospy.Subscriber("/ar_pose_marker", AlvarMarkers, MarkersCallback)
 

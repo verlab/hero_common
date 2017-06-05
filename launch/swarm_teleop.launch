@@ -1,10 +1,10 @@
 <!--> Use speed 0.2 and turn 0.040 <-->
 
 <launch>
-	<arg name="robot_id" default="11" />
+	<arg name="robot_id" default="2" />
 
     <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_twist_keyboard" output="screen">
-        <remap from="/cmd_vel" to="/robot_$(arg robot_id)/cmd_vel"/>
+        <remap from="/cmd_vel" to="/hero_$(arg robot_id)/cmd_vel"/>
     </node>
 
 </launch>

@@ -29,15 +29,15 @@ IPAddress ROS_MASTER_ADDRESS(192, 168, 1, 137);
 
 char* WIFI_SSID = "hero";
 char* WIFI_PASSWD = "hero_network";
-#define ROBOT_ID "2"
+#define ROBOT_ID "1"
 #define WHEEL_DIAMETER 4.9
 #define WHEEL_SEPARATION 8
 float WHEEL_CIRCUNFERENCE = 3.14 * WHEEL_DIAMETER;
 
-#define ID 2
+#define ID 1
 #if ID == 1
-  #define GAMMA_GAIN_MOTORS 0
-  #define WHEEL_R_MID 1535 // Neutral position of right motor
+  #define GAMMA_GAIN_MOTORS 0.0
+  #define WHEEL_R_MID 1540 // Neutral position of right motor
   #define WHEEL_L_MID 1500 // Neutral position of left motor
   uint16_t ROS_MASTER_PORT = 11411;
   
@@ -184,18 +184,19 @@ void velocity_cb(const geometry_msgs::Twist& msg){
   float wl0 = (linear - ((float) WHEEL_SEPARATION/2.0) * angular) / (float) WHEEL_DIAMETER;
   float wr0 = (linear + ((float) WHEEL_SEPARATION/2.0) * angular) / (float) WHEEL_DIAMETER;
 
-  int wr = -(int)(_map2(wr0, -2.0, 2.0, -500, 500)*(1.0 + GAMMA_GAIN_MOTORS)) + int(WHEEL_R_MID);
-  int wl = (int)(_map2(wl0, -2.0, 2.0, -500, 500)*(1.0 - GAMMA_GAIN_MOTORS)) + int(WHEEL_L_MID);
+  int wr = -(int)(_map2(wr0, -2.0, 2.0, -500, 500)) + int(WHEEL_R_MID);
+  int wl = (int)(_map2(wl0, -2.0, 2.0, -500, 500)) + int(WHEEL_L_MID);
   
   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));   // Turn the LED on (Note that LOW is the voltage level
 
   /* Control the wheels */
-  if (abs (wr - wheel_right.readMicroseconds()) > 5){
+  //if (abs (wr - wheel_right.readMicroseconds()) > 5){
     wheel_right.writeMicroseconds(wr);
-  }
-  if (abs(wl - wheel_left.readMicroseconds()) > 5){
+  //}
+  //if (abs(wl - wheel_left.readMicroseconds()) > 5){
     wheel_left.writeMicroseconds(wl);
-  }
+  //}
+  delayMicroseconds(200);
 }
 
 float _map2(float x, int xmin, int xmax, int ymin, int ymax){

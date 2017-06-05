@@ -7,6 +7,7 @@ import tf
 from ar_track_alvar_msgs.msg import AlvarMarkers
 from swarm_driver.msg import Proximity
 from geometry_msgs.msg import Twist
+from nav_msgs.msg import Odometry
 
 poseMsg = None
 goalMsg = None
@@ -37,6 +38,7 @@ def run():
 	rospy.init_node('tracker', anonymous=True)
 
 	pub = rospy.Publisher('/hero_2/cmd_vel', Twist, queue_size=10)
+	pub_odom = rospy.Publisher('/hero_2/odom', Odometry, queue_size=20)
 
 	rospy.Subscriber("/ar_pose_marker", AlvarMarkers, MarkersCallback)
 	rospy.Subscriber("/hero_2/proximity", Proximity, ProximityCallback)
@@ -47,6 +49,7 @@ def run():
 	global goalMsg
 
 	cmd_vel = Twist()
+	odom = Odometry()
 
 	while not rospy.is_shutdown():
 		if goalMsg == None:
@@ -68,7 +71,7 @@ def run():
 		
 		frep_x = 0.0
 		frep_y = 0.0
-		p0 = 100
+		p0 = 60
 		for i in range(len(proximityMsg)):
 			pq = proximityMsg[i]	
 			if pq <= p0:
@@ -93,39 +96,15 @@ def run():
 		else:
 			cmd_vel.linear.x = min(0.8, f)
 			print "sigma2:", sigma/(2*math.pi)
-			sigma = min(max(sigma/(2*math.pi), (-0.1)), (0.1));
-			cmd_vel.angular.z = sigma;
-		
-
-		# if abs(ang) <= threshold:
-		# 	cmd_vel.angular.z = 0.0
-		# else:
-		# 	if ang > math.pi:
-		# 		ang -= 2*math.pi
-
-		# 	if ang < -math.pi:
-		# 		ang += 2*math.pi
-
-		# 	cmd_vel.angular.z = ang * 0.1
-
-		# if abs(d) <= threshold:
-		# 	cmd_x = 0.0
-		# else:
-		# 	cmd_x = d * 4
-
-		# 	if cmd_x > 1.6:
-		# 		cmd_x = 1.6
-
-		# 	if cmd_x < 0.9:
-		# 		cmd_x = 0.9
-
-			
-		#cmd_vel.linear.x = cmd_x
-		#print '\npose.x={}'.format(poseMsg.pose.position.x)
-		#print 'pose.y={}'.format(poseMsg.pose.position.y)
-
-		#print 'z={}\n'.format(ang)
-		#print 'zcmd={}'.format(cmd_vel.angular.z)
+			sigma = min(max(sigma/(2*math.pi), (-0.1)), (0.1))
+			cmd_vel.angular.z = sigma
+			odom.header = poseMsg.header
+			odom.header.frame_id = "usb_cam"
+			#odom.header.frame_id = "ar_marker_2"
+			odom.child_frame_id = "base_link"
+			odom.pose.pose = poseMsg.pose
+			odom.twist.twist = cmd_vel
+			pub_odom.publish(odom)
 
 		pub.publish(cmd_vel)
 		rate.sleep()
