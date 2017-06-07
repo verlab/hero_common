@@ -60,5 +60,4 @@ $ roslaunch hero_driver hero_teleop.launch robot_id:=1
 $ roslaunch hero_driver hero_tracker.launch
 ```
 # Some Videos
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/https://youtu.be/foQDcUG9Arg/0.jpg)](http://www.youtube.com/watch?v=https://youtu.be/foQDcUG9Arg "Video Title")
-https://youtu.be/foQDcUG9Arg
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/foQDcUG9Arg/0.jpg)](http://www.youtube.com/watch?v=foQDcUG9Arg "Video Title")
