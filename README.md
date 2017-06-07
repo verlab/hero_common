@@ -8,9 +8,10 @@ This project contributes to an open source ROS-based framework for swarm robotic
 - [Hector Azpurua](https://github.com/h3ct0r)
 
 # Dependencies
-- ROS Kinect
-- AR Alvar Tracker
-- Rosserial
+- ROS Kinect (http://wiki.ros.org/kinetic/Installation)
+- AR Alvar Tracker (http://wiki.ros.org/ar_track_alvar)
+- Rosserial (http://wiki.ros.org/rosserial)
+- usb_cam (http://wiki.ros.org/usb_cam) or similar
 - Arduino IDE (to install the firmware)
 
 # How to install HeRo driver node
@@ -41,12 +42,19 @@ $ rosdep install hero_driver
 
 - Run the swarm_node.launch file with:
 ```
-$ roslaunch hero_driver hero_node.launch
+$ roslaunch hero_driver hero_driver.launch
 ```
 - Turn on the robots.
 
 ## Teleop Demo
 - Run the hero_teleop.launch file to control it and set the specific robot id:
 ```
-$ roslaunch swarm_driver swarm_teleop.launch robot_id:=1
+$ roslaunch hero_driver hero_teleop.launch robot_id:=1
+```
+
+## AR Tracker
+- Connect the camera
+- Run the hero_tracker.launch file to get the pose of all markers into the camera view:
+```
+$ roslaunch hero_driver hero_tracker.launch
 ```
