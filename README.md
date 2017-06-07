@@ -29,7 +29,8 @@ $ rosdep install hero_driver
 - Open the arduino IDE.
 - Go to preferences:
  - Change the sketchbook location to access the folder firmware.
- - Add (http://arduino.esp8266.com/stable/package_esp8266com_index.json) to Additional Boards Manager URLS and restart the IDE.
+ - Add (http://arduino.esp8266.com/stable/package_esp8266com_index.json) to Additional Boards Manager URLS.
+ - Restart the IDE.
 - Go to Sketchbook/hero/firware
 
 ## Robots Firmware
@@ -40,7 +41,7 @@ $ rosdep install hero_driver
 
 # How to start the ROS node
 
-- Run the swarm_node.launch file with:
+- Run the hero_node.launch file with:
 ```
 $ roslaunch hero_driver hero_driver.launch
 ```
