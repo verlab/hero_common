@@ -92,13 +92,11 @@ def run():
 		print 'z={}\n'.format(ang)
 		print 'zcmd={}'.format(cmd_vel.angular.z)
 
-		#cmd_vel.linear.x = 0.5 * (1 - abs(ang)/2*math.pi)
 		pub.publish(cmd_vel)
+		# Publish the pose as odom
 		odom.header = poseMsg.header
-		#odom.header.frame_id = "usb_cam"
 		odom.header.frame_id = "ar_marker_2"
 		odom.child_frame_id = "base_link"
-		#point.header.frame_id = "base_link"
 		odom.pose.pose = poseMsg.pose
 		odom.twist.twist = cmd_vel
 		pub_pose.publish(odom)

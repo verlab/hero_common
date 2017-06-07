@@ -15,11 +15,11 @@ namespace control_msgs
     public:
       typedef std_msgs::Header _header_type;
       _header_type header;
-      typedef float _position_type;
+      typedef double _position_type;
       _position_type position;
-      typedef float _velocity_type;
+      typedef double _velocity_type;
       _velocity_type velocity;
-      typedef float _error_type;
+      typedef double _error_type;
       _error_type error;
 
     SingleJointPositionFeedback():
@@ -34,9 +34,48 @@ namespace control_msgs
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
-      offset += serializeAvrFloat64(outbuffer + offset, this->position);
-      offset += serializeAvrFloat64(outbuffer + offset, this->velocity);
-      offset += serializeAvrFloat64(outbuffer + offset, this->error);
+      union {
+        double real;
+        uint64_t base;
+      } u_position;
+      u_position.real = this->position;
+      *(outbuffer + offset + 0) = (u_position.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_position.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_position.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_position.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_position.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_position.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_position.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_position.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->position);
+      union {
+        double real;
+        uint64_t base;
+      } u_velocity;
+      u_velocity.real = this->velocity;
+      *(outbuffer + offset + 0) = (u_velocity.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_velocity.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_velocity.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_velocity.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_velocity.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_velocity.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_velocity.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_velocity.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->velocity);
+      union {
+        double real;
+        uint64_t base;
+      } u_error;
+      u_error.real = this->error;
+      *(outbuffer + offset + 0) = (u_error.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_error.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_error.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_error.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_error.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_error.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_error.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_error.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->error);
       return offset;
     }
 
@@ -44,9 +83,51 @@ namespace control_msgs
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->position));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->velocity));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->error));
+      union {
+        double real;
+        uint64_t base;
+      } u_position;
+      u_position.base = 0;
+      u_position.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_position.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_position.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_position.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_position.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_position.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_position.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_position.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->position = u_position.real;
+      offset += sizeof(this->position);
+      union {
+        double real;
+        uint64_t base;
+      } u_velocity;
+      u_velocity.base = 0;
+      u_velocity.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_velocity.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_velocity.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_velocity.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_velocity.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_velocity.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_velocity.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_velocity.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->velocity = u_velocity.real;
+      offset += sizeof(this->velocity);
+      union {
+        double real;
+        uint64_t base;
+      } u_error;
+      u_error.base = 0;
+      u_error.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_error.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_error.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_error.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_error.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_error.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_error.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_error.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->error = u_error.real;
+      offset += sizeof(this->error);
      return offset;
     }
 

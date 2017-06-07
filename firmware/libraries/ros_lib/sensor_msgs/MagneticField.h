@@ -18,7 +18,7 @@ namespace sensor_msgs
       _header_type header;
       typedef geometry_msgs::Vector3 _magnetic_field_type;
       _magnetic_field_type magnetic_field;
-      float magnetic_field_covariance[9];
+      double magnetic_field_covariance[9];
 
     MagneticField():
       header(),
@@ -33,7 +33,20 @@ namespace sensor_msgs
       offset += this->header.serialize(outbuffer + offset);
       offset += this->magnetic_field.serialize(outbuffer + offset);
       for( uint32_t i = 0; i < 9; i++){
-      offset += serializeAvrFloat64(outbuffer + offset, this->magnetic_field_covariance[i]);
+      union {
+        double real;
+        uint64_t base;
+      } u_magnetic_field_covariancei;
+      u_magnetic_field_covariancei.real = this->magnetic_field_covariance[i];
+      *(outbuffer + offset + 0) = (u_magnetic_field_covariancei.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_magnetic_field_covariancei.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_magnetic_field_covariancei.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_magnetic_field_covariancei.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_magnetic_field_covariancei.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_magnetic_field_covariancei.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_magnetic_field_covariancei.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_magnetic_field_covariancei.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->magnetic_field_covariance[i]);
       }
       return offset;
     }
@@ -44,7 +57,21 @@ namespace sensor_msgs
       offset += this->header.deserialize(inbuffer + offset);
       offset += this->magnetic_field.deserialize(inbuffer + offset);
       for( uint32_t i = 0; i < 9; i++){
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->magnetic_field_covariance[i]));
+      union {
+        double real;
+        uint64_t base;
+      } u_magnetic_field_covariancei;
+      u_magnetic_field_covariancei.base = 0;
+      u_magnetic_field_covariancei.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_magnetic_field_covariancei.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_magnetic_field_covariancei.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_magnetic_field_covariancei.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_magnetic_field_covariancei.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_magnetic_field_covariancei.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_magnetic_field_covariancei.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_magnetic_field_covariancei.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->magnetic_field_covariance[i] = u_magnetic_field_covariancei.real;
+      offset += sizeof(this->magnetic_field_covariance[i]);
       }
      return offset;
     }

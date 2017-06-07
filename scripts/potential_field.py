@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-# Controller to navigate the robot
+# Potential field to navigate the robot
 
 import rospy
 import math
 import tf
 from ar_track_alvar_msgs.msg import AlvarMarkers
-from swarm_driver.msg import Proximity
+from hero_driver.msg import Proximity
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 
@@ -95,12 +95,10 @@ def run():
 			cmd_vel.angular.z = 0.0;
 		else:
 			cmd_vel.linear.x = min(0.8, f)
-			print "sigma2:", sigma/(2*math.pi)
 			sigma = min(max(sigma/(2*math.pi), (-0.1)), (0.1))
 			cmd_vel.angular.z = sigma
 			odom.header = poseMsg.header
-			odom.header.frame_id = "usb_cam"
-			#odom.header.frame_id = "ar_marker_2"
+			odom.header.frame_id = "ar_marker_2"
 			odom.child_frame_id = "base_link"
 			odom.pose.pose = poseMsg.pose
 			odom.twist.twist = cmd_vel

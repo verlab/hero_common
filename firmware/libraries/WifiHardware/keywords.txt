@@ -1,1 +1,0 @@
-WifiHardware	KEYWORD1

@@ -40,11 +40,11 @@ static const char GETPHYSICSPROPERTIES[] = "gazebo_msgs/GetPhysicsProperties";
   class GetPhysicsPropertiesResponse : public ros::Msg
   {
     public:
-      typedef float _time_step_type;
+      typedef double _time_step_type;
       _time_step_type time_step;
       typedef bool _pause_type;
       _pause_type pause;
-      typedef float _max_update_rate_type;
+      typedef double _max_update_rate_type;
       _max_update_rate_type max_update_rate;
       typedef geometry_msgs::Vector3 _gravity_type;
       _gravity_type gravity;
@@ -69,7 +69,20 @@ static const char GETPHYSICSPROPERTIES[] = "gazebo_msgs/GetPhysicsProperties";
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      offset += serializeAvrFloat64(outbuffer + offset, this->time_step);
+      union {
+        double real;
+        uint64_t base;
+      } u_time_step;
+      u_time_step.real = this->time_step;
+      *(outbuffer + offset + 0) = (u_time_step.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_time_step.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_time_step.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_time_step.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_time_step.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_time_step.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_time_step.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_time_step.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->time_step);
       union {
         bool real;
         uint8_t base;
@@ -77,7 +90,20 @@ static const char GETPHYSICSPROPERTIES[] = "gazebo_msgs/GetPhysicsProperties";
       u_pause.real = this->pause;
       *(outbuffer + offset + 0) = (u_pause.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->pause);
-      offset += serializeAvrFloat64(outbuffer + offset, this->max_update_rate);
+      union {
+        double real;
+        uint64_t base;
+      } u_max_update_rate;
+      u_max_update_rate.real = this->max_update_rate;
+      *(outbuffer + offset + 0) = (u_max_update_rate.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_max_update_rate.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_max_update_rate.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_max_update_rate.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (u_max_update_rate.base >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (u_max_update_rate.base >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (u_max_update_rate.base >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (u_max_update_rate.base >> (8 * 7)) & 0xFF;
+      offset += sizeof(this->max_update_rate);
       offset += this->gravity.serialize(outbuffer + offset);
       offset += this->ode_config.serialize(outbuffer + offset);
       union {
@@ -98,7 +124,21 @@ static const char GETPHYSICSPROPERTIES[] = "gazebo_msgs/GetPhysicsProperties";
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->time_step));
+      union {
+        double real;
+        uint64_t base;
+      } u_time_step;
+      u_time_step.base = 0;
+      u_time_step.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_time_step.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_time_step.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_time_step.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_time_step.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_time_step.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_time_step.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_time_step.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->time_step = u_time_step.real;
+      offset += sizeof(this->time_step);
       union {
         bool real;
         uint8_t base;
@@ -107,7 +147,21 @@ static const char GETPHYSICSPROPERTIES[] = "gazebo_msgs/GetPhysicsProperties";
       u_pause.base |= ((uint8_t) (*(inbuffer + offset + 0))) << (8 * 0);
       this->pause = u_pause.real;
       offset += sizeof(this->pause);
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->max_update_rate));
+      union {
+        double real;
+        uint64_t base;
+      } u_max_update_rate;
+      u_max_update_rate.base = 0;
+      u_max_update_rate.base |= ((uint64_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_max_update_rate.base |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_max_update_rate.base |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_max_update_rate.base |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      u_max_update_rate.base |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      u_max_update_rate.base |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      u_max_update_rate.base |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      u_max_update_rate.base |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
+      this->max_update_rate = u_max_update_rate.real;
+      offset += sizeof(this->max_update_rate);
       offset += this->gravity.deserialize(inbuffer + offset);
       offset += this->ode_config.deserialize(inbuffer + offset);
       union {
