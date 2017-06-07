@@ -1,4 +1,4 @@
-# Swarm Robots Project (Verlab)
+# HeRo: An Open Platform for Robotics Research and Education
 [![N|Solid](http://www.verlab.dcc.ufmg.br/verlab/wp-content/uploads/2014/06/logo-verlab-small-transp-300x572.png)](www.verlab.dcc.ufmg.br)
 
 This project contributes to an open source ROS-based framework for swarm robotics. We propose an low cost, high availability swarm system that could be printed and assembled multiple times without special knowledge or hardware skills.
@@ -9,53 +9,44 @@ This project contributes to an open source ROS-based framework for swarm robotic
 
 # Dependencies
 - ROS Kinect
-- rosserial
-- RF24 (https://github.com/maniacbug/RF24.git)
+- AR Alvar Tracker
+- Rosserial
 - Arduino IDE (to install the firmware)
 
-# How to install Swarm Robots Node
+# How to install HeRo driver node
 - Using git (or download the zip file) clone this repository into ros workspace.
 - Compile with: 
 ```
 $ catkin_make
 ```
+- Fixing package dependencies:
+```
+$ rosdep install hero_driver
+```
 
 # How to install the firmware
-- Open the arduino IDE. 
-- Go to preferences and change the sketchbook location to access the folder firmware (restart the IDE).
-
-## Sink Firmware
-- Open the sink code inside the sketchbook.
-- Connect the sink usb device and upload the code.
+- Open the arduino IDE.
+- Go to preferences:
+ - Change the sketchbook location to access the folder firmware.
+ - Add (http://arduino.esp8266.com/stable/package_esp8266com_index.json) to Additional Boards Manager URLS and restart the IDE.
+- Go to Sketchbook/hero/firware
 
 ## Robots Firmware
 - Open the robot code inside the sketchbook.
-- Change the ID variable to one that you want.
-- Connect the robot via usb and upload the code.
+- Change the essid and password parameter to acess the ROS master.
+- Set an ID for each robot.
+- Connect HeRo at USB and upload the code.
 
-# How to start the framework
-- Fixing package dependencies:
-```
-$ rosdep install swarm_driver
-```
+# How to start the ROS node
+
 - Run the swarm_node.launch file with:
 ```
-$ roslaunch swarm_driver swarm_node.launch
+$ roslaunch hero_driver hero_node.launch
 ```
 - Turn on the robots.
-- Run the swarm_teleop.launch file to control it and set the specific robot id:
+
+## Teleop Demo
+- Run the hero_teleop.launch file to control it and set the specific robot id:
 ```
-$ roslaunch swarm_driver swarm_teleop.launch robot_id:=11
+$ roslaunch swarm_driver swarm_teleop.launch robot_id:=1
 ```
- 
-# TODO LIST
-- [ ] Add proximity sensors on robot.
-- [ ] Add RGB Led.
-- [ ] Build a small model of the robot.
-- [ ] Implement a method to compute the odometry.
-- [ ] Add new magnetic joints.
-- [ ] Location system (cameras).
-- [ ] Swarm controller in ROS.
-- [ ] Fix baud rate problem between rosserial python and arduino (only work with 57600).
-- [x] Implement mode to (simutaneous) receive data from Sensors and control the robot.
-- [x] Implement mode to automatic find the enable robots in environment.
