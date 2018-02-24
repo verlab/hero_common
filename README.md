@@ -1,11 +1,20 @@
 # HeRo: An Open Platform for Robotics Research and Education
-[![N|Solid](http://www.verlab.dcc.ufmg.br/verlab/wp-content/uploads/2014/06/logo-verlab-small-transp-300x572.png)](www.verlab.dcc.ufmg.br)
+![www.verlab.dcc.ufmg.br](https://www.verlab.dcc.ufmg.br/wp-content/uploads/2013/09/SVG_Verlab_900dpi-300x86.png)
 
 This project contributes to an open source ROS-based framework for swarm robotics. We propose an low cost, high availability swarm system that could be printed and assembled multiple times without special knowledge or hardware skills.
 
 # Authors:
 - [Paulo Rezeck](https://github.com/rezeck)
 - [Hector Azpurua](https://github.com/h3ct0r)
+
+# On Development (New Version 2018)
+- Wheels encoders
+- Inertial Motion Unit (IMU)
+- General Purpose Bus (I2C/Serial/IO)
+- Communication Improves
+- Setup via Web Interface
+- Small design
+- and more...
 
 # Dependencies
 - ROS Kinect (http://wiki.ros.org/kinetic/Installation)
