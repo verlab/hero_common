@@ -7,6 +7,15 @@ This project contributes to an open source ROS-based framework for swarm robotic
 - [Paulo Rezeck](https://github.com/rezeck)
 - [Hector Azpurua](https://github.com/h3ct0r)
 
+# On Development (New Version 2018)
+- Wheels encoders
+- Inertial Motion Unit (IMU)
+- General Purpose Bus (I2C/Serial/IO)
+- Communication Improves
+- Setup via Web Interface
+- Small design
+- and more...
+
 # Dependencies
 - ROS Kinect (http://wiki.ros.org/kinetic/Installation)
 - AR Alvar Tracker (http://wiki.ros.org/ar_track_alvar)
