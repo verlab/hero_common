@@ -1,0 +1,182 @@
+<!--?xml version="1.0"?-->
+<robot> 
+
+  <property name="PI" value="3.1415926535897931" />
+  <property name="wheel_separation" value="0.0623" />
+  <property name="wheel_radius" value="0.0496" />
+  <property name="height" value="0.085" /> 
+
+    <link name="base_link" >
+    <visual>    
+      <origin xyz="0 0 0" rpy="0 0 ${PI}" />
+      <geometry>
+        <mesh filename="package://hero_description/meshes/base_link.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <collision>    
+      <origin xyz="0 0 0" rpy="0 0 ${PI}" />
+      <geometry>
+        <mesh filename="package://hero_description/meshes/base_link.dae" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.087" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.00003312" ixy="0" ixz="0" 
+	           iyy="0.00003732" iyz="0"
+               izz="0.00003632" />
+    </inertial>
+  </link>
+
+  <!--  here was the hat joint and link -->
+  <link name="hat_link" >
+    <visual>    
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://hero_description/meshes/hat.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <collision>    
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://hero_description/meshes/hat.dae" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.010" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+         <inertia ixx="0.00000003312" ixy="0" ixz="0" 
+	           iyy="0.00000003732" iyz="0"
+               izz="0.00000003632" />
+         </inertial>
+  </link>
+
+
+  <!--  here was the left wheel joint and link -->
+  <joint name="hat_joint" type="fixed">
+      <origin xyz="0.0001 0 0.038" rpy="0 0 0" />
+      <parent link="base_link"/>
+      <child link="hat_link"/>
+  </joint>
+
+
+  
+  <joint name="left_wheel_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="left_wheel_link"/>
+      <origin xyz="0 ${-wheel_separation/2} 0" rpy="0 0 0" />
+      <axis xyz="0 1 0" />
+      <limit effort="1" velocity="0.3"/>
+      <!--safety_controller  k_velocity="10" /-->
+      <dynamics damping="0.0" friction="0.0" />   
+  </joint>
+
+   <link name="left_wheel_link" >
+    <visual>    
+      <origin xyz="0 0 0.0" rpy="${-PI/2} 0 0" />
+      <geometry>
+        <mesh filename="package://hero_description/meshes/wheel.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <collision>    
+      <origin xyz="0 0 0.0" rpy="${-PI/2} 0 0" />
+      <geometry>
+        <mesh filename="package://hero_description/meshes/wheel.dae" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.010" />
+      <origin xyz="0 0 0" rpy="${-PI/2} 0 0"/> 
+      <inertia ixx="0.00000129651975" ixy="0" ixz="0" 
+	           iyy="0.000001296233625" iyz="0"
+               izz="0.00000255469825" />
+    </inertial>
+  </link>
+
+ 
+
+  <!--  here was the right wheel joint and link -->
+  <joint name="right_wheel_joint" type="continuous">
+      <axis xyz="0 1 0" />
+      <limit effort="1" velocity="0.3"/>
+      <dynamics damping="0.0" friction="0" />
+      <origin xyz="0 ${wheel_separation/2} 0" rpy="0 0 0" />
+      <parent link="base_link"/>
+      <child link="right_wheel_link"/>
+  </joint>
+
+   <link name="right_wheel_link" >
+    <visual>    
+      <origin xyz="0 0 0.0" rpy="${PI/2} 0 0" />
+      <geometry>
+        <mesh filename="package://hero_description/meshes/wheel.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <collision>    
+      <origin xyz="0 0 0.0" rpy="${PI/2} 0 0" />
+      <geometry>
+        <mesh filename="package://hero_description/meshes/wheel.dae" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.010" />
+      <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
+      <inertia ixx="0.00000129651975" ixy="0" ixz="0" 
+	           iyy="0.000001296233625" iyz="0"
+               izz="0.00000255469825" />
+      </inertial>
+  </link>
+
+  <!--joint name="board_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0 0 ${height3 - axel_offset/2}" rpy="0 0 0"/>
+    <parent link="link3"/>
+    <child link="hokuyo_link"/>
+  </joint-->
+
+  <!-- Hokuyo Laser -->
+  <!--link name="board_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link-->
+
+ 
+ <transmission name="left_wheel_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_wheel_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="left_wheel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+      <!--hardwareInterface>VelocityJointInterface</hardwareInterface-->
+    </actuator>
+  </transmission>
+
+  <transmission name="right_wheel_tran">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_wheel_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="right_wheel_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+      <!--hardwareInterface>VelocityJointInterface</hardwareInterface-->
+    </actuator>
+  </transmission>
+</robot>

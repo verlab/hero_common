@@ -1,0 +1,63 @@
+<!--?xml version="1.0"?-->
+<robot>
+<!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <!--robotNamespace>/</robotNamespace-->
+    </plugin>
+  </gazebo>
+
+<gazebo>
+  <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+    <!--robotNamespace>/</robotNamespace-->
+    <alwaysOn>true</alwaysOn>
+    <updateRate>100</updateRate>
+    <leftJoint>left_wheel_joint</leftJoint>
+    <rightJoint>right_wheel_joint</rightJoint>
+    <wheelSeparation>0.0623</wheelSeparation>
+    <wheelDiameter>0.0496</wheelDiameter>
+    <torque>0.3</torque>
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryTopic>odom</odometryTopic>
+    <odometryFrame>odom</odometryFrame>
+    <odometrySource>world</odometrySource>
+    <robotBaseFrame>base_link</robotBaseFrame>
+
+    <rosDebugLevel>Debug</rosDebugLevel>
+
+    <legacyMode>true</legacyMode>
+    <publishOdomTF>true</publishOdomTF>
+    <publishWheelTF>true</publishWheelTF>
+    <publishWheelJointState>false</publishWheelJointState>
+    <wheelAcceleration>0</wheelAcceleration>
+    <publishTf>true</publishTf>
+    <wheelTorque>0.3</wheelTorque>
+  </plugin>
+</gazebo>
+
+<!-- Color plugin -->
+<gazebo reference='hat_link'>
+    <visual>
+    <plugin name="gazebo_ros_model_color" filename="libgazebo_ros_model_color.so">
+        <robotNamespace></robotNamespace>
+        <serviceName>/hat_color</serviceName>
+        <color>0.4 0.0 0.0 1.0</color>
+    </plugin>
+    </visual>
+</gazebo>
+
+<!-- IMU plugin -->
+<gazebo>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+      <alwaysOn>true</alwaysOn>
+      <bodyName>base_link</bodyName>
+      <topicName>imu</topicName>
+      <serviceName>imu_service</serviceName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <updateRate>20.0</updateRate>
+      <xyzOffset>0 0 0</xyzOffset>
+      <rpyOffset>0 0 0</rpyOffset>
+    </plugin>
+</gazebo>
+
+</robot>
