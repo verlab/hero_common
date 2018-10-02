@@ -5,6 +5,7 @@
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <!--robotNamespace>/</robotNamespace-->
+      <legacyModeNS>true</legacyModeNS>
     </plugin>
   </gazebo>
 
@@ -41,7 +42,7 @@
       <plugin name="gazebo_ros_model_color" filename="libgazebo_ros_model_color.so">
         <!--robotNamespace>/</robotNamespace-->
         <serviceName>hat_color</serviceName>
-        <color>0.4 0.0 0.0 1.0</color>
+        <color>1.0 1.0 1.0 1.0</color>
       </plugin>
     </visual>
   </gazebo>

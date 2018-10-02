@@ -21,15 +21,12 @@
                     <max>0.20</max>
                     <resolution>0.01</resolution>
                 </range>
-                <noise>
-                    <type>gaussian</type>
-                    <mean>0.0</mean>
-                    <stddev>0.001</stddev>
-                </noise>
             </ray>
             <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
                 <topicName>laser_scan</topicName>
                 <frameName>laser_link</frameName>
+                <gaussianNoise>0.001</gaussianNoise>
+                <updateRate>30</updateRate>
             </plugin>
         </sensor>
     </gazebo>
