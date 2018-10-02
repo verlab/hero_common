@@ -9,8 +9,8 @@
   </include>
 
   <include file="$(find hero_gazebo)/launch/hero_spawn.launch">
-    <arg name="x" value="0.5"/>
-    <arg name="y" value="0.5"/>
+    <arg name="x" value="1"/>
+    <arg name="y" value="1"/>
     <arg name="z" value="0"/>
     <arg name="id" value="0"/>
   </include>
