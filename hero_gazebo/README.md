@@ -13,15 +13,15 @@ We provide HeRo simulations on Gazebo.
 ```sh
 $ roslaunch hero_gazebo gazebo_bringup.launch 
 ```
-![system](hero_resources/media/images/gazebo_1.png)
-![system](hero_resources/media/images/gazebo_2.png)
+![system](../hero_resources/media/images/gazebo_1.png)
+![system](../hero_resources/media/images/gazebo_2.png)
 
 - If you want to spawn another robot, just use the following command. It's important set the argument id for every robot that you spawn.
 ```sh
 $ roslaunch hero_gazebo hero_spawn.launch id:=1 y:=-0.8 x:=1.8
 ```
-![system](hero_resources/media/images/gazebo_mul.png)
-![system](hero_resources/media/images/gazebo_3.png)
+![system](../hero_resources/media/images/gazebo_mul.png)
+![system](../hero_resources/media/images/gazebo_3.png)
 
 ## Configurations
 Feel free to disable some unusable sensors. I believe that the easy way to do that is commenting some includes on robot.urdf.xacro, in hero_descriptions. For example, the following hero description will disable the imu and laser.
