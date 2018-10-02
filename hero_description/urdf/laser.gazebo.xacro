@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Laser plugin -->
+    <gazebo reference="laser_link">
+        <sensor type="gpu_ray" name="head_laser_sensor">
+            <pose>0 0 0.031 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>40</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>8</samples>
+                        <resolution>1.2</resolution>
+                        <min_angle>${-PI}</min_angle>
+                        <max_angle>${PI}</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.038</min>
+                    <max>0.20</max>
+                    <resolution>0.01</resolution>
+                </range>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.001</stddev>
+                </noise>
+            </ray>
+            <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
+                <topicName>laser_scan</topicName>
+                <frameName>laser_link</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+</robot>

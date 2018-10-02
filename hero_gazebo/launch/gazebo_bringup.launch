@@ -1,8 +1,4 @@
 <launch>
-   <arg name="x" default="0"/>
-  <arg name="y" default="0"/>
-  <arg name="z" default="0"/>
-  <arg name="id" default="0"/>
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="verbose" value="true"/>
@@ -12,16 +8,11 @@
     <!-- more default parameters can be changed here -->
   </include>
 
-  <group ns="hero_$(arg id)">
-    <!-- Convert an xacro and put on parameter server -->
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find hero_description)/robot/hero.urdf.xacro" />
-    <!-- Spawn a robot into Gazebo -->
-    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_$(arg id) -x $(arg x) -y $(arg y) -z $(arg z) -param robot_description" />
-    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
-          <param name="publish_frequency" type="double" value="40.0" />
-    </node>
-    <!-- Script to blink heros hat -->
-    <node name="blink_controller" pkg="hero_description" type="blink_controller.py" args="hero_$(arg id)" output="screen"/>
-</group>
+  <include file="$(find hero_gazebo)/launch/hero_spawn.launch">
+    <arg name="x" value="0.5"/>
+    <arg name="y" value="0.5"/>
+    <arg name="z" value="0"/>
+    <arg name="id" value="0"/>
+  </include>
 
-  </launch>
+</launch>

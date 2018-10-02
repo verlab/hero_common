@@ -1,174 +1,109 @@
-<!--?xml version="1.0"?-->
-<robot> 
-  <!-- Some properties of HERO -->
-  <property name="PI" value="3.1415926535897931" />
-  <property name="wheel_separation" value="0.0623" />
-  <property name="wheel_radius" value="0.0496" />
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- Here was the base link definitions -->
-  <link name="base_link" >
-    <visual>    
+  <link name="base_link">
+    <visual>
       <origin xyz="0 0 0" rpy="0 0 ${PI}" />
       <geometry>
         <mesh filename="package://hero_description/meshes/base_link.dae" scale="1 1 1"/>
       </geometry>
     </visual>
-    <collision>    
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 ${PI}" />
       <geometry>
-        <mesh filename="package://hero_description/meshes/base_link.dae" scale="1 1 1"/>
+        <box size="0.068 0.068 0.048"/>
       </geometry>
     </collision>
     <inertial>
       <mass value="0.090" />
-      <origin xyz="0 0 -0.01" rpy="0 0 0"/>
-      <inertia ixx="0.00003312" ixy="0" ixz="0" 
-	           iyy="0.00003732" iyz="0"
-               izz="0.00003632" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <xacro:box_inertia m="0.090" x="0.068" y="0.068" z="0.055"/>
     </inertial>
   </link>
 
   <!--  Here was the hat joint and link -->
   <joint name="hat_joint" type="fixed">
-      <origin xyz="0.0001 0 0.038" rpy="0 0 0" />
-      <parent link="base_link"/>
-      <child link="hat_link"/>
+    <origin xyz="0.0001 0 0.038" rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child link="hat_link"/>
   </joint>
-  <link name="hat_link" >
-    <visual>    
+  <link name="hat_link">
+    <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://hero_description/meshes/hat.dae" scale="1 1 1"/>
       </geometry>
     </visual>
-    <collision>    
+    <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://hero_description/meshes/hat.dae" scale="1 1 1"/>
+        <box size="0.068 0.068 0.02"/>
       </geometry>
     </collision>
     <inertial>
       <mass value="0.010" />
       <origin xyz="0 0 0" rpy="0 0 0"/>
-         <inertia ixx="0.00000003312" ixy="0" ixz="0" 
-	           iyy="0.00000003732" iyz="0"
-               izz="0.00000003632" />
-         </inertial>
+      <xacro:box_inertia m="0.010" x="0.07" y="0.07" z="0.02"/>
+    </inertial>
   </link>
 
   <!--  Here was the left wheel joint and link -->
   <joint name="left_wheel_joint" type="continuous">
-      <parent link="base_link"/>
-      <child link="left_wheel_link"/>
-      <origin xyz="0 ${-wheel_separation/2} 0.0005" rpy="0 0 0" />
-      <axis xyz="0 1 0" />
-      <limit effort="1" velocity="0.3"/>
-      <!--safety_controller  k_velocity="10" /-->
-      <dynamics damping="0.0" friction="0.0" />   
+    <parent link="base_link"/>
+    <child link="left_wheel_link"/>
+    <origin xyz="0 ${-wheel_separation/2} 0.0005" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit effort="1" velocity="0.3"/>
+    <dynamics damping="0.0" friction="0.0" />
   </joint>
-   <link name="left_wheel_link" >
-    <visual>    
+  <link name="left_wheel_link">
+    <visual>
       <origin xyz="0 0 0.0" rpy="${-PI/2} 0 0" />
       <geometry>
         <mesh filename="package://hero_description/meshes/wheel.dae" scale="1 1 1"/>
       </geometry>
     </visual>
-    <collision>    
+    <collision>
       <origin xyz="0 0 0.0" rpy="${-PI/2} 0 0" />
       <geometry>
-        <mesh filename="package://hero_description/meshes/wheel.dae" scale="1 1 1"/>
+        <cylinder length="0.008" radius="${wheel_diameter/2.0}"/>
       </geometry>
     </collision>
     <inertial>
       <mass value="0.010" />
-      <origin xyz="0 0 0" rpy="${-PI/2} 0 0"/> 
-      <inertia ixx="0.00000129651975" ixy="0" ixz="0" 
-	           iyy="0.000001296233625" iyz="0"
-               izz="0.00000255469825" />
+      <origin xyz="0 0 0" rpy="${-PI/2} 0 0"/>
+      <xacro:cylinder_inertia m="0.010" h="0.008" r="${wheel_diameter/2.0}"/>
     </inertial>
   </link>
 
   <!--  Here was the right wheel joint and link -->
   <joint name="right_wheel_joint" type="continuous">
-      <axis xyz="0 1 0" />
-      <limit effort="1" velocity="0.3"/>
-      <dynamics damping="0.0" friction="0" />
-      <origin xyz="0 ${wheel_separation/2} 0.0005" rpy="0 0 0" />
-      <parent link="base_link"/>
-      <child link="right_wheel_link"/>
+    <axis xyz="0 1 0" />
+    <limit effort="1" velocity="0.3"/>
+    <dynamics damping="0.0" friction="0" />
+    <origin xyz="0 ${wheel_separation/2} 0.0005" rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child link="right_wheel_link"/>
   </joint>
-   <link name="right_wheel_link" >
-    <visual>    
+  <link name="right_wheel_link">
+    <visual>
       <origin xyz="0 0 0.0" rpy="${PI/2} 0 0" />
       <geometry>
         <mesh filename="package://hero_description/meshes/wheel.dae" scale="1 1 1"/>
       </geometry>
     </visual>
-    <collision>    
+    <collision>
       <origin xyz="0 0 0.0" rpy="${PI/2} 0 0" />
       <geometry>
-        <mesh filename="package://hero_description/meshes/wheel.dae" scale="1 1 1"/>
+        <cylinder length="0.008" radius="${wheel_diameter/2.0}"/>
       </geometry>
     </collision>
     <inertial>
       <mass value="0.010" />
       <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
-      <inertia ixx="0.00000129651975" ixy="0" ixz="0" 
-	           iyy="0.000001296233625" iyz="0"
-               izz="0.00000255469825" />
-      </inertial>
-  </link>
-
-  <joint name="laser_joint" type="fixed">
-    <axis xyz="0 1 0" />
-    <origin xyz="0 0 0.031" rpy="0 0 0"/>
-    <parent link="base_link"/>
-    <child link="laser_link"/>
-  </joint>
-
-  <!-- Here is the laser link -->
-  <link name="laser_link">
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.001 0.001 0.001"/>
-      </geometry>
-    </collision>
-
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.001 0.001 0.001"/>
-      </geometry>
-    </visual>
-
-    <inertial>
-      <mass value="1e-5" />
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+      <xacro:cylinder_inertia m="0.010" h="0.008" r="${wheel_diameter/2.0}"/>
     </inertial>
   </link>
 
- <!-- Here is the left joint transmission to gazebo -->
- <transmission name="left_wheel_tran">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="left_wheel_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="left_wheel_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </actuator>
- </transmission>
- <!-- Here is the right joint transmission to gazebo -->
- <transmission name="right_wheel_tran">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="right_wheel_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="right_wheel_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </actuator>
-  </transmission>
 </robot>
