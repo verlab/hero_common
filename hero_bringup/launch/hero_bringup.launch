@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="rosserial_python" type="serial_node.py" name="hero_bringup" output="screen">
+        <param name="fork_server" value="False"/>
+        <param name="port" value="tcp"/>
+        <param name="tcp_port" value="11411"/>
+    </node>
+</launch>
