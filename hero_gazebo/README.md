@@ -6,7 +6,7 @@ We provide HeRo simulations on Gazebo.
 - Odometry
 - IMU
 - IR Proximity range (simulated with laser)
-
+![system](../hero_resources/media/images/gazebo_rqt_graph.png)
 
 ## How to use
 - Open the terminal and type the following command. This command will initiate Gazebo and spawn on HeRo using potential field controller as an example.
