@@ -1,0 +1,12 @@
+{
+  "name": "BMP180",
+  "keywords": "BMP180, barometric, pressure, atmospheric, sensor, i2c",
+  "description": "Library for BMP180 barometric atmospheric pressure sensor, derived from Sparkfun's version with some added fixes",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/LowPowerLab/SFE_BMP180.git"
+  },
+  "frameworks": "arduino",
+  "platforms": "atmelavr"
+}
