@@ -6,7 +6,6 @@
 #include <Encoder.h>         /* https://github.com/PaulStoffregen/Encoder */
 #include <PID_v1.h>          /* http://playground.arduino.cc/Code/PIDLibrary */
 #include <PID_AutoTune_v0.h> /* https://playground.arduino.cc/Code/PIDAutotuneLibrary */
-#include <Filters.h>
 
 #include <geometry_msgs/Twist.h>
 #include <nav_msgs/Odometry.h>
@@ -21,25 +20,24 @@
 
 /* Robot Params */
 #define WHEEL_DIAMETER 4.955     // Wheel diameter in cm.
-#define WHEEL_SEPARATION 6.227      // Separation between wheels (cm).
-#define WHEEL_DISTANCE 0.06227    // Distance between wheels in meters (axis length); it's the same value as "WHEEL_SEPARATION" but expressed in meters.
+#define WHEEL_SEPARATION 6.335      // Separation between wheels (cm).
+#define WHEEL_DISTANCE 0.06335    // Distance between wheels in meters (axis length); it's the same value as "WHEEL_SEPARATION" but expressed in meters.
 #define WHEEL_CIRCUMFERENCE ((WHEEL_DIAMETER * M_PI)/100.0)    // Wheel circumference (meters).
 #define MOT_STEP_DIST (WHEEL_CIRCUMFERENCE/288.0)      // Distance for each motor step (meters); a complete turn is 288 steps (0.000535598 meters per step (m/steps)).
 
 
-FilterOnePole l_filterLowpass( LOWPASS, 2 );
-FilterOnePole r_filterLowpass( LOWPASS, 2 );
-
 /* Motors Setup */
+boolean halt_motor = false;
 Servo l_motor;
 Encoder l_encoder(14, 10);
+double encoder_gain = 0.06; // max 1.0
 int l_motor_fix = 0.0;
 double l_motor_speed = 0.0;
 double l_motor_control = 0.0;
 double l_encoder_speed = 0.0;
-float kp = 1200, ki = 7.5, kd = 3.5;
+float kp = 1200, ki = 7.5, kd = 3.5; // default values for pid
 PID l_motor_pid(&l_encoder_speed, &l_motor_control, &l_motor_speed, kp, ki, kd, DIRECT); // blue plot
-PID_ATune aTune(&l_encoder_speed, &l_motor_control);
+PID_ATune l_aTune(&l_encoder_speed, &l_motor_control);
 
 Servo r_motor;
 Encoder r_encoder(12, 13);
@@ -48,6 +46,7 @@ double r_motor_speed = 0.0;
 double r_motor_control = 0.0;
 double r_encoder_speed = 0.0;
 PID r_motor_pid(&r_encoder_speed, &r_motor_control, &r_motor_speed, kp, ki, kd, DIRECT); // red plot
+PID_ATune r_aTune(&r_encoder_speed, &r_motor_control);
 
 // autotuner defaults
 double aTuneStep = 20;
@@ -121,27 +120,16 @@ void setup() {
   r_motor_pid.SetSampleTime(10); // 10 microseconds
   r_motor_pid.SetMode(AUTOMATIC);
 
-  // set control type for autotuner
-  // general considerations:
-  // ZIEGLER_NICHOLS_PI is the default and is intended for good 
-  //   noise rejection rather than servo control
-  //   it is less robust than other rules, often
-  //   with higher proportional gain and lower integral gain and often gives oscillatory results for lag-dominated processes
-  // TYREUS_LUYBEN_PI is more conservative and considered better for lag-dominated processes
-  // CIANCONE_MARLIN_PI is suggested for delay-dominated processes
-  // AMIGOF_PI gives acceptable conservative tunings for most processes
-  // PI tunings perform well for delay dominated processes
-  // for lag-dominated processes PID tunings are better because
-  // the derivative term allows higher integral gain
-  //aTune.SetControlType(PID_ATune::AMIGOF_PI);
-  //aTune.SetControlType(PID_ATune::TYREUS_LUYBEN_PID);
-  //aTune.SetControlType(PID_ATune::ZIEGLER_NICHOLS_PID);
-  //aTune.SetControlType(PID_ATune::NO_OVERSHOOT_PID);
-  aTune.SetControlType(PID_ATune::SOME_OVERSHOOT_PID);
+  l_aTune.SetControlType(PID_ATune::SOME_OVERSHOOT_PID); // * set control type for autotuner
+  r_aTune.SetControlType(PID_ATune::SOME_OVERSHOOT_PID); // * set control type for autotuner
 
-  aTune.SetNoiseBand(aTuneNoise); // * the autotune will ignore signal chatter smaller than this value this should be accurately set
-  aTune.SetOutputStep(aTuneStep); // * how far above and below the starting value will the output step?   
-  aTune.SetLookbackSec((int)aTuneLookBack); // * how far back are we looking to identify peaks
+  l_aTune.SetNoiseBand(aTuneNoise); // * the autotune will ignore signal chatter smaller than this value this should be accurately set
+  l_aTune.SetOutputStep(aTuneStep); // * how far above and below the starting value will the output step?   
+  l_aTune.SetLookbackSec((int)aTuneLookBack); // * how far back are we looking to identify peaks
+  
+  r_aTune.SetNoiseBand(aTuneNoise); // * the autotune will ignore signal chatter smaller than this value this should be accurately set
+  r_aTune.SetOutputStep(aTuneStep); // * how far above and below the starting value will the output step?   
+  r_aTune.SetLookbackSec((int)aTuneLookBack); // * how far back are we looking to identify peaks
 
   /* Start ROS communication module */
   uint16_t ROS_MASTER_PORT = 11411;
@@ -190,8 +178,8 @@ void setup() {
   }
   
   /* Attach motors */
-  l_motor.attach(5);
-  r_motor.attach(16);
+  //l_motor.attach(5);
+  //r_motor.attach(16);
 
   /* Halt motors */
   l_motor_fix = 1500 - (int) EEPROM.read(1);
@@ -207,39 +195,58 @@ void setup() {
   
   /* ROS LOG */
   //Serial.println("\n\n Welcome to hero odometry test! ");
-  sprintf(buf,"\x1b[6;37;42m Welcome to Hero #1 odometry test! \x1b[0m");
+  sprintf(buf,"\x1b[1;37;43m Welcome to Hero #1 odometry test! \x1b[0m");
   nh.loginfo(buf);
   lastTime = micros();
 }
+
+
 
 /************************************************************************
  * M A I N  L O 0 P
  ************************************************************************/
 long motorPositionRight = 0;
 long motorPositionLeft = 0;
+bool l_done, r_done;
 void loop() {
     if (tuning){
       if ((millis() - tunning_steady_state) > 10000){ // 10 secons to steady state
-        if (aTune.Runtime() != 0){
+        if (!l_done) l_done = l_aTune.Runtime();
+        if (!r_done) r_done = r_aTune.Runtime();
+        if (l_done && r_done){
           tuning = false; // we're done, set the tuning parameters
-          kp = aTune.GetKp()*2.2;
-          ki = aTune.GetKi()*0.05;
-          kd = aTune.GetKd()*0.001;
-          if (kp > 0 && kp < 3000){
+          kp = l_aTune.GetKp()*3.2;
+          ki = l_aTune.GetKi()*0.07;
+          kd = l_aTune.GetKd()*0.002;
+          if (kp > 100 && kp < 2500){ // * Tuning is successed
             l_motor_pid.SetTunings(kp, ki, kd);
             l_motor_pid.SetMode(l_motor_pid.GetMode());
-            aTune.Cancel();
+            l_aTune.Cancel();
+          } else{ // * Tuning is failure
+            nh.loginfo("\x1b[1;31;41m Left Motor Tuning Failure! \x1b[0m");
           }
-          sprintf(buf,"\x1b[6;37;42m Best PID params: kp, %f, ki, %f, kd,%f\x1b[0m", kp, ki, kd);
+          sprintf(buf,"\x1b[1;37;43m Left Motor Best PID params: kp, %f, ki, %f, kd,%f\x1b[0m", kp, ki, kd);
           nh.loginfo(buf);
+          kp = r_aTune.GetKp()*3.2;
+          ki = r_aTune.GetKi()*0.07;
+          kd = r_aTune.GetKd()*0.002;
+          if (kp > 100 && kp < 2500){ // * Tuning is successed
+            r_motor_pid.SetTunings(kp, ki, kd);
+            r_motor_pid.SetMode(r_motor_pid.GetMode());
+            r_aTune.Cancel();
+          } else{ // * Tuning is failure
+            nh.loginfo("\x1b[1;31;41m Right Motor Tuning Failure! \x1b[0m");
+          }
+          sprintf(buf,"\x1b[1;37;43m Right Motor Best PID params: kp, %f, ki, %f, kd,%f\x1b[0m", kp, ki, kd);
+            nh.loginfo(buf);
         }
       }
         l_motor.writeMicroseconds((int)l_motor_control + l_motor_fix);
-        r_motor.writeMicroseconds((int)l_motor_control + l_motor_fix);
+        r_motor.writeMicroseconds((int)-r_motor_control + r_motor_fix);
     }
     else{
       /* PID control loop */
-      control(); 
+      if (!halt_motor) control(); 
     }
     
     /* Update motor position */
@@ -296,8 +303,10 @@ void update_odom(void){
   
   /* Get encoder speed in m/s */
   /* Complementary filter */
-  l_encoder_speed = 0.94 * l_encoder_speed + 0.06 * (double) leftdist / ((double)(currentTime-lastTime)/1000000.0);
-  r_encoder_speed = 0.94 * r_encoder_speed + 0.06 * (double) rightdist / ((double)(currentTime-lastTime)/1000000.0);
+  l_encoder_speed = ((1.0 - encoder_gain) * l_encoder_speed + encoder_gain * (double) leftdist / ((double)(currentTime-lastTime)/1000000.0));
+  l_encoder_speed *= 5/3;
+  r_encoder_speed = ((1.0 - encoder_gain) * r_encoder_speed + encoder_gain * (double) rightdist / ((double)(currentTime-lastTime)/1000000.0));
+  r_encoder_speed *= 5/3;
 
   odom_msg.twist.twist.linear.y = l_encoder_speed;
   odom_msg.twist.twist.linear.z = r_encoder_speed;
@@ -308,24 +317,33 @@ void update_odom(void){
   lastTime = micros();
 
   /* Compute Odometry */
-  if (rightStepsDiff == leftStepsDiff){
+  /*if (rightStepsDiff == leftStepsDiff){
     deltaSteps = leftdist;
     deltaTheta = 0.0;
     xPos += deltaSteps * cos(theta);
     yPos += deltaSteps * sin(theta);
   } 
-  else{
+  else{*/
     deltaTheta =  (rightdist - leftdist) / WHEEL_DISTANCE; /* Expressed in radiant. */ 
-    deltaSteps = WHEEL_DISTANCE * (rightdist + leftdist) / (2*(rightdist - leftdist)); /* Expressed in meters. */ 
+    //deltaSteps = WHEEL_DISTANCE * (rightdist + leftdist) / (2*(rightdist - leftdist)); /* Expressed in meters. */ 
     
-    xPos += deltaSteps * (sin(theta + deltaTheta) - sin(theta)); /* Expressed in meters. */ 
-    yPos += deltaSteps * (-cos(theta + deltaTheta) + cos(theta)); /* Expressed in meters. */ 
+    //xPos += deltaSteps * (sin(theta + deltaTheta) - sin(theta)); /* Expressed in meters. */ 
+    //yPos += deltaSteps * (-cos(theta + deltaTheta) + cos(theta)); /* Expressed in meters. */ 
+    
+    deltaSteps = (rightdist + leftdist) / (2.0); /* epuck-like. */ 
+    xPos += deltaSteps * cos(theta + deltaTheta/2.0);
+    yPos += deltaSteps * sin(theta + deltaTheta/2.0);
+    
     theta += deltaTheta; /* Expressed in radiant. */ 
-  }
+    if (theta > M_PI) theta = theta - 2.0 * M_PI;
+    if (theta < -M_PI) theta = theta + 2.0 * M_PI;
+    
+  //}
 
   /* Update odom topic */
   odom_msg.pose.pose.position.x = xPos;       
   odom_msg.pose.pose.position.y = yPos;
+  odom_msg.pose.pose.position.z = theta;
 
   /* Since all odometry is 6DOF we'll need a quaternion created from yaw. */
   odom_msg.pose.pose.orientation = tf::createQuaternionFromYaw(theta);
@@ -354,21 +372,38 @@ void update_odom(void){
   
  }
 
+
 /************************************************************************
  * C A L L B A C K S
  ************************************************************************/
 void cmdvel_callback(const geometry_msgs::Twist& msg){
   /* Get robot velocities */
-  float linear = msg.linear.x;
-  float angular = msg.angular.z;
+  float linear = max(min((double)msg.linear.x, 0.25), -0.25); // max linear speed 0.25 m/s
+  float angular = max(min((double)msg.angular.z, 0.08), -0.08); // max angular speed 0.08 rad/s
   
   /* Inverse Kinematic of a Differential Drive Robot */
   l_motor_speed = (double)(2.0 * linear - WHEEL_SEPARATION * angular) / 2.0;
   r_motor_speed = (double)(2.0 * linear + WHEEL_SEPARATION * angular) / 2.0;
-  
+
+  if (linear == 0.0 && angular == 0.0){
+    l_motor.detach();
+    r_motor.detach();
+    l_motor_control = 0;
+    r_motor_control = 0;
+    halt_motor = true;
+    //nh.loginfo("\x1b[1;37;43m[HERO 1] Detach motors!\x1b[0m");
+  }else{
+    l_motor.attach(5);
+    r_motor.attach(16);
+    halt_motor = false;
+    //nh.loginfo("\x1b[1;37;43m[HERO 1] Attach motors!\x1b[0m");
+  }
+  // Disable tunning if still receiving commands
   tuning = false;
-  aTune.Cancel();
+  l_aTune.Cancel();
+  r_aTune.Cancel();
 }
+
 
 /* Set odometry initial position */
 void set_odom_callback( const hero_driver::SetOdom::Request& req, hero_driver::SetOdom::Response& res){
@@ -385,6 +420,7 @@ void set_odom_callback( const hero_driver::SetOdom::Request& req, hero_driver::S
   res.message = "Odometry was changed!";
   nh.loginfo("[HERO] Odometry was changed!");
 }
+
 
 /* Fix motors halt position */
 void fix_motors_callback(const std_srvs::Trigger::Request& req, std_srvs::Trigger::Response& res){
@@ -403,16 +439,20 @@ void fix_motors_callback(const std_srvs::Trigger::Request& req, std_srvs::Trigge
   EEPROM.end();
 }
 
+
 /* Autotune PID Motors */
 void pid_calibration_callback(const std_srvs::Trigger::Request& req, std_srvs::Trigger::Response& res){
-  nh.loginfo("Tunning set to true!");
+  nh.loginfo("\x1b[1;37;43m[HERO 1] Starting Motors Auto Tuning! Wait... \x1b[0m");
+  l_motor.attach(5);
+  r_motor.attach(16);
   tuning = false;
-  aTune.Cancel();
+  l_aTune.Cancel();
+  r_aTune.Cancel();
   
   l_motor_control = 50; // this should be outputStart in Autotune
-  sprintf(buf,"Output start %f", l_motor_control);
-  nh.loginfo(buf);
-  
+  r_motor_control = 50; // this should be outputStart in Autotune
+  l_done = false;
+  r_done = false;
   tunning_steady_state = millis();
   tuning = true;
   res.message = "PID Autotuning!";
