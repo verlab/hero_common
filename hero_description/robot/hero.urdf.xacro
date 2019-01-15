@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="hero_0">
+  <!-- Properties  -->
+  <xacro:include filename="$(find hero_description)/urdf/common.xacro" />
+  <!-- Initiate HeRo model and controller -->
+  <xacro:include filename="$(find hero_description)/urdf/hero.xacro" />
+  <xacro:include filename="$(find hero_description)/urdf/hero.gazebo.xacro" />
+  <xacro:include filename="$(find hero_description)/urdf/hero.transmissions.xacro" />
+  <!-- Initiate Laser and IMU sensors -->
+  <xacro:include filename="$(find hero_description)/urdf/laser.xacro" />
+  <xacro:include filename="$(find hero_description)/urdf/laser.gazebo.xacro" />
+  <xacro:include filename="$(find hero_description)/urdf/imu.gazebo.xacro" />
+
+</robot>

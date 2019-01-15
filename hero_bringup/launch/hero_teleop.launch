@@ -1,0 +1,7 @@
+<!-- Use linear speed 0.2 m/s and rotation speed 0.040 rads/s -->
+<launch>
+    <arg name="id" default="0" />
+    <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_twist_keyboard" output="screen">
+        <remap from="/cmd_vel" to="/hero_$(arg id)/cmd_vel"/>
+    </node>
+</launch>

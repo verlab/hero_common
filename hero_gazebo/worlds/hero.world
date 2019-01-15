@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- Testing the automatic population of objects -->
+    <population name="cardbox_population">
+      <model name="cardbox">
+        <include>
+          <static>true</static>
+          <uri>model://cardboard_box</uri>
+        </include>
+      </model>
+      <pose>0 0 0 0 0 0</pose>
+      <box>
+        <size>4 4 0.01</size>
+      </box>
+      <model_count>16</model_count>
+      <distribution>
+        <type>uniform</type>
+      </distribution>
+    </population>
+  </world>
+</sdf>
