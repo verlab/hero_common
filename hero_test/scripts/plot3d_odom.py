@@ -16,6 +16,8 @@ parser.add_argument('--robot', type=str, help='Choise the robot (hero or epuck)'
 parser.add_argument('--time_min', type=float, help='Minimal time to cut')
 parser.add_argument('--time_max', type=float, help='Maximal time to cut')
 parser.add_argument('--align', type=float, help='Alignment for odometry yaw')
+parser.add_argument('--dim', type=float, help='Dimentions')
+parser.add_argument('--name', type=float, help='Robot')
 
 args = parser.parse_args()
 
@@ -88,57 +90,66 @@ for i in range(1, len(hero_odometry)):
     odom_fix = np.append(odom_fix, [fix], axis = 0)
 
 ############ Plot 1 - X x Y ############
-plt.subplot(221)
-plt.plot(odom_fix[:,1], odom_fix[:,2],  linewidth=2.0, label='Odom', color='r')
+#plt.figure()
+#plt.subplot(221)
+plt.plot(odom_fix[:,1], odom_fix[:,2],  linewidth=2.0, label='Odometry', color='r')
 plt.plot(ground_fix[:,1], ground_fix[:,2],  linewidth=2.0, label='Groundtruth', color='g')
 plt.rc('font', family='serif')
 plt.grid(True)
 plt.legend()
 plt.legend(loc=0, prop={'size': 16})
-plt.title('Odometry Comparison - XY Plot', size = 16)
+plt.title('Odometry Comparison in XY Plot', size = 22)
+plt.ylim(-args.dim,args.dim)
+plt.xlim(-args.dim,args.dim)
 
 #plt.axis([-0.6,0.6,-0.6,0.6])
-plt.xlabel("X (m)",size = 14)
-plt.ylabel('Y (m)',size = 14)
+plt.xlabel("X (m)",size = 18)
+plt.ylabel('Y (m)',size = 18)
 
 ############ Plot 2 - X x Time ############
-plt.subplot(222)
+plt.figure()
+#plt.subplot(222)
 plt.plot(odom_fix[:,0], odom_fix[:,1],  linewidth=2.0, label='Odometry', color='r')
 plt.plot(ground_fix[:, 0], ground_fix[:,1],  linewidth=2.0, label='Groudtruth', color='g')
 plt.rc('font', family='serif')
 plt.grid(True)
 plt.legend()
-#plt.ylim(-1.2,1.2)
-plt.legend(loc=0, prop={'size': 14})
-plt.title('Odometry Comparison X over Time', size = 16)
-plt.xlabel("Time (seconds)",size = 14)
-plt.ylabel('X (m)',size = 14)
+plt.ylim(-args.dim,args.dim)
+plt.legend(loc=0, prop={'size': 18})
+plt.title('Evolution of X-axis', size = 22)
+
+plt.xlabel("Time (seconds)",size = 18)
+plt.ylabel('X (m)',size = 18)
 
 ############ Plot 3 - Y x Time ############
-plt.subplot(223)
+plt.figure()
+#plt.subplot(223)
 plt.plot(odom_fix[:,0], odom_fix[:,2],  linewidth=2.0, label='Odometry', color='r')
 plt.plot(ground_fix[:, 0], ground_fix[:,2],  linewidth=2.0, label='Groudtruth', color='g')
 plt.rc('font', family='serif')
 plt.grid(True)
 plt.legend()
-#plt.ylim(-1.2,1.2)
-plt.legend(loc=0, prop={'size': 14})
-plt.title('Odometry Comparison Y over Time', size = 16)
-plt.xlabel("Time (seconds)",size = 14)
-plt.ylabel('Y (m)',size = 14)
+plt.ylim(-args.dim,args.dim)
+plt.legend(loc=0, prop={'size': 18})
+plt.title('Evolution of Y-axis', size = 22)
+plt.xlabel("Time (seconds)",size = 18)
+plt.ylabel('Y (m)',size = 18)
 
 ############ Plot 4 - Yaw x Time ############
-plt.subplot(224)
+plt.figure()
+#plt.subplot(224)
 plt.plot(odom_fix[:,0], odom_fix[:,3],  linewidth=2.0, label='Odometry', color='r')
 plt.plot(ground_fix[:, 0], ground_fix[:,3],  linewidth=2.0, label='Groudtruth', color='g')
 plt.rc('font', family='serif')
 plt.grid(True)
 plt.legend()
-#plt.ylim(-math.pi,math.pi)
-plt.legend(loc=0, prop={'size': 14})
-plt.title('Odometry Comparison Yaw over Time', size = 16)
-plt.xlabel("Time (seconds)",size = 14)
-plt.ylabel('Yaw (radians)',size = 14)
+plt.ylim(-math.pi,math.pi)
+plt.legend(loc=0, prop={'size': 18})
+plt.title('Evolution of Yaw', size = 22)
+plt.xlabel("Time (seconds)",size = 18)
+plt.ylabel('Yaw (radians)',size = 18)
+plt.xticks(fontsize=18, rotation=0)
+plt.yticks(fontsize=18, rotation=0)
 
 
 error = np.array([[0,0,0]])
@@ -146,7 +157,18 @@ for i in range(0, len(odom_fix)-1):
     idx = (np.abs(ground_fix[:,0] - odom_fix[i, 0])).argmin() # find nearest time index
     e_x = (ground_fix[idx, 1] - odom_fix[i, 1])
     e_y = (ground_fix[idx, 2] - odom_fix[i, 2])
-    e_z = (ground_fix[idx, 3] - odom_fix[i, 3])
+    if ground_fix[idx, 3] > math.pi:
+        ground_fix[idx, 3] = ground_fix[idx, 3] - 2*math.pi
+    if ground_fix[idx, 3] < -math.pi:
+        ground_fix[idx, 3] = ground_fix[idx, 3] + 2*math.pi
+
+    if odom_fix[i, 3] > math.pi:
+        odom_fix[i, 3] = odom_fix[i, 3] - 2*math.pi
+    if odom_fix[i, 3] < -math.pi:
+        odom_fix[i, 3] = odom_fix[i, 3] + 2*math.pi
+    if abs(ground_fix[idx, 3] - odom_fix[i, 3]) < math.pi/6:
+        e_z = (ground_fix[idx, 3] - odom_fix[i, 3])
+        
     error = np.append(error, [[e_x, e_y, e_z]], axis=0)
 
 ############ Statisticals ############
@@ -154,57 +176,63 @@ print('\x1b[0;33;40m Statiscticals')
 print "Groudtruth max distance: ", get_distance(ground_fix[:,1], ground_fix[:,2]), "in meters"
 print "Odometry max distance: ", get_distance(odom_fix[:,1], odom_fix[:,2]), "in meters"
 
-print "=== Error X (meters) ==="
-print "MAX:", np.max(np.abs(error[:,0]))
-print "MAE:", np.average(np.abs(error[:,0])), np.std(np.abs(error[:,0]))
-print "RMSE", np.sqrt(np.average(np.power(error[:,0], 2))), np.sqrt(np.std(np.power(error[:,0], 2)))
+print "=== Error X (cm) ==="
+print "MAX:", np.max(np.abs(error[:,0]))*100.0
+print "MAE:", np.average(np.abs(error[:,0]))*100.0, np.std(np.abs(error[:,0]))*100.0
+print "RMSE", np.sqrt(np.average(np.power(error[:,0], 2)))*100.0, np.sqrt(np.std(np.power(error[:,0], 2)))*100.0
 
-print "=== Error Y (meters) ==="
-print "MAX:", np.max(np.abs(error[:,1]))
-print "MAE:", np.average(np.abs(error[:,1])), np.std(np.abs(error[:,0]))
-print "RMSE", np.sqrt(np.average(np.power(error[:,1], 2))), np.sqrt(np.std(np.power(error[:,1], 2)))
+print "=== Error Y (cm) ==="
+print "MAX:", np.max(np.abs(error[:,1]))*100.0
+print "MAE:", np.average(np.abs(error[:,1]))*100.0, np.std(np.abs(error[:,1]))*100.0
+print "RMSE", np.sqrt(np.average(np.power(error[:,1], 2)))*100.0, np.sqrt(np.std(np.power(error[:,1], 2)))*100.0
 
-print "=== Error XY (meters) ==="
-print "MAX:", np.max(np.sqrt(np.power(error[:,0], 2) + np.power(error[:,1], 2)))
-print "MAE:", np.average(np.sqrt(np.power(error[:,0], 2) + np.power(error[:,1], 2))), np.std(np.sqrt(np.power(error[:,0], 2) + np.power(error[:,1], 2)))
-print "RMSE", np.sqrt(np.average(np.power(error[:,0], 2) + np.power(error[:,1], 2))), np.sqrt(np.std(np.power(error[:,0], 2) + np.power(error[:,1], 2)))
+print "=== Error XY (cm) ==="
+print "MAX:", np.max(np.sqrt(np.power(error[:,0], 2) + np.power(error[:,1], 2)))*100.0
+print "MAE:", np.average(np.sqrt(np.power(error[:,0], 2) + np.power(error[:,1], 2)))*100.0, np.std(np.sqrt(np.power(error[:,0], 2) + np.power(error[:,1], 2)))*100.0
+print "RMSE", np.sqrt(np.average(np.power(error[:,0], 2) + np.power(error[:,1], 2)))*100.0, np.sqrt(np.std(np.power(error[:,0], 2) + np.power(error[:,1], 2)))*100.0
 
 print "=== Error Yaw (radians) ==="
 print "MAX:", np.max(np.abs(error[:,2]))
-print "MAE:", np.average(np.abs(error[:,2])), np.std(np.abs(error[:,0]))
+print "MAE:", np.average(np.abs(error[:,2])), np.std(np.abs(error[:,2]))
 print "RMSE", np.sqrt(np.average(np.power(error[:,2], 2))), np.sqrt(np.std(np.power(error[:,2], 2)))
 print '\x1b[0m'
 
 plt.figure()
 ############ Plot 4 Error - X x Time ############
-plt.subplot(221)
+#plt.subplot(221)
 plt.plot(odom_fix[:, 0], error[:, 0],  linewidth=2.0, label='Error X', color='black')
 plt.rc('font', family='serif')
 plt.grid(True)
 plt.legend()
-plt.legend(loc=0, prop={'size': 14})
-plt.title('Error in X over Time', size = 16)
-plt.xlabel("Time (seconds)",size = 14)
-plt.ylabel('Error (meters)',size = 14)
+plt.ylim(-0.12,0.12)
+plt.legend(loc=0, prop={'size': 18})
+plt.title('Evolution of the Error in X-axis', size = 22)
+plt.xlabel("Time (seconds)",size = 18)
+plt.ylabel('Error (meters)',size = 18)
 ############ Plot 5 Error - Y x Time ############
-plt.subplot(222)
+plt.figure()
+#plt.subplot(222)
 plt.plot(odom_fix[:, 0], error[:, 1],  linewidth=2.0, label='Error Y', color='black')
 plt.rc('font', family='serif')
 plt.grid(True)
 plt.legend()
-plt.legend(loc=0, prop={'size': 14})
-plt.title('Error in Y over Time', size = 16)
-plt.xlabel("Time (seconds)",size = 14)
-plt.ylabel('Error (meters)',size = 14)
+plt.ylim(-0.12,0.12)
+plt.legend(loc=0, prop={'size': 18})
+plt.title('Evolution of the Error in Y-axis', size = 22)
+plt.xlabel("Time (seconds)",size = 18)
+plt.ylabel('Error (meters)',size = 18)
+
 ############ Plot 6 Error - Yaw x Time ############
-plt.subplot(223)
+plt.figure()
+#plt.subplot(223)
 plt.plot(odom_fix[:, 0], error[:, 2],  linewidth=2.0, label='Error Yaw', color='black')
 plt.rc('font', family='serif')
 plt.grid(True)
 plt.legend()
-plt.legend(loc=0, prop={'size': 14})
-plt.title('Error in Yaw over Time', size = 16)
-plt.xlabel("Time (seconds)",size = 14)
-plt.ylabel('Error (radians)',size = 14)
+plt.ylim(-math.pi,math.pi)
+plt.legend(loc=0, prop={'size': 18})
+plt.title('Evolution of the Error in Yaw', size = 22)
+plt.xlabel("Time (seconds)",size = 18)
+plt.ylabel('Error (radians)',size = 18)
 
 plt.show()
