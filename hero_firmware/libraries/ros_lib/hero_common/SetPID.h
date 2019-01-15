@@ -5,10 +5,10 @@
 #include <stdlib.h>
 #include "ros/msg.h"
 
-namespace hero_driver
+namespace hero_common
 {
 
-static const char SETPID[] = "hero_driver/SetPID";
+static const char SETPID[] = "hero_common/SetPID";
 
   class SetPIDRequest : public ros::Msg
   {

@@ -1,0 +1,4 @@
+float64 frequency # loop-frequency in Hz
+---
+bool success   # indicate successful run of triggered service
+string message # informational, e.g. for error messages

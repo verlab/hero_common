@@ -1,56 +1,46 @@
-#ifndef _ROS_SERVICE_SetOdom_h
-#define _ROS_SERVICE_SetOdom_h
+#ifndef _ROS_SERVICE_SetFrequency_h
+#define _ROS_SERVICE_SetFrequency_h
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
 
-namespace hero_driver
+namespace hero_common
 {
 
-static const char SETODOM[] = "hero_driver/SetOdom";
+static const char SETFREQUENCY[] = "hero_common/SetFrequency";
 
-  class SetOdomRequest : public ros::Msg
+  class SetFrequencyRequest : public ros::Msg
   {
     public:
-      typedef float _x_type;
-      _x_type x;
-      typedef float _y_type;
-      _y_type y;
-      typedef float _theta_type;
-      _theta_type theta;
+      typedef float _frequency_type;
+      _frequency_type frequency;
 
-    SetOdomRequest():
-      x(0),
-      y(0),
-      theta(0)
+    SetFrequencyRequest():
+      frequency(0)
     {
     }
 
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      offset += serializeAvrFloat64(outbuffer + offset, this->x);
-      offset += serializeAvrFloat64(outbuffer + offset, this->y);
-      offset += serializeAvrFloat64(outbuffer + offset, this->theta);
+      offset += serializeAvrFloat64(outbuffer + offset, this->frequency);
       return offset;
     }
 
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->x));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->y));
-      offset += deserializeAvrFloat64(inbuffer + offset, &(this->theta));
+      offset += deserializeAvrFloat64(inbuffer + offset, &(this->frequency));
      return offset;
     }
 
-    const char * getType(){ return SETODOM; };
-    const char * getMD5(){ return "938fa65709584ad8e77d238529be13b8"; };
+    const char * getType(){ return SETFREQUENCY; };
+    const char * getMD5(){ return "49c627ecd142a5c42775297233551ead"; };
 
   };
 
-  class SetOdomResponse : public ros::Msg
+  class SetFrequencyResponse : public ros::Msg
   {
     public:
       typedef bool _success_type;
@@ -58,7 +48,7 @@ static const char SETODOM[] = "hero_driver/SetOdom";
       typedef const char* _message_type;
       _message_type message;
 
-    SetOdomResponse():
+    SetFrequencyResponse():
       success(0),
       message("")
     {
@@ -105,15 +95,15 @@ static const char SETODOM[] = "hero_driver/SetOdom";
      return offset;
     }
 
-    const char * getType(){ return SETODOM; };
+    const char * getType(){ return SETFREQUENCY; };
     const char * getMD5(){ return "937c9679a518e3a18d831e57125ea522"; };
 
   };
 
-  class SetOdom {
+  class SetFrequency {
     public:
-    typedef SetOdomRequest Request;
-    typedef SetOdomResponse Response;
+    typedef SetFrequencyRequest Request;
+    typedef SetFrequencyResponse Response;
   };
 
 }

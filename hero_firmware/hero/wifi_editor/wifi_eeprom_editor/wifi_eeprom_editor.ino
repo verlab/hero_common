@@ -1,6 +1,9 @@
 #include <EEPROM.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
+#include <ros.h>
+
+#include <std_msgs/String.h>
 
 // WiFi Definitions
 const char WiFiAPPSK[] = "verlab1234";
@@ -29,6 +32,24 @@ struct DATA {
 };
 
 ESP8266WebServer server(80);
+
+/* Wifi setup */
+IPAddress ROS_MASTER_ADDRESS(10, 42, 0, 1); // ros master ip
+boolean ROS_CONNECTED = false;
+
+char* WIFI_SSID = "epuck_net"; // network name
+char* WIFI_PASSWD = "epuck_9895"; // network password
+
+/* ROS Node Instaciatation */
+ros::NodeHandle nh;
+// Make a chatter publisher
+std_msgs::String str_msg;
+ros::Publisher chatter("chatter", &str_msg);
+
+// Be polite and say hello
+char hello[13] = "hello world!";
+uint16_t period = 1000;
+uint32_t last_time = 0;
 
 //root page can be accessed only if authentification is ok
 void handleRoot(){
@@ -143,13 +164,19 @@ void setup() {
   server.onNotFound(handleNotFound);
   server.begin();
   Serial.println("HTTP server started");
+
+  /* Setup complete esp LED message */
+  pinMode(LED_BUILTIN, OUTPUT);
+  for(int i = 0; i <= 20; i++){
+    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+    delay(100);                   
+  }
 }
 
 void setupWiFi() {
-  WiFi.mode(WIFI_AP);
-
   // Do a little work to get a unique-ish name. 
   // Append the last two bytes of the MAC (HEX'd)
+  WiFi.mode(WIFI_AP);
   
   uint8_t mac[WL_MAC_ADDR_LENGTH];
   WiFi.softAPmacAddress(mac);
@@ -164,11 +191,15 @@ void setupWiFi() {
   for (int i=0; i<AP_NameString.length(); i++)
     AP_NameChar[i] = AP_NameString.charAt(i);
 
-  WiFi.softAP(AP_NameChar, WiFiAPPSK);
+  WiFi.softAP(AP_NameChar, WiFiAPPSK, 8);
+  
+  //WiFi.mode(WIFI_AP_STA);
+  
 }
 
 void loop() {
   server.handleClient();
+  delay(1);
 }
 
 

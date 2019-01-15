@@ -1,0 +1,6 @@
+float64 x # proportional term
+float64 y # intergrative term
+float64 theta # derivative term
+---
+bool success   # indicate successful run of triggered service
+string message # informational, e.g. for error messages
