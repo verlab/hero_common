@@ -1,0 +1,84 @@
+rostopic bw /hero_1/imu
+subscribed to [/hero_1/imu]
+average: 5.45KB/s
+	mean: 0.32KB min: 0.32KB max: 0.32KB window: 15
+average: 5.30KB/s
+	mean: 0.32KB min: 0.32KB max: 0.32KB window: 31
+average: 5.25KB/s
+	mean: 0.32KB min: 0.32KB max: 0.32KB window: 47
+average: 5.31KB/s
+	mean: 0.32KB min: 0.32KB max: 0.32KB window: 64
+average: 5.28KB/s
+	mean: 0.32KB min: 0.32KB max: 0.32KB window: 80
+^Caverage: 4.67KB/s
+	mean: 0.32KB min: 0.32KB max: 0.32KB window: 80
+  rostopic bw /hero_1/laser
+subscribed to [/hero_1/laser]
+average: 2.61KB/s
+	mean: 0.13KB min: 0.13KB max: 0.13KB window: 19
+average: 2.53KB/s
+	mean: 0.13KB min: 0.13KB max: 0.13KB window: 38
+average: 2.55KB/s
+	mean: 0.13KB min: 0.13KB max: 0.13KB window: 58
+average: 2.55KB/s
+	mean: 0.13KB min: 0.13KB max: 0.13KB window: 78
+average: 2.53KB/s
+	mean: 0.13KB min: 0.13KB max: 0.13KB window: 97
+^Caverage: 2.48KB/s
+	mean: 0.13KB min: 0.13KB max: 0.13KB window: 100
+  rostopic bw /hero_1/odom 
+subscribed to [/hero_1/odom]
+average: 14.18KB/s
+	mean: 0.73KB min: 0.73KB max: 0.73KB window: 19
+average: 14.37KB/s
+	mean: 0.73KB min: 0.73KB max: 0.73KB window: 39
+average: 14.19KB/s
+	mean: 0.73KB min: 0.73KB max: 0.73KB window: 58
+average: 14.29KB/s
+	mean: 0.73KB min: 0.73KB max: 0.73KB window: 78
+average: 14.20KB/s
+	mean: 0.73KB min: 0.73KB max: 0.73KB window: 97
+^Caverage: 13.92KB/s
+	mean: 0.73KB min: 0.73KB max: 0.73KB window: 100
+  rostopic bw /hero_1/imu
+subscribed to [/hero_1/imu]
+average: 5.45KB/s
+	mean: 0.32KB min: 0.32KB max: 0.32KB window: 15
+average: 5.30KB/s
+	mean: 0.32KB min: 0.32KB max: 0.32KB window: 31
+average: 5.25KB/s
+	mean: 0.32KB min: 0.32KB max: 0.32KB window: 47
+average: 5.31KB/s
+	mean: 0.32KB min: 0.32KB max: 0.32KB window: 64
+average: 5.28KB/s
+	mean: 0.32KB min: 0.32KB max: 0.32KB window: 80
+^Caverage: 4.67KB/s
+	mean: 0.32KB min: 0.32KB max: 0.32KB window: 80
+  rostopic bw /hero_1/laser
+subscribed to [/hero_1/laser]
+average: 2.61KB/s
+	mean: 0.13KB min: 0.13KB max: 0.13KB window: 19
+average: 2.53KB/s
+	mean: 0.13KB min: 0.13KB max: 0.13KB window: 38
+average: 2.55KB/s
+	mean: 0.13KB min: 0.13KB max: 0.13KB window: 58
+average: 2.55KB/s
+	mean: 0.13KB min: 0.13KB max: 0.13KB window: 78
+average: 2.53KB/s
+	mean: 0.13KB min: 0.13KB max: 0.13KB window: 97
+^Caverage: 2.48KB/s
+	mean: 0.13KB min: 0.13KB max: 0.13KB window: 100
+  rostopic bw /hero_1/odom 
+subscribed to [/hero_1/odom]
+average: 14.18KB/s
+	mean: 0.73KB min: 0.73KB max: 0.73KB window: 19
+average: 14.37KB/s
+	mean: 0.73KB min: 0.73KB max: 0.73KB window: 39
+average: 14.19KB/s
+	mean: 0.73KB min: 0.73KB max: 0.73KB window: 58
+average: 14.29KB/s
+	mean: 0.73KB min: 0.73KB max: 0.73KB window: 78
+average: 14.20KB/s
+	mean: 0.73KB min: 0.73KB max: 0.73KB window: 97
+^Caverage: 13.92KB/s
+	mean: 0.73KB min: 0.73KB max: 0.73KB window: 100

@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>HERO - configuration panel</title>
+
+    <link rel="stylesheet" href="/css">
+    <link rel="stylesheet" href="https://getbootstrap.com/dist/css/bootstrap.min.css" crossorigin="anonymous">
+</head>
+
+<body class="bg-light">
+
+    <div class="container">
+        <div class="py-5 text-center">
+            <img class="d-block mx-auto mb-4" alt="" width="72" height="72" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cmVjdCB4PSIyNDEiIHk9IjgxLjY3IiBzdHlsZT0iZmlsbDojOEY4RjhGOyIgd2lkdGg9IjMwIiBoZWlnaHQ9Ijc0LjY3Ii8+CjxyZWN0IHg9IjI1NiIgeT0iODEuNjciIHN0eWxlPSJmaWxsOiM2MDYwNjA7IiB3aWR0aD0iMTUiIGhlaWdodD0iNzQuNjciLz4KPHBvbHlnb24gc3R5bGU9ImZpbGw6IzAwODdGRjsiIHBvaW50cz0iNDM3LjQyMywyMTAuMDAxIDQzNy40MjMsMjQwLjAwMSA0MzcuNDIzLDI0MC4wMDEgNDM3LjQyMywzMjEuNjk4IDQzNy40MjMsMzIxLjY5OCAgIDQzNy40MjMsMzUxLjY5OCA1MTIsMzUxLjY5OCA1MTIsMjEwLjAwMSAiLz4KPHBvbHlnb24gc3R5bGU9ImZpbGw6IzAwQTVGRjsiIHBvaW50cz0iMCwzNTEuNjk4IDc0LjU3NywzNTEuNjk4IDc0LjU3NywzMjEuNjk4IDc0LjU3NywzMjEuNjk4IDc0LjU3NywyNDAuMDAxIDc0LjU3NywyNDAuMDAxICAgNzQuNTc3LDIxMC4wMDEgMCwyMTAuMDAxICIvPgo8cmVjdCB4PSI2Ny4yIiB5PSIxNDEuMzQiIHN0eWxlPSJmaWxsOiNEMEZERkE7IiB3aWR0aD0iMzc3LjYiIGhlaWdodD0iMzcwLjY2Ii8+CjxyZWN0IHg9IjI1NiIgeT0iMTQxLjM0IiBzdHlsZT0iZmlsbDojNzdGREY1OyIgd2lkdGg9IjE4OC44IiBoZWlnaHQ9IjM3MC42NiIvPgo8cmVjdCB4PSIxNTUuMTkiIHk9IjM2Mi4xOSIgc3R5bGU9ImZpbGw6IzYwNjA2MDsiIHdpZHRoPSIyMDEuNjIiIGhlaWdodD0iNjkuMDIiLz4KPHBhdGggc3R5bGU9ImZpbGw6I0ZGQTAxQTsiIGQ9Ik0yNDMuNDgsMjU1LjQxYzAsMjkuMDQtMjMuNjIsNTIuNjYtNTIuNjYsNTIuNjZjLTI5LjAzLDAtNTIuNjUtMjMuNjItNTIuNjUtNTIuNjYgIGMwLTI5LjAzLDIzLjYyLTUyLjY2LDUyLjY1LTUyLjY2QzIxOS44NiwyMDIuNzUsMjQzLjQ4LDIyNi4zOCwyNDMuNDgsMjU1LjQxeiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojRkY2MzAwOyIgZD0iTTM3My44MywyNTUuNDFjMCwyOS4wNC0yMy42Miw1Mi42Ni01Mi42NSw1Mi42NmMtMjkuMDQsMC01Mi42Ni0yMy42Mi01Mi42Ni01Mi42NiAgYzAtMjkuMDMsMjMuNjItNTIuNjYsNTIuNjYtNTIuNjZDMzUwLjIxLDIwMi43NSwzNzMuODMsMjI2LjM4LDM3My44MywyNTUuNDF6Ii8+CjxwYXRoIHN0eWxlPSJmaWxsOiNGRTNGNEU7IiBkPSJNMzA0LjMzLDQ4LjMzYzAsMjYuNjUtMjEuNjgsNDguMzQtNDguMzMsNDguMzRzLTQ4LjMzLTIxLjY5LTQ4LjMzLTQ4LjM0UzIyOS4zNSwwLDI1NiwwICBTMzA0LjMzLDIxLjY4LDMwNC4zMyw0OC4zM3oiLz4KPHJlY3QgeD0iMjU2IiB5PSIzNjIuMTkiIHN0eWxlPSJmaWxsOiM0MDQwNDA7IiB3aWR0aD0iMTAwLjgxIiBoZWlnaHQ9IjY5LjAyIi8+CjxwYXRoIHN0eWxlPSJmaWxsOiNFMzAwMzA7IiBkPSJNMjU2LDk2LjY3VjBjMjYuNjUsMCw0OC4zMywyMS42OCw0OC4zMyw0OC4zM1MyODIuNjUsOTYuNjcsMjU2LDk2LjY3eiIvPgo8cGF0aCBzdHlsZT0iZmlsbDojQkZCRkJGOyIgZD0iTTE0MC4xOSwzNDcuMTl2OTkuMDJoMjMxLjYydi05OS4wMkgxNDAuMTl6IE0yMDYuODIsNDE2LjIxaC0zNi42M3YtMzkuMDJoMzYuNjNWNDE2LjIxeiAgIE0yNzUuMTgsNDE2LjIxaC0zOC4zNnYtMzkuMDJoMzguMzZWNDE2LjIxeiBNMzQxLjgxLDQxNi4yMWgtMzYuNjN2LTM5LjAyaDM2LjYzVjQxNi4yMXoiLz4KPHBhdGggc3R5bGU9ImZpbGw6IzhGOEY4RjsiIGQ9Ik0yNTYsMzQ3LjE5djMwaDE5LjE4djM5LjAySDI1NnYzMGgxMTUuODF2LTk5LjAySDI1NnogTTM0MS44MSw0MTYuMjFoLTM2LjYzdi0zOS4wMmgzNi42M1Y0MTYuMjF6Ii8+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
+            <h2>HERO configuration</h2>
+            <p class="lead">Edit basic robot configuration, Wifi credentials and calibration values.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Information</span>
+                </h4>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Robot ID</h6>
+                            <small class="text-muted"></small>
+                        </div>
+                        <span class="text-muted">$ROBOT_ID</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Flash chip ID</h6>
+                            <small class="text-muted"></small>
+                        </div>
+                        <span class="text-muted">$CHIP_ID</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Flash chip size</h6>
+                            <small class="text-muted">(in bytes)</small>
+                        </div>
+                        <span class="text-muted">$FLASH_SIZE</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Flash chip speed</h6>
+                            <small class="text-muted">(in Hz)</small>
+                        </div>
+                        <span class="text-muted">$FLASH_SPEED</span>
+                    </li>
+                </ul>
+                <button class="btn btn-warning btn-lg btn-block" type="submit" id="btn-reset">Reset memory</button>
+
+            </div>
+            <div class="col-md-8 order-md-1">
+                <h4 class="mb-3">Configuration fields</h4>
+                <form id="config-form" class="needs-validation" novalidate>
+
+                    <div class="mb-3">
+                        <label for="robotId">Robot ID</label>
+                        <input type="number" class="form-control" name="robotId" id="robotId" placeholder="" required value="$ROBOT_ID" step="1" max="999">
+                        <div class="invalid-feedback">
+                            Please a robot ID.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="robotDescription">Robot description (optional)</label>
+                        <input type="text" class="form-control" name="robotDescription" id="robotDescription" placeholder="Robot description..." value="$ROBOT_DESC" maxlength="19">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="wificSSID">Wifi client SSID</label>
+                            <input type="text" class="form-control" name="wificSSID" id="wificSSID" placeholder="Wifi SSID..." required value="$WIFIC_SSID" maxlength="19">
+                            <div class="invalid-feedback">
+                                Valid Wifi SSID is required.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="wificPassword">Wifi client password</label>
+                            <input type="text" class="form-control" name="wificPassword" id="wificPassword" placeholder="Wifi password..." required value="$WIFIC_PASSWD" maxlength="19">
+                            <div class="invalid-feedback">
+                                Valid Wifi client password is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="rosMasterAddress">ROS master address</label>
+                        <input type="text" class="form-control" name="rosMasterAddress" id="rosMasterAddress" placeholder="ROS Master hostname or IPv4 address..." required value="$ROS_MASTER" maxlength="19">
+                        <div class="invalid-feedback">
+                            Please enter the ROS master address.
+                        </div>
+                    </div>
+
+                    <hr class="mb-4">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Save parameters</button>
+                </form>
+            </div>
+        </div>
+
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">&copy; 2018 HERO Robot "The small and affordable swarm robot" - VeRLab</p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="https://github.com/verlab/hero_driver/">GitHub</a></li>
+            </ul>
+        </footer>
+    </div>
+
+    <script>
+        function ajax_post(url, post_data, callback) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    console.log('responseText:' + xmlhttp.responseText);
+                    try {
+                        var data = JSON.parse(xmlhttp.responseText);
+                    } catch (err) {
+                        console.log(err.message + " in " + xmlhttp.responseText);
+                        return;
+                    }
+                    callback(data);
+                }
+            };
+
+            xmlhttp.open("POST", url, true);
+            xmlhttp.send(post_data);
+        }
+
+        document.getElementById("btn-reset").addEventListener("click", function() {
+            ajax_post('/resetEEPROM', "", function(data) {
+                if (data.status == "success") {
+                    window.location.reload(true);
+                } else {
+                    alert("An error happened, please check your internet connection, HERO source power and test again.")
+                }
+            });
+        });
+
+        document.getElementById("config-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.classList.add('was-validated');
+
+            if (this.checkValidity() === false) {
+                return false;
+            }
+
+            xhr = new XMLHttpRequest();
+
+            console.log(this.elements);
+
+            var params = [].filter.call(this.elements, function(el) {return true;}).filter(function(el) {return !!el.name;}).filter(function(el) {return !el.disabled;}).map(function(el) {return encodeURIComponent(el.name) + '=' + encodeURIComponent(el.value);}).join('&');
+
+            ajax_post('/saveParams', params, function(data) {
+                if (data.status == "success") {
+                    window.location.reload(true);
+                } else {
+                    alert("An error happened, please check your internet connection, HERO source power and test again.")
+                }
+            });
+            return false;
+        });
+    </script>
+</body>
+
+</html>
