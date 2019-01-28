@@ -2,24 +2,14 @@
 ![www.verlab.dcc.ufmg.br](https://www.verlab.dcc.ufmg.br/wp-content/uploads/2013/09/SVG_Verlab_900dpi-300x86.png)
 
 This project contributes to an open source ROS-based framework for swarm robotics. We propose an low cost, high availability swarm system that could be printed and assembled multiple times without special knowledge or hardware skills.
-![system](hero_resources/media/images/hero_render.png)
-
+<img src="hero_resources/media/images/hero_v2_real.png" width="200">
 
 # Authors:
 - [Paulo Rezeck](https://github.com/rezeck)
 - [Hector Azpurua](https://github.com/h3ct0r)
 - [Maurício Ferrari](https://github.com/mauferrari)
 
-# On Development (New Version 2018)
-- Wheels encoders
-- Inertial Motion Unit (IMU)
-- General Purpose Bus (I2C/Serial/IO)
-- Communication Improves
-- Setup via Web Interface
-- Small design
-- and more...
-
-# On Development (New Version 2018)
+# New Version 2019
 - Wheels encoders
 - Inertial Motion Unit (IMU)
 - General Purpose Bus (I2C/Serial/IO)
@@ -30,12 +20,10 @@ This project contributes to an open source ROS-based framework for swarm robotic
 
 # Dependencies
 - ROS Kinect (http://wiki.ros.org/kinetic/Installation)
-- AR Alvar Tracker (http://wiki.ros.org/ar_track_alvar)
 - Rosserial (http://wiki.ros.org/rosserial)
-- usb_cam (http://wiki.ros.org/usb_cam) or similar
 - Arduino IDE (to install the firmware)
 
-# How to install HeRo driver node
+# How to install HeRo common node
 - Using git (or download the zip file) clone this repository into ros workspace.
 - Compile with: 
 ```
@@ -43,7 +31,7 @@ $ catkin_make
 ```
 - Fixing package dependencies:
 ```
-$ rosdep install hero_driver
+$ rosdep install hero_common
 ```
 
 # How to install the firmware
@@ -62,23 +50,17 @@ $ rosdep install hero_driver
 
 # How to start the ROS node
 
-- Run the hero_node.launch file with:
+- Run the hero_bringup.launch file with:
 ```
-$ roslaunch hero_driver hero_driver.launch
+$ roslaunch hero_bringup hero_bringup.launch
 ```
 - Turn on the robots.
 
 ## Teleop Demo
 - Run the hero_teleop.launch file to control it and set the specific robot id:
 ```
-$ roslaunch hero_driver hero_teleop.launch robot_id:=1
+roslaunch hero_bringup hero_teleop.launch id:=1
 ```
 
-## AR Tracker
-- Connect the camera
-- Run the hero_tracker.launch file to get the pose of all markers into the camera view:
-```
-$ roslaunch hero_driver hero_tracker.launch
-```
 # Some Videos
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/foQDcUG9Arg/0.jpg)](http://www.youtube.com/watch?v=foQDcUG9Arg "Video Title")
