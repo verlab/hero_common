@@ -1,0 +1,215 @@
+Pinlist
+
+Exported from board.sch at 4/17/19 4:55 PM
+
+EAGLE Version 9.2.2 Copyright (c) 1988-2018 Autodesk, Inc.
+
+Part      Pad      Pin        Dir      Net
+
+BATT      1        1          pas      GND
+          2        2          pas      N$2
+
+C1        1        1          pas      VCC
+          2        2          pas      GND
+
+C2        1        1          pas      VCC
+          2        2          pas      GND
+
+C3        1        1          pas      TP_B+
+          2        2          pas      GND
+
+C4        1        1          pas      VCC
+          2        2          pas      GND
+
+CHRG      A        A          pas      N$1
+          C        C          pas      N$5
+
+E_LEFT    1        1          pas      GND
+          2        2          pas      E_LEFT_B
+          3        3          pas      E_LEFT_A
+
+E_RIGHT   1        1          pas      GND
+          2        2          pas      E_RIGHT_B
+          3        3          pas      E_RIGHT_A
+
+I2C|UART  1        1          pas      SDA_RX
+          2        2          pas      SCL_TX
+          3        3          pas      GND
+          4        4          pas      VCC
+
+IC1       1        TEMP       io       GND
+          2        PROG       io       PROG
+          3        GND        io       GND
+          4        VCC        io       VCC
+          5        BAT        io       TP_B+
+          6        STDBY      io       STDBY
+          7        CHRG       io       CHRG
+          8        CE         io       TP_B+
+
+IC2       1        X4         io       MUX_X4
+          2        X6         io       MUX_X6
+          3        X          io       AD0
+          4        X7         io       MUX_X7
+          5        X5         io       MUX_X5
+          6        INH        in       GND
+          7        VEE        pwr      VEE
+          8        GND        pwr      GND
+          9        C          in       MUX_C
+          10       B          in       MUX_B
+          11       A          in       MUX_A
+          12       X3         io       MUX_X3
+          13       X0         io       MUX_X0
+          14       X1         io       MUX_X1
+          15       X2         io       MUX_X2
+          16       VCC        pwr      VCC
+
+IRLML2502 1        G          io       N$6
+          2        S          io       GND
+          3        D          io       N$3
+
+LED0      1-VDD    VDD        pwr      VCC
+          3-GND    GND        pwr      GND
+          4-DIN    DI         in       EM_ENABLE
+          2-DOUT   DO         out      WS_OUT
+
+LED1      1-VDD    VDD        pwr      VCC
+          3-GND    GND        pwr      GND
+          4-DIN    DI         in       WS_OUT
+          2-DOUT   DO         out               *** unconnected ***
+
+M_LEFT    1        1          pas      GND
+          2        2          pas      VCC
+          3        3          pas      M_LEFT_PWM
+
+M_RIGHT   1        1          pas      GND
+          2        2          pas      VCC
+          3        3          pas      M_RIGHT_PWM
+
+OS1       5V       5V         out      VCC
+          B+       B+         in       B+
+          B-       B-         in       GND
+          GND      GND        out      GND
+
+P0        A        ANODE      pas      VCC
+          C        COLLECTOR  pas      VCC
+          E        EMITTER    pas      MUX_X0
+          K        CATHODE    pas      EM
+
+P1        A        ANODE      pas      VCC
+          C        COLLECTOR  pas      VCC
+          E        EMITTER    pas      MUX_X1
+          K        CATHODE    pas      EM
+
+P2        A        ANODE      pas      VCC
+          C        COLLECTOR  pas      VCC
+          E        EMITTER    pas      MUX_X2
+          K        CATHODE    pas      EM
+
+P3        A        ANODE      pas      VCC
+          C        COLLECTOR  pas      VCC
+          E        EMITTER    pas      MUX_X3
+          K        CATHODE    pas      EM
+
+P4        A        ANODE      pas      VCC
+          C        COLLECTOR  pas      VCC
+          E        EMITTER    pas      MUX_X4
+          K        CATHODE    pas      EM
+
+P5        A        ANODE      pas      VCC
+          C        COLLECTOR  pas      VCC
+          E        EMITTER    pas      MUX_X5
+          K        CATHODE    pas      EM
+
+P6        A        ANODE      pas      VCC
+          C        COLLECTOR  pas      VCC
+          E        EMITTER    pas      MUX_X6
+          K        CATHODE    pas      EM
+
+P7        A        ANODE      pas      VCC
+          C        COLLECTOR  pas      VCC
+          E        EMITTER    pas      MUX_X7
+          K        CATHODE    pas      EM
+
+R0        1        1          pas      MUX_X6
+          2        2          pas      GND
+
+R1        1        1          pas      MUX_X7
+          2        2          pas      GND
+
+R2        1        1          pas      MUX_X5
+          2        2          pas      GND
+
+R3        1        1          pas      MUX_X3
+          2        2          pas      GND
+
+R4        1        1          pas      MUX_X0
+          2        2          pas      GND
+
+R5        1        1          pas      MUX_X1
+          2        2          pas      GND
+
+R6        1        1          pas      MUX_X2
+          2        2          pas      GND
+
+R7        1        1          pas      MUX_X4
+          2        2          pas      GND
+
+R8        1        1          pas      N$6
+          2        2          pas      EM_ENABLE
+
+R9        1        1          pas      N$4
+          2        2          pas      EM
+
+R10       1        1          pas      N$3
+          2        2          pas      N$4
+
+R11       1        1          pas      N$4
+          2        2          pas      EM
+
+R12       1        1          pas      STDBY
+          2        2          pas      N$8
+
+R13       1        1          pas      CHRG
+          2        2          pas      N$5
+
+R14       1        1          pas      GND
+          2        2          pas      PROG
+
+STDBY     A        A          pas      N$1
+          C        C          pas      N$8
+
+SWITCH    1        O          pas      TP_B+
+          2        P          pas      N$2
+          3        S          pas      B+
+
+U$1       D0       D0         io       M_RIGHT_PWM
+          D1       D1         io       E_RIGHT_B
+          D2       D2         io       E_LEFT_A
+          D3       D3         io       M_LEFT_PWM
+          D4       D4         io       EM_ENABLE
+          D5       D5         io       E_LEFT_B
+          D6       D6         io       MUX_C
+          D7       D7         io       MUX_B
+          D8       D8         io       MUX_A
+          EN       EN         io                *** unconnected ***
+          RX       RX         io       SDA_RX
+          TX       TX         io       SCL_TX
+          AD0      AD0        io       AD0
+          CLK      CLK        io                *** unconnected ***
+          CMD      CMD        io                *** unconnected ***
+          RST      RST        io                *** unconnected ***
+          SD0      SD0        io                *** unconnected ***
+          SD1      SD1        io                *** unconnected ***
+          SD2      SD2        io                *** unconnected ***
+          SD3      SD3        io       E_RIGHT_A
+          VIN      VIN        io       VCC
+          3V3@0    3V3        io                *** unconnected ***
+          3V3@1    3V3        io                *** unconnected ***
+          3V3@2    3V3        io                *** unconnected ***
+          GND@0    GND        io       GND
+          GND@1    GND        io       GND
+          GND@2    GND        io       GND
+          GND@3    GND        io       GND
+          RSV@0    RSV        io                *** unconnected ***
+          RSV@1    RSV        io                *** unconnected ***
+
