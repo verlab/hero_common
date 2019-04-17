@@ -1,7 +1,7 @@
 <launch>
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="verbose" value="true"/>
+    <arg name="verbose" value="false"/>
     <!--arg name="paused" value="true"/-->
     <arg name="use_sim_time" value="true"/>
     <arg name="world_name" value="$(find hero_gazebo)/worlds/hero.world"/>
