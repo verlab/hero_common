@@ -2,8 +2,8 @@
 ![www.verlab.dcc.ufmg.br](https://www.verlab.dcc.ufmg.br/wp-content/uploads/2013/09/SVG_Verlab_900dpi-300x86.png)
 
 This project contributes to an open source ROS-based framework for swarm robotics. We propose an low cost, high availability swarm system that could be printed and assembled multiple times without special knowledge or hardware skills.
-<img src="hero_resources/media/images/pcb_top.png" width="200">
-<img src="hero_resources/media/images/pcb_bottom.png" width="200">
+<img src="../media/images/pcb_top.png" width="400">
+<img src="..//media/images/pcb_bottom.png" width="400">
 
 # Authors:
 - [Paulo Rezeck](https://github.com/rezeck)
