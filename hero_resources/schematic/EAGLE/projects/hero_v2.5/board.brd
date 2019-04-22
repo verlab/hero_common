@@ -3,7 +3,7 @@
 <eagle version="9.2.2">
 <drawing>
 <settings>
-<setting alwaysvectorfont="no"/>
+<setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.393700787" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
@@ -168,7 +168,7 @@
 <layer number="255" name="routoute" color="7" fill="1" visible="no" active="yes"/>
 </layers>
 <board>
-<fusionsync huburn="a.cGVyc29uYWw6dWUyYWU5Yjc4" projecturn="a.cGVyc29uYWw6dWUyYWU5Yjc4IzIwMTgwODExMTQzNTk5Njc2" f3durn="urn:adsk.wipprod:dm.lineage:RdjoPunqS2qz4CF9KvcqZg" pcbguid="0393263e-a8aa-4ff3-9bb2-e8f0add2bc9f" lastpulledtime="" lastsyncedchangeguid="45ac4ad0-f076-54e5-ce69-0c6a4673556f"/>
+<fusionsync huburn="a.cGVyc29uYWw6dWUyYWU5Yjc4" projecturn="a.cGVyc29uYWw6dWUyYWU5Yjc4IzIwMTgwODExMTQzNTk5Njc2" f3durn="urn:adsk.wipprod:dm.lineage:KWYvRUArSgWObtkZmYWDFg" pcbguid="f618bd25-d99b-4126-aee0-2615e3f46cf6" lastpulledtime="" lastsyncedchangeguid="65fcbdeb-8237-ccf0-1746-306a4b106965"/>
 <plain>
 <wire x1="42.744209375" y1="42.375221875" x2="25.088571875" y2="60.0071" width="0" layer="20"/>
 <wire x1="25.088571875" y1="60.0071" x2="-0.46594375" y2="59.99196875" width="0" layer="20"/>
@@ -2235,8 +2235,8 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="22.274259375" y="52.237959375" size="1.778" layer="27" rot="R180"/>
 </element>
 <element name="OS1" library="stepup" package="STEPUP" value="" x="12.20838125" y="20.299340625" smashed="yes" rot="R90"/>
-<element name="BATT" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X02" package3d_urn="urn:adsk.eagle:package:22435/2" value="" x="32.7167" y="36.0056" smashed="yes" rot="R180">
-<attribute name="NAME" x="31.4949" y="37.8425" size="0.6096" layer="25" font="vector"/>
+<element name="BATT" library="pinhead" library_urn="urn:adsk.eagle:library:325" package="1X02" package3d_urn="urn:adsk.eagle:package:22435/2" value="" x="32.51370625" y="36.481434375" smashed="yes" rot="R204">
+<attribute name="NAME" x="30.6504" y="37.662575" size="0.6096" layer="25" font="vector" rot="R24"/>
 </element>
 <element name="C1" library="adafruit" library_urn="urn:adsk.eagle:library:420" package="C0603" package3d_urn="urn:adsk.eagle:package:6240338/1" value="0.10 nF" x="10.5791" y="44.4119" smashed="yes" rot="MR180">
 <attribute name="NAME" x="9.0499" y="45.0099" size="0.762" layer="26" rot="MR270"/>
@@ -2268,6 +2268,7 @@ design rules under a new name.</description>
 </element>
 <element name="IC1" library="TP4056" package="SOP-8" value="TP4056" x="13.85" y="40.2" smashed="yes" rot="R270">
 <attribute name="NAME" x="16.24" y="41.61" size="1.27" layer="25" rot="R270"/>
+<attribute name="SPICEPREFIX" value="X" x="13.85" y="40.2" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
 <element name="R12" library="resistor" library_urn="urn:adsk.eagle:library:348" package="R0603" package3d_urn="urn:adsk.eagle:package:23555/3" value="102" x="17.832840625" y="4.90858125" smashed="yes" rot="R270">
 <attribute name="NAME" x="18.68843125" y="5.260653125" size="0.762" layer="25" rot="R270"/>
@@ -3032,16 +3033,17 @@ design rules under a new name.</description>
 <wire x1="20" y1="36.05" x2="18.6" y2="34.65" width="0.508" layer="16"/>
 <wire x1="18.6" y1="34.65" x2="15.75" y2="34.65" width="0.508" layer="16"/>
 <contactref element="SWITCH" pad="1"/>
-<wire x1="37.778378125" y1="37.472309375" x2="35.527690625" y2="37.472309375" width="0.508" layer="16"/>
-<wire x1="35.527690625" y1="37.472309375" x2="34.5" y2="38.5" width="0.508" layer="16"/>
-<wire x1="34.5" y1="38.5" x2="28.75" y2="38.5" width="0.508" layer="16"/>
+<wire x1="37.778378125" y1="37.472309375" x2="35.847690625" y2="37.472309375" width="0.508" layer="16"/>
+<wire x1="35.847690625" y1="37.472309375" x2="34.27" y2="39.05" width="0.508" layer="16"/>
+<wire x1="34.27" y1="39.05" x2="29.3" y2="39.05" width="0.508" layer="16"/>
+<wire x1="29.3" y1="39.05" x2="28.75" y2="38.5" width="0.508" layer="16"/>
 <wire x1="15.75" y1="34.65" x2="15.75" y2="37.445" width="0.508" layer="1"/>
 <wire x1="15.75" y1="37.445" x2="15.755" y2="37.45" width="0.508" layer="1"/>
 </signal>
 <signal name="N$2">
 <contactref element="BATT" pad="2"/>
 <contactref element="SWITCH" pad="2"/>
-<wire x1="31.4467" y1="36.0056" x2="31.4467" y2="37.8467" width="0.508" layer="1"/>
+<wire x1="31.353503125" y1="35.964878125" x2="31.4467" y2="37.8467" width="0.508" layer="1"/>
 <wire x1="33.392715625" y1="39.792715625" x2="36.74526875" y2="39.792715625" width="0.508" layer="1"/>
 <wire x1="31.4467" y1="37.8467" x2="33.392715625" y2="39.792715625" width="0.508" layer="1"/>
 </signal>
@@ -3074,8 +3076,8 @@ design rules under a new name.</description>
 </signal>
 </signals>
 <mfgpreviewcolors>
-<mfgpreviewcolor name="soldermaskcolor" color="0xC8008000"/>
-<mfgpreviewcolor name="silkscreencolor" color="0xFFFEFEFE"/>
+<mfgpreviewcolor name="soldermaskcolor" color="0xC8D8D8D8"/>
+<mfgpreviewcolor name="silkscreencolor" color="0xFF3E3E3E"/>
 <mfgpreviewcolor name="backgroundcolor" color="0xFF282828"/>
 <mfgpreviewcolor name="coppercolor" color="0xFFFFBF00"/>
 <mfgpreviewcolor name="substratecolor" color="0xFF786E46"/>
