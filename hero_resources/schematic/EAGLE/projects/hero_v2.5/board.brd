@@ -3,7 +3,7 @@
 <eagle version="9.2.2">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.393700787" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
@@ -179,7 +179,7 @@
 <wire x1="24.906459375" y1="-1.049446875" x2="42.754734375" y2="16.808825" width="0" layer="20"/>
 <wire x1="42.754734375" y1="16.808825" x2="42.744209375" y2="42.375221875" width="0" layer="20"/>
 <text x="23.35" y="54.95" size="1.27" layer="26" rot="MR0">FRONT</text>
-<text x="23.1" y="2.1" size="1.27" layer="26" rot="MR0">BACK</text>
+<text x="22.96" y="1.75" size="1.27" layer="26" rot="MR0">BACK</text>
 <text x="6.6" y="19.65" size="0.6096" layer="26" rot="MR180">SCL     SDA   
 TX       RX     </text>
 <text x="34.4" y="32.8" size="1.27" layer="26" rot="MR270">LEFT</text>
@@ -198,7 +198,7 @@ v2.5</text>
 <text x="10.75" y="5.95" size="1.016" layer="25">USB</text>
 <text x="4.49" y="3.25" size="1.524" layer="25" rot="R180" align="center">HeRo
 v2.5</text>
-<text x="23.05" y="3.35" size="1.27" layer="25" rot="R180">BACK</text>
+<text x="23" y="3.02" size="1.27" layer="25" rot="R180">BACK</text>
 <text x="23.25" y="56.2" size="1.27" layer="25" rot="R180">FRONT</text>
 <text x="-9.9" y="32.65" size="1.27" layer="25" rot="R270">RIGHT</text>
 <text x="30.55" y="33.7" size="0.6096" layer="25">VCC   GND</text>
@@ -1873,30 +1873,30 @@ for trimmer refence see : &lt;u&gt;www.electrospec-inc.com/cross_references/trim
 &lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;&lt;br&gt;
 Extended by Federico Battaglin &lt;author&gt;&amp;lt;federico.rd@fdpinternational.com&amp;gt;&lt;/author&gt; with DUOLED</description>
 <packages>
-<package name="CHIP-LED0603" urn="urn:adsk.eagle:footprint:15671/1" library_version="4">
-<description>&lt;b&gt;Hyper CHIPLED Hyper-Bright LED&lt;/b&gt;&lt;p&gt;
-LB Q993&lt;br&gt;
-Source: http://www.osram.convergy.de/ ... Lb_q993.pdf</description>
-<wire x1="-0.4" y1="0.45" x2="-0.4" y2="-0.45" width="0.1016" layer="51"/>
-<wire x1="0.4" y1="0.45" x2="0.4" y2="-0.45" width="0.1016" layer="51"/>
-<smd name="C" x="0" y="0.75" dx="0.8" dy="0.8" layer="1"/>
-<smd name="A" x="0" y="-0.75" dx="0.8" dy="0.8" layer="1"/>
-<text x="-0.635" y="-0.635" size="1.27" layer="25" rot="R90">&gt;NAME</text>
-<text x="1.905" y="-0.635" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
-<rectangle x1="-0.45" y1="0.45" x2="0.45" y2="0.85" layer="51"/>
-<rectangle x1="-0.45" y1="-0.85" x2="0.45" y2="-0.45" layer="51"/>
-<rectangle x1="-0.45" y1="0" x2="-0.3" y2="0.3" layer="21"/>
-<rectangle x1="0.3" y1="0" x2="0.45" y2="0.3" layer="21"/>
-<rectangle x1="-0.15" y1="0" x2="0.15" y2="0.3" layer="21"/>
+<package name="SML0805" urn="urn:adsk.eagle:footprint:15683/1" library_version="4">
+<description>&lt;b&gt;SML0805-2CW-TR (0805 PROFILE)&lt;/b&gt; COOL WHITE&lt;p&gt;
+Source: http://www.ledtronics.com/ds/smd-0603/Dstr0093.pdf</description>
+<wire x1="-0.95" y1="-0.55" x2="0.95" y2="-0.55" width="0.1016" layer="51"/>
+<wire x1="0.95" y1="-0.55" x2="0.95" y2="0.55" width="0.1016" layer="51"/>
+<wire x1="0.95" y1="0.55" x2="-0.95" y2="0.55" width="0.1016" layer="51"/>
+<wire x1="-0.95" y1="0.55" x2="-0.95" y2="-0.55" width="0.1016" layer="51"/>
+<wire x1="-0.175" y1="-0.025" x2="0" y2="0.15" width="0.0634" layer="21"/>
+<wire x1="0" y1="0.15" x2="0.15" y2="0" width="0.0634" layer="21"/>
+<wire x1="0.15" y1="0" x2="-0.025" y2="-0.175" width="0.0634" layer="21"/>
+<wire x1="-0.025" y1="-0.175" x2="-0.175" y2="-0.025" width="0.0634" layer="21"/>
+<circle x="-0.275" y="0.4" radius="0.125" width="0" layer="21"/>
+<smd name="C" x="-1.05" y="0" dx="1.2" dy="1.2" layer="1"/>
+<smd name="A" x="1.05" y="0" dx="1.2" dy="1.2" layer="1"/>
+<text x="-1.5" y="1" size="1.27" layer="25">&gt;NAME</text>
+<text x="-1.5" y="-2" size="1.27" layer="27">&gt;VALUE</text>
 </package>
 </packages>
 <packages3d>
-<package3d name="CHIP-LED0603" urn="urn:adsk.eagle:package:15819/3" type="model" library_version="4">
-<description>Hyper CHIPLED Hyper-Bright LED
-LB Q993
-Source: http://www.osram.convergy.de/ ... Lb_q993.pdf</description>
+<package3d name="SML0805" urn="urn:adsk.eagle:package:15830/1" type="box" library_version="4">
+<description>SML0805-2CW-TR (0805 PROFILE) COOL WHITE
+Source: http://www.ledtronics.com/ds/smd-0603/Dstr0093.pdf</description>
 <packageinstances>
-<packageinstance name="CHIP-LED0603"/>
+<packageinstance name="SML0805"/>
 </packageinstances>
 </package3d>
 </packages3d>
@@ -2270,12 +2270,12 @@ design rules under a new name.</description>
 <attribute name="NAME" x="16.24" y="41.61" size="1.27" layer="25" rot="R270"/>
 <attribute name="SPICEPREFIX" value="X" x="13.85" y="40.2" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="R12" library="resistor" library_urn="urn:adsk.eagle:library:348" package="R0603" package3d_urn="urn:adsk.eagle:package:23555/3" value="102" x="17.832840625" y="4.90858125" smashed="yes" rot="R270">
-<attribute name="NAME" x="18.68843125" y="5.260653125" size="0.762" layer="25" rot="R270"/>
-<attribute name="VALUE" x="14.911840625" y="7.06758125" size="1.27" layer="27" rot="R270"/>
+<element name="R12" library="resistor" library_urn="urn:adsk.eagle:library:348" package="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="102" x="17.362840625" y="4.93858125" smashed="yes" rot="R270">
+<attribute name="NAME" x="18.25843125" y="4.960653125" size="0.762" layer="25" rot="R270"/>
+<attribute name="VALUE" x="14.441840625" y="7.09758125" size="1.27" layer="27" rot="R270"/>
 </element>
-<element name="R13" library="resistor" library_urn="urn:adsk.eagle:library:348" package="R0603" package3d_urn="urn:adsk.eagle:package:23555/3" value="102" x="24.25" y="4.95" smashed="yes" rot="R270">
-<attribute name="NAME" x="25.051" y="5.759" size="0.762" layer="25" rot="R270"/>
+<element name="R13" library="resistor" library_urn="urn:adsk.eagle:library:348" package="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="102" x="24.25" y="4.95" smashed="yes" rot="R270">
+<attribute name="NAME" x="25.231" y="5.039" size="0.762" layer="25" rot="R270"/>
 <attribute name="VALUE" x="21.329" y="7.109" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="R14" library="resistor" library_urn="urn:adsk.eagle:library:348" package="R0603" package3d_urn="urn:adsk.eagle:package:23555/3" value="122" x="14.45" y="46.05" smashed="yes" rot="R270">
@@ -2290,13 +2290,13 @@ design rules under a new name.</description>
 <attribute name="NAME" x="11.507" y="47.63" size="0.762" layer="25" rot="R90"/>
 <attribute name="VALUE" x="13.663" y="44.78" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="STDBY" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0603" package3d_urn="urn:adsk.eagle:package:15819/3" value="" x="20.07321875" y="4.861090625" smashed="yes" rot="R180">
-<attribute name="NAME" x="20.794284375" y="6.08718125" size="0.762" layer="25" rot="R90"/>
-<attribute name="VALUE" x="18.16821875" y="5.4960875" size="1.27" layer="27" rot="R270"/>
+<element name="STDBY" library="led" library_urn="urn:adsk.eagle:library:259" package="SML0805" package3d_urn="urn:adsk.eagle:package:15830/1" value="" x="19.731090625" y="5.02678125" smashed="yes" rot="R90">
+<attribute name="NAME" x="21.124284375" y="3.21718125" size="0.762" layer="25" rot="R90"/>
+<attribute name="VALUE" x="20.3660875" y="6.93178125" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="CHRG" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0603" package3d_urn="urn:adsk.eagle:package:15819/3" value="" x="22.25" y="4.85" smashed="yes" rot="R180">
-<attribute name="NAME" x="22.565" y="6.065" size="0.762" layer="25" rot="R90"/>
-<attribute name="VALUE" x="20.345" y="5.485" size="1.27" layer="27" rot="R270"/>
+<element name="CHRG" library="led" library_urn="urn:adsk.eagle:library:259" package="SML0805" package3d_urn="urn:adsk.eagle:package:15830/1" value="" x="21.9" y="5.03" smashed="yes" rot="R90">
+<attribute name="NAME" x="23.375" y="3.345" size="0.762" layer="25" rot="R90"/>
+<attribute name="VALUE" x="22.535" y="6.935" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="SWITCH" library="switch" library_urn="urn:adsk.eagle:library:380" package="TL3XYO" package3d_urn="urn:adsk.eagle:package:27747/1" value="TL37YO" x="36.74526875" y="39.792715625" smashed="yes" rot="R114">
 <attribute name="NAME" x="33.560984375" y="39.460515625" size="0.762" layer="25" rot="R114"/>
@@ -2366,7 +2366,7 @@ design rules under a new name.</description>
 <via x="15.9" y="14.4" extent="1-16" drill="0.508"/>
 <via x="12.55" y="18.1" extent="1-16" drill="0.508"/>
 <via x="20.65" y="14.2" extent="1-16" drill="0.508"/>
-<via x="23.7" y="7.6" extent="1-16" drill="0.508"/>
+<via x="24.57" y="7.93" extent="1-16" drill="0.508"/>
 <via x="25.55" y="9.2" extent="1-16" drill="0.508"/>
 <via x="5.95" y="15.25" extent="1-16" drill="0.508"/>
 <via x="21.45" y="31.1" extent="1-16" drill="0.508"/>
@@ -2427,6 +2427,7 @@ design rules under a new name.</description>
 <via x="35.5" y="34.15" extent="1-16" drill="0.508"/>
 <contactref element="IRLML2502" pad="2"/>
 <via x="4.92" y="34.57" extent="1-16" drill="0.508"/>
+<via x="17.39" y="2.22" extent="1-16" drill="0.508"/>
 </signal>
 <signal name="VCC">
 <contactref element="IC2" pad="16"/>
@@ -2973,8 +2974,8 @@ design rules under a new name.</description>
 <wire x1="19.8" y1="24.5" x2="19.8" y2="16.4" width="0.508" layer="1"/>
 <wire x1="19.8" y1="16.4" x2="14.55" y2="11.15" width="0.508" layer="1"/>
 <wire x1="14.55" y1="11.15" x2="14.55" y2="6.891421875" width="0.508" layer="1"/>
-<wire x1="15.682840625" y1="5.75858125" x2="17.832840625" y2="5.75858125" width="0.508" layer="1"/>
-<wire x1="14.55" y1="6.891421875" x2="15.682840625" y2="5.75858125" width="0.508" layer="1"/>
+<wire x1="15.552840625" y1="5.88858125" x2="14.55" y2="6.891421875" width="0.508" layer="1"/>
+<wire x1="17.362840625" y1="5.88858125" x2="15.552840625" y2="5.88858125" width="0.508" layer="1"/>
 </signal>
 <signal name="CHRG">
 <contactref element="IC1" pad="7"/>
@@ -2983,13 +2984,13 @@ design rules under a new name.</description>
 <wire x1="14.485" y1="30.965" x2="20.7356" y2="24.7144" width="0.508" layer="1"/>
 <wire x1="20.7356" y1="24.7144" x2="20.7356" y2="16.1356" width="0.508" layer="1"/>
 <wire x1="16.46120625" y1="11.86120625" x2="20.7356" y2="16.1356" width="0.508" layer="1"/>
-<wire x1="15.45" y1="7.2" x2="15.934221875" y2="6.715778125" width="0.508" layer="1"/>
-<wire x1="15.45" y1="7.2" x2="15.45" y2="10.83879375" width="0.508" layer="1"/>
+<wire x1="15.45" y1="7.99" x2="16.084221875" y2="7.355778125" width="0.508" layer="1"/>
+<wire x1="15.45" y1="7.99" x2="15.45" y2="10.83879375" width="0.508" layer="1"/>
 <wire x1="15.45" y1="10.83879375" x2="16.4724125" y2="11.86120625" width="0.508" layer="1"/>
 <wire x1="16.4724125" y1="11.86120625" x2="16.46120625" y2="11.86120625" width="0.508" layer="1"/>
-<wire x1="15.934221875" y1="6.715778125" x2="23.291059375" y2="6.715778125" width="0.508" layer="1"/>
-<wire x1="24.2068375" y1="5.8" x2="24.25" y2="5.8" width="0.508" layer="1"/>
-<wire x1="23.291059375" y1="6.715778125" x2="24.2068375" y2="5.8" width="0.508" layer="1"/>
+<wire x1="16.084221875" y1="7.355778125" x2="23.171059375" y2="7.355778125" width="0.508" layer="1"/>
+<wire x1="24.25" y1="6.2768375" x2="23.171059375" y2="7.355778125" width="0.508" layer="1"/>
+<wire x1="24.25" y1="6.2768375" x2="24.25" y2="5.9" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PROG">
 <contactref element="IC1" pad="2"/>
@@ -3000,19 +3001,20 @@ design rules under a new name.</description>
 <signal name="N$5">
 <contactref element="R13" pad="2"/>
 <contactref element="CHRG" pad="C"/>
-<wire x1="22.25" y1="4.1" x2="24.25" y2="4.1" width="0.508" layer="1"/>
+<wire x1="21.9" y1="3.98" x2="24.23" y2="3.98" width="0.508" layer="1"/>
+<wire x1="24.23" y1="3.98" x2="24.25" y2="4" width="0.508" layer="1"/>
 </signal>
 <signal name="N$8">
 <contactref element="R12" pad="2"/>
 <contactref element="STDBY" pad="C"/>
-<wire x1="17.832840625" y1="4.05858125" x2="20.020709375" y2="4.05858125" width="0.508" layer="1"/>
-<wire x1="20.020709375" y1="4.05858125" x2="20.07321875" y2="4.111090625" width="0.508" layer="1"/>
+<wire x1="17.362840625" y1="3.98858125" x2="19.719290625" y2="3.98858125" width="0.508" layer="1"/>
+<wire x1="19.719290625" y1="3.98858125" x2="19.731090625" y2="3.97678125" width="0.508" layer="1"/>
 </signal>
 <signal name="N$1">
 <contactref element="CHRG" pad="A"/>
 <contactref element="STDBY" pad="A"/>
-<wire x1="20.07321875" y1="5.611090625" x2="22.238909375" y2="5.611090625" width="0.508" layer="1"/>
-<wire x1="22.238909375" y1="5.611090625" x2="22.25" y2="5.6" width="0.508" layer="1"/>
+<wire x1="19.731090625" y1="6.07678125" x2="21.89678125" y2="6.07678125" width="0.508" layer="1"/>
+<wire x1="21.89678125" y1="6.07678125" x2="21.9" y2="6.08" width="0.508" layer="1"/>
 </signal>
 <signal name="TP_B+">
 <contactref element="IC1" pad="8"/>
