@@ -1,6 +1,9 @@
-float32 kp # proportional term
-float32 ki # intergrative term
-float32 kd # derivative term
+float32 lkp # proportional term left motor
+float32 lki # intergrative term left motor
+float32 lkd # derivative term left motor
+float32 rkp # proportional term right motor
+float32 rki # intergrative term right motor
+float32 rkd # derivative term right motor
 ---
 bool success   # indicate successful run of triggered service
 string message # informational, e.g. for error messages

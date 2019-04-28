@@ -1,0 +1,13 @@
+Header header
+
+float64 left_ticks
+float64 right_ticks
+float64 left_diff
+float64 right_diff
+float64 left_dist
+float64 right_dist
+float64 timestep
+float64 left_speed
+float64 right_speed
+float64 left_speed_filtered
+float64 right_speed_filtered
