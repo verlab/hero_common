@@ -65,7 +65,7 @@ $ rosdep install hero_common
 - Default password is "s3cr3tp4ss"
 - After connect go to your browser and type the [address](http://192.168.4.1:80)
 - After change the parameters save and reset the robot
-<img src="hero_resources/media/images/hero_webconfig.png" width="200">
+<img src="hero_resources/media/images/hero_webconfig.png" width="800">
 
 # How to start the ROS node
 - Run the hero_bringup.launch file with:
