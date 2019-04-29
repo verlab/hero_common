@@ -1,8 +1,12 @@
-# HeRo: An Open Platform for Robotics Research and Education
-![www.verlab.dcc.ufmg.br](https://www.verlab.dcc.ufmg.br/wp-content/uploads/2013/09/SVG_Verlab_900dpi-300x86.png)
+[<img src="https://www.verlab.dcc.ufmg.br/wp-content/uploads/2013/09/SVG_Verlab_900dpi-300x86.png" width="100">](www.verlab.dcc.ufmg.br) 
 
+# HeRo: An Open Platform for Robotics Research and Education 
+
+
+<img style="float: left; margin:0 -10px 10px 0" src="hero_resources/media/images/hero_v2_real.png" width="60"> 
 This project contributes to an open source ROS-based framework for swarm robotics. We propose an low cost, high availability swarm system that could be printed and assembled multiple times without special knowledge or hardware skills.
-<img src="hero_resources/media/images/hero_v2_real.png" width="180">
+
+
 
 # Authors:
 - [Paulo Rezeck](https://github.com/rezeck)
@@ -16,6 +20,7 @@ This project contributes to an open source ROS-based framework for swarm robotic
 - 2x Addressable RGBA LED
 - Long-time Autonomy 3-9 hours (1800 mA LiPo Battery)
 - PID speed control
+- Built-in battery charge
 - General Purpose Bus on top (I2C/Serial/IO)
 - Communication Improves
 - Setup via Web Interface
