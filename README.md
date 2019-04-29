@@ -104,3 +104,22 @@ $ rosservice list
 
 # Some Videos
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/foQDcUG9Arg/0.jpg)](http://www.youtube.com/watch?v=foQDcUG9Arg "Video Title")
+
+
+# Reference
+Rezeck, Paulo AF, Hector Azpurua, and Luiz Chaimowicz. "HeRo: An open platform for robotics research and education." 2017 Latin American Robotics Symposium (LARS) and 2017 Brazilian Symposium on Robotics (SBR). IEEE, 2017.
+
+```
+@inproceedings{rezeck2017hero,
+  title={HeRo: An open platform for robotics research and education},
+  author={Rezeck, Paulo AF and Azpurua, Hector and Chaimowicz, Luiz},
+  booktitle={2017 Latin American Robotics Symposium (LARS) and 2017 Brazilian Symposium on Robotics (SBR)},
+  pages={1--6},
+  year={2017},
+  organization={IEEE}
+}
+```
+
+
+# Creative Commons
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
