@@ -1,9 +1,8 @@
-[<img src="https://www.verlab.dcc.ufmg.br/wp-content/uploads/2013/09/SVG_Verlab_900dpi-300x86.png" width="100">](www.verlab.dcc.ufmg.br) 
 
-# HeRo: An Open Platform for Robotics Research and Education 
+# [<img style="float: center;" src="https://www.verlab.dcc.ufmg.br/wp-content/uploads/2013/09/SVG_Verlab_900dpi-300x86.png" width="100">](www.verlab.dcc.ufmg.br)  HeRo: An Open Platform for Robotics Research and Education 
 
 
-<img style="float: left; margin:0 -10px 10px 0" src="hero_resources/media/images/hero_v2_real.png" width="60"> 
+<img style="float: left; margin:0 10px 10px 0" src="hero_resources/media/images/hero_v2_real.png" width="60"> 
 This project contributes to an open source ROS-based framework for swarm robotics. We propose an low cost, high availability swarm system that could be printed and assembled multiple times without special knowledge or hardware skills.
 
 
