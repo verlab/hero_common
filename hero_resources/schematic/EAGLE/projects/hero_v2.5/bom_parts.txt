@@ -1,0 +1,46 @@
+Partlist exported from /home/rezeck/EAGLE/projects/hero_v2.5/board.sch at 6/5/19 10:48 AM
+
+Part      Value         Device         Package       Description                  SPICEPREFIX
+BATT                    PINHD-1X2      1X02          PIN HEADER                              
+C1        0.10 nF       C-USC0603      C0603         CAPACITOR, American symbol              
+C2        0.10 nF       C-USC0603      C0603         CAPACITOR, American symbol              
+C3        10 uF         C-USC0603      C0603         CAPACITOR, American symbol              
+C4        10 uF         C-USC0603      C0603         CAPACITOR, American symbol              
+CHRG                    LEDSML0805     SML0805       LED                                     
+E_LEFT                  PINHD-1X3      1X03          PIN HEADER                              
+E_RIGHT                 PINHD-1X3      1X03          PIN HEADER                              
+I2C|UART                PINHD-1X4      1X04          PIN HEADER                              
+IC1       TP4056        TP4056         SOP-8                                      X          
+IC2       4051D         4051D          SO16          8-channel ANALOG MULTIPLEXER            
+IRLML2502               MOSFET-NREFLOW SOT23         N-Channel Mosfet                        
+LED0      WS2812B5050   WS2812B5050    WS2812B                                               
+LED1      WS2812B5050   WS2812B5050    WS2812B                                               
+M_LEFT                  PINHD-1X3      1X03          PIN HEADER                              
+M_RIGHT                 PINHD-1X3      1X03          PIN HEADER                              
+OS1                     STEPUP         STEPUP                                                
+P0                      TCRT5000       TCRT5000                                              
+P1                      TCRT5000       TCRT5000                                              
+P2                      TCRT5000       TCRT5000                                              
+P3                      TCRT5000       TCRT5000                                              
+P4                      TCRT5000       TCRT5000                                              
+P5                      TCRT5000       TCRT5000                                              
+P6                      TCRT5000       TCRT5000                                              
+P7                      TCRT5000       TCRT5000                                              
+R0        4k7           R-US_M0805     M0805         RESISTOR, American symbol               
+R1        4k7           R-US_M0805     M0805         RESISTOR, American symbol               
+R2        4k7           R-US_M0805     M0805         RESISTOR, American symbol               
+R3        4k7           R-US_M0805     M0805         RESISTOR, American symbol               
+R4        4k7           R-US_M0805     M0805         RESISTOR, American symbol               
+R5        4k7           R-US_M0805     M0805         RESISTOR, American symbol               
+R6        4k7           R-US_M0805     M0805         RESISTOR, American symbol               
+R7        4k7           R-US_M0805     M0805         RESISTOR, American symbol               
+R8        4k7           R-US_R0805     R0805         RESISTOR, American symbol    R          
+R9        0 R           R-US_R0805     R0805         RESISTOR, American symbol    R          
+R10       18 R          R-US_R0805     R0805         RESISTOR, American symbol    R          
+R11       NM            R-US_R0805     R0805         RESISTOR, American symbol    R          
+R12       102           R-EU_R0805     R0805         RESISTOR, European symbol               
+R13       102           R-EU_R0805     R0805         RESISTOR, European symbol               
+R14       122           R-EU_R0603     R0603         RESISTOR, European symbol               
+STDBY                   LEDSML0805     SML0805       LED                                     
+SWITCH    TL37YO        TL37YO         TL3XYO        TINY SWITCH MOM OFF MOM                 
+U$1       ESP12E_DEVKIT ESP12E_DEVKIT  ESP12E_DEVKIT ESP12E DEVKIT BOARD                     
