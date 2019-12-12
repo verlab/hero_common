@@ -46,7 +46,7 @@ void loop() {
   }
   strip.SetBrightness(255);
   strip.Show();
-  delay(1000);
+  delayMicroseconds(1000);
   
   Serial.println("Setting red");
   for(int i = 0; i < PixelCount; i++){
@@ -54,20 +54,21 @@ void loop() {
   }
   strip.SetBrightness(255);
   strip.Show();
-  delay(1000);
+  delayMicroseconds(1000);
 
   for(int i = 0; i < PixelCount; i++){
+    Serial.println("Setting green");
     strip.SetPixelColor(i, green);
   }
   strip.SetBrightness(255);
   strip.Show();
-  delay(1000);
+  delayMicroseconds(1000);
 
   Serial.println("Setting output");
   for (int i = 0; i < 10; i++){
       pinMode(2, OUTPUT);
       digitalWrite(2, HIGH);
-      delay(10);
+      delayMicroseconds(10);
       digitalWrite(2, LOW);
       delayMicroseconds(10);
   }
