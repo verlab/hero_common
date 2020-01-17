@@ -32,9 +32,9 @@ RgbColor black(0);
 double timer, log_timer, rate = 50;
 
 /* Wifi setup */
-IPAddress ROS_MASTER_ADDRESS(150, 164, 212, 125); // ros master ip
-char* WIFI_SSID = "Verlab"; // network name
-char* WIFI_PASSWD = "Verlab$Router"; // network password
+IPAddress ROS_MASTER_ADDRESS(10, 42, 0, 1); // ros master ip
+char* WIFI_SSID = "hero_network"; // network name
+char* WIFI_PASSWD = "s3cr3tp4ss"; // network password
 
 /* ROS Setup */
 String hero_name;
