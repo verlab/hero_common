@@ -26,14 +26,14 @@ const uint16_t PixelCount = 7; // this example assumes 4 pixels, making it small
 NeoPixelBrightnessBus<NeoGrbFeature, NeoEsp8266Uart800KbpsMethod> strip(PixelCount);
 RgbColor red(colorSaturation, 0, 0);
 RgbColor green(0, colorSaturation, 0);
-RgbColor black(0);
+RgbColor black(0, 0, 0);
 
 /* Timer */
-double timer, log_timer, rate = 50;
+double timer, log_timer, rate = 100;
 
 /* Wifi setup */
 IPAddress ROS_MASTER_ADDRESS(10, 42, 0, 1); // ros master ip
-char* WIFI_SSID = "hero_network"; // network name
+char* WIFI_SSID = "rezeck"; // network name
 char* WIFI_PASSWD = "s3cr3tp4ss"; // network password
 
 /* ROS Setup */
@@ -83,9 +83,9 @@ void setup() {
   strip.Show();
   
   //pinMode(LED_BUILTIN, OUTPUT);
-  for(int i = 0; i <= PixelCount * 4; i++){
+  for(int i = 0; i <= PixelCount * 6; i++){
     digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-    if (i % 8 == 0) continue;
+    if (i % 8 > 2) continue;
       strip.SetPixelColor(i % 8, green);
     strip.SetBrightness(16);
     strip.Show();
@@ -95,7 +95,6 @@ void setup() {
   strip.Show();
   
   /* ROS LOG */
-  //Serial.println("\n\n Welcome to hero odometry test! ");
   sprintf(buf,"\33[96m Welcome to Hero test mode - NeoPixel Test! \33[0m");
   nh.loginfo(buf);
 }
@@ -132,4 +131,3 @@ void led_callback(const std_msgs::ColorRGBA& msg){
   strip.SetBrightness(msg.a);
   strip.Show();
 }
-
