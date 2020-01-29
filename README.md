@@ -32,11 +32,11 @@
 - Arduino IDE (to install the ESP8266 firmware)
 
 # How to install HeRo common node
-- Using git (or download the zip file) clone this repository into ros workspace.
+- Using git (or download the zip file) clone this repository into ros workspace (i.e. ~/catkin_ws/src ).
 ```
 $ git clone https://github.com/verlab/hero_common.git
 ```
-- Compile with: 
+- Compile it with in your base directory (i.e  ~/catkin-ws ): 
 ```
 $ catkin_make # or catkin build
 ```
