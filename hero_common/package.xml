@@ -52,6 +52,11 @@
   <build_depend>rospy</build_depend>
   <build_depend>std_msgs</build_depend>
   <build_depend>message_generation</build_depend>
+  <build_depend>ar_track_alvar</build_depend>
+  <build_depend>ar_track_alvar_msgs</build_depend>
+  <build_depend>rosserial</build_depend>
+  <build_depend>usb_cam</build_depend>
+  <build_depend>teleop_twist_keyboard</build_depend>
 
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>rospy</build_export_depend>
