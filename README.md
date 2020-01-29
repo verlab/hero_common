@@ -48,7 +48,7 @@ $ rosdep install hero_common
 ```
 
 # How to install the firmware
-- Open the arduino IDE.
+- Open the arduino IDE (https://www.arduino.cc/en/main/software).
 - Go to preferences:
  - Change the sketchbook location to access the folder firmware.
  - Add (http://arduino.esp8266.com/stable/package_esp8266com_index.json) to Additional Boards Manager URLS.
