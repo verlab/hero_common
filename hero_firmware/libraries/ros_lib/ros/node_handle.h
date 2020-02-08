@@ -99,8 +99,8 @@ using rosserial_msgs::TopicInfo;
 template<class Hardware,
          int MAX_SUBSCRIBERS = 25,
          int MAX_PUBLISHERS = 25,
-         int INPUT_SIZE = 1024,
-         int OUTPUT_SIZE = 1024>
+         int INPUT_SIZE = 2048,
+         int OUTPUT_SIZE = 2048>
 class NodeHandle_ : public NodeHandleBase_
 {
 protected:
@@ -548,7 +548,7 @@ public:
    * Logging
    */
 
-private:
+protected:
   void log(char byte, const char * msg)
   {
     rosserial_msgs::Log l;
@@ -583,7 +583,7 @@ public:
    * Parameters
    */
 
-private:
+protected:
   bool param_recieved;
   rosserial_msgs::RequestParamResponse req_param_resp;
 

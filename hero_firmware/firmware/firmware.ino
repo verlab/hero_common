@@ -1,21 +1,21 @@
 /*
  ************************************************************************
- *  H E R O   F I R M W A R E
+    H E R O   F I R M W A R E
  ************************************************************************
- *
- * Paulo Rezeck <rezeck@dcc.ufmg.br>
- * Mauricio Ferrari <mauferrari@dcc.ufmg.br>
- * Hector Azpurua <hectorxxx@gmail.com>
- * 
- * HeRo Project
- * Computer Vision and Robotics Lab
- * Federal University of Minas Gerais - Brazil
+
+   Paulo Rezeck <rezeck@dcc.ufmg.br>
+   Mauricio Ferrari <mauferrari@dcc.ufmg.br>
+   Hector Azpurua <hectorxxx@gmail.com>
+
+   HeRo Project
+   Computer Vision and Robotics Lab - VeRLab/DCC
+   University Federal de Minas Gerais - UFMG/Brazil
  ************************************************************************/
 
 /* ESP Library */
 #include <ESP8266WiFi.h>
 
- /* ROS Library */
+/* ROS Library */
 #include <ros.h>
 
 /* Libraries */
@@ -31,7 +31,8 @@ void setup() {
   EEPROM.begin(MEM_ALOC_SIZE);
   EEPROM.get(MEM_INIT_POS, configurationData);
   EEPROM.end();
-  if (configurationData.robot_id != -1){
+  default_config = true;
+  if (configurationData.robot_id != -1) {
     default_config = false;
   }
   /* Setup laser Readings */
@@ -41,7 +42,8 @@ void setup() {
   setup_led();
   config_mode = is_config_mode();
   //config_mode = true;
-  if (config_mode){
+  default_config = true;
+  if (config_mode) {
     setupWiFi();
     server.on("/", handleRoot);
     server.on("/resetEEPROM", handleResetEEPROM);
@@ -49,21 +51,21 @@ void setup() {
     server.on("/css", handleCSS);
     server.onNotFound(handleNotFound);
     server.begin();
-    hello(magenta, 100); 
+    hello(magenta, 100);
     strip.Begin();
   }
-  else{ 
+  else {
     /* Connect the ESP8266 the the wifi AP */
     bool led_toggle = true;
     strip.Begin();
     strip.Show();
-    if (default_config){
+    if (default_config) {
       WiFi.begin(WIFI_SSID, WIFI_PASSWD);
-    } else{
+    } else {
       WiFi.begin(configurationData.wifi_ssid, configurationData.wifi_pass);
     }
-    while (WiFi.status() != WL_CONNECTED){ 
-      if (led_toggle == true){
+    while (WiFi.status() != WL_CONNECTED) {
+      if (led_toggle == true) {
         strip.SetPixelColor(0, red);
         strip.SetPixelColor(1, black);
         led_toggle = false;
@@ -81,23 +83,23 @@ void setup() {
     strip.SetBrightness(COLOR_SATURATION);
     strip.Show();
     delay(WIFI_CONNECT_LOOP);
-    
+
     /* Setup PID Controller and Autotuner */
     setup_pid();
-  
+
     /* Setup ROS Communication */
     setup_ros();
-  
+
     /* Setup IMU I2C communication */
-    #if IMU_ENABLE == true
-      setup_imu();
-    #endif  
-    
+#if IMU_ENABLE == true
+    setup_imu();
+#endif
+
     /* Initiate motors and encoders */
     setup_motors();
-  
+
     /* ROS LOG */
-    sprintf(buf,"\33[96m Founded %s! \33[0m", hero_name.c_str());
+    sprintf(buf, "\33[96m Founded %s! \33[0m", hero_name.c_str());
     nh.loginfo(buf);
     hello(cyan, 100);
   }
@@ -105,69 +107,92 @@ void setup() {
 
 
 /* Main loop */
-void loop(){
-  if (config_mode){
+void loop() {
+  if (config_mode) { // Web Configuration Mode
+    static int config_status_led_count = 0;
     server.handleClient();
     delay(1);
-    if ((millis() - led_blinky) > 1000){
+    if ((millis() - led_blinky) > 300) {
       led_blinky = millis();
-      if (blinky){
-        blinky = false;
-        strip.SetPixelColor(0, magenta);
-        strip.SetPixelColor(1, black);
-      }else{
-        blinky = true;
-        strip.SetPixelColor(0, black);
-        strip.SetPixelColor(1, magenta);
+
+      switch (config_status_led) {
+        case 0: // Default state Web Configuration Mode
+          if (blinky) {
+            strip.SetPixelColor(0, magenta);
+            strip.SetPixelColor(1, black);
+          } else {
+            strip.SetPixelColor(0, black);
+            strip.SetPixelColor(1, magenta);
+          }
+          break;
+        case 1: // Case web save buttom is pressed
+          if (blinky) {
+            strip.SetPixelColor(0, green);
+            strip.SetPixelColor(1, black);
+          } else {
+            strip.SetPixelColor(0, black);
+            strip.SetPixelColor(1, green);
+          }
+          config_status_led_count++;
+          break;
+        case 2: // Case web reset buttom is pressed
+          if (blinky) {
+            strip.SetPixelColor(0, red);
+            strip.SetPixelColor(1, black);
+          } else {
+            strip.SetPixelColor(0, black);
+            strip.SetPixelColor(1, red);
+          }
+          config_status_led_count++;
+          break;
       }
+
+      if (config_status_led_count >= config_status_led_times) {
+        config_status_led = 0;
+        config_status_led_count = 0;
+      }
+      blinky = !blinky;
+
       strip.SetBrightness(COLOR_SATURATION);
       strip.Show();
     }
+
   }
-  else{
-    
-    if (tuning){ /* Autotuner; this process disable PID controller for while */
+  else { // ROS Mode
+
+    if (tuning) { /* Autotuner; this process disable PID controller for while */
       tune_motors();
     }
-    else{ /* PID control loop */
-      if (r_motor.attached() && l_motor.attached() && !pwm_only) control(); 
+    else { /* PID control loop */
+      if (r_motor.attached() && l_motor.attached() && !pwm_only) control();
     }
-  
+
     /* ROS Debugs */
-    #if DEBUG == true
-        if ((millis() - ros_debug_timer) > 1000/debug_rate){
-          ros_debug_timer = millis();
-          if (tuning){
-              sprintf(buf,"\33[96m[%s] Tuning PID! Please wait (200 seconds)... %d ms\33[0m", hero_name.c_str(), (millis()-tunning_steady_state)/1000);
-              nh.loginfo(buf);
-            }
-          else{
-          //  sprintf(buf,"\33[96m[%s] Conected at time %d\33[0m", hero_name.c_str(), millis());
-          //  nh.loginfo(buf);
-          }
-          
-        }
-    #endif
-    
+#if DEBUG == true
+    if ((millis() - ros_debug_timer) > 1000 / debug_rate) {
+      ros_debug_timer = millis();
+      if (tuning) {
+        sprintf(buf, "\33[96m[%s] Tuning PID! Please wait (200 seconds)... %d ms\33[0m", hero_name.c_str(), (millis() - tunning_steady_state) / 1000);
+        nh.loginfo(buf);
+      }
+      else {
+        sprintf(buf, "\33[96m[%s] Conected at time %d\33[0m", hero_name.c_str(), millis());
+        nh.loginfo(buf);
+      }
+
+    }
+#endif
+
     /* Sensors update loop */
-    if ((millis() - loop_timer) > 1000/loop_rate){ 
+    if ((millis() - loop_timer) > 1000 / loop_rate) {
       loop_timer = millis();
       update_laser();
       update_encoder();
       update_odom();
-      #if IMU_ENABLE == true
-        readIMU();
-      #endif
+#if IMU_ENABLE == true
+      readIMU();
+#endif
       nh.spinOnce();
     }
-  }  
+  }
 }
-
-
-
-
-
-
-
-
-

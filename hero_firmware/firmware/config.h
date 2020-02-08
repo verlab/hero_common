@@ -20,7 +20,7 @@
 
 /*Robot name */
 #define ROBOT_NAME "/hero_"
-#define ROBOT_ID "1"
+#define ROBOT_ID "0"
 
 /* WIFI Configuration */
 #define ROS_MASTER_IP "10.42.0.1"                   /* ROS Master IP - Config as a hotspot by default */
@@ -31,7 +31,7 @@ bool default_config = true;
 
 /* Version Configuration */
 #define CONFIG_VERSION "v2.1"
-#define HARDWARE_VERSION "v2.5"
+#define HARDWARE_VERSION "v2.1"
 #define FIRMWARE_VERSION "v2.5"
 
 /* Robot Configuration */
@@ -126,10 +126,3 @@ struct PID_CONFIG {
 bool config_mode = false;       /* If you cover all the IR sensors with the hand, the robot start as a config mode accessed by AP mode*/
 
 #endif  // ___CONFIG_H__
-
-
-
-
-
-
-

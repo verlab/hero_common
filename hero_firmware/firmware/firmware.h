@@ -175,6 +175,7 @@ void setup_laser(){
   pinMode(MUX_B, OUTPUT);
   pinMode(MUX_C, OUTPUT);
   pinMode(MUX_EN, OUTPUT);
+  analogWrite(MUX_EN, 0);
 }
 
 /* Initiate motors and encoders */
@@ -206,6 +207,7 @@ void setup_led(){
   delay(100);
 }
 
+
 void hello(RgbColor color, unsigned long timer){
     strip.Begin();
   for (int i = 0; i < 10; i++){
@@ -228,10 +230,3 @@ void hello(RgbColor color, unsigned long timer){
 
 
 #endif  // ___CONFIG_H__
-
-
-
-
-
-
-

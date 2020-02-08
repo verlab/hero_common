@@ -1,20 +1,22 @@
- /************************************************************************
- *  H E R O   M O T O R  T E S T 
- ************************************************************************
- *
- * Paulo Rezeck <rezeck@dcc.ufmg.br>
- * Mauricio Ferrari <mauferrari@dcc.ufmg.br>
- * Hector Azpurua <hectorxxx@gmail.com>
- * 
- * HeRo Project
- * Computer Vision and Robotics Lab
- * Federal University of Minas Gerais - Brazil
- ************************************************************************/
+/************************************************************************
+   H E R O   M O T O R  T E S T
+************************************************************************
+
+  Paulo Rezeck <rezeck@dcc.ufmg.br>
+  Mauricio Ferrari <mauferrari@dcc.ufmg.br>
+  Hector Azpurua <hectorxxx@gmail.com>
+
+  HeRo Project
+  Computer Vision and Robotics Lab
+  Federal University of Minas Gerais - Brazil
+************************************************************************/
 #include <ros.h>
-#include <geometry_msgs/Twist.h>
+#include <hero_common/Motor.h>
 #include <Servo.h>                      /* https://www.arduino.cc/en/Reference/Servo */
 
 #include <ESP8266WiFi.h>
+
+#define HERO_ID "1"
 
 /* Motor Configuration */
 #define MOTOR_RIGHT 16        /* PIN D3 */
@@ -37,57 +39,82 @@ String hero_name;
 ros::NodeHandle nh;
 /** Subscribers **/
 /* Command Velocity Callback */
-String cmdvel_topic;                                    /* Topic name */
-ros::Subscriber<geometry_msgs::Twist> *cmdvel_sub;      /* Message type */
-void cmdvel_callback(const geometry_msgs::Twist& msg);  /* Callback function */
+String motor_topic;                                    /* Topic name */
+ros::Subscriber<hero_common::Motor> *motor_sub;      /* Message type */
+void motor_callback(const hero_common::Motor& msg);  /* Callback function */
+
+char buf [100];
 
 void setup() {
-     /* Connect the ESP8266 the the wifi AP */
-    WiFi.begin(WIFI_SSID, WIFI_PASSWD);
-    while (WiFi.status() != WL_CONNECTED) delay(500);
-  
-    /* Start ROS communication module */
-    uint16_t ROS_MASTER_PORT = 11411;
-    nh.getHardware()->setConnection(ROS_MASTER_ADDRESS, ROS_MASTER_PORT);
-  
-    /* Setup laser publisher */
-    hero_name = String("/hero_1");
-    /* Address command velocity subscribe */
-    cmdvel_topic = hero_name + String("/cmd_vel");                                                     /* Update topic name */
-    cmdvel_sub = new ros::Subscriber<geometry_msgs::Twist>(cmdvel_topic.c_str(), cmdvel_callback);     /* Instantiate subscriber */
-    nh.subscribe(*cmdvel_sub);                                                                         /* Address Command Vel */
-  
-    /* Starting ros node */
-    nh.initNode();
+  /* Connect the ESP8266 the the wifi AP */
+  WiFi.begin(WIFI_SSID, WIFI_PASSWD);
+  while (WiFi.status() != WL_CONNECTED) delay(500);
 
-     /* Initiate Motors */
-    r_motor.attach(MOTOR_RIGHT);
-    l_motor.attach(MOTOR_LEFT);
-    r_motor.writeMicroseconds(MOTOR_HALT_PWM);
-    l_motor.writeMicroseconds(MOTOR_HALT_PWM);
-    delayMicroseconds(100);
-    //r_motor.detach();
-    //l_motor.detach();
-    //delay(1000);
+  /* Start ROS communication module */
+  uint16_t ROS_MASTER_PORT = 11411;
+  nh.getHardware()->setConnection(ROS_MASTER_ADDRESS, ROS_MASTER_PORT);
+
+  /* Setup laser publisher */
+  hero_name = String("/hero_") + String(HERO_ID);
+  /* Address command velocity subscribe */
+  motor_topic = hero_name + String("/motor");                                                     /* Update topic name */
+  motor_sub = new ros::Subscriber<hero_common::Motor>(motor_topic.c_str(), motor_callback);     /* Instantiate subscriber */
+  nh.subscribe(*motor_sub);                                                                         /* Address Command Vel */
+
+  /* Starting ros node */
+  nh.initNode();
+
+  /* Initiate Motors */
+  r_motor.attach(MOTOR_RIGHT);
+  l_motor.attach(MOTOR_LEFT);
+  r_motor.writeMicroseconds(MOTOR_HALT_PWM);
+  l_motor.writeMicroseconds(MOTOR_HALT_PWM);
+  delayMicroseconds(100);
+  r_motor.detach();
+  l_motor.detach();
+  //delay(1000);
+
+
+  /* ROS LOG */
+  sprintf(buf, "\33[96m[%s] Hero test mode - Motor Test! \33[0m", hero_name.c_str());
+  nh.loginfo(buf);
 }
 
-unsigned long timer = 0;
+unsigned long timer = 0, log_timer, rate = 10;
 
 void loop() {
-    /* ROS Loop */
-    if (millis() - timer > 50){ 
-      timer = millis();
-      nh.spinOnce();
-    }
+
+  if ((millis() - log_timer) > 1000) {
+    log_timer = millis();
+    sprintf(buf, "\33[96m[%s] Conected at time %d\33[0m", hero_name.c_str(), millis());
+    nh.loginfo(buf);
+  }
+
+  /* ROS Loop */
+  if (millis() - timer > 1000.0 / rate) {
+    timer = millis();
+    nh.spinOnce();
+  }
 }
 
 
 /* Compute inverse kinematic of a Differential Drive Robot */
-void cmdvel_callback(const geometry_msgs::Twist& msg){
+void motor_callback(const hero_common::Motor& msg) {
   /* Get PWM */
-  float m_left = msg.linear.x;
-  float m_right = msg.linear.y;
+  float m_left = msg.left_motor_pwm;
+  float m_right = msg.right_motor_pwm;
+
+  if (m_left >= 1000 && m_left <= 2000) {
+    l_motor.attach(MOTOR_LEFT);
+  } else {
+    l_motor.detach();
+  }
+
+  if (m_right >= 1000 && m_right <= 2000) {
+    r_motor.attach(MOTOR_RIGHT);
+  } else {
+    r_motor.detach();
+  }
   r_motor.writeMicroseconds((int)m_right);
   l_motor.writeMicroseconds((int)m_left);
 }
-

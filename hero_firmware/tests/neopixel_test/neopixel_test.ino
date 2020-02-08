@@ -28,12 +28,14 @@ RgbColor red(colorSaturation, 0, 0);
 RgbColor green(0, colorSaturation, 0);
 RgbColor black(0, 0, 0);
 
+#define HERO_ID "5"
+
 /* Timer */
-double timer, log_timer, rate = 100;
+double timer, log_timer, rate = 10;
 
 /* Wifi setup */
 IPAddress ROS_MASTER_ADDRESS(10, 42, 0, 1); // ros master ip
-char* WIFI_SSID = "rezeck"; // network name
+char* WIFI_SSID = "hero_network"; // network name
 char* WIFI_PASSWD = "s3cr3tp4ss"; // network password
 
 /* ROS Setup */
@@ -61,7 +63,7 @@ void setup() {
   nh.getHardware()->setConnection(ROS_MASTER_ADDRESS, ROS_MASTER_PORT);
 
   /* Setup laser publisher */
-  hero_name = String("/hero_1");
+  hero_name = String("/hero_") + String(HERO_ID);
   
   led_topic = hero_name + String("/led");
   led_sub = new ros::Subscriber<std_msgs::ColorRGBA>(led_topic.c_str(), led_callback);
@@ -95,7 +97,7 @@ void setup() {
   strip.Show();
   
   /* ROS LOG */
-  sprintf(buf,"\33[96m Welcome to Hero test mode - NeoPixel Test! \33[0m");
+  sprintf(buf,"\33[96m[%s] Hero test mode - NeoPixel Test! \33[0m", hero_name.c_str());
   nh.loginfo(buf);
 }
 
@@ -108,12 +110,12 @@ void loop() {
     /* ROS INFOS */
     if ((millis() - log_timer) > 3000){
       log_timer = millis();
-      sprintf(buf,"\33[96m[HERO-Test] Conected at time %d\33[0m", millis());
+      sprintf(buf,"\33[96m[%s] Conected at time %d\33[0m", hero_name.c_str(), millis());
       nh.loginfo(buf);
     }
 
     /* ROS Loop */
-    if (millis() - timer > rate){ 
+    if (millis() - timer > 1000.0/rate){ 
       timer = millis();
       nh.spinOnce();
       
@@ -123,11 +125,11 @@ void loop() {
 void led_callback(const std_msgs::ColorRGBA& msg){
   //strip.Begin();
   //delay(50);
-  RgbColor color(msg.r, msg.g, msg.b);
+  RgbColor color(msg.r * 255, msg.g * 255, msg.b * 255);
   for(int i = 0; i <= PixelCount; i++){
     //digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
     strip.SetPixelColor(i, color);
   }
-  strip.SetBrightness(msg.a);
+  strip.SetBrightness(msg.a * 255);
   strip.Show();
 }

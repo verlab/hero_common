@@ -19,6 +19,9 @@
 // WiFi Definitions
 const char WiFiAPPSK[] = "s3cr3tp4ss";
 
+int config_status_led = 0;
+int config_status_led_times = 12; // Alternate 8 times between leds
+
 // between 4 and 4096bytes
 #define MEM_ALOC_SIZE 512
 #define MEM_INIT_POS 0
@@ -88,6 +91,8 @@ void handleSaveParams(){
 
   String content = "{\"status\":\"success\"}";
   server.send(200, "application/json", content);
+
+  config_status_led = 1;
 }
 
 void handleCSS(){
@@ -111,6 +116,8 @@ void handleResetEEPROM(){
     
     String content = "{\"status\":\"success\"}";
     server.send(200, "application/json", content);
+
+    config_status_led = 2;
 }
 
 //no need authentification
@@ -128,6 +135,8 @@ void handleNotFound() {
     message += " " + server.argName(i) + ": " + server.arg(i) + "\n";
   }
   server.send(404, "text/plain", message);
+
+  config_status_led = 0;
 }
 
 void setupWiFi() {
@@ -150,7 +159,3 @@ void setupWiFi() {
 
   WiFi.softAP(AP_NameChar, WiFiAPPSK, 8);
 }
-
-
-
-

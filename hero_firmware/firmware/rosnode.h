@@ -12,8 +12,8 @@
  * Federal University of Minas Gerais - Brazil
  ************************************************************************/
 
-#ifndef __ROSNODE_H__
-#define __ROSNODE_H__
+#ifndef __ROSNODE_HERO_H__
+#define __ROSNODE_HERO_H__
 
 /* Message types */
 #include <sensor_msgs/LaserScan.h>
@@ -452,7 +452,7 @@ void set_odom_callback( const hero_common::SetOdom::Request& req, hero_common::S
 void set_frequency_callback( const hero_common::SetFrequency::Request& req, hero_common::SetFrequency::Response& res){
   loop_rate = req.frequency;
   res.success = 1;
-  res.message = "\33[96m Changing loop-frequency. \33[0m";
+  res.message = "Changing loop-frequency.";
   sprintf(buf,"\33[96m[%s] Changing loop-frequency to %f Hz \33[0m", hero_name.c_str(), req.frequency);
   nh.loginfo(buf);
 }
@@ -615,10 +615,3 @@ bool is_config_mode(){
 }
   
 #endif  // ___CONFIG_H__
-
-
-
-
-
-
-
