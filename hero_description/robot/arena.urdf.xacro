@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<robot name="arena" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- Base Link -->
+    <macro name="box_inertia" params="m x y z">
+        <inertia ixx="${m*(y*y+z*z)/12}" ixy = "0" ixz = "0" iyy="${m*(x*x+z*z)/12}" iyz = "0" izz="${m*(x*x+z*z)/12}" />
+      </macro>
+
+    <link name="arena_link">
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 -${3*pi/2}" />
+            <geometry>
+                <mesh filename="package://hero_gazebo/worlds/models/arena.dae" scale="0.1 0.1 0.1"/>
+            </geometry>
+        </collision>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 -${3*pi/2}" />
+            <geometry>
+                <mesh filename="package://hero_gazebo/worlds/models/arena.dae" scale="0.1 0.1 0.1"/>
+            </geometry>
+        </visual>
+
+         
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="100" />
+            <xacro:box_inertia m="100.0" x="4.00" y="4.00" z="0.30"/>
+        </inertial>
+    </link>
+    <gazebo reference="arena_link">
+        <static>true</static>
+        <gravity>false</gravity>
+        <selfCollide>false</selfCollide>
+      </gazebo>
+    
+</robot>

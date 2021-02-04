@@ -1,0 +1,18 @@
+#######################################
+# Syntax Coloring Map For tcs3200_library
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+tcs3200	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+colorRead	KEYWORD2
+colorMax	KEYWORD2
+colorMin	KEYWORD2
+closestColor	KEYWORD2

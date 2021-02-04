@@ -60,6 +60,7 @@
   <!-- The export tag contains other, unspecified, tags -->
   <export>
     <!-- Other tools can request additional information be placed here -->
-
+    <gazebo_ros gazebo_model_path="${prefix}/worlds/models"/>
+    <gazebo_ros gazebo_media_path="${prefix}/worlds/models"/>
   </export>
 </package>

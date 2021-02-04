@@ -8,16 +8,98 @@
       <uri>model://sun</uri>
     </include>
     <scene>
-      <ambient>0.0 0.0 0.0 1.0</ambient>
-      <shadows>0</shadows>
+      <ambient>1.0 1.0 1.0 1.0</ambient>
+      <background>0.82 0.82 0.82 1.0</background>
+      <shadows>1</shadows>
     </scene>
     <physics type="ode">
-      <real_time_update_rate>1000.000000</real_time_update_rate>
-      <max_step_size>0.001000</max_step_size>
+      <real_time_update_rate>250.000000</real_time_update_rate>
+      <max_step_size>0.004000</max_step_size>
+      <!-- <type>quick</type>
+      <iters>24</iters>
+      <sor>1.4</sor> -->
     </physics>
 
+    <model name='cardboard_box'>
+      <pose frame=''>-0.658421 -2.6631 0.15 0 -0 0</pose>
+      <link name='link'>
+        <inertial>
+          <mass>0.120</mass>
+          <inertia>
+            <ixx>0.0416667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.0566667</iyy>
+            <iyz>0</iyz>
+            <izz>0.0683333</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.5 0.4 0.3</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.5</mu>
+                <mu2>0.5</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode>
+                <kp>1e+09</kp>
+                <kd>100000</kd>
+                <min_depth>0.005</min_depth>
+                <max_vel>1000</max_vel>
+              </ode>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <pose frame=''>0 0 -0.15 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://cardboard_box/meshes/cardboard_box.dae</uri>
+              <scale>1.25932 1.00745 0.755591</scale>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+
+    <model name='cardboard_box_marker'>
+      <pose frame=''>1.1639 1.6854 0.15 0 0 0</pose>
+      <static>true</static>
+      <link name='link'>
+        <visual name='visual'>
+          <transparency>0.8</transparency>
+          <pose frame=''>0 0 -0.15 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://cardboard_box/meshes/cardboard_box.dae</uri>
+              <scale>1.25932 1.00745 0.755591</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>Gazebo/Blue</script>
+        </material>
+        </visual>
+      </link>
+    </model>
+
     <!-- Testing the automatic population of objects -->
-    <population name="cardbox_population">
+    <!-- <population name="cardbox_population">
       <model name="cardbox">
         <include>
           <static>true</static>
@@ -32,6 +114,6 @@
       <distribution>
         <type>uniform</type>
       </distribution>
-    </population>
+    </population> -->
   </world>
 </sdf>

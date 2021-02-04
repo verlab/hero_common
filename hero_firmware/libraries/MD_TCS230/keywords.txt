@@ -1,0 +1,40 @@
+#######################################
+# Syntax Coloring Map
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+MD_TCS230	KEYWORD1
+sensorData	KEYWORD1
+rgbData	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+begin	KEYWORD2
+read	KEYWORD2
+readSingle	KEYWORD2
+available	KEYWORD2
+getRGB	KEYWORD2
+getRaw	KEYWORD2
+setFilter	KEYWORD2
+setFrequency	KEYWORD2
+setEnable	KEYWORD2
+setSampling	KEYWORD2
+setDarkCal	KEYWORD2
+setWhiteCal	KEYWORD2
+
+######################################
+# Constants (LITERAL1)
+#######################################
+TCS230_FREQ_HI	LITERAL1
+TCS230_FREQ_MID	LITERAL1
+TCS230_FREQ_LO	LITERAL1
+TCS230_FREQ_OFF	LITERAL1
+TCS230_RGB_R	LITERAL1
+TCS230_RGB_G	LITERAL1
+TCS230_RGB_B	LITERAL1
+TCS230_RGB_X	LITERAL1
+

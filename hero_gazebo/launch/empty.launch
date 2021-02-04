@@ -1,0 +1,6 @@
+<launch>
+    <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+    <arg name="path" value="$(find hero_gazebo)/worlds/models"/>
+    <env name="GAZEBO_MODEL_PATH" value="$(optenv GAZEBO_MODEL_PATH):$(find hero_gazebo)/worlds/models" />
+
+</launch>

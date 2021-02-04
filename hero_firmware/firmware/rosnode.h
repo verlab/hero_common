@@ -505,12 +505,12 @@ void pid_calibration_callback(const std_srvs::Trigger::Request& req, std_srvs::T
 
 void led_callback(const std_msgs::ColorRGBA& msg){
   strip.Begin();
-  RgbColor color(msg.r, msg.g, msg.b);
+  RgbColor color(msg.r*255.0, msg.g*255.0, msg.b*255.0);
   for(int i = 0; i <= PixelCount; i++){
     //digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
     strip.SetPixelColor(i, color);
   }
-  strip.SetBrightness(msg.a);
+  strip.SetBrightness(msg.a*255.0);
   strip.Show();
 }
 

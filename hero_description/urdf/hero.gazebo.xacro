@@ -14,7 +14,7 @@
     <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
       <!--robotNamespace>/</robotNamespace-->
       <alwaysOn>true</alwaysOn>
-      <updateRate>100</updateRate>
+      <updateRate>50</updateRate>
       <leftJoint>left_wheel_joint</leftJoint>
       <rightJoint>right_wheel_joint</rightJoint>
       <wheelSeparation>${wheel_separation}</wheelSeparation>
@@ -30,9 +30,9 @@
       <publishOdomTF>true</publishOdomTF>
       <publishWheelTF>true</publishWheelTF>
       <publishWheelJointState>false</publishWheelJointState>
-      <wheelAcceleration>0</wheelAcceleration>
+      <wheelAcceleration>0.0</wheelAcceleration>
       <publishTf>true</publishTf>
-      <wheelTorque>0.3</wheelTorque>
+      <wheelTorque>2.5</wheelTorque>
     </plugin>
   </gazebo>
 
@@ -42,7 +42,7 @@
       <plugin name="gazebo_ros_model_color" filename="libgazebo_ros_model_color.so">
         <!--robotNamespace>/</robotNamespace-->
         <serviceName>hat_color</serviceName>
-        <color>1.0 1.0 1.0 1.0</color>
+        <color>0.0 0.5 0.9 1.0</color>
       </plugin>
     </visual>
   </gazebo>

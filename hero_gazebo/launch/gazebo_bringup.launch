@@ -1,18 +1,16 @@
 <launch>
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <!-- <env name="GAZEBO_MODEL_PATH" value="$(optenv GAZEBO_MODEL_PATH):$(find hero_gazebo)/worlds/models" /> -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="verbose" value="false"/>
+    <arg name="verbose" value="false" />
     <!--arg name="paused" value="true"/-->
-    <arg name="use_sim_time" value="true"/>
-    <arg name="world_name" value="$(find hero_gazebo)/worlds/hero.world"/>
+    <arg name="use_sim_time" value="true" />
+    <arg name="world_name" value="$(find hero_gazebo)/worlds/hero.world" />
     <!-- more default parameters can be changed here -->
   </include>
 
-  <include file="$(find hero_gazebo)/launch/hero_spawn.launch">
-    <arg name="x" value="1"/>
-    <arg name="y" value="1"/>
-    <arg name="z" value="0"/>
-    <arg name="id" value="0"/>
-  </include>
+  <param name="arena_description" command="$(find xacro)/xacro --inorder $(find hero_description)/robot/arena.urdf.xacro" />
+  <node name="spawn_urdf_env" pkg="gazebo_ros" type="spawn_model" args="-urdf -model arena -param arena_description" />
+  <node pkg="tf" type="static_transform_publisher" name="enviroment_broadcaster" args="0 0 0 0 0 0 /world /arena_link 5" />
 
 </launch>
