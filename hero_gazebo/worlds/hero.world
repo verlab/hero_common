@@ -13,8 +13,8 @@
       <shadows>1</shadows>
     </scene>
     <physics type="ode">
-      <real_time_update_rate>250.000000</real_time_update_rate>
-      <max_step_size>0.004000</max_step_size>
+      <real_time_update_rate>500.000000</real_time_update_rate>
+      <max_step_size>0.002000</max_step_size>
       <!-- <type>quick</type>
       <iters>24</iters>
       <sor>1.4</sor> -->
@@ -44,8 +44,8 @@
           <surface>
             <friction>
               <ode>
-                <mu>0.5</mu>
-                <mu2>0.5</mu2>
+                <mu>1.0</mu>
+                <mu2>0.1</mu2>
               </ode>
               <torsional>
                 <ode/>
@@ -78,7 +78,7 @@
       </link>
     </model>
 
-    <model name='cardboard_box_marker'>
+    <model name='cardboard_box_target'>
       <pose frame=''>1.1639 1.6854 0.15 0 0 0</pose>
       <static>true</static>
       <link name='link'>
@@ -91,9 +91,6 @@
               <scale>1.25932 1.00745 0.755591</scale>
             </mesh>
           </geometry>
-          <material>
-            <script>Gazebo/Blue</script>
-        </material>
         </visual>
       </link>
     </model>
