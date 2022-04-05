@@ -1,10 +1,23 @@
 
-# [<img style="float: center;" src="https://www.verlab.dcc.ufmg.br/wp-content/uploads/2013/09/SVG_Verlab_900dpi-300x86.png" width="100">](www.verlab.dcc.ufmg.br)  HeRo: An Open Platform for Robotics Research and Education 
+<!-- # [<img style="float: center;" src="https://www.verlab.dcc.ufmg.br/wp-content/uploads/2013/09/SVG_Verlab_900dpi-300x86.png" width="100">](www.verlab.dcc.ufmg.br)   -->
 
+# HeRo: An Open Platform for Robotics Research and Education 
 
-<img style="float: left; margin:0 10px 10px 0" src="hero_resources/media/images/hero_v2_real.png" width="60"> This project contributes to an open source ROS-based framework for swarm robotics. We propose an low cost, high availability swarm system that could be printed and assembled multiple times without special knowledge or hardware skills.
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/JQvuYeF24lY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
+<div align="center">
+      <a href="https://www.youtube.com/watch?v=JQvuYeF24lY">
+     <img 
+      src="https://img.youtube.com/vi/JQvuYeF24lY/0.jpg" 
+      alt="Everything Is AWESOME" 
+      style="width:100%;">
+      </a>
+    </div>
 
+<!-- <img style="float: left; margin:0 10px 10px 0" src="hero_resources/media/images/hero_v2_real.png" width="60">  -->
+This project contributes to an open source ROS-based framework for swarm robotics. We propose an low cost, high availability swarm system that could be printed and assembled multiple times without special knowledge or hardware skills.
+
+> :warning: **Assembly tutorial wiki will be available in the next few weeks!**:
 
 # Authors:
 - [Paulo Rezeck](https://github.com/rezeck)
