@@ -3,9 +3,9 @@
 <div align="center">
       <a href="https://www.youtube.com/watch?v=JQvuYeF24lY">
      <img 
-      src="https://img.youtube.com/vi/JQvuYeF24lY/3.jpg" 
+      src="https://img.youtube.com/vi/JQvuYeF24lY/1.jpg" 
       alt="Everything Is AWESOME" 
-      style="width:100%;">
+      style="width:80%;">
       </a>
     </div>
 
@@ -65,7 +65,7 @@ This project contributes to an open source ROS-based framework for swarm robotic
      <img 
       src="https://img.youtube.com/vi/9s6Fg20uOpc/2.jpg" 
       alt="Odometry Evaluation" 
-      style="width:100%;">
+      style="width:80%;">
       </a>
     </div>
     
@@ -75,7 +75,7 @@ This project contributes to an open source ROS-based framework for swarm robotic
      <img 
       src="https://img.youtube.com/vi/hAS7FKYkKWQ/2.jpg" 
       alt="Odometry Evaluation" 
-      style="width:100%;">
+      style="width:80%;">
       </a>
     </div>  
 
@@ -85,7 +85,7 @@ This project contributes to an open source ROS-based framework for swarm robotic
      <img 
       src="https://img.youtube.com/vi/u7iioSKtHU8/2.jpg" 
       alt="Odometry Evaluation" 
-      style="width:100%;">
+      style="width:80%;">
       </a>
     </div> 
     
@@ -95,7 +95,7 @@ This project contributes to an open source ROS-based framework for swarm robotic
      <img 
       src="https://img.youtube.com/vi/pD-tutQLuDo/2.jpg" 
       alt="Odometry Evaluation" 
-      style="width:100%;">
+      style="width:80%;">
       </a>
     </div>   
 
@@ -105,7 +105,7 @@ This project contributes to an open source ROS-based framework for swarm robotic
      <img 
       src="https://img.youtube.com/vi/KmQXBcXKBtE/2.jpg" 
       alt="Odometry Evaluation" 
-      style="width:100%;">
+      style="width:80%;">
       </a>
     </div> 
 
