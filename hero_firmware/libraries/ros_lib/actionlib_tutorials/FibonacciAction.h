@@ -29,7 +29,7 @@ namespace actionlib_tutorials
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->action_goal.serialize(outbuffer + offset);
@@ -38,7 +38,7 @@ namespace actionlib_tutorials
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->action_goal.deserialize(inbuffer + offset);
@@ -47,8 +47,8 @@ namespace actionlib_tutorials
      return offset;
     }
 
-    const char * getType(){ return "actionlib_tutorials/FibonacciAction"; };
-    const char * getMD5(){ return "f59df5767bf7634684781c92598b2406"; };
+    virtual const char * getType() override { return "actionlib_tutorials/FibonacciAction"; };
+    virtual const char * getMD5() override { return "f59df5767bf7634684781c92598b2406"; };
 
   };
 

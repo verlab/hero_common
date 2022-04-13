@@ -39,15 +39,15 @@ namespace dynamic_reconfigure
       _groups_type * groups;
 
     Config():
-      bools_length(0), bools(NULL),
-      ints_length(0), ints(NULL),
-      strs_length(0), strs(NULL),
-      doubles_length(0), doubles(NULL),
-      groups_length(0), groups(NULL)
+      bools_length(0), st_bools(), bools(nullptr),
+      ints_length(0), st_ints(), ints(nullptr),
+      strs_length(0), st_strs(), strs(nullptr),
+      doubles_length(0), st_doubles(), doubles(nullptr),
+      groups_length(0), st_groups(), groups(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->bools_length >> (8 * 0)) & 0xFF;
@@ -93,7 +93,7 @@ namespace dynamic_reconfigure
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t bools_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -159,8 +159,8 @@ namespace dynamic_reconfigure
      return offset;
     }
 
-    const char * getType(){ return "dynamic_reconfigure/Config"; };
-    const char * getMD5(){ return "958f16a05573709014982821e6822580"; };
+    virtual const char * getType() override { return "dynamic_reconfigure/Config"; };
+    virtual const char * getMD5() override { return "958f16a05573709014982821e6822580"; };
 
   };
 

@@ -41,15 +41,15 @@ namespace smach_msgs
     SmachContainerStructure():
       header(),
       path(""),
-      children_length(0), children(NULL),
-      internal_outcomes_length(0), internal_outcomes(NULL),
-      outcomes_from_length(0), outcomes_from(NULL),
-      outcomes_to_length(0), outcomes_to(NULL),
-      container_outcomes_length(0), container_outcomes(NULL)
+      children_length(0), st_children(), children(nullptr),
+      internal_outcomes_length(0), st_internal_outcomes(), internal_outcomes(nullptr),
+      outcomes_from_length(0), st_outcomes_from(), outcomes_from(nullptr),
+      outcomes_to_length(0), st_outcomes_to(), outcomes_to(nullptr),
+      container_outcomes_length(0), st_container_outcomes(), container_outcomes(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -121,7 +121,7 @@ namespace smach_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -237,8 +237,8 @@ namespace smach_msgs
      return offset;
     }
 
-    const char * getType(){ return "smach_msgs/SmachContainerStructure"; };
-    const char * getMD5(){ return "3d3d1e0d0f99779ee9e58101a5dcf7ea"; };
+    virtual const char * getType() override { return "smach_msgs/SmachContainerStructure"; };
+    virtual const char * getMD5() override { return "3d3d1e0d0f99779ee9e58101a5dcf7ea"; };
 
   };
 

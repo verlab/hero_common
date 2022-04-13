@@ -23,7 +23,7 @@ namespace geometry_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->twist.serialize(outbuffer + offset);
@@ -33,7 +33,7 @@ namespace geometry_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->twist.deserialize(inbuffer + offset);
@@ -43,8 +43,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/TwistWithCovariance"; };
-    const char * getMD5(){ return "1fe8a28e6890a4cc3ae4c3ca5c7d82e6"; };
+    virtual const char * getType() override { return "geometry_msgs/TwistWithCovariance"; };
+    virtual const char * getMD5() override { return "1fe8a28e6890a4cc3ae4c3ca5c7d82e6"; };
 
   };
 

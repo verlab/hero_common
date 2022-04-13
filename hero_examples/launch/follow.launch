@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="hero_examples" type="hero_0_go.py" name="hero_0_go" output="screen"/>
+    <node pkg="hero_examples" type="hero_1_go.py" name="hero_1_go" output="screen"/>
+    <node pkg="hero_examples" type="hero_2_go.py" name="hero_2_go" output="screen"/>
+    <node pkg="hero_examples" type="hero_3_go.py" name="hero_3_go" output="screen"/>
+    <node pkg="hero_examples" type="hero_4_go.py" name="hero_4_go" output="screen"/>
+</launch>

@@ -23,11 +23,11 @@ namespace actionlib_msgs
 
     GoalStatusArray():
       header(),
-      status_list_length(0), status_list(NULL)
+      status_list_length(0), st_status_list(), status_list(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -42,7 +42,7 @@ namespace actionlib_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -61,8 +61,8 @@ namespace actionlib_msgs
      return offset;
     }
 
-    const char * getType(){ return "actionlib_msgs/GoalStatusArray"; };
-    const char * getMD5(){ return "8b2b82f13216d0a8ea88bd3af735e619"; };
+    virtual const char * getType() override { return "actionlib_msgs/GoalStatusArray"; };
+    virtual const char * getMD5() override { return "8b2b82f13216d0a8ea88bd3af735e619"; };
 
   };
 

@@ -35,7 +35,7 @@ namespace visualization_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->id >> (8 * 0)) & 0xFF;
@@ -63,7 +63,7 @@ namespace visualization_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       this->id =  ((uint32_t) (*(inbuffer + offset)));
@@ -99,8 +99,8 @@ namespace visualization_msgs
      return offset;
     }
 
-    const char * getType(){ return "visualization_msgs/MenuEntry"; };
-    const char * getMD5(){ return "b90ec63024573de83b57aa93eb39be2d"; };
+    virtual const char * getType() override { return "visualization_msgs/MenuEntry"; };
+    virtual const char * getMD5() override { return "b90ec63024573de83b57aa93eb39be2d"; };
 
   };
 

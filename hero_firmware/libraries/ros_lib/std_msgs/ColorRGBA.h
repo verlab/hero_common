@@ -29,7 +29,7 @@ namespace std_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -75,7 +75,7 @@ namespace std_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -125,8 +125,8 @@ namespace std_msgs
      return offset;
     }
 
-    const char * getType(){ return "std_msgs/ColorRGBA"; };
-    const char * getMD5(){ return "a29a96539573343b1310c73607334b00"; };
+    virtual const char * getType() override { return "std_msgs/ColorRGBA"; };
+    virtual const char * getMD5() override { return "a29a96539573343b1310c73607334b00"; };
 
   };
 

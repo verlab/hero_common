@@ -37,11 +37,11 @@ namespace sensor_msgs
       encoding(""),
       is_bigendian(0),
       step(0),
-      data_length(0), data(NULL)
+      data_length(0), st_data(), data(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -79,7 +79,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -125,8 +125,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return "sensor_msgs/Image"; };
-    const char * getMD5(){ return "060021388200f6f0f447d0fcd9c64743"; };
+    virtual const char * getType() override { return "sensor_msgs/Image"; };
+    virtual const char * getMD5() override { return "060021388200f6f0f447d0fcd9c64743"; };
 
   };
 

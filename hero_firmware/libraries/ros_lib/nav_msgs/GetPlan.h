@@ -29,7 +29,7 @@ static const char GETPLAN[] = "nav_msgs/GetPlan";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->start.serialize(outbuffer + offset);
@@ -47,7 +47,7 @@ static const char GETPLAN[] = "nav_msgs/GetPlan";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->start.deserialize(inbuffer + offset);
@@ -66,8 +66,8 @@ static const char GETPLAN[] = "nav_msgs/GetPlan";
      return offset;
     }
 
-    const char * getType(){ return GETPLAN; };
-    const char * getMD5(){ return "e25a43e0752bcca599a8c2eef8282df8"; };
+    virtual const char * getType() override { return GETPLAN; };
+    virtual const char * getMD5() override { return "e25a43e0752bcca599a8c2eef8282df8"; };
 
   };
 
@@ -82,22 +82,22 @@ static const char GETPLAN[] = "nav_msgs/GetPlan";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->plan.serialize(outbuffer + offset);
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->plan.deserialize(inbuffer + offset);
      return offset;
     }
 
-    const char * getType(){ return GETPLAN; };
-    const char * getMD5(){ return "0002bc113c0259d71f6cf8cbc9430e18"; };
+    virtual const char * getType() override { return GETPLAN; };
+    virtual const char * getMD5() override { return "0002bc113c0259d71f6cf8cbc9430e18"; };
 
   };
 

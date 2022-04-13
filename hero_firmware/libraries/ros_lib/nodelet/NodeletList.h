@@ -18,20 +18,20 @@ static const char NODELETLIST[] = "nodelet/NodeletList";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
      return offset;
     }
 
-    const char * getType(){ return NODELETLIST; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    virtual const char * getType() override { return NODELETLIST; };
+    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
 
   };
 
@@ -44,11 +44,11 @@ static const char NODELETLIST[] = "nodelet/NodeletList";
       _nodelets_type * nodelets;
 
     NodeletListResponse():
-      nodelets_length(0), nodelets(NULL)
+      nodelets_length(0), st_nodelets(), nodelets(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->nodelets_length >> (8 * 0)) & 0xFF;
@@ -66,7 +66,7 @@ static const char NODELETLIST[] = "nodelet/NodeletList";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t nodelets_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -92,8 +92,8 @@ static const char NODELETLIST[] = "nodelet/NodeletList";
      return offset;
     }
 
-    const char * getType(){ return NODELETLIST; };
-    const char * getMD5(){ return "99c7b10e794f5600b8030e697e946ca7"; };
+    virtual const char * getType() override { return NODELETLIST; };
+    virtual const char * getMD5() override { return "99c7b10e794f5600b8030e697e946ca7"; };
 
   };
 

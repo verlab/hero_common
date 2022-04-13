@@ -24,7 +24,7 @@ static const char BADTWOINTS[] = "rospy_tutorials/BadTwoInts";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -54,7 +54,7 @@ static const char BADTWOINTS[] = "rospy_tutorials/BadTwoInts";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -86,8 +86,8 @@ static const char BADTWOINTS[] = "rospy_tutorials/BadTwoInts";
      return offset;
     }
 
-    const char * getType(){ return BADTWOINTS; };
-    const char * getMD5(){ return "29bb5c7dea8bf822f53e94b0ee5a3a56"; };
+    virtual const char * getType() override { return BADTWOINTS; };
+    virtual const char * getMD5() override { return "29bb5c7dea8bf822f53e94b0ee5a3a56"; };
 
   };
 
@@ -102,7 +102,7 @@ static const char BADTWOINTS[] = "rospy_tutorials/BadTwoInts";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -118,7 +118,7 @@ static const char BADTWOINTS[] = "rospy_tutorials/BadTwoInts";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -135,8 +135,8 @@ static const char BADTWOINTS[] = "rospy_tutorials/BadTwoInts";
      return offset;
     }
 
-    const char * getType(){ return BADTWOINTS; };
-    const char * getMD5(){ return "0ba699c25c9418c0366f3595c0c8e8ec"; };
+    virtual const char * getType() override { return BADTWOINTS; };
+    virtual const char * getMD5() override { return "0ba699c25c9418c0366f3595c0c8e8ec"; };
 
   };
 

@@ -25,7 +25,7 @@ namespace tf2_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->transform.serialize(outbuffer + offset);
@@ -33,7 +33,7 @@ namespace tf2_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->transform.deserialize(inbuffer + offset);
@@ -41,8 +41,8 @@ namespace tf2_msgs
      return offset;
     }
 
-    const char * getType(){ return "tf2_msgs/LookupTransformResult"; };
-    const char * getMD5(){ return "3fe5db6a19ca9cfb675418c5ad875c36"; };
+    virtual const char * getType() override { return "tf2_msgs/LookupTransformResult"; };
+    virtual const char * getMD5() override { return "3fe5db6a19ca9cfb675418c5ad875c36"; };
 
   };
 

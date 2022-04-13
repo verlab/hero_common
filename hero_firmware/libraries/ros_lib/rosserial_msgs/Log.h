@@ -28,7 +28,7 @@ namespace rosserial_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->level >> (8 * 0)) & 0xFF;
@@ -41,7 +41,7 @@ namespace rosserial_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       this->level =  ((uint8_t) (*(inbuffer + offset)));
@@ -58,8 +58,8 @@ namespace rosserial_msgs
      return offset;
     }
 
-    const char * getType(){ return "rosserial_msgs/Log"; };
-    const char * getMD5(){ return "11abd731c25933261cd6183bd12d6295"; };
+    virtual const char * getType() override { return "rosserial_msgs/Log"; };
+    virtual const char * getMD5() override { return "11abd731c25933261cd6183bd12d6295"; };
 
   };
 

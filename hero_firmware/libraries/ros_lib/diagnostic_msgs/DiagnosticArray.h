@@ -23,11 +23,11 @@ namespace diagnostic_msgs
 
     DiagnosticArray():
       header(),
-      status_length(0), status(NULL)
+      status_length(0), st_status(), status(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -42,7 +42,7 @@ namespace diagnostic_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -61,8 +61,8 @@ namespace diagnostic_msgs
      return offset;
     }
 
-    const char * getType(){ return "diagnostic_msgs/DiagnosticArray"; };
-    const char * getMD5(){ return "60810da900de1dd6ddd437c3503511da"; };
+    virtual const char * getType() override { return "diagnostic_msgs/DiagnosticArray"; };
+    virtual const char * getMD5() override { return "60810da900de1dd6ddd437c3503511da"; };
 
   };
 

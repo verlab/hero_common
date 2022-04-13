@@ -25,7 +25,7 @@ namespace geometry_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -33,7 +33,7 @@ namespace geometry_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -41,8 +41,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/InertiaStamped"; };
-    const char * getMD5(){ return "ddee48caeab5a966c5e8d166654a9ac7"; };
+    virtual const char * getType() override { return "geometry_msgs/InertiaStamped"; };
+    virtual const char * getMD5() override { return "ddee48caeab5a966c5e8d166654a9ac7"; };
 
   };
 

@@ -36,7 +36,7 @@ namespace bond
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -80,7 +80,7 @@ namespace bond
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -135,8 +135,8 @@ namespace bond
      return offset;
     }
 
-    const char * getType(){ return "bond/Status"; };
-    const char * getMD5(){ return "eacc84bf5d65b6777d4c50f463dfb9c8"; };
+    virtual const char * getType() override { return "bond/Status"; };
+    virtual const char * getMD5() override { return "eacc84bf5d65b6777d4c50f463dfb9c8"; };
 
   };
 

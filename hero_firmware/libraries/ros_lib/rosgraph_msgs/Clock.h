@@ -21,7 +21,7 @@ namespace rosgraph_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->clock.sec >> (8 * 0)) & 0xFF;
@@ -37,7 +37,7 @@ namespace rosgraph_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       this->clock.sec =  ((uint32_t) (*(inbuffer + offset)));
@@ -53,8 +53,8 @@ namespace rosgraph_msgs
      return offset;
     }
 
-    const char * getType(){ return "rosgraph_msgs/Clock"; };
-    const char * getMD5(){ return "a9c97c1d230cfc112e270351a944ee47"; };
+    virtual const char * getType() override { return "rosgraph_msgs/Clock"; };
+    virtual const char * getMD5() override { return "a9c97c1d230cfc112e270351a944ee47"; };
 
   };
 

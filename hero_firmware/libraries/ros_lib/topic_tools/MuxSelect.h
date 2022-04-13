@@ -21,7 +21,7 @@ static const char MUXSELECT[] = "topic_tools/MuxSelect";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_topic = strlen(this->topic);
@@ -32,7 +32,7 @@ static const char MUXSELECT[] = "topic_tools/MuxSelect";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_topic;
@@ -47,8 +47,8 @@ static const char MUXSELECT[] = "topic_tools/MuxSelect";
      return offset;
     }
 
-    const char * getType(){ return MUXSELECT; };
-    const char * getMD5(){ return "d8f94bae31b356b24d0427f80426d0c3"; };
+    virtual const char * getType() override { return MUXSELECT; };
+    virtual const char * getMD5() override { return "d8f94bae31b356b24d0427f80426d0c3"; };
 
   };
 
@@ -63,7 +63,7 @@ static const char MUXSELECT[] = "topic_tools/MuxSelect";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_prev_topic = strlen(this->prev_topic);
@@ -74,7 +74,7 @@ static const char MUXSELECT[] = "topic_tools/MuxSelect";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_prev_topic;
@@ -89,8 +89,8 @@ static const char MUXSELECT[] = "topic_tools/MuxSelect";
      return offset;
     }
 
-    const char * getType(){ return MUXSELECT; };
-    const char * getMD5(){ return "3db0a473debdbafea387c9e49358c320"; };
+    virtual const char * getType() override { return MUXSELECT; };
+    virtual const char * getMD5() override { return "3db0a473debdbafea387c9e49358c320"; };
 
   };
 

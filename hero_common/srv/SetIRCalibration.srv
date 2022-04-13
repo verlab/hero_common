@@ -1,0 +1,11 @@
+float64 IR0 # alpha value for IR0
+float64 IR1 # alpha value for IR1
+float64 IR2 # alpha value for IR2
+float64 IR3 # alpha value for IR3
+float64 IR4 # alpha value for IR4
+float64 IR5 # alpha value for IR5
+float64 IR6 # alpha value for IR6
+float64 IR7 # alpha value for IR7
+---
+bool success   # indicate successful run of triggered service
+string message # informational, e.g. for error messages

@@ -3,15 +3,15 @@
 
     <!-- Laser plugin -->
     <gazebo reference="laser_link">
-        <sensor type="gpu_ray" name="head_laser_sensor">
-            <pose>0 0 0.031 0 0 0</pose>
-            <visualize>true</visualize>
-            <update_rate>10</update_rate>
+        <sensor type="gpu_ray" name="hero_laser_sensor">
+            <pose>0 0 0.051 0 0 0</pose>
+            <visualize>false</visualize>
+            <update_rate>20</update_rate>
             <ray>
                 <scan>
                     <horizontal>
-                        <samples>8</samples>
-                        <resolution>1.2</resolution>
+                        <samples>16</samples>
+                        <resolution>1</resolution>
                         <min_angle>${-PI}</min_angle>
                         <max_angle>${PI}</max_angle>
                     </horizontal>
@@ -19,11 +19,11 @@
                 <range>
                     <min>0.038</min>
                     <max>0.20</max>
-                    <resolution>0.01</resolution>
+                    <resolution>0.04</resolution>
                 </range>
             </ray>
-            <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
-                <topicName>laser_scan</topicName>
+            <plugin name="gazebo_ros_hero_laser" filename="libgazebo_ros_gpu_laser.so">
+                <topicName>laser</topicName>
                 <frameName>laser_link</frameName>
                 <gaussianNoise>0.001</gaussianNoise>
                 <updateRate>20</updateRate>

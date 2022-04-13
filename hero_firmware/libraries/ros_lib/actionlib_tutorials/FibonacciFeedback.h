@@ -18,11 +18,11 @@ namespace actionlib_tutorials
       _sequence_type * sequence;
 
     FibonacciFeedback():
-      sequence_length(0), sequence(NULL)
+      sequence_length(0), st_sequence(), sequence(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->sequence_length >> (8 * 0)) & 0xFF;
@@ -45,7 +45,7 @@ namespace actionlib_tutorials
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t sequence_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -73,8 +73,8 @@ namespace actionlib_tutorials
      return offset;
     }
 
-    const char * getType(){ return "actionlib_tutorials/FibonacciFeedback"; };
-    const char * getMD5(){ return "b81e37d2a31925a0e8ae261a8699cb79"; };
+    virtual const char * getType() override { return "actionlib_tutorials/FibonacciFeedback"; };
+    virtual const char * getMD5() override { return "b81e37d2a31925a0e8ae261a8699cb79"; };
 
   };
 

@@ -19,11 +19,11 @@ namespace sensor_msgs
       _array_type * array;
 
     JoyFeedbackArray():
-      array_length(0), array(NULL)
+      array_length(0), st_array(), array(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->array_length >> (8 * 0)) & 0xFF;
@@ -37,7 +37,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t array_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -55,8 +55,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return "sensor_msgs/JoyFeedbackArray"; };
-    const char * getMD5(){ return "cde5730a895b1fc4dee6f91b754b213d"; };
+    virtual const char * getType() override { return "sensor_msgs/JoyFeedbackArray"; };
+    virtual const char * getMD5() override { return "cde5730a895b1fc4dee6f91b754b213d"; };
 
   };
 

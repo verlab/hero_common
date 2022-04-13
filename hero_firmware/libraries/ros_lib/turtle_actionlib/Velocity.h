@@ -23,7 +23,7 @@ namespace turtle_actionlib
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -49,7 +49,7 @@ namespace turtle_actionlib
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -77,8 +77,8 @@ namespace turtle_actionlib
      return offset;
     }
 
-    const char * getType(){ return "turtle_actionlib/Velocity"; };
-    const char * getMD5(){ return "9d5c2dcd348ac8f76ce2a4307bd63a13"; };
+    virtual const char * getType() override { return "turtle_actionlib/Velocity"; };
+    virtual const char * getMD5() override { return "9d5c2dcd348ac8f76ce2a4307bd63a13"; };
 
   };
 

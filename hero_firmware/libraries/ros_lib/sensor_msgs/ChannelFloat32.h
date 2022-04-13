@@ -21,11 +21,11 @@ namespace sensor_msgs
 
     ChannelFloat32():
       name(""),
-      values_length(0), values(NULL)
+      values_length(0), st_values(), values(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
@@ -53,7 +53,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_name;
@@ -90,8 +90,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return "sensor_msgs/ChannelFloat32"; };
-    const char * getMD5(){ return "3d40139cdd33dfedcb71ffeeeb42ae7f"; };
+    virtual const char * getType() override { return "sensor_msgs/ChannelFloat32"; };
+    virtual const char * getMD5() override { return "3d40139cdd33dfedcb71ffeeeb42ae7f"; };
 
   };
 

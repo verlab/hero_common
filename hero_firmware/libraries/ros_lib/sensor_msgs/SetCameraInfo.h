@@ -22,22 +22,22 @@ static const char SETCAMERAINFO[] = "sensor_msgs/SetCameraInfo";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->camera_info.serialize(outbuffer + offset);
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->camera_info.deserialize(inbuffer + offset);
      return offset;
     }
 
-    const char * getType(){ return SETCAMERAINFO; };
-    const char * getMD5(){ return "ee34be01fdeee563d0d99cd594d5581d"; };
+    virtual const char * getType() override { return SETCAMERAINFO; };
+    virtual const char * getMD5() override { return "ee34be01fdeee563d0d99cd594d5581d"; };
 
   };
 
@@ -55,7 +55,7 @@ static const char SETCAMERAINFO[] = "sensor_msgs/SetCameraInfo";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -73,7 +73,7 @@ static const char SETCAMERAINFO[] = "sensor_msgs/SetCameraInfo";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -96,8 +96,8 @@ static const char SETCAMERAINFO[] = "sensor_msgs/SetCameraInfo";
      return offset;
     }
 
-    const char * getType(){ return SETCAMERAINFO; };
-    const char * getMD5(){ return "2ec6f3eff0161f4257b808b12bc830c2"; };
+    virtual const char * getType() override { return SETCAMERAINFO; };
+    virtual const char * getMD5() override { return "2ec6f3eff0161f4257b808b12bc830c2"; };
 
   };
 

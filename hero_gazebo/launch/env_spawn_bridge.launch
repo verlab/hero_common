@@ -1,0 +1,146 @@
+<launch>
+	<param name="/robot_description" textfile="$(find hero_description)/robot/hero_light.urdf"/>
+		
+	<node name="spawn_urdf_arena_1" pkg="gazebo_ros" type="spawn_model" args="-urdf -model arena_1 -x 0.0 -y 0.0 -z -0.0 -file $(find hero_gazebo)/worlds/models/arena_1/arena.urdf" />
+
+	<node name="spawn_urdf_hero_0" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_0 -x -1.2799 -y -1.012 -z 0.2395 -robot_namespace hero_0 -file $(find hero_description)/robot/hero_light_flag.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_0">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_0" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_0_broadcaster" args="0 0 0 0 0 0 world /hero_0/odom 30" />
+	<node name="spawn_urdf_hero_1" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_1 -x -0.8909 -y -0.7487 -z 0.2395 -robot_namespace hero_1 -file $(find hero_description)/robot/hero_light_flag.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_1">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_1" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_1_broadcaster" args="0 0 0 0 0 0 world /hero_1/odom 30" />
+	<node name="spawn_urdf_hero_2" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_2 -x 0.1845 -y -1.3623 -z 0.2395 -robot_namespace hero_2 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_2">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_2" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_2_broadcaster" args="0 0 0 0 0 0 world /hero_2/odom 30" />
+	<node name="spawn_urdf_hero_3" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_3 -x -0.7814 -y -1.4962 -z 0.2395 -robot_namespace hero_3 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_3">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_3" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_3_broadcaster" args="0 0 0 0 0 0 world /hero_3/odom 30" />
+	<node name="spawn_urdf_hero_4" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_4 -x 1.2403 -y -1.3075 -z 0.2395 -robot_namespace hero_4 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_4">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_4" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_4_broadcaster" args="0 0 0 0 0 0 world /hero_4/odom 30" />
+	<node name="spawn_urdf_hero_5" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_5 -x -1.1624 -y 0.4961 -z 0.2395 -robot_namespace hero_5 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_5">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_5" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_5_broadcaster" args="0 0 0 0 0 0 world /hero_5/odom 30" />
+	<node name="spawn_urdf_hero_6" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_6 -x 0.0948 -y -0.8785 -z 0.2395 -robot_namespace hero_6 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_6">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_6" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_6_broadcaster" args="0 0 0 0 0 0 world /hero_6/odom 30" />
+	<node name="spawn_urdf_hero_7" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_7 -x 0.9769 -y -0.9333 -z 0.2395 -robot_namespace hero_7 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_7">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_7" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_7_broadcaster" args="0 0 0 0 0 0 world /hero_7/odom 30" />
+	<node name="spawn_urdf_hero_8" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_8 -x 1.2538 -y -0.472 -z 0.2395 -robot_namespace hero_8 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_8">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_8" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_8_broadcaster" args="0 0 0 0 0 0 world /hero_8/odom 30" />
+	<node name="spawn_urdf_hero_9" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_9 -x -1.6609 -y 1.4502 -z 0.2395 -robot_namespace hero_9 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_9">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_9" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_9_broadcaster" args="0 0 0 0 0 0 world /hero_9/odom 30" />
+	<node name="spawn_urdf_hero_10" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_10 -x 0.2667 -y -0.3491 -z 0.2395 -robot_namespace hero_10 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_10">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_10" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_10_broadcaster" args="0 0 0 0 0 0 world /hero_10/odom 30" />
+	<node name="spawn_urdf_hero_11" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_11 -x 0.6594 -y 0.0373 -z 0.2395 -robot_namespace hero_11 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_11">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_11" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_11_broadcaster" args="0 0 0 0 0 0 world /hero_11/odom 30" />
+	<node name="spawn_urdf_hero_12" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_12 -x 1.2571 -y 0.2409 -z 0.2395 -robot_namespace hero_12 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_12">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_12" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_12_broadcaster" args="0 0 0 0 0 0 world /hero_12/odom 30" />
+	<node name="spawn_urdf_hero_13" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_13 -x 0.4641 -y 1.1996 -z 0.2395 -robot_namespace hero_13 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_13">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_13" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_13_broadcaster" args="0 0 0 0 0 0 world /hero_13/odom 30" />
+	<node name="spawn_urdf_hero_14" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_14 -x -0.3296 -y 0.1528 -z 0.2395 -robot_namespace hero_14 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_14">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_14" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_14_broadcaster" args="0 0 0 0 0 0 world /hero_14/odom 30" />
+	<node name="spawn_urdf_hero_15" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_15 -x -0.6484 -y 0.5945 -z 0.2395 -robot_namespace hero_15 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_15">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_15" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_15_broadcaster" args="0 0 0 0 0 0 world /hero_15/odom 30" />
+	<node name="spawn_urdf_hero_16" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_16 -x 0.4001 -y 0.6738 -z 0.2395 -robot_namespace hero_16 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_16">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_16" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_16_broadcaster" args="0 0 0 0 0 0 world /hero_16/odom 30" />
+	<node name="spawn_urdf_hero_17" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_17 -x 1.3494 -y 1.3713 -z 0.2395 -robot_namespace hero_17 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_17">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_17" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_17_broadcaster" args="0 0 0 0 0 0 world /hero_17/odom 30" />
+	<node name="spawn_urdf_hero_18" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_18 -x -1.6465 -y 0.0492 -z 0.2395 -robot_namespace hero_18 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_18">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_18" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_18_broadcaster" args="0 0 0 0 0 0 world /hero_18/odom 30" />
+	<node name="spawn_urdf_hero_19" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_19 -x -0.4795 -y 1.3179 -z 0.2395 -robot_namespace hero_19 -file $(find hero_description)/robot/hero_light.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_19">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_19" />
+		<param name="use_tf_static" value="False" />
+	</node>
+	<node pkg="tf" type="static_transform_publisher" name="hero_19_broadcaster" args="0 0 0 0 0 0 world /hero_19/odom 30" />
+</launch>

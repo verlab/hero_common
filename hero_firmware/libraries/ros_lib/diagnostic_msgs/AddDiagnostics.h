@@ -21,7 +21,7 @@ static const char ADDDIAGNOSTICS[] = "diagnostic_msgs/AddDiagnostics";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_load_namespace = strlen(this->load_namespace);
@@ -32,7 +32,7 @@ static const char ADDDIAGNOSTICS[] = "diagnostic_msgs/AddDiagnostics";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_load_namespace;
@@ -47,8 +47,8 @@ static const char ADDDIAGNOSTICS[] = "diagnostic_msgs/AddDiagnostics";
      return offset;
     }
 
-    const char * getType(){ return ADDDIAGNOSTICS; };
-    const char * getMD5(){ return "c26cf6e164288fbc6050d74f838bcdf0"; };
+    virtual const char * getType() override { return ADDDIAGNOSTICS; };
+    virtual const char * getMD5() override { return "c26cf6e164288fbc6050d74f838bcdf0"; };
 
   };
 
@@ -66,7 +66,7 @@ static const char ADDDIAGNOSTICS[] = "diagnostic_msgs/AddDiagnostics";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -84,7 +84,7 @@ static const char ADDDIAGNOSTICS[] = "diagnostic_msgs/AddDiagnostics";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -107,8 +107,8 @@ static const char ADDDIAGNOSTICS[] = "diagnostic_msgs/AddDiagnostics";
      return offset;
     }
 
-    const char * getType(){ return ADDDIAGNOSTICS; };
-    const char * getMD5(){ return "937c9679a518e3a18d831e57125ea522"; };
+    virtual const char * getType() override { return ADDDIAGNOSTICS; };
+    virtual const char * getMD5() override { return "937c9679a518e3a18d831e57125ea522"; };
 
   };
 

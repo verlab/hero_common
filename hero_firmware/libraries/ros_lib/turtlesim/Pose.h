@@ -32,7 +32,7 @@ namespace turtlesim
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -88,7 +88,7 @@ namespace turtlesim
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -149,8 +149,8 @@ namespace turtlesim
      return offset;
     }
 
-    const char * getType(){ return "turtlesim/Pose"; };
-    const char * getMD5(){ return "863b248d5016ca62ea2e895ae5265cf9"; };
+    virtual const char * getType() override { return "turtlesim/Pose"; };
+    virtual const char * getMD5() override { return "863b248d5016ca62ea2e895ae5265cf9"; };
 
   };
 

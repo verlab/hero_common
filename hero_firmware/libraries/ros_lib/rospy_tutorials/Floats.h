@@ -18,11 +18,11 @@ namespace rospy_tutorials
       _data_type * data;
 
     Floats():
-      data_length(0), data(NULL)
+      data_length(0), st_data(), data(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->data_length >> (8 * 0)) & 0xFF;
@@ -45,7 +45,7 @@ namespace rospy_tutorials
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t data_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -73,8 +73,8 @@ namespace rospy_tutorials
      return offset;
     }
 
-    const char * getType(){ return "rospy_tutorials/Floats"; };
-    const char * getMD5(){ return "420cd38b6b071cd49f2970c3e2cee511"; };
+    virtual const char * getType() override { return "rospy_tutorials/Floats"; };
+    virtual const char * getMD5() override { return "420cd38b6b071cd49f2970c3e2cee511"; };
 
   };
 

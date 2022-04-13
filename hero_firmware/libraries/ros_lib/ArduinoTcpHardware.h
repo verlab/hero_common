@@ -35,9 +35,13 @@
 #ifndef ROS_ARDUINO_TCP_HARDWARE_H_
 #define ROS_ARDUINO_TCP_HARDWARE_H_
 
+
 #include <Arduino.h>
 #if defined(ESP8266)
   #include <ESP8266WiFi.h>
+  #ifdef USE_UDP_PROTOCOL
+    #include <WiFiUdp.h>
+  #endif
 #elif defined(ESP32)
   #include <WiFi.h> // Using Espressif's WiFi.h
 #else
@@ -60,7 +64,10 @@ public:
   IPAddress getLocalIP()
   {
 #if defined(ESP8266) or defined(ESP32)
-    return tcp_.localIP();
+    #ifdef USE_UDP_PROTOCOL
+    #else
+      return tcp_.localIP();
+    #endif
 #else
     return Ethernet.localIP();
 #endif
@@ -68,29 +75,50 @@ public:
 
   void init()
   {
-    if(tcp_.connected())
-    {
-      tcp_.stop();
-    }
-    tcp_.connect(server_, serverPort_);
+    #ifdef USE_UDP_PROTOCOL
+      udp_.begin(serverPort_);
+    #else
+      if(tcp_.connected())
+      {
+        tcp_.stop();
+      }
+      tcp_.connect(server_, serverPort_);
+    #endif
   }
 
   int read(){
-    if (tcp_.connected())
-    {
-        return tcp_.read();
-    }
-    else
-    {
-      tcp_.stop();
-      tcp_.connect(server_, serverPort_);
-    }
+    #ifdef USE_UDP_PROTOCOL
+      if (udp_.parsePacket() > 0){
+        if (udp_.available() > 0){
+          return udp_.read();
+        }
+      } else {
+        udp_.stop();
+        udp_.begin(serverPort_);
+      }
+    #else
+      if (tcp_.connected())
+      {
+          return tcp_.read();
+      }
+      else
+      {
+        tcp_.stop();
+        tcp_.connect(server_, serverPort_);
+      }
+    #endif
     return -1;
   }
 
   void write(const uint8_t* data, int length)
   {
-    tcp_.write(data, length);
+    #ifdef USE_UDP_PROTOCOL
+      udp_.beginPacket(server_, serverPort_);
+      udp_.write(data, length);
+      udp_.endPacket();
+    #else
+      tcp_.write(data, length);
+    #endif
   }
 
   unsigned long time()
@@ -100,12 +128,20 @@ public:
 
   bool connected()
   {
-    return tcp_.connected();
+    #ifdef USE_UDP_PROTOCOL
+      return true;
+    #else
+      return tcp_.connected();
+    #endif
   }
 
 protected:
 #if defined(ESP8266) or defined(ESP32)
-  WiFiClient tcp_;
+  #ifdef USE_UDP_PROTOCOL
+    WiFiUDP udp_;
+  #else
+    WiFiClient tcp_;
+  #endif
 #else
   EthernetClient tcp_;
 #endif

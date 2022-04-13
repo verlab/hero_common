@@ -24,7 +24,7 @@ namespace actionlib_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->stamp.sec >> (8 * 0)) & 0xFF;
@@ -45,7 +45,7 @@ namespace actionlib_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       this->stamp.sec =  ((uint32_t) (*(inbuffer + offset)));
@@ -70,8 +70,8 @@ namespace actionlib_msgs
      return offset;
     }
 
-    const char * getType(){ return "actionlib_msgs/GoalID"; };
-    const char * getMD5(){ return "302881f31927c1df708a2dbab0e80ee8"; };
+    virtual const char * getType() override { return "actionlib_msgs/GoalID"; };
+    virtual const char * getMD5() override { return "302881f31927c1df708a2dbab0e80ee8"; };
 
   };
 

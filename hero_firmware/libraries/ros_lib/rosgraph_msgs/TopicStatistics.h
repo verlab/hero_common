@@ -61,7 +61,7 @@ namespace rosgraph_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_topic = strlen(this->topic);
@@ -192,7 +192,7 @@ namespace rosgraph_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_topic;
@@ -338,8 +338,8 @@ namespace rosgraph_msgs
      return offset;
     }
 
-    const char * getType(){ return "rosgraph_msgs/TopicStatistics"; };
-    const char * getMD5(){ return "10152ed868c5097a5e2e4a89d7daa710"; };
+    virtual const char * getType() override { return "rosgraph_msgs/TopicStatistics"; };
+    virtual const char * getMD5() override { return "10152ed868c5097a5e2e4a89d7daa710"; };
 
   };
 

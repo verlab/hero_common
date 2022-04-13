@@ -43,7 +43,7 @@ namespace sensor_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -59,7 +59,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -75,8 +75,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return "sensor_msgs/NavSatFix"; };
-    const char * getMD5(){ return "2d3a8cd499b9b4a0249fb98fd05cfa48"; };
+    virtual const char * getType() override { return "sensor_msgs/NavSatFix"; };
+    virtual const char * getMD5() override { return "2d3a8cd499b9b4a0249fb98fd05cfa48"; };
 
   };
 

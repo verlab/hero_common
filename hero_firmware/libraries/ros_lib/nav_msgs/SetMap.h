@@ -26,7 +26,7 @@ static const char SETMAP[] = "nav_msgs/SetMap";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->map.serialize(outbuffer + offset);
@@ -34,7 +34,7 @@ static const char SETMAP[] = "nav_msgs/SetMap";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->map.deserialize(inbuffer + offset);
@@ -42,8 +42,8 @@ static const char SETMAP[] = "nav_msgs/SetMap";
      return offset;
     }
 
-    const char * getType(){ return SETMAP; };
-    const char * getMD5(){ return "91149a20d7be299b87c340df8cc94fd4"; };
+    virtual const char * getType() override { return SETMAP; };
+    virtual const char * getMD5() override { return "91149a20d7be299b87c340df8cc94fd4"; };
 
   };
 
@@ -58,7 +58,7 @@ static const char SETMAP[] = "nav_msgs/SetMap";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -71,7 +71,7 @@ static const char SETMAP[] = "nav_msgs/SetMap";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -85,8 +85,8 @@ static const char SETMAP[] = "nav_msgs/SetMap";
      return offset;
     }
 
-    const char * getType(){ return SETMAP; };
-    const char * getMD5(){ return "358e233cde0c8a8bcfea4ce193f8fc15"; };
+    virtual const char * getType() override { return SETMAP; };
+    virtual const char * getMD5() override { return "358e233cde0c8a8bcfea4ce193f8fc15"; };
 
   };
 

@@ -20,7 +20,7 @@ namespace actionlib
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -36,7 +36,7 @@ namespace actionlib
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -53,8 +53,8 @@ namespace actionlib
      return offset;
     }
 
-    const char * getType(){ return "actionlib/TestResult"; };
-    const char * getMD5(){ return "034a8e20d6a306665e3a5b340fab3f09"; };
+    virtual const char * getType() override { return "actionlib/TestResult"; };
+    virtual const char * getMD5() override { return "034a8e20d6a306665e3a5b340fab3f09"; };
 
   };
 

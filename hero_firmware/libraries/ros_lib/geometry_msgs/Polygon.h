@@ -19,11 +19,11 @@ namespace geometry_msgs
       _points_type * points;
 
     Polygon():
-      points_length(0), points(NULL)
+      points_length(0), st_points(), points(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->points_length >> (8 * 0)) & 0xFF;
@@ -37,7 +37,7 @@ namespace geometry_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t points_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -55,8 +55,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/Polygon"; };
-    const char * getMD5(){ return "cd60a26494a087f577976f0329fa120e"; };
+    virtual const char * getType() override { return "geometry_msgs/Polygon"; };
+    virtual const char * getMD5() override { return "cd60a26494a087f577976f0329fa120e"; };
 
   };
 

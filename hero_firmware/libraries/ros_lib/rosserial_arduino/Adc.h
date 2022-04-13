@@ -35,7 +35,7 @@ namespace rosserial_arduino
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->adc0 >> (8 * 0)) & 0xFF;
@@ -59,7 +59,7 @@ namespace rosserial_arduino
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       this->adc0 =  ((uint16_t) (*(inbuffer + offset)));
@@ -83,8 +83,8 @@ namespace rosserial_arduino
      return offset;
     }
 
-    const char * getType(){ return "rosserial_arduino/Adc"; };
-    const char * getMD5(){ return "6d7853a614e2e821319068311f2af25b"; };
+    virtual const char * getType() override { return "rosserial_arduino/Adc"; };
+    virtual const char * getMD5() override { return "6d7853a614e2e821319068311f2af25b"; };
 
   };
 

@@ -61,6 +61,8 @@ add_service_files(
   SetPID.srv
   SetOdom.srv
   SetFrequency.srv
+  SetMotor.srv
+  SetIRCalibration.srv
 )
 
 ## Generate actions in the 'action' folder

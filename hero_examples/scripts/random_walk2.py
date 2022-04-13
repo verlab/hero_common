@@ -27,10 +27,10 @@ class RandomWalk(object):
         # self.goal = PoseStamped()
         # self.att_gain = 1.2
         # self.rep_gain = 0.4
-        self.p0 = 50.0  # in meters
+        self.p0 = 0.15  # in meters
         # self.kTheta = 1.4
         # self.threshold = 0.10
-        self.max_speed = 0.15
+        self.max_speed = 0.10
         # self.STATUS = 0
         self.laser_start = False
 
@@ -40,6 +40,7 @@ class RandomWalk(object):
     def laser_cb(self, msg):
         self.laser = msg
         self.laser_start = True
+        rospy.loginfo_once("[%s] Laser is working!", self.namespace)
 
     def goal_cb(self, msg):
         self.goal = msg
@@ -48,7 +49,7 @@ class RandomWalk(object):
         rospy.init_node("random_walk", anonymous=True)
 
         self.pub = rospy.Publisher(
-            self.namespace + "/cmd_vel", Twist, queue_size=1)
+            self.namespace + "/velocity_controller/cmd_vel", Twist, queue_size=1)
 
         self.pub_color = rospy.Publisher(
             self.namespace + "/led", ColorRGBA, queue_size=1)
@@ -56,17 +57,18 @@ class RandomWalk(object):
         rospy.Subscriber(self.namespace + "/laser",
                          LaserScan, self.laser_cb)
         
-        self.rate = rospy.Rate(10)  # 20 hz
+        self.rate = rospy.Rate(2)  # 20 hz
         self.cmd_vel.linear.x = 0.08
         self.cmd_vel.angular.z = 0.0
 
         self.state_blocked = True
         self.sent_led = False
-        rospy.loginfo("Starting Random Walk Controller for %s", self.namespace)
-        self.scale = 2.0
+
+        rospy.loginfo("[{}] Starting Random Walk Controller...".format(self.namespace))
+
+        self.scale = 120.0
         while not rospy.is_shutdown():
             if not self.laser_start:
-                rospy.loginfo("[%s] Laser is not working yet!", self.namespace)
                 self.rate.sleep()
                 continue
 
@@ -77,49 +79,51 @@ class RandomWalk(object):
 
             
             #rospy.loginfo(self.laser.ranges)
-            rospy.loginfo(self.laser.ranges[3:6])
+            # rospy.loginfo(self.laser.ranges[3:6])
 
-            if (self.laser.ranges[3] > self.p0) and (self.laser.ranges[4] > self.p0) and (self.laser.ranges[5] > self.p0):
+            # all side blocked BBB -> turn left
+            if (self.laser.ranges[10] < self.p0) and (self.laser.ranges[8] < self.p0) and (self.laser.ranges[6] < self.p0):
                 self.cmd_vel.angular.z = 0.05 * self.scale
-                self.cmd_vel.linear.x = 0.0
-                self.color.r = 1.0
-            if (self.laser.ranges[3] > self.p0) and (self.laser.ranges[4] > self.p0) and (self.laser.ranges[5] <= self.p0):
-                self.cmd_vel.angular.z = 0.03 * self.scale
-                self.cmd_vel.linear.x = 0.0
-                self.color.r = 1.0
-            if (self.laser.ranges[3] > self.p0) and (self.laser.ranges[4] <= self.p0) and (self.laser.ranges[5] > self.p0):
-                self.cmd_vel.angular.z = 0.05 * self.scale
-                self.cmd_vel.linear.x = 0.0
-                self.color.r = 1.0
-            if (self.laser.ranges[3] <= self.p0) and (self.laser.ranges[4] > self.p0) and (self.laser.ranges[5] <= self.p0):
+                self.cmd_vel.linear.x = 0.02
+                # rospy.loginfo("BBB")
+            # left & front blocked (BBL) -> turn right
+            elif (self.laser.ranges[10] < self.p0) and (self.laser.ranges[8] < self.p0) and (self.laser.ranges[6] >= self.p0):
                 self.cmd_vel.angular.z = -0.03 * self.scale
-                self.cmd_vel.linear.x = 0.0
-                self.color.r = 1.0
-
-            if (self.laser.ranges[3] <= self.p0) and (self.laser.ranges[4] <= self.p0) and (self.laser.ranges[5] <= self.p0):
+                self.cmd_vel.linear.x = 0.02
+                # rospy.loginfo("BBL")
+            # left & right blocked (BLB)-> turn left
+            elif (self.laser.ranges[10] < self.p0) and (self.laser.ranges[8] >= self.p0) and (self.laser.ranges[6] < self.p0):
+                self.cmd_vel.angular.z = 0.05 * self.scale
+                self.cmd_vel.linear.x = 0.02
+                # rospy.loginfo("BLB")
+            # front blocked (LBL)-> turn left
+            elif (self.laser.ranges[10] >= self.p0) and (self.laser.ranges[8] < self.p0) and (self.laser.ranges[6] >= self.p0):
+                self.cmd_vel.angular.z = 0.03 * self.scale
+                self.cmd_vel.linear.x = 0.02
+                # rospy.loginfo("LBL")
+            # all free (LLL) -> forward
+            elif (self.laser.ranges[10] >= self.p0) and (self.laser.ranges[8] >= self.p0) and (self.laser.ranges[6] >= self.p0):
                 self.cmd_vel.angular.z = 0.0 * self.scale
-                self.color.g = 1.0
-
-            if self.laser.ranges[3] > self.p0 and self.laser.ranges[4] <= self.p0 and self.laser.ranges[5] <= self.p0:
-                self.cmd_vel.angular.z = 0.01 * self.scale
-                self.cmd_vel.linear.x = 0.0
-                self.color.r = 1.0
-            if self.laser.ranges[3] <= self.p0 and self.laser.ranges[4] > self.p0 and self.laser.ranges[5] <= self.p0:
-                self.cmd_vel.angular.z = 0.01 * self.scale
-                self.cmd_vel.linear.x = 0.0
-                self.color.r = 1.0
-            if self.laser.ranges[3] <= self.p0 and self.laser.ranges[4] <= self.p0 and self.laser.ranges[5] > self.p0:
+                # rospy.loginfo("LLL")
+            # right blocked (BLL) -> turn right
+            elif self.laser.ranges[10] < self.p0 and self.laser.ranges[8] >= self.p0 and self.laser.ranges[6] >= self.p0:
                 self.cmd_vel.angular.z = -0.01 * self.scale
-                self.cmd_vel.linear.x = 0.0
-                self.color.r = 1.0
+                self.cmd_vel.linear.x = 0.02
+                # rospy.loginfo("BLL")
+            # right blocked (LBB) -> turn left
+            elif self.laser.ranges[10] >= self.p0 and self.laser.ranges[8] < self.p0 and self.laser.ranges[6] < self.p0:
+                self.cmd_vel.angular.z = 0.03 * self.scale
+                self.cmd_vel.linear.x = 0.02
+                # rospy.loginfo("LBB")
+            # left blocked (LLB) -> turn left
+            elif self.laser.ranges[10] >= self.p0 and self.laser.ranges[8] >= self.p0 and self.laser.ranges[6] < self.p0:
+                self.cmd_vel.angular.z = 0.01 * self.scale
+                self.cmd_vel.linear.x = 0.02
+                # rospy.loginfo("LLB")
 
-            if (self.color.r == 1 and self.state_blocked) or (self.color.g == 1 and not self.state_blocked):
-                self.state_blocked = not self.state_blocked
-                self.pub_color.publish(self.color)
-            # if not self.sent_led:
             
-                # self.sent_led = True
-                self.pub.publish(self.cmd_vel)
+            # rospy.loginfo("[{}]({}, {})".format(self.namespace, self.cmd_vel.linear.x, self.cmd_vel.angular.z))
+            self.pub.publish(self.cmd_vel)
             self.rate.sleep()
 
         self.cmd_vel.linear.x = 0.00
@@ -133,4 +137,4 @@ if __name__ == '__main__':
         rw = RandomWalk()
         rw.run()
     except rospy.ROSInterruptException:
-        rospy.loginfo("[Potential Field Controller]: Closed!")
+        rospy.loginfo("[Random Walking Controller]: Closed!")

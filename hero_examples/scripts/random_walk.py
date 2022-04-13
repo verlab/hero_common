@@ -27,10 +27,10 @@ class RandomWalk(object):
         # self.goal = PoseStamped()
         # self.att_gain = 1.2
         # self.rep_gain = 0.4
-        self.p0 = 50.0  # in meters
+        self.p0 = 0.12  # in meters
         # self.kTheta = 1.4
         # self.threshold = 0.10
-        self.max_speed = 0.15
+        self.max_speed = 0.10
         # self.STATUS = 0
         self.laser_start = False
 
@@ -48,7 +48,7 @@ class RandomWalk(object):
         rospy.init_node("random_walk", anonymous=True)
 
         self.pub = rospy.Publisher(
-            self.namespace + "/cmd_vel", Twist, queue_size=1)
+            self.namespace + "/velocity_controller/cmd_vel", Twist, queue_size=1)
 
         self.pub_color = rospy.Publisher(
             self.namespace + "/led", ColorRGBA, queue_size=1)
@@ -57,7 +57,7 @@ class RandomWalk(object):
                          LaserScan, self.laser_cb)
         
         self.rate = rospy.Rate(10)  # 20 hz
-        self.cmd_vel.linear.x = 0.08
+        self.cmd_vel.linear.x = 0.07
         self.cmd_vel.angular.z = 0.0
 
         self.state_blocked = True
@@ -69,43 +69,45 @@ class RandomWalk(object):
                 rospy.loginfo("[%s] Laser is not working yet!", self.namespace)
                 self.rate.sleep()
                 continue
+            rospy.loginfo_once("[%s] Laser is working!", self.namespace)
 
-            self.color.g = 0.0
+            self.color.g = 1.0
             self.color.r = 0.0
 
-            self.cmd_vel.linear.x = 0.08
+            self.cmd_vel.linear.x = 0.06
 
             frep_x = 0.0
             frep_y = 0.0
             for i in range(len(self.laser.ranges)-1):
                 pq = self.laser.ranges[i]
-                if pq > self.p0:
+                if pq < self.p0:
                     alpha = i * self.laser.angle_increment + self.laser.angle_min
                     frep_x += 0.0001 * (1.0/pq - 1.0/self.p0) * math.cos(alpha)/(pq**2)
                     frep_y += 0.0001 * (1.0/pq - 1.0/self.p0) * math.sin(alpha)/(pq**2)
+                    self.color.r = 1
+                    self.color.g = 0
+                    self.cmd_vel.linear.x = 0.04
             fx = frep_x
             fy = frep_y
+
             # fr = math.sqrt(fx**2 + fy**2)
             # self.cmd_vel.linear.x = min(fr, self.max_speed/2.0)
 
-            self.cmd_vel.angular.z = (math.atan2(fy, fx)) + math.pi
-            if self.cmd_vel.angular.z > math.pi:
-                self.cmd_vel.angular.z = - 2 * math.pi + self.cmd_vel.angular.z
-            elif self.cmd_vel.angular.z < -math.pi:
-                self.cmd_vel.angular.z = 2 * math.pi + self.cmd_vel.angular.z
-            self.cmd_vel.angular.z = max(-0.01, min(0.01, self.cmd_vel.angular.z))
-
-            if (self.color.r == 1 and self.state_blocked) or (self.color.g == 1 and not self.state_blocked):
-                self.state_blocked = not self.state_blocked
-                self.pub_color.publish(self.color)
-            # if not self.sent_led:
+            if self.color.r:
+                self.cmd_vel.angular.z = (math.atan2(fy, fx)) + math.pi
+                if self.cmd_vel.angular.z > math.pi:
+                    self.cmd_vel.angular.z = - 2 * math.pi + self.cmd_vel.angular.z
+                elif self.cmd_vel.angular.z < -math.pi:
+                    self.cmd_vel.angular.z = 2 * math.pi + self.cmd_vel.angular.z
+                self.cmd_vel.angular.z = max(-4.0, min(4.0, self.cmd_vel.angular.z))
+            else:
+                self.cmd_vel.angular.z = 0
             
-                # self.sent_led = True
             self.pub.publish(self.cmd_vel)
             self.rate.sleep()
 
         self.cmd_vel.linear.x = 0.00
-        self.cmd_vel.angular.z = 0.0
+        self.cmd_vel.angular.z = 0.00
         self.pub.publish(self.cmd_vel)
 
 

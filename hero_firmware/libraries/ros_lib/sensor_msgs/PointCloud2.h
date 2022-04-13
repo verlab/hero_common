@@ -41,16 +41,16 @@ namespace sensor_msgs
       header(),
       height(0),
       width(0),
-      fields_length(0), fields(NULL),
+      fields_length(0), st_fields(), fields(nullptr),
       is_bigendian(0),
       point_step(0),
       row_step(0),
-      data_length(0), data(NULL),
+      data_length(0), st_data(), data(nullptr),
       is_dense(0)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -108,7 +108,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -176,8 +176,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return "sensor_msgs/PointCloud2"; };
-    const char * getMD5(){ return "1158d486dd51d683ce2f1be655c3c181"; };
+    virtual const char * getType() override { return "sensor_msgs/PointCloud2"; };
+    virtual const char * getMD5() override { return "1158d486dd51d683ce2f1be655c3c181"; };
 
   };
 

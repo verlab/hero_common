@@ -22,22 +22,22 @@ static const char RECONFIGURE[] = "dynamic_reconfigure/Reconfigure";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->config.serialize(outbuffer + offset);
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->config.deserialize(inbuffer + offset);
      return offset;
     }
 
-    const char * getType(){ return RECONFIGURE; };
-    const char * getMD5(){ return "ac41a77620a4a0348b7001641796a8a1"; };
+    virtual const char * getType() override { return RECONFIGURE; };
+    virtual const char * getMD5() override { return "ac41a77620a4a0348b7001641796a8a1"; };
 
   };
 
@@ -52,22 +52,22 @@ static const char RECONFIGURE[] = "dynamic_reconfigure/Reconfigure";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->config.serialize(outbuffer + offset);
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->config.deserialize(inbuffer + offset);
      return offset;
     }
 
-    const char * getType(){ return RECONFIGURE; };
-    const char * getMD5(){ return "ac41a77620a4a0348b7001641796a8a1"; };
+    virtual const char * getType() override { return RECONFIGURE; };
+    virtual const char * getMD5() override { return "ac41a77620a4a0348b7001641796a8a1"; };
 
   };
 

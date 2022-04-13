@@ -23,7 +23,7 @@ namespace roscpp
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
@@ -39,7 +39,7 @@ namespace roscpp
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_name;
@@ -63,8 +63,8 @@ namespace roscpp
      return offset;
     }
 
-    const char * getType(){ return "roscpp/Logger"; };
-    const char * getMD5(){ return "a6069a2ff40db7bd32143dd66e1f408e"; };
+    virtual const char * getType() override { return "roscpp/Logger"; };
+    virtual const char * getMD5() override { return "a6069a2ff40db7bd32143dd66e1f408e"; };
 
   };
 

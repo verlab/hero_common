@@ -19,7 +19,7 @@ namespace shape_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       for( uint32_t i = 0; i < 3; i++){
@@ -32,7 +32,7 @@ namespace shape_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       for( uint32_t i = 0; i < 3; i++){
@@ -45,8 +45,8 @@ namespace shape_msgs
      return offset;
     }
 
-    const char * getType(){ return "shape_msgs/MeshTriangle"; };
-    const char * getMD5(){ return "23688b2e6d2de3d32fe8af104a903253"; };
+    virtual const char * getType() override { return "shape_msgs/MeshTriangle"; };
+    virtual const char * getMD5() override { return "23688b2e6d2de3d32fe8af104a903253"; };
 
   };
 

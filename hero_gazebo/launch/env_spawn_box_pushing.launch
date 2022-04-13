@@ -1,0 +1,17 @@
+<launch>
+	<param name="/robot_description" textfile="$(find hero_description)/robot/hero_light.urdf"/>
+
+	<node name="spawn_urdf_arena_1" pkg="gazebo_ros" type="spawn_model" args="-urdf -model arena_1 -x 0.0 -y -0.0 -z 0.0 -file $(find hero_gazebo)/worlds/models/arena_1/arena.urdf" />
+
+	<node name="spawn_urdf_hero_0" pkg="gazebo_ros" type="spawn_model" args="-urdf -model hero_0 -x 0.0 -y 0.0 -z 0.05 -robot_namespace hero_0 -file $(find hero_description)/robot/hero_laser.urdf" />
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_hero_0">
+		<param name="publish_frequency" type="double" value="30.0" />
+		<param name="tf_prefix" value="hero_0" />
+	</node>
+	<node name="hero_local_planner_hero_0" pkg="hero_examples" type="local_planner.py" args="hero_0" output="screen" respawn="true"/>
+
+	<node name="spawn_urdf_box" pkg="gazebo_ros" type="spawn_model" args="-urdf -model box -x 1 -y 1 -z 0.23 -file $(find hero_gazebo)/worlds/models/objects/cylinder/cylinder.urdf" />
+	<node name="spawn_urdf_box_target" pkg="gazebo_ros" type="spawn_model" args="-urdf -model target_box -x -1.2 -y -1.2 -z 0.22 -file $(find hero_gazebo)/worlds/models/objects/cylinder/cylinder_target.urdf" />
+	
+	<!-- <node name="spawn_urdf_box" pkg="gazebo_ros" type="spawn_model" args="-urdf -model box -x 0.0 -y -1.0 -z 0.40 -file $(find hero_gazebo)/worlds/models/objects/cube/cube.urdf" /> -->
+</launch>

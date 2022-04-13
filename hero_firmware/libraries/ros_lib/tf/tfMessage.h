@@ -19,11 +19,11 @@ namespace tf
       _transforms_type * transforms;
 
     tfMessage():
-      transforms_length(0), transforms(NULL)
+      transforms_length(0), st_transforms(), transforms(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->transforms_length >> (8 * 0)) & 0xFF;
@@ -37,7 +37,7 @@ namespace tf
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t transforms_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -55,8 +55,8 @@ namespace tf
      return offset;
     }
 
-    const char * getType(){ return "tf/tfMessage"; };
-    const char * getMD5(){ return "94810edda583a504dfda3829e70d7eec"; };
+    virtual const char * getType() override { return "tf/tfMessage"; };
+    virtual const char * getMD5() override { return "94810edda583a504dfda3829e70d7eec"; };
 
   };
 

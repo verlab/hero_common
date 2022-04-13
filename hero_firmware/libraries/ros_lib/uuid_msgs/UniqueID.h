@@ -19,7 +19,7 @@ namespace uuid_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       for( uint32_t i = 0; i < 16; i++){
@@ -29,7 +29,7 @@ namespace uuid_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       for( uint32_t i = 0; i < 16; i++){
@@ -39,8 +39,8 @@ namespace uuid_msgs
      return offset;
     }
 
-    const char * getType(){ return "uuid_msgs/UniqueID"; };
-    const char * getMD5(){ return "fec2a93b6f5367ee8112c9c0b41ff310"; };
+    virtual const char * getType() override { return "uuid_msgs/UniqueID"; };
+    virtual const char * getMD5() override { return "fec2a93b6f5367ee8112c9c0b41ff310"; };
 
   };
 

@@ -18,20 +18,20 @@ static const char FRAMEGRAPH[] = "tf/FrameGraph";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
      return offset;
     }
 
-    const char * getType(){ return FRAMEGRAPH; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    virtual const char * getType() override { return FRAMEGRAPH; };
+    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
 
   };
 
@@ -46,7 +46,7 @@ static const char FRAMEGRAPH[] = "tf/FrameGraph";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_dot_graph = strlen(this->dot_graph);
@@ -57,7 +57,7 @@ static const char FRAMEGRAPH[] = "tf/FrameGraph";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_dot_graph;
@@ -72,8 +72,8 @@ static const char FRAMEGRAPH[] = "tf/FrameGraph";
      return offset;
     }
 
-    const char * getType(){ return FRAMEGRAPH; };
-    const char * getMD5(){ return "c4af9ac907e58e906eb0b6e3c58478c0"; };
+    virtual const char * getType() override { return FRAMEGRAPH; };
+    virtual const char * getMD5() override { return "c4af9ac907e58e906eb0b6e3c58478c0"; };
 
   };
 

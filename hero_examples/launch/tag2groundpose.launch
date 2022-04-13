@@ -1,0 +1,9 @@
+<launch>
+    <node pkg="hero_examples" type="tag2pose.py" name="hero_0_ground_pose" output="screen" args="/hero_0" />
+    <node pkg="hero_examples" type="tag2pose.py" name="hero_1_ground_pose" output="screen" args="/hero_1" />
+    <node pkg="hero_examples" type="tag2pose.py" name="hero_2_ground_pose" output="screen" args="/hero_2" />
+    <node pkg="hero_examples" type="tag2pose.py" name="hero_3_ground_pose" output="screen" args="/hero_3" />
+    <node pkg="hero_examples" type="tag2pose.py" name="hero_4_ground_pose" output="screen" args="/hero_4" />
+    <node pkg="hero_examples" type="tag2pose.py" name="object_A_ground_pose" output="screen" args="/hero_5" />
+    <node pkg="hero_examples" type="tag2pose.py" name="object_B_ground_pose" output="screen" args="/hero_6" />
+</launch>

@@ -40,7 +40,7 @@ static const char GETPOINTMAPROI[] = "map_msgs/GetPointMapROI";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += serializeAvrFloat64(outbuffer + offset, this->x);
@@ -53,7 +53,7 @@ static const char GETPOINTMAPROI[] = "map_msgs/GetPointMapROI";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->x));
@@ -66,8 +66,8 @@ static const char GETPOINTMAPROI[] = "map_msgs/GetPointMapROI";
      return offset;
     }
 
-    const char * getType(){ return GETPOINTMAPROI; };
-    const char * getMD5(){ return "895f7e437a9a6dd225316872b187a303"; };
+    virtual const char * getType() override { return GETPOINTMAPROI; };
+    virtual const char * getMD5() override { return "895f7e437a9a6dd225316872b187a303"; };
 
   };
 
@@ -82,22 +82,22 @@ static const char GETPOINTMAPROI[] = "map_msgs/GetPointMapROI";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->sub_map.serialize(outbuffer + offset);
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->sub_map.deserialize(inbuffer + offset);
      return offset;
     }
 
-    const char * getType(){ return GETPOINTMAPROI; };
-    const char * getMD5(){ return "313769f8b0e724525c6463336cbccd63"; };
+    virtual const char * getType() override { return GETPOINTMAPROI; };
+    virtual const char * getMD5() override { return "313769f8b0e724525c6463336cbccd63"; };
 
   };
 

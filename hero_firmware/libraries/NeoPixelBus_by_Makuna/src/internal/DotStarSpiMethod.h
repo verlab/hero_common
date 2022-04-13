@@ -51,29 +51,37 @@ public:
         return true; // dot stars don't have a required delay
     }
 
+#if defined(ARDUINO_ARCH_ESP32)
+    void Initialize(int8_t sck, int8_t miso, int8_t mosi, int8_t ss)
+    {
+        SPI.begin(sck, miso, mosi, ss);
+    }
+#endif
+
     void Initialize()
     {
         SPI.begin();
-
-#if defined(ARDUINO_ARCH_ESP8266)
-        SPI.setFrequency(20000000L);
-#elif defined(ARDUINO_ARCH_AVR) 
-        SPI.setClockDivider(SPI_CLOCK_DIV2); // 8 MHz (6 MHz on Pro Trinket 3V)
-#else
-        SPI.setClockDivider((F_CPU + 4000000L) / 8000000L); // 8-ish MHz on Due
-#endif
-        SPI.setBitOrder(MSBFIRST);
-        SPI.setDataMode(SPI_MODE0);
     }
 
     void Update()
     {
-        // due to API inconsistencies need to call different methods on SPI
+        SPI.beginTransaction(SPISettings(20000000L, MSBFIRST, SPI_MODE0));
 #if defined(ARDUINO_ARCH_ESP8266) || defined(ARDUINO_ARCH_ESP32)
+        // ESPs have a method to write without inplace overwriting the send buffer
+        // since we don't care what gets received, use it for performance
         SPI.writeBytes(_sendBuffer, _sizeSendBuffer);
+
 #else
-        SPI.transfer(_sendBuffer, _sizeSendBuffer);
+        // default ARDUINO transfer inplace overwrites the send buffer
+        // which is bad, so we have to send one byte at a time
+        uint8_t* out = _sendBuffer;
+        uint8_t* end = out + _sizeSendBuffer;
+        while (out < end)
+        {
+            SPI.transfer(*out++);
+        }
 #endif
+        SPI.endTransaction();
     }
 
     uint8_t* getPixels() const

@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="Logos">
+    <file>gazebo_logo.png</file>
+    <file>verlab_logo.png</file>
+  </qresource>
+</RCC>

@@ -38,7 +38,7 @@ namespace map_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_frame_id = strlen(this->frame_id);
@@ -55,7 +55,7 @@ namespace map_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_frame_id;
@@ -76,8 +76,8 @@ namespace map_msgs
      return offset;
     }
 
-    const char * getType(){ return "map_msgs/ProjectedMapInfo"; };
-    const char * getMD5(){ return "2dc10595ae94de23f22f8a6d2a0eef7a"; };
+    virtual const char * getType() override { return "map_msgs/ProjectedMapInfo"; };
+    virtual const char * getMD5() override { return "2dc10595ae94de23f22f8a6d2a0eef7a"; };
 
   };
 

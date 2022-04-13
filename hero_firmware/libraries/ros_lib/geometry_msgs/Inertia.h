@@ -42,7 +42,7 @@ namespace geometry_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += serializeAvrFloat64(outbuffer + offset, this->m);
@@ -56,7 +56,7 @@ namespace geometry_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->m));
@@ -70,8 +70,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/Inertia"; };
-    const char * getMD5(){ return "1d26e4bb6c83ff141c5cf0d883c2b0fe"; };
+    virtual const char * getType() override { return "geometry_msgs/Inertia"; };
+    virtual const char * getMD5() override { return "1d26e4bb6c83ff141c5cf0d883c2b0fe"; };
 
   };
 

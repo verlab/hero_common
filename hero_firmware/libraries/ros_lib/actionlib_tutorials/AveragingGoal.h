@@ -20,7 +20,7 @@ namespace actionlib_tutorials
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -36,7 +36,7 @@ namespace actionlib_tutorials
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -53,8 +53,8 @@ namespace actionlib_tutorials
      return offset;
     }
 
-    const char * getType(){ return "actionlib_tutorials/AveragingGoal"; };
-    const char * getMD5(){ return "32c9b10ef9b253faa93b93f564762c8f"; };
+    virtual const char * getType() override { return "actionlib_tutorials/AveragingGoal"; };
+    virtual const char * getMD5() override { return "32c9b10ef9b253faa93b93f564762c8f"; };
 
   };
 

@@ -23,12 +23,12 @@ namespace smach_msgs
 
     SmachContainerInitialStatusCmd():
       path(""),
-      initial_states_length(0), initial_states(NULL),
+      initial_states_length(0), st_initial_states(), initial_states(nullptr),
       local_data("")
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_path = strlen(this->path);
@@ -56,7 +56,7 @@ namespace smach_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_path;
@@ -100,8 +100,8 @@ namespace smach_msgs
      return offset;
     }
 
-    const char * getType(){ return "smach_msgs/SmachContainerInitialStatusCmd"; };
-    const char * getMD5(){ return "45f8cf31fc29b829db77f23001f788d6"; };
+    virtual const char * getType() override { return "smach_msgs/SmachContainerInitialStatusCmd"; };
+    virtual const char * getMD5() override { return "45f8cf31fc29b829db77f23001f788d6"; };
 
   };
 

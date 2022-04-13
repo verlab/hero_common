@@ -34,11 +34,11 @@ namespace map_msgs
       y(0),
       width(0),
       height(0),
-      data_length(0), data(NULL)
+      data_length(0), st_data(), data(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -89,7 +89,7 @@ namespace map_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -147,8 +147,8 @@ namespace map_msgs
      return offset;
     }
 
-    const char * getType(){ return "map_msgs/OccupancyGridUpdate"; };
-    const char * getMD5(){ return "b295be292b335c34718bd939deebe1c9"; };
+    virtual const char * getType() override { return "map_msgs/OccupancyGridUpdate"; };
+    virtual const char * getMD5() override { return "b295be292b335c34718bd939deebe1c9"; };
 
   };
 

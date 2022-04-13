@@ -21,7 +21,7 @@ static const char TEST[] = "rosserial_arduino/Test";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_input = strlen(this->input);
@@ -32,7 +32,7 @@ static const char TEST[] = "rosserial_arduino/Test";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_input;
@@ -47,8 +47,8 @@ static const char TEST[] = "rosserial_arduino/Test";
      return offset;
     }
 
-    const char * getType(){ return TEST; };
-    const char * getMD5(){ return "39e92f1778057359c64c7b8a7d7b19de"; };
+    virtual const char * getType() override { return TEST; };
+    virtual const char * getMD5() override { return "39e92f1778057359c64c7b8a7d7b19de"; };
 
   };
 
@@ -63,7 +63,7 @@ static const char TEST[] = "rosserial_arduino/Test";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_output = strlen(this->output);
@@ -74,7 +74,7 @@ static const char TEST[] = "rosserial_arduino/Test";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_output;
@@ -89,8 +89,8 @@ static const char TEST[] = "rosserial_arduino/Test";
      return offset;
     }
 
-    const char * getType(){ return TEST; };
-    const char * getMD5(){ return "0825d95fdfa2c8f4bbb4e9c74bccd3fd"; };
+    virtual const char * getType() override { return TEST; };
+    virtual const char * getMD5() override { return "0825d95fdfa2c8f4bbb4e9c74bccd3fd"; };
 
   };
 

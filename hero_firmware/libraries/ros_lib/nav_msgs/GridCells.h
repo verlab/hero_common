@@ -29,11 +29,11 @@ namespace nav_msgs
       header(),
       cell_width(0),
       cell_height(0),
-      cells_length(0), cells(NULL)
+      cells_length(0), st_cells(), cells(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -68,7 +68,7 @@ namespace nav_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -109,8 +109,8 @@ namespace nav_msgs
      return offset;
     }
 
-    const char * getType(){ return "nav_msgs/GridCells"; };
-    const char * getMD5(){ return "b9e4f5df6d28e272ebde00a3994830f5"; };
+    virtual const char * getType() override { return "nav_msgs/GridCells"; };
+    virtual const char * getMD5() override { return "b9e4f5df6d28e272ebde00a3994830f5"; };
 
   };
 

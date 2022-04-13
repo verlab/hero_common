@@ -41,12 +41,12 @@ namespace visualization_msgs
       name(""),
       description(""),
       scale(0),
-      menu_entries_length(0), menu_entries(NULL),
-      controls_length(0), controls(NULL)
+      menu_entries_length(0), st_menu_entries(), menu_entries(nullptr),
+      controls_length(0), st_controls(), controls(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -90,7 +90,7 @@ namespace visualization_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -151,8 +151,8 @@ namespace visualization_msgs
      return offset;
     }
 
-    const char * getType(){ return "visualization_msgs/InteractiveMarker"; };
-    const char * getMD5(){ return "dd86d22909d5a3364b384492e35c10af"; };
+    virtual const char * getType() override { return "visualization_msgs/InteractiveMarker"; };
+    virtual const char * getMD5() override { return "dd86d22909d5a3364b384492e35c10af"; };
 
   };
 

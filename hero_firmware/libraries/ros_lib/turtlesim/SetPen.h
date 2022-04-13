@@ -33,7 +33,7 @@ static const char SETPEN[] = "turtlesim/SetPen";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->r >> (8 * 0)) & 0xFF;
@@ -49,7 +49,7 @@ static const char SETPEN[] = "turtlesim/SetPen";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       this->r =  ((uint8_t) (*(inbuffer + offset)));
@@ -65,8 +65,8 @@ static const char SETPEN[] = "turtlesim/SetPen";
      return offset;
     }
 
-    const char * getType(){ return SETPEN; };
-    const char * getMD5(){ return "9f452acce566bf0c0954594f69a8e41b"; };
+    virtual const char * getType() override { return SETPEN; };
+    virtual const char * getMD5() override { return "9f452acce566bf0c0954594f69a8e41b"; };
 
   };
 
@@ -78,20 +78,20 @@ static const char SETPEN[] = "turtlesim/SetPen";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
      return offset;
     }
 
-    const char * getType(){ return SETPEN; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    virtual const char * getType() override { return SETPEN; };
+    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
 
   };
 

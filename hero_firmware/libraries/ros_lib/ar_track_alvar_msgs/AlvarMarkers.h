@@ -23,11 +23,11 @@ namespace ar_track_alvar_msgs
 
     AlvarMarkers():
       header(),
-      markers_length(0), markers(NULL)
+      markers_length(0), st_markers(), markers(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -42,7 +42,7 @@ namespace ar_track_alvar_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -61,8 +61,8 @@ namespace ar_track_alvar_msgs
      return offset;
     }
 
-    const char * getType(){ return "ar_track_alvar_msgs/AlvarMarkers"; };
-    const char * getMD5(){ return "943fe17bfb0b4ea7890368d0b25ad0ad"; };
+    virtual const char * getType() override { return "ar_track_alvar_msgs/AlvarMarkers"; };
+    virtual const char * getMD5() override { return "943fe17bfb0b4ea7890368d0b25ad0ad"; };
 
   };
 

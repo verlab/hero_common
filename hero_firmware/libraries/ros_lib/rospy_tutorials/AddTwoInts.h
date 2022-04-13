@@ -24,7 +24,7 @@ static const char ADDTWOINTS[] = "rospy_tutorials/AddTwoInts";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -58,7 +58,7 @@ static const char ADDTWOINTS[] = "rospy_tutorials/AddTwoInts";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -94,8 +94,8 @@ static const char ADDTWOINTS[] = "rospy_tutorials/AddTwoInts";
      return offset;
     }
 
-    const char * getType(){ return ADDTWOINTS; };
-    const char * getMD5(){ return "36d09b846be0b371c5f190354dd3153e"; };
+    virtual const char * getType() override { return ADDTWOINTS; };
+    virtual const char * getMD5() override { return "36d09b846be0b371c5f190354dd3153e"; };
 
   };
 
@@ -110,7 +110,7 @@ static const char ADDTWOINTS[] = "rospy_tutorials/AddTwoInts";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -130,7 +130,7 @@ static const char ADDTWOINTS[] = "rospy_tutorials/AddTwoInts";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -151,8 +151,8 @@ static const char ADDTWOINTS[] = "rospy_tutorials/AddTwoInts";
      return offset;
     }
 
-    const char * getType(){ return ADDTWOINTS; };
-    const char * getMD5(){ return "b88405221c77b1878a3cbbfff53428d7"; };
+    virtual const char * getType() override { return ADDTWOINTS; };
+    virtual const char * getMD5() override { return "b88405221c77b1878a3cbbfff53428d7"; };
 
   };
 

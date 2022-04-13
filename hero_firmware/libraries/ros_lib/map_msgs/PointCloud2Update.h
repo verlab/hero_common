@@ -30,7 +30,7 @@ namespace map_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -43,7 +43,7 @@ namespace map_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -56,8 +56,8 @@ namespace map_msgs
      return offset;
     }
 
-    const char * getType(){ return "map_msgs/PointCloud2Update"; };
-    const char * getMD5(){ return "6c58e4f249ae9cd2b24fb1ee0f99195e"; };
+    virtual const char * getType() override { return "map_msgs/PointCloud2Update"; };
+    virtual const char * getMD5() override { return "6c58e4f249ae9cd2b24fb1ee0f99195e"; };
 
   };
 

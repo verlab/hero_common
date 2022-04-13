@@ -19,20 +19,20 @@ static const char SETMAPPROJECTIONS[] = "map_msgs/SetMapProjections";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
      return offset;
     }
 
-    const char * getType(){ return SETMAPPROJECTIONS; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    virtual const char * getType() override { return SETMAPPROJECTIONS; };
+    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
 
   };
 
@@ -45,11 +45,11 @@ static const char SETMAPPROJECTIONS[] = "map_msgs/SetMapProjections";
       _projected_maps_info_type * projected_maps_info;
 
     SetMapProjectionsResponse():
-      projected_maps_info_length(0), projected_maps_info(NULL)
+      projected_maps_info_length(0), st_projected_maps_info(), projected_maps_info(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->projected_maps_info_length >> (8 * 0)) & 0xFF;
@@ -63,7 +63,7 @@ static const char SETMAPPROJECTIONS[] = "map_msgs/SetMapProjections";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t projected_maps_info_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -81,8 +81,8 @@ static const char SETMAPPROJECTIONS[] = "map_msgs/SetMapProjections";
      return offset;
     }
 
-    const char * getType(){ return SETMAPPROJECTIONS; };
-    const char * getMD5(){ return "d7980a33202421c8cd74565e57a4d229"; };
+    virtual const char * getType() override { return SETMAPPROJECTIONS; };
+    virtual const char * getMD5() override { return "d7980a33202421c8cd74565e57a4d229"; };
 
   };
 

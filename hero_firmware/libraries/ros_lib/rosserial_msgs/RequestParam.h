@@ -21,7 +21,7 @@ static const char REQUESTPARAM[] = "rosserial_msgs/RequestParam";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
@@ -32,7 +32,7 @@ static const char REQUESTPARAM[] = "rosserial_msgs/RequestParam";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_name;
@@ -47,8 +47,8 @@ static const char REQUESTPARAM[] = "rosserial_msgs/RequestParam";
      return offset;
     }
 
-    const char * getType(){ return REQUESTPARAM; };
-    const char * getMD5(){ return "c1f3d28f1b044c871e6eff2e9fc3c667"; };
+    virtual const char * getType() override { return REQUESTPARAM; };
+    virtual const char * getMD5() override { return "c1f3d28f1b044c871e6eff2e9fc3c667"; };
 
   };
 
@@ -69,13 +69,13 @@ static const char REQUESTPARAM[] = "rosserial_msgs/RequestParam";
       _strings_type * strings;
 
     RequestParamResponse():
-      ints_length(0), ints(NULL),
-      floats_length(0), floats(NULL),
-      strings_length(0), strings(NULL)
+      ints_length(0), st_ints(), ints(nullptr),
+      floats_length(0), st_floats(), floats(nullptr),
+      strings_length(0), st_strings(), strings(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->ints_length >> (8 * 0)) & 0xFF;
@@ -127,7 +127,7 @@ static const char REQUESTPARAM[] = "rosserial_msgs/RequestParam";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t ints_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -197,8 +197,8 @@ static const char REQUESTPARAM[] = "rosserial_msgs/RequestParam";
      return offset;
     }
 
-    const char * getType(){ return REQUESTPARAM; };
-    const char * getMD5(){ return "9f0e98bda65981986ddf53afa7a40e49"; };
+    virtual const char * getType() override { return REQUESTPARAM; };
+    virtual const char * getMD5() override { return "9f0e98bda65981986ddf53afa7a40e49"; };
 
   };
 

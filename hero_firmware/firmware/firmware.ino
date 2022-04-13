@@ -1,107 +1,116 @@
 /*
- ************************************************************************
-    H E R O   F I R M W A R E
- ************************************************************************
+  ******************************************************************************
+                      H E R O   F I R M W A R E
+  ******************************************************************************
+  Paulo Rezeck        <rezeck@dcc.ufmg.br>
+  Mauricio Ferrari    <mauferrari@dcc.ufmg.br>
+  Hector Azpurua      <hectorxxx@gmail.com>
 
-   Paulo Rezeck <rezeck@dcc.ufmg.br>
-   Mauricio Ferrari <mauferrari@dcc.ufmg.br>
-   Hector Azpurua <hectorxxx@gmail.com>
 
-   HeRo Project
-   Computer Vision and Robotics Lab - VeRLab/DCC
-   University Federal de Minas Gerais - UFMG/Brazil
- ************************************************************************/
+                Computer Vision and Robotics Lab (VeRLab)
+               Universidade Federal de Minas Gerais - Brazil
+  ******************************************************************************
+  Copyright (c) 2021 Paulo Rezeck.  All right reserved.
+  This library is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
+  You should have received a copy of the GNU Lesser General Public
+  License along with this library; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  ******************************************************************************/
 
 /* ESP Library */
 #include <ESP8266WiFi.h>
 
 /* ROS Library */
+#define ROSSERIAL_ARDUINO_TCP
 #include <ros.h>
 
 /* Libraries */
 #include "config.h"
-#include "config_via_wifi.h"
-#include "firmware.h"
-#include "rosnode.h"
+
+#include "LEDStatus.h"
+LEDStatus ledStatus(20);
+
+#include "WebConfig.h"
+WebConfig webConfig(4);
+
+#include "ROSHandle.h"
+ROSHandle rosHandle(SYNC_RATE, 1);
+
+#include "RangeSensor.h"
+RangeSensor rangeSensor(10);
+
+#include "WheelEncoder.h"
+WheelEncoder wheelEncoder(30);
+
+#include "IMUSensor.h"
+IMUSensor imuSensor(20);
+
+#include "Odometry.h"
+Odometry odometry(30);
+
+#include "MotorDriver.h"
+MotorDriver motorDriver(20);
+
+#include "PositionControl.h"
+PositionControl positionControl(20);
+
+#include "VelocityControl.h"
+VelocityControl velocityControl(20);
 
 
 /* Main Setup */
 void setup() {
-  /* Read configuration from EEPROM */
-  EEPROM.begin(MEM_ALOC_SIZE);
-  EEPROM.get(MEM_INIT_POS, configurationData);
-  EEPROM.end();
-  default_config = true;
-  if (configurationData.robot_id != -1) {
-    default_config = false;
-  }
+  /* Stopping Motors */
+  pinMode(MOTOR_RIGHT, OUTPUT);
+  pinMode(MOTOR_LEFT, OUTPUT);
+  digitalWrite(MOTOR_RIGHT, LOW);
+  digitalWrite(MOTOR_LEFT, LOW);
   /* Setup laser Readings */
-  setup_laser();
-
-  /* This resets all the neopixels to an off state */
-  setup_led();
-  config_mode = is_config_mode();
-  //config_mode = true;
-  default_config = true;
+  rangeSensor.connect();
+  /* Cover all the range sensor to enable web config mode */
+  config_mode = rangeSensor.configModeCheck();
+  /* Clean status led */
+  ledStatus.reset();
   if (config_mode) {
-    setupWiFi();
-    server.on("/", handleRoot);
-    server.on("/resetEEPROM", handleResetEEPROM);
-    server.on("/saveParams", handleSaveParams);
-    server.on("/css", handleCSS);
-    server.onNotFound(handleNotFound);
-    server.begin();
-    hello(magenta, 100);
-    strip.Begin();
+    /* Create an AP that enables the user to setup some parameter of the robot. See config_via_wifi.h. */
+    webConfig.init(ledStatus);
   }
   else {
-    /* Connect the ESP8266 the the wifi AP */
-    bool led_toggle = true;
-    strip.Begin();
-    strip.Show();
-    if (default_config) {
-      WiFi.begin(WIFI_SSID, WIFI_PASSWD);
-    } else {
-      WiFi.begin(configurationData.wifi_ssid, configurationData.wifi_pass);
-    }
-    while (WiFi.status() != WL_CONNECTED) {
-      if (led_toggle == true) {
-        strip.SetPixelColor(0, red);
-        strip.SetPixelColor(1, black);
-        led_toggle = false;
-      } else {
-        strip.SetPixelColor(0, black);
-        strip.SetPixelColor(1, red);
-        led_toggle = true;
-      }
-      strip.SetBrightness(COLOR_SATURATION);
-      strip.Show();
-      delay(WIFI_CONNECT_LOOP);
-    }
-    strip.SetPixelColor(0, black);
-    strip.SetPixelColor(1, black);
-    strip.SetBrightness(COLOR_SATURATION);
-    strip.Show();
-    delay(WIFI_CONNECT_LOOP);
-
-    /* Setup PID Controller and Autotuner */
-    setup_pid();
-
     /* Setup ROS Communication */
-    setup_ros();
+    rosHandle.init(ledStatus);
 
-    /* Setup IMU I2C communication */
-#if IMU_ENABLE == true
-    setup_imu();
+    /* Setup LED to communicate with ROS */
+    ledStatus.init(rosHandle.nh, rosHandle.heroName);
+    /* Setup range sensor to communicate with ROS */
+    rangeSensor.init(rosHandle.nh, rosHandle.heroName);
+    /* Setup imu sensor to communicate with ROS */
+    imuSensor.init(rosHandle.nh, rosHandle.heroName);
+    /* Setup wheel encoder sensor to communicate with ROS */
+    wheelEncoder.init(rosHandle.nh, rosHandle.heroName);
+
+    /* Compute odometry to send with ROS */
+#ifdef __IMU_SENSOR_H__
+    odometry.init(rosHandle.nh, rosHandle.heroName, wheelEncoder, imuSensor);
+#else
+    odometry.init(rosHandle.nh, rosHandle.heroName, wheelEncoder);
 #endif
+    /* Setup motors to communicate with ROS */
+    motorDriver.init(rosHandle.nh, rosHandle.heroName);
 
-    /* Initiate motors and encoders */
-    setup_motors();
 
-    /* ROS LOG */
-    sprintf(buf, "\33[96m Founded %s! \33[0m", hero_name.c_str());
-    nh.loginfo(buf);
-    hello(cyan, 100);
+    /* Compute position control to by receving commands from ROS */
+    positionControl.init(rosHandle.nh, rosHandle.heroName, motorDriver, wheelEncoder);
+    /* Compute velocity control to by receving commands from ROS */
+    velocityControl.init(rosHandle.nh, rosHandle.heroName, motorDriver, wheelEncoder);
+
+    ledStatus.welcome(*ledStatus.cyan, 100);
   }
 }
 
@@ -109,90 +118,22 @@ void setup() {
 /* Main loop */
 void loop() {
   if (config_mode) { // Web Configuration Mode
-    static int config_status_led_count = 0;
-    server.handleClient();
-    delay(1);
-    if ((millis() - led_blinky) > 300) {
-      led_blinky = millis();
-
-      switch (config_status_led) {
-        case 0: // Default state Web Configuration Mode
-          if (blinky) {
-            strip.SetPixelColor(0, magenta);
-            strip.SetPixelColor(1, black);
-          } else {
-            strip.SetPixelColor(0, black);
-            strip.SetPixelColor(1, magenta);
-          }
-          break;
-        case 1: // Case web save buttom is pressed
-          if (blinky) {
-            strip.SetPixelColor(0, green);
-            strip.SetPixelColor(1, black);
-          } else {
-            strip.SetPixelColor(0, black);
-            strip.SetPixelColor(1, green);
-          }
-          config_status_led_count++;
-          break;
-        case 2: // Case web reset buttom is pressed
-          if (blinky) {
-            strip.SetPixelColor(0, red);
-            strip.SetPixelColor(1, black);
-          } else {
-            strip.SetPixelColor(0, black);
-            strip.SetPixelColor(1, red);
-          }
-          config_status_led_count++;
-          break;
-      }
-
-      if (config_status_led_count >= config_status_led_times) {
-        config_status_led = 0;
-        config_status_led_count = 0;
-      }
-      blinky = !blinky;
-
-      strip.SetBrightness(COLOR_SATURATION);
-      strip.Show();
-    }
-
+    webConfig.update();
   }
-  else { // ROS Mode
+  else if (rosHandle.connected()) { // ROS Mode
+    /* Get data from sensor and send it to ROS */
+    motorDriver.update(2);
+    rangeSensor.update(20);
+    imuSensor.update(30);
+    ledStatus.update(2);
+    odometry.update(30);
+    wheelEncoder.update(30);
+    positionControl.update(50);
+    velocityControl.update(50);
 
-    if (tuning) { /* Autotuner; this process disable PID controller for while */
-      tune_motors();
-    }
-    else { /* PID control loop */
-      if (r_motor.attached() && l_motor.attached() && !pwm_only) control();
-    }
-
-    /* ROS Debugs */
-#if DEBUG == true
-    if ((millis() - ros_debug_timer) > 1000 / debug_rate) {
-      ros_debug_timer = millis();
-      if (tuning) {
-        sprintf(buf, "\33[96m[%s] Tuning PID! Please wait (200 seconds)... %d ms\33[0m", hero_name.c_str(), (millis() - tunning_steady_state) / 1000);
-        nh.loginfo(buf);
-      }
-      else {
-        sprintf(buf, "\33[96m[%s] Conected at time %d\33[0m", hero_name.c_str(), millis());
-        nh.loginfo(buf);
-      }
-
-    }
-#endif
-
-    /* Sensors update loop */
-    if ((millis() - loop_timer) > 1000 / loop_rate) {
-      loop_timer = millis();
-      update_laser();
-      update_encoder();
-      update_odom();
-#if IMU_ENABLE == true
-      readIMU();
-#endif
-      nh.spinOnce();
-    }
+    rosHandle.sync();
+  } else {
+    delayMicroseconds(50000);
+    rosHandle.sync();
   }
 }

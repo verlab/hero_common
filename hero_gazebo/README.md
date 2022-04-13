@@ -1,11 +1,45 @@
 # Gazebo Simulations
 We provide HeRo simulations on Gazebo.
 
+
+## HeRo Wizard
+We create a high-level UI interface that should help others to instantiate a gazebo environment.
+Its is a simple wizard software that help select an environment and the robots. 
+After selecting, and commit the object, they should appear on gazebo were we can drag them and place them wherever we want.
+Finally, generate a launch file that compile this setup.
+
+To create a environment, use this launch file:
+```sh
+$ roslaunch hero_gazebo gazebo_wizard.launch
+```
+It will open gazebo and this UI interface:
+
+![system](../hero_resources/media/images/hero_wizard.png)
+
+### Steps:
+
+1. Select the arena in the list (see figure);
+2. By clicking on commit arena button, the object will be instantiate on gazebo. Clear arena button should remove it.
+3. Select the number of robots.
+4. Select the sensors available for the robots.
+5. By clicking on commit swarm button, the robots will be instantiate on gazebo. Clear swarm will remove them.
+6. By using gazebo simulator, make adjustments on the scene, and using the Generate Launch File button will compile the scene in a launch file for future uses.
+
+To launch a pre-set environment, use this launch file:
+```sh
+$ roslaunch hero_gazebo env_spawn.launch
+```
+
+
+
+
+
 ## Features
 - Differential drive controller
 - Odometry
 - IMU
 - IR Proximity range (simulated with laser)
+
 ![system](../hero_resources/media/images/gazebo_rqt_graph.png)
 
 ## How to use

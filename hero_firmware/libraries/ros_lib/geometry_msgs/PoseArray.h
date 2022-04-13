@@ -23,11 +23,11 @@ namespace geometry_msgs
 
     PoseArray():
       header(),
-      poses_length(0), poses(NULL)
+      poses_length(0), st_poses(), poses(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -42,7 +42,7 @@ namespace geometry_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -61,8 +61,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/PoseArray"; };
-    const char * getMD5(){ return "916c28c5764443f268b296bb671b9d97"; };
+    virtual const char * getType() override { return "geometry_msgs/PoseArray"; };
+    virtual const char * getMD5() override { return "916c28c5764443f268b296bb671b9d97"; };
 
   };
 

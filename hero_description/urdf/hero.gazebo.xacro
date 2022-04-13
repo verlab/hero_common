@@ -6,6 +6,7 @@
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <!--robotNamespace>/</robotNamespace-->
       <legacyModeNS>true</legacyModeNS>
+      <controlPeriod>0.60</controlPeriod>
     </plugin>
   </gazebo>
 
@@ -14,12 +15,12 @@
     <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
       <!--robotNamespace>/</robotNamespace-->
       <alwaysOn>true</alwaysOn>
-      <updateRate>50</updateRate>
+      <updateRate>15</updateRate>
       <leftJoint>left_wheel_joint</leftJoint>
       <rightJoint>right_wheel_joint</rightJoint>
       <wheelSeparation>${wheel_separation}</wheelSeparation>
       <wheelDiameter>${wheel_diameter}</wheelDiameter>
-      <torque>0.3</torque>
+      <torque>0.03</torque>
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
@@ -32,16 +33,17 @@
       <publishWheelJointState>false</publishWheelJointState>
       <wheelAcceleration>0.0</wheelAcceleration>
       <publishTf>true</publishTf>
-      <wheelTorque>2.5</wheelTorque>
+      <wheelTorque>0.5</wheelTorque>
     </plugin>
   </gazebo>
 
   <!-- Color plugin -->
   <gazebo reference='hat_link'>
     <visual>
-      <plugin name="gazebo_ros_model_color" filename="libgazebo_ros_model_color.so">
+      <plugin name="libgazebo_ros_hero_color" filename="libgazebo_ros_hero_color.so">
         <!--robotNamespace>/</robotNamespace-->
         <serviceName>hat_color</serviceName>
+        <topicName>hat_color</topicName>
         <color>0.0 0.5 0.9 1.0</color>
       </plugin>
     </visual>

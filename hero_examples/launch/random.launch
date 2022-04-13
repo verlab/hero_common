@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="hero_examples" type="random_walk2.py" name="hero_0_random" output="screen" args="/hero_0" />
+    <node pkg="hero_examples" type="random_walk2.py" name="hero_1_random" output="screen" args="/hero_1" />
+    <node pkg="hero_examples" type="random_walk2.py" name="hero_2_random" output="screen" args="/hero_2" />
+    <node pkg="hero_examples" type="random_walk2.py" name="hero_3_random" output="screen" args="/hero_3" />
+    <node pkg="hero_examples" type="random_walk2.py" name="hero_4_random" output="screen" args="/hero_4" />
+</launch>

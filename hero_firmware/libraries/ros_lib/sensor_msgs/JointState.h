@@ -34,14 +34,14 @@ namespace sensor_msgs
 
     JointState():
       header(),
-      name_length(0), name(NULL),
-      position_length(0), position(NULL),
-      velocity_length(0), velocity(NULL),
-      effort_length(0), effort(NULL)
+      name_length(0), st_name(), name(nullptr),
+      position_length(0), st_position(), position(nullptr),
+      velocity_length(0), st_velocity(), velocity(nullptr),
+      effort_length(0), st_effort(), effort(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -84,7 +84,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -147,8 +147,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return "sensor_msgs/JointState"; };
-    const char * getMD5(){ return "3066dcd76a6cfaef579bd0f34173e9fd"; };
+    virtual const char * getType() override { return "sensor_msgs/JointState"; };
+    virtual const char * getMD5() override { return "3066dcd76a6cfaef579bd0f34173e9fd"; };
 
   };
 

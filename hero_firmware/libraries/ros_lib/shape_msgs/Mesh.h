@@ -24,12 +24,12 @@ namespace shape_msgs
       _vertices_type * vertices;
 
     Mesh():
-      triangles_length(0), triangles(NULL),
-      vertices_length(0), vertices(NULL)
+      triangles_length(0), st_triangles(), triangles(nullptr),
+      vertices_length(0), st_vertices(), vertices(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->triangles_length >> (8 * 0)) & 0xFF;
@@ -51,7 +51,7 @@ namespace shape_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t triangles_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -81,8 +81,8 @@ namespace shape_msgs
      return offset;
     }
 
-    const char * getType(){ return "shape_msgs/Mesh"; };
-    const char * getMD5(){ return "1ffdae9486cd3316a121c578b47a85cc"; };
+    virtual const char * getType() override { return "shape_msgs/Mesh"; };
+    virtual const char * getMD5() override { return "1ffdae9486cd3316a121c578b47a85cc"; };
 
   };
 

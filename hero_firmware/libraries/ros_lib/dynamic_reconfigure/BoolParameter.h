@@ -23,7 +23,7 @@ namespace dynamic_reconfigure
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
@@ -41,7 +41,7 @@ namespace dynamic_reconfigure
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_name;
@@ -64,8 +64,8 @@ namespace dynamic_reconfigure
      return offset;
     }
 
-    const char * getType(){ return "dynamic_reconfigure/BoolParameter"; };
-    const char * getMD5(){ return "23f05028c1a699fb83e22401228c3a9e"; };
+    virtual const char * getType() override { return "dynamic_reconfigure/BoolParameter"; };
+    virtual const char * getMD5() override { return "23f05028c1a699fb83e22401228c3a9e"; };
 
   };
 

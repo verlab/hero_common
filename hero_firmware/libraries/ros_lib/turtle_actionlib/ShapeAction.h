@@ -29,7 +29,7 @@ namespace turtle_actionlib
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->action_goal.serialize(outbuffer + offset);
@@ -38,7 +38,7 @@ namespace turtle_actionlib
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->action_goal.deserialize(inbuffer + offset);
@@ -47,8 +47,8 @@ namespace turtle_actionlib
      return offset;
     }
 
-    const char * getType(){ return "turtle_actionlib/ShapeAction"; };
-    const char * getMD5(){ return "d73b17d6237a925511f5d7727a1dc903"; };
+    virtual const char * getType() override { return "turtle_actionlib/ShapeAction"; };
+    virtual const char * getMD5() override { return "d73b17d6237a925511f5d7727a1dc903"; };
 
   };
 

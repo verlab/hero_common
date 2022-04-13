@@ -17,19 +17,19 @@ Slicer: Ultimaker Cura v4.8.0
 ## Parts
 ### AA8_chassis_a.gcode  
 ```
-Profile: 0.30
+Profile: 0.20
 Infill: 20%
 Support: Yes
 ```      
 ### AA8_chasis_b.gcode
 ```
-Profile: 0.30
+Profile: 0.20
 Infill: 20%
 Support: No
 ```    
 ### AA8_wheel.gcode
 ```
-Profile: 0.30
+Profile: 0.20
 Infill: 20%
 Support: Yes
 ```
@@ -66,13 +66,13 @@ Support: No
 ```
 ### AA8_cover.gcode
 ```
-Profile: 0.30
+Profile: 0.20
 Infill: 20%
 Support: Yes
 ```
 ### AA8_ehat.gcode          
 ```
-Profile: 0.30
+Profile: 0.20
 Infill: 20%
 Support: No
 ```

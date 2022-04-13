@@ -4,22 +4,23 @@
   <!-- Here was the base link definitions -->
   <link name="base_link">
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 ${PI}" />
+      <origin xyz="0 0 0" rpy="0 0 ${pi/2}" />
       <geometry>
-        <mesh filename="package://hero_description/meshes/base_link.dae" scale="1 1 1"/>
+        <mesh filename="package://hero_description/meshes/base_link.obj" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 ${PI}" />
+      <origin xyz="0 0 0.0121" rpy="0 0 ${pi/2}" />
       <geometry>
         <!-- <cylinde size="0.068 0.068 0.048"/> -->
-        <cylinder length="0.048" radius="0.036"/>
+        <cylinder length="0.042" radius="0.037"/>
+        <!-- <mesh filename="package://hero_description/meshes/base_link.dae" scale="1 1 1"/> -->
       </geometry>
     </collision>
     <inertial>
       <mass value="0.090" />
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <xacro:cylinder_inertia m="0.090" r="0.035" h="0.055"/>
+      <origin xyz="0 0.0002 0" rpy="${pi/2} 0 0"/>
+      <xacro:cylinder_inertia m="0.090" r="0.035" h="0.065"/>
     </inertial>
   </link>
   <gazebo reference="base_link">
@@ -27,11 +28,13 @@
     <mu1 value="0.01"/>
     <mu2 value="0.01"/>
     <!-- <maxVel value="0.10"/>  -->
+    <maxContacts>4</maxContacts>
+    <selfCollide>1</selfCollide>
   </gazebo>
 
   <!--  Here was the hat joint and link -->
   <joint name="hat_joint" type="fixed">
-    <origin xyz="0.0001 0 0.038" rpy="0 0 0" />
+    <origin xyz="-0.00245 -0.00216 0.06027" rpy="0 0 0" />
     <parent link="base_link"/>
     <child link="hat_link"/>
   </joint>
@@ -39,14 +42,15 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://hero_description/meshes/hat.dae" scale="1 1 1"/>
+        <mesh filename="package://hero_description/meshes/hat.obj" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <!-- <box size="0.068 0.068 0.02"/> -->
-        <cylinder length="0.02" radius="0.040"/>
+        <!-- <cylinder length="0.02" radius="0.040"/> -->
+        <mesh filename="package://hero_description/meshes/hat.obj" scale="1 1 1"/>
       </geometry>
     </collision>
     <inertial>
@@ -61,22 +65,24 @@
     <!-- <mu1 value="0.005"/>
     <mu2 value="0.005"/> -->
     <maxVel value="0.10"/> 
+    <maxContacts>0</maxContacts>
+    <selfCollide>0</selfCollide>
   </gazebo>
 
   <!--  Here was the left wheel joint and link -->
   <joint name="left_wheel_joint" type="continuous">
     <parent link="base_link"/>
     <child link="left_wheel_link"/>
-    <origin xyz="0 ${wheel_separation/2} 0.0005" rpy="0 0 0" />
+    <origin xyz="0.0 ${wheel_separation/2} 0.01548" rpy="0 0 0" />
     <axis xyz="0 1 0" />
-    <limit effort="100" velocity="0.3"/>
-    <dynamics damping="0.0" friction="0.0" />
+    <limit effort="0.1" velocity="0.3"/>
+    <dynamics damping="0.0001" friction="0.0" />
   </joint>
   <link name="left_wheel_link">
     <visual>
-      <origin xyz="0 0 0.0" rpy="${PI/2} 0 0" />
+      <origin xyz="0 0 0.0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://hero_description/meshes/wheel.dae" scale="1 1 1"/>
+        <mesh filename="package://hero_description/meshes/wheel.obj" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
@@ -86,35 +92,37 @@
       </geometry>
     </collision>
     <inertial>
-      <mass value="0.010" />
+      <mass value="0.020" />
       <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
       <xacro:cylinder_inertia m="0.010" h="0.008" r="${wheel_diameter/2.0}"/>
     </inertial>
   </link>
   <gazebo reference="left_wheel_link">
-    <mu1 value="0.8"/>
-    <mu2 value="0.8"/>
+    <mu1 value="1.0"/>
+    <mu2 value="1.0"/>
     <!-- <maxVel value="0.10"/>  -->
     <!-- <kp value="10000000.0"/>
     <kd value="1.0"/>
     <fdir1 value="1 0 0"/> -->
     <gravity>1</gravity>
+    <maxContacts>4</maxContacts>
+    <selfCollide>0</selfCollide>
   </gazebo>
 
   <!--  Here was the right wheel joint and link -->
   <joint name="right_wheel_joint" type="continuous">
     <axis xyz="0 1 0" />
-    <limit effort="100" velocity="0.3"/>
-    <dynamics damping="0.0" friction="0" />
-    <origin xyz="0 ${-wheel_separation/2} 0.0005" rpy="0 0 0" />
+    <limit effort="0.1" velocity="0.3"/>
+    <dynamics damping="0.0001" friction="0" />
+    <origin xyz="0.0 ${-wheel_separation/2} 0.01548" rpy="0 0 0" />
     <parent link="base_link"/>
     <child link="right_wheel_link"/>
   </joint>
   <link name="right_wheel_link">
     <visual>
-      <origin xyz="0 0 0.0" rpy="${-PI/2} 0 0" />
+      <origin xyz="0 0 0.0" rpy="${-PI} 0 0" />
       <geometry>
-        <mesh filename="package://hero_description/meshes/wheel.dae" scale="1 1 1"/>
+        <mesh filename="package://hero_description/meshes/wheel.obj" scale="1 1 1"/>
       </geometry>
     </visual>
     <collision>
@@ -124,19 +132,21 @@
       </geometry>
     </collision>
     <inertial>
-      <mass value="0.010" />
+      <mass value="0.020" />
       <origin xyz="0 0 0" rpy="${-PI/2} 0 0"/>
       <xacro:cylinder_inertia m="0.010" h="0.008" r="${wheel_diameter/2.0}"/>
     </inertial>
   </link>
   <gazebo reference="right_wheel_link">
-    <mu1 value="0.8"/>
-    <mu2 value="0.8"/>
+    <mu1 value="1.0"/>
+    <mu2 value="1.0"/>
     <!-- <maxVel value="0.10"/>  -->
     <!-- <kp value="10000000.0"/>
     <kd value="1.0"/>
     <fdir1 value="1 0 0"/> -->
     <gravity>1</gravity>
+    <maxContacts>4</maxContacts>
+    <selfCollide>0</selfCollide>
   </gazebo>
 
 </robot>

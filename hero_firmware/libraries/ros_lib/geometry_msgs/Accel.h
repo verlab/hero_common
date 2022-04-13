@@ -24,7 +24,7 @@ namespace geometry_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->linear.serialize(outbuffer + offset);
@@ -32,7 +32,7 @@ namespace geometry_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->linear.deserialize(inbuffer + offset);
@@ -40,8 +40,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/Accel"; };
-    const char * getMD5(){ return "9f195f881246fdfa2798d1d3eebca84a"; };
+    virtual const char * getType() override { return "geometry_msgs/Accel"; };
+    virtual const char * getMD5() override { return "9f195f881246fdfa2798d1d3eebca84a"; };
 
   };
 

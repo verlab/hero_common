@@ -38,11 +38,18 @@ const uint16_t c_dmaBytesPerPixelBytes = 4;
 const uint16_t c_dmaBytesPer50us = 20;
 const uint32_t c_dmaI2sSampleRate = 100000;
 
-class NeoEsp32I2sSpeedWs2813
+class NeoEsp32I2sSpeedWs2812x
 {
 public:
     const static uint16_t I2sSampleRateDiv = 1;
-    const static uint16_t ResetTimeUs = 250;
+    const static uint16_t ResetTimeUs = 300;
+};
+
+class NeoEsp32I2sSpeedSk6812
+{
+public:
+    const static uint16_t I2sSampleRateDiv = 1;
+    const static uint16_t ResetTimeUs = 80;
 };
 
 class NeoEsp32I2sSpeed800Kbps
@@ -117,7 +124,7 @@ public:
 
     void Initialize()
     {
-        i2sInit(T_BUS::I2sBusNumber, 16, c_dmaI2sSampleRate / T_SPEED::I2sSampleRateDiv, I2S_CHAN_STEREO, I2S_FIFO_16BIT_DUAL, 2, 0);
+        i2sInit(T_BUS::I2sBusNumber, 16, c_dmaI2sSampleRate / T_SPEED::I2sSampleRateDiv, I2S_CHAN_STEREO, I2S_FIFO_16BIT_DUAL, 4, 0);
         i2sSetPins(T_BUS::I2sBusNumber, _pin, -1, -1, -1);
     }
 
@@ -173,17 +180,24 @@ private:
     }
 };
 
-typedef NeoEsp32I2sMethodBase<NeoEsp32I2sSpeedWs2813, NeoEsp32I2sBusZero> NeoEsp32I2s0Ws2813Method;
+typedef NeoEsp32I2sMethodBase<NeoEsp32I2sSpeedWs2812x, NeoEsp32I2sBusZero> NeoEsp32I2s0Ws2812xMethod;
+typedef NeoEsp32I2sMethodBase<NeoEsp32I2sSpeedSk6812, NeoEsp32I2sBusZero> NeoEsp32I2s0Sk6812Method;
 typedef NeoEsp32I2sMethodBase<NeoEsp32I2sSpeed800Kbps, NeoEsp32I2sBusZero> NeoEsp32I2s0800KbpsMethod;
 typedef NeoEsp32I2sMethodBase<NeoEsp32I2sSpeed400Kbps, NeoEsp32I2sBusZero> NeoEsp32I2s0400KbpsMethod;
 
-typedef NeoEsp32I2sMethodBase<NeoEsp32I2sSpeedWs2813, NeoEsp32I2sBusOne> NeoEsp32I2s1Ws2813Method;
+typedef NeoEsp32I2sMethodBase<NeoEsp32I2sSpeedWs2812x, NeoEsp32I2sBusOne> NeoEsp32I2s1Ws2812xMethod;
+typedef NeoEsp32I2sMethodBase<NeoEsp32I2sSpeedSk6812, NeoEsp32I2sBusOne> NeoEsp32I2s1Sk6812Method;
 typedef NeoEsp32I2sMethodBase<NeoEsp32I2sSpeed800Kbps, NeoEsp32I2sBusOne> NeoEsp32I2s1800KbpsMethod;
 typedef NeoEsp32I2sMethodBase<NeoEsp32I2sSpeed400Kbps, NeoEsp32I2sBusOne> NeoEsp32I2s1400KbpsMethod;
 
 // I2s Bus 1 method is the default method for Esp32
-typedef NeoEsp32I2s1Ws2813Method NeoWs2813Method;
-typedef NeoEsp32I2s1800KbpsMethod Neo800KbpsMethod;
+typedef NeoEsp32I2s1Ws2812xMethod NeoWs2813Method;
+typedef NeoEsp32I2s1Ws2812xMethod NeoWs2812xMethod;
+typedef NeoEsp32I2s1800KbpsMethod NeoWs2812Method;
+typedef NeoEsp32I2s1Sk6812Method NeoSk6812Method;
+typedef NeoEsp32I2s1Sk6812Method NeoLc8812Method;
+
+typedef NeoEsp32I2s1Ws2812xMethod Neo800KbpsMethod;
 typedef NeoEsp32I2s1400KbpsMethod Neo400KbpsMethod;
 
 #endif
