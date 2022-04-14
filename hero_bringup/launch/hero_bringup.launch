@@ -1,7 +1,6 @@
 <launch>
 
-    <arg name="model" default="$(find hero_description)/robot/hero.urdf.xacro"/>
-    <param name="/robot_description" command="$(find xacro)/xacro --inorder $(arg model)" />
+    <param name="/robot_description" textfile="$(find hero_description)/robot/hero.urdf"/>
     <node pkg="rosserial_server" type="socket_node" name="rosserial_server" respawn="true" output="screen"  />
 
 </launch>
