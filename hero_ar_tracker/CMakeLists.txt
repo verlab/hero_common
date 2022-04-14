@@ -8,7 +8,7 @@ project(hero_ar_tracker)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  ar_track_alvar_msgs
+  # ar_track_alvar_msgs
   usb_cam
   rospy
 )
