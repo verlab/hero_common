@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2022-04-19T21:25:38Z",
+        "GenerationSoftware": {
+            "Application": "EAGLE",
+            "Vendor": "Autodesk",
+            "Version": "9.6.2"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.57,
+        "LayerNumber": 2,
+        "Name": {
+            "ProjectId": "board"
+        },
+        "Owner": "Prezeck Prezeck <prezeck@gmail.com>",
+        "Size": {
+            "X": 61.056253,
+            "Y": 61.057409
+        }
+    }
+}

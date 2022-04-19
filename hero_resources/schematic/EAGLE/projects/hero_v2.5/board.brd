@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="9.2.2">
+<eagle version="9.5.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -26,12 +26,12 @@
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
-<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="yes"/>
 <layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="yes"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="yes"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
@@ -2270,7 +2270,7 @@ design rules under a new name.</description>
 <attribute name="NAME" x="16.24" y="41.61" size="1.27" layer="25" rot="R270"/>
 <attribute name="SPICEPREFIX" value="X" x="13.85" y="40.2" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="R12" library="resistor" library_urn="urn:adsk.eagle:library:348" package="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="102" x="17.362840625" y="4.93858125" smashed="yes" rot="R270">
+<element name="R12" library="resistor" library_urn="urn:adsk.eagle:library:348" package="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="103" x="17.362840625" y="4.93858125" smashed="yes" rot="R270">
 <attribute name="NAME" x="18.25843125" y="4.960653125" size="0.762" layer="25" rot="R270"/>
 <attribute name="VALUE" x="14.441840625" y="7.09758125" size="1.27" layer="27" rot="R270"/>
 </element>
@@ -2543,6 +2543,7 @@ design rules under a new name.</description>
 <wire x1="16.0401" y1="21.470159375" x2="16.006903125" y2="21.50335625" width="0.8128" layer="1"/>
 <wire x1="3.6576" y1="24.3205" x2="6.3881" y2="27.051" width="0.508" layer="1"/>
 <wire x1="3.6576" y1="24.3205" x2="3.6576" y2="11.832121875" width="0.508" layer="1"/>
+<wire x1="3.6576" y1="11.832121875" x2="3.6576" y2="11.702121875" width="0.508" layer="1"/>
 <wire x1="3.6576" y1="11.832121875" x2="3.67398125" y2="11.815740625" width="0.8128" layer="1"/>
 <wire x1="11.3665" y1="14.8454" x2="11.3801" y2="14.859" width="0.8128" layer="16"/>
 <wire x1="41.3992" y1="21.7551" x2="41.45" y2="21.8059" width="0.8128" layer="1"/>
@@ -2589,11 +2590,19 @@ design rules under a new name.</description>
 <wire x1="-9" y1="19.75" x2="-5.844" y2="19.75" width="0.508" layer="16"/>
 <wire x1="-5.844" y1="19.75" x2="-5.8293" y2="19.7353" width="0.508" layer="16"/>
 <wire x1="-6.7076" y1="6.9576" x2="-4.715834375" y2="8.9120875" width="1.27" layer="1"/>
-<wire x1="-10.2996" y1="48.34025625" x2="-9.8865" y2="48.1135" width="0" layer="19" extent="1-1"/>
+<via x="2.25" y="9.43" extent="1-16" drill="0.508"/>
+<wire x1="3.65" y1="11.694521875" x2="3.65" y2="10.83" width="0.508" layer="1"/>
+<wire x1="2.25" y1="9.43" x2="3.65" y2="10.83" width="0.508" layer="1"/>
+<wire x1="3.65" y1="11.694521875" x2="3.6576" y2="11.702121875" width="0.508" layer="1"/>
+<wire x1="2.25" y1="9.43" x2="3.67398125" y2="10.85398125" width="0.508" layer="16"/>
+<wire x1="3.67398125" y1="10.85398125" x2="3.67398125" y2="11.815740625" width="0.508" layer="16"/>
+<wire x1="2.25" y1="9.43" x2="0.750559375" y2="10.929440625" width="0.508" layer="16"/>
+<wire x1="0.750559375" y1="10.929440625" x2="0.750559375" y2="11.760140625" width="0.508" layer="16"/>
+<wire x1="-8.38096875" y1="46.421625" x2="-9.8865" y2="47.92715625" width="0" layer="19" extent="1-1"/>
 <wire x1="-8.182215625" y1="12.37846875" x2="-8.18221875" y2="12.37846875" width="0" layer="19" extent="1-1"/>
-<wire x1="9.7028" y1="1.397" x2="9.878984375" y2="0.277015625" width="0" layer="19" extent="1-1"/>
-<wire x1="-16.96591875" y1="26.9170625" x2="-16.9147" y2="22.0853" width="0" layer="19" extent="1-1"/>
-<wire x1="-16.976871875" y1="31.699259375" x2="-16.96591875" y2="26.9170625" width="0" layer="19" extent="1-1"/>
+<wire x1="9.878984375" y1="1.573184375" x2="9.8044" y2="2.930271875" width="0" layer="19" extent="1-1"/>
+<wire x1="-14.476759375" y1="26.7462" x2="-9" y2="19.75" width="0" layer="19" extent="1-1"/>
+<wire x1="-16.976871875" y1="31.699259375" x2="-16.97291875" y2="26.9240625" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="AD0">
 <contactref element="U$1" pad="AD0"/>
@@ -2847,7 +2856,7 @@ design rules under a new name.</description>
 <wire x1="-2.1336" y1="11.480940625" x2="-4.1148" y2="9.499740625" width="0.508" layer="16"/>
 <wire x1="10.304025" y1="28.236425" x2="4.699" y2="22.6314" width="0.508" layer="16"/>
 <wire x1="-2.1336" y1="14.4018" x2="-2.1336" y2="11.480940625" width="0.508" layer="16"/>
-<wire x1="-4.1148" y1="9.499740625" x2="-4.715834375" y2="8.9120875" width="0" layer="19" extent="16-16"/>
+<wire x1="-5.764828125" y1="11.14976875" x2="-4.715834375" y2="8.9120875" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="MUX_X2">
 <contactref element="IC2" pad="15"/>
@@ -2864,7 +2873,7 @@ design rules under a new name.</description>
 <wire x1="-12.138834375" y1="24.75" x2="-4.1350625" y2="24.75" width="0.508" layer="16"/>
 <wire x1="-3.3137125" y1="25.57135" x2="5.69585" y2="25.57135" width="0.508" layer="16"/>
 <wire x1="5.69585" y1="25.57135" x2="9.034025" y2="28.909525" width="0.508" layer="16"/>
-<wire x1="-14.305896875" y1="26.9170625" x2="-13.462" y2="26.924" width="0" layer="19" extent="16-16"/>
+<wire x1="-14.305896875" y1="26.9170625" x2="-13.4087" y2="26.8707" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="MUX_X3">
 <contactref element="P3" pad="E"/>
@@ -2877,7 +2886,7 @@ design rules under a new name.</description>
 <wire x1="29.49365" y1="15.5702" x2="31.89791875" y2="13.16593125" width="0.508" layer="16"/>
 <wire x1="12.844025" y1="27.630875" x2="17.6292" y2="22.8457" width="0.508" layer="16"/>
 <wire x1="21.2852" y1="15.5702" x2="29.49365" y2="15.5702" width="0.508" layer="16"/>
-<wire x1="31.89791875" y1="13.16593125" x2="32.774153125" y2="12.579340625" width="0" layer="19" extent="16-16"/>
+<wire x1="30.19399375" y1="11.46200625" x2="32.774153125" y2="12.579340625" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="MUX_X4">
 <contactref element="IC2" pad="1"/>
@@ -2907,7 +2916,7 @@ design rules under a new name.</description>
 <wire x1="35.7138375" y1="32.0861625" x2="33.7756" y2="34.0244" width="0.508" layer="16"/>
 <wire x1="27.65" y1="40.95" x2="25.03188125" y2="43.56811875" width="0.508" layer="16"/>
 <wire x1="25.03188125" y1="43.56811875" x2="15.79321875" y2="43.56811875" width="0.508" layer="16"/>
-<wire x1="38.701590625" y1="32.0861625" x2="37.6784" y2="32.1158" width="0" layer="19" extent="16-16"/>
+<wire x1="38.701590625" y1="32.0861625" x2="37.6936" y2="32.131" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="MUX_X6">
 <contactref element="IC2" pad="2"/>
@@ -2921,7 +2930,7 @@ design rules under a new name.</description>
 <wire x1="3.2385" y1="45.3009" x2="3.2385" y2="53.2384" width="0.508" layer="16"/>
 <wire x1="3.2385" y1="53.2384" x2="5.1181" y2="55.118" width="0.508" layer="16"/>
 <wire x1="5.1181" y1="55.118" x2="9.5758" y2="55.118" width="0.508" layer="16"/>
-<wire x1="9.5758" y1="55.118" x2="9.617115625" y2="56.00360625" width="0" layer="19" extent="16-16"/>
+<wire x1="12.1158" y1="55.0774" x2="9.617115625" y2="56.00360625" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="MUX_X7">
 <contactref element="IC2" pad="4"/>
@@ -2935,7 +2944,7 @@ design rules under a new name.</description>
 <wire x1="26.2763" y1="51.7017" x2="28.1432" y2="49.8348" width="0.508" layer="16"/>
 <wire x1="11.574025" y1="41.126925" x2="12.6778" y2="42.2307" width="0.508" layer="16"/>
 <wire x1="12.6778" y1="42.2307" x2="12.6778" y2="50.5746" width="0.508" layer="16"/>
-<wire x1="28.1432" y1="49.8348" x2="29.07199375" y2="50.187325" width="0" layer="19" extent="16-16"/>
+<wire x1="29.951790625" y1="47.782584375" x2="29.07199375" y2="50.187325" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="WS_OUT">
 <contactref element="LED0" pad="2-DOUT"/>
