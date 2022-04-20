@@ -18844,7 +18844,7 @@ part number 2062-2P from STA</description>
 Marquardt, Siemens, C&amp;K, ITT, and others&lt;p&gt;
 &lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
 <packages>
-<package name="TL3XYO" urn="urn:adsk.eagle:footprint:27642/1">
+<package name="HH3T90" urn="urn:adsk.eagle:footprint:27642/1" locally_modified="yes">
 <description>&lt;b&gt;TINY SWITCH&lt;/b&gt;&lt;p&gt;
 Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da-01-de-Subminiaturschalter_TL_36YO.pdf</description>
 <wire x1="-5.08" y1="2.54" x2="5.08" y2="2.54" width="0.2032" layer="21"/>
@@ -18874,7 +18874,7 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <description>TINY SWITCH
 Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da-01-de-Subminiaturschalter_TL_36YO.pdf</description>
 <packageinstances>
-<packageinstance name="TL3XYO"/>
+<packageinstance name="HH3T90"/>
 </packageinstances>
 </package3d>
 </packages3d>
@@ -18906,7 +18906,7 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <gate name="BEF1" symbol="MOM-OFF-MOM" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="TL3XYO">
+<device name="" package="HH3T90">
 <connects>
 <connect gate="BEF1" pin="O" pad="1"/>
 <connect gate="BEF1" pin="P" pad="2"/>
@@ -20279,12 +20279,9 @@ VeRLab</text>
 <approved hash="113,2,85.09,33.2461,P5,,,,,"/>
 <approved hash="113,2,85.09,71.3461,P7,,,,,"/>
 <approved hash="113,2,85.09,109.446,P6,,,,,"/>
-<approved hash="113,4,57.7684,11.9548,OS1,,,,,"/>
-<approved hash="113,4,84.1154,11.0538,BATT,,,,,"/>
 <approved hash="113,2,20.851,43.711,FRAME1,,,,,"/>
 <approved hash="113,3,64.031,58.951,FRAME3,,,,,"/>
 <approved hash="113,4,-4.549,10.691,FRAME4,,,,,"/>
-<approved hash="113,4,-33.91,22.0083,CHRG,,,,,"/>
 <approved hash="113,2,27.4361,8.7,IRLML2502,,,,,"/>
 </errors>
 </schematic>

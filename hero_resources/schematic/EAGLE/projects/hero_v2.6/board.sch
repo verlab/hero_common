@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.01" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
@@ -18951,7 +18951,7 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <part name="P+13" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 <part name="GND8" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="GND9" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="I2C|UART" library="pinhead" deviceset="PINHD-1X4" device="" package3d_urn="urn:adsk.eagle:package:22407/2"/>
+<part name="E-HAT" library="pinhead" deviceset="PINHD-1X4" device="" package3d_urn="urn:adsk.eagle:package:22407/2"/>
 <part name="GND18" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="P+22" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 <part name="ESP-12E" library="ESP12E_DEVKIT" deviceset="ESP12E_DEVKIT" device=""/>
@@ -19110,7 +19110,7 @@ VeRLab</text>
 <instance part="GND9" gate="1" x="-44.45" y="60.96" smashed="yes">
 <attribute name="VALUE" x="-41.91" y="58.42" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="I2C|UART" gate="A" x="71.12" y="69.85" smashed="yes" rot="R180">
+<instance part="E-HAT" gate="A" x="71.12" y="69.85" smashed="yes" rot="R180">
 <attribute name="NAME" x="75.8698" y="61.4172" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="77.47" y="77.47" size="1.778" layer="96" rot="R180"/>
 </instance>
@@ -19172,7 +19172,7 @@ VeRLab</text>
 <wire x1="-44.45" y1="66.04" x2="-44.45" y2="63.5" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="I2C|UART" gate="A" pin="3"/>
+<pinref part="E-HAT" gate="A" pin="3"/>
 <pinref part="GND18" gate="1" pin="GND"/>
 <wire x1="73.66" y1="69.85" x2="93.98" y2="69.85" width="0.1524" layer="91"/>
 </segment>
@@ -19210,7 +19210,7 @@ VeRLab</text>
 <wire x1="-52.07" y1="99.06" x2="-43.18" y2="99.06" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="I2C|UART" gate="A" pin="4"/>
+<pinref part="E-HAT" gate="A" pin="4"/>
 <wire x1="73.66" y1="72.39" x2="86.36" y2="72.39" width="0.1524" layer="91"/>
 <pinref part="P+22" gate="VCC" pin="VCC"/>
 <wire x1="86.36" y1="72.39" x2="86.36" y2="74.93" width="0.1524" layer="91"/>
@@ -19323,7 +19323,7 @@ VeRLab</text>
 </net>
 <net name="SDA_RX" class="0">
 <segment>
-<pinref part="I2C|UART" gate="A" pin="1"/>
+<pinref part="E-HAT" gate="A" pin="1"/>
 <wire x1="73.66" y1="64.77" x2="81.28" y2="64.77" width="0.1524" layer="91"/>
 <label x="81.28" y="64.77" size="0.8128" layer="95" xref="yes"/>
 </segment>
@@ -19335,7 +19335,7 @@ VeRLab</text>
 </net>
 <net name="SCL_TX" class="0">
 <segment>
-<pinref part="I2C|UART" gate="A" pin="2"/>
+<pinref part="E-HAT" gate="A" pin="2"/>
 <wire x1="73.66" y1="67.31" x2="81.28" y2="67.31" width="0.1524" layer="91"/>
 <label x="81.28" y="67.31" size="0.8128" layer="95" xref="yes"/>
 </segment>

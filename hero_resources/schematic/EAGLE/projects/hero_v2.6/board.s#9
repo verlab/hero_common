@@ -17858,7 +17858,7 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <part name="GND13" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="P+5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 <part name="GND14" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="BATT" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X2" device="" package3d_urn="urn:adsk.eagle:package:22435/2"/>
+<part name="BATT0" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X2" device="" package3d_urn="urn:adsk.eagle:package:22435/2"/>
 <part name="GND15" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="C1" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="C-US" device="C0603" package3d_urn="urn:adsk.eagle:package:6240338/1" value="0.10 nF"/>
 <part name="GND16" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
@@ -18870,7 +18870,7 @@ VeRLab</text>
 <instance part="GND14" gate="1" x="76.5992" y="-4.098" smashed="yes">
 <attribute name="VALUE" x="76.5992" y="-6.638" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="BATT" gate="G$1" x="85.4574" y="9.7838" smashed="yes">
+<instance part="BATT0" gate="G$1" x="85.4574" y="9.7838" smashed="yes">
 <attribute name="NAME" x="89.0388" y="8.1114" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="79.1074" y="4.7038" size="1.778" layer="96"/>
 </instance>
@@ -18970,7 +18970,7 @@ VeRLab</text>
 <wire x1="-116.6" y1="-10.1192" x2="-116.6" y2="8.07" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="BATT" gate="G$1" pin="1"/>
+<pinref part="BATT0" gate="G$1" pin="1"/>
 <wire x1="82.9174" y1="12.3238" x2="82.9238" y2="17.2238" width="0.1524" layer="91"/>
 <wire x1="82.9238" y1="17.2238" x2="85.45" y2="19.75" width="0.1524" layer="91"/>
 <wire x1="85.45" y1="19.75" x2="106.028" y2="19.75" width="0.1524" layer="91"/>
@@ -19072,7 +19072,7 @@ VeRLab</text>
 </net>
 <net name="N$2" class="0">
 <segment>
-<pinref part="BATT" gate="G$1" pin="2"/>
+<pinref part="BATT0" gate="G$1" pin="2"/>
 <wire x1="82.9174" y1="9.7838" x2="82.9838" y2="-18.6662" width="0.1524" layer="91"/>
 <wire x1="82.9838" y1="-18.6662" x2="71.25" y2="-18.6" width="0.1524" layer="91"/>
 <wire x1="71.25" y1="-18.6" x2="17.85" y2="-18.6" width="0.1524" layer="91"/>

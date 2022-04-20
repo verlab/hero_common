@@ -17854,7 +17854,7 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <part name="GND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="GND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="GND12" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="OS1" library="stepup" deviceset="STEPUP" device=""/>
+<part name="MT3608" library="stepup" deviceset="STEPUP" device=""/>
 <part name="GND13" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="P+5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 <part name="GND14" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
@@ -17898,8 +17898,8 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <part name="R14" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-EU_" device="R0603" package3d_urn="urn:adsk.eagle:package:23555/3" value="122"/>
 <part name="C3" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="C-US" device="C0603" package3d_urn="urn:adsk.eagle:package:23616/2" value="10 uF"/>
 <part name="C4" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="C-US" device="C0603" package3d_urn="urn:adsk.eagle:package:23616/2" value="10 uF"/>
-<part name="STDBY" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="SML0805" package3d_urn="urn:adsk.eagle:package:15830/1"/>
-<part name="CHRG" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="SML0805" package3d_urn="urn:adsk.eagle:package:15830/1"/>
+<part name="STDBY" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="SML0805" package3d_urn="urn:adsk.eagle:package:15830/1" value="GREEN"/>
+<part name="CHRG" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="SML0805" package3d_urn="urn:adsk.eagle:package:15830/1" value="RED"/>
 <part name="SWITCH" library="switch" library_urn="urn:adsk.eagle:library:380" deviceset="TL37YO" device="" package3d_urn="urn:adsk.eagle:package:27747/1"/>
 <part name="IRLML2502" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="MOSFET-N" device="REFLOW" package3d_urn="urn:adsk.eagle:package:6240836/1"/>
 <part name="R15" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="0R"/>
@@ -18860,7 +18860,7 @@ VeRLab</text>
 <text x="113.03" y="-73.152" size="1.778" layer="94">REV:A</text>
 </plain>
 <instances>
-<instance part="OS1" gate="G$1" x="57.6" y="11.9548" smashed="yes"/>
+<instance part="MT3608" gate="G$1" x="57.6" y="11.9548" smashed="yes"/>
 <instance part="GND13" gate="1" x="39.566" y="-4.8092" smashed="yes">
 <attribute name="VALUE" x="39.566" y="-7.3492" size="1.778" layer="96" rot="R180"/>
 </instance>
@@ -18939,13 +18939,13 @@ VeRLab</text>
 <nets>
 <net name="GND" class="0">
 <segment>
-<pinref part="OS1" gate="G$1" pin="GND"/>
+<pinref part="MT3608" gate="G$1" pin="GND"/>
 <pinref part="GND13" gate="1" pin="GND"/>
 <wire x1="45.0684" y1="4.5032" x2="39.566" y2="-0.9992" width="0.1524" layer="91"/>
 <wire x1="39.566" y1="-0.9992" x2="39.566" y2="-2.2692" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="OS1" gate="G$1" pin="B-"/>
+<pinref part="MT3608" gate="G$1" pin="B-"/>
 <pinref part="GND14" gate="1" pin="GND"/>
 <wire x1="70.4684" y1="4.5032" x2="76.523" y2="-1.5514" width="0.1524" layer="91"/>
 <wire x1="76.523" y1="-1.5514" x2="76.5992" y2="-1.558" width="0.1524" layer="91"/>
@@ -18984,7 +18984,7 @@ VeRLab</text>
 </net>
 <net name="VCC" class="0">
 <segment>
-<pinref part="OS1" gate="G$1" pin="5V"/>
+<pinref part="MT3608" gate="G$1" pin="5V"/>
 <pinref part="P+5" gate="VCC" pin="VCC"/>
 <wire x1="45.0684" y1="19.7432" x2="39.8868" y2="19.7432" width="0.1524" layer="91"/>
 <wire x1="39.8868" y1="19.7432" x2="39.8708" y2="19.7272" width="0.1524" layer="91"/>
@@ -19092,7 +19092,7 @@ VeRLab</text>
 <wire x1="71.3" y1="36.5" x2="74.4" y2="36.5" width="0.1524" layer="91"/>
 <wire x1="74.4" y1="36.5" x2="74.45" y2="21.65" width="0.1524" layer="91"/>
 <wire x1="74.45" y1="21.65" x2="74.4568" y2="19.7568" width="0.1524" layer="91"/>
-<pinref part="OS1" gate="G$1" pin="B+"/>
+<pinref part="MT3608" gate="G$1" pin="B+"/>
 <wire x1="74.4568" y1="19.7568" x2="70.4684" y2="19.7432" width="0.1524" layer="91"/>
 </segment>
 </net>

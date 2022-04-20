@@ -265,6 +265,7 @@ UsedLibraryUrn="urn:adsk.eagle:library:198"
 UsedLibraryUrn="urn:adsk.eagle:library:199"
 UsedLibrary="/home/rezeck/EAGLE/libraries/ESP12E_DEVKIT.lbr"
 UsedLibrary="/home/rezeck/EAGLE/libraries/stepup.lbr"
+UsedLibrary="/home/rezeck/EAGLE/libraries/switch.lbr"
 UsedLibraryUrn="urn:adsk.eagle:library:420"
 UsedLibraryUrn="urn:adsk.eagle:library:348"
 UsedLibraryUrn="urn:adsk.eagle:library:356"
@@ -351,12 +352,11 @@ UsedLibraryUrn="urn:adsk.eagle:library:137"
 UsedLibraryUrn="urn:adsk.eagle:library:142"
 UsedLibraryUrn="urn:adsk.eagle:library:146"
 UsedLibraryUrn="urn:adsk.eagle:library:168"
-UsedLibrary="/home/rezeck/EAGLE/libraries/switch.lbr"
 
 [Win_1]
 Type="Control Panel"
 Number=0
 
 [Desktop]
-Screen="1920 2160"
+Screen="1920 1080"
 Window="Win_1"

@@ -15508,7 +15508,7 @@ Source: http://www.mouser.com/ds/2/392/products_18-2245.pdf</description>
 </library>
 <library name="stepup">
 <packages>
-<package name="STEPUP">
+<package name="MT3608">
 <pad name="5V" x="-8.4836" y="8.5344" drill="0.55" diameter="2.54" shape="square"/>
 <pad name="B+" x="8.5344" y="8.5344" drill="0.55" diameter="2.54" shape="square"/>
 <pad name="GND" x="-8.4836" y="-8.4836" drill="0.55" diameter="2.54" shape="square"/>
@@ -15521,7 +15521,8 @@ Source: http://www.mouser.com/ds/2/392/products_18-2245.pdf</description>
 </package>
 </packages>
 <symbols>
-<symbol name="STEPUP">
+<symbol name="MT3608">
+<description>Stepup MT3608</description>
 <pin name="5V" x="-12.5316" y="7.7884" length="middle" direction="out"/>
 <pin name="GND" x="-12.5316" y="-7.4516" length="middle" direction="out"/>
 <pin name="B+" x="12.8684" y="7.7884" length="middle" direction="in" rot="R180"/>
@@ -15534,12 +15535,12 @@ Source: http://www.mouser.com/ds/2/392/products_18-2245.pdf</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="STEPUP" prefix="OS" uservalue="yes">
+<deviceset name="MT3608" prefix="OS" uservalue="yes">
 <gates>
-<gate name="G$1" symbol="STEPUP" x="0" y="0"/>
+<gate name="G$1" symbol="MT3608" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="STEPUP">
+<device name="" package="MT3608">
 <connects>
 <connect gate="G$1" pin="5V" pad="5V"/>
 <connect gate="G$1" pin="B+" pad="B+"/>
@@ -19007,7 +19008,7 @@ part number 2062-2P from STA</description>
 <part name="GND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="GND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="GND12" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="MT3608" library="stepup" deviceset="STEPUP" device=""/>
+<part name="MT3608" library="stepup" deviceset="MT3608" device=""/>
 <part name="GND13" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="P+5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 <part name="GND14" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
