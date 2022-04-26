@@ -1,13 +1,10 @@
-# HeRo: An Open Platform for Robotics Research and Education 
+<div class="container">
+<div class="centered">
+  <h1>HeRo 2.0: A Low-Cost Robot for Swarm Robotics Research</h1>
+</div>
+</div>
 
-<div align="center">
-      <a href="https://www.youtube.com/watch?v=JQvuYeF24lY">
-     <img 
-      src="https://img.youtube.com/vi/JQvuYeF24lY/1.jpg" 
-      alt="Everything Is AWESOME" 
-      style="width:80%;">
-      </a>
-    </div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JQvuYeF24lY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 This project contributes to an open source ROS-based framework for swarm robotics. We propose an low cost, high availability swarm system that could be printed and assembled multiple times without special knowledge or hardware skills.
 
