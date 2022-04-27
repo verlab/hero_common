@@ -1,8 +1,4 @@
-<div class="container">
-<div class="centered">
-  <h1>HeRo 2.0: A Low-Cost Robot for Swarm Robotics Research</h1>
-</div>
-</div>
+<p>The design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today: ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software.</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/JQvuYeF24lY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
