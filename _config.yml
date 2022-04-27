@@ -1,12 +1,2 @@
-encoding: UTF-8
-# theme: jekyll-theme-slate
-title: "HeRo 2.0"
-author: "Paulo Rezeck"
-description: "A Low-Cost Robot for Swarm Robotics Research"
-navbar-links:
-  About Me: "aboutme"
-  Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "rezeck.github.io"
+
 
