@@ -1,15 +1,49 @@
-<!-- HEADER -->
-<div id="header_wrap" class="outer">
-    <header class="inner">
-      <a id="forkme_banner" href="{{https://github.com/verlab/hero_common}}">View on GitHub</a>
-      <h1 id="project_title">{{HeRo 2.0}}</h1>
-      <h2 id="project_tagline">{{A Low-Cost Robot for Swarm Robotics Research}}</h2>
-      {% if site.show_downloads %}
-        <section id="downloads">
-          <a class="zip_download_link" href="{{https://github.com/verlab/hero_common/archive/refs/heads/master.zip}}">Download this project as a .zip file</a>
-          <a class="tar_download_link" href="{{https://github.com/verlab/hero_common/archive/refs/heads/master.tar.gz}}">Download this project as a tar.gz file</a>
-        </section>
-      {% endif %}
-      {% include nav.html %}
-    </header>
-</div>
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+
+{% seo %}
+    {% include head-custom.html %}
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="{{https://github.com/verlab/hero_common}}">View on GitHub</a>
+          <h1 id="project_title">{{HeRo 2.0}}</h1>
+          <h2 id="project_tagline">{{A Low-Cost Robot for Swarm Robotics Research}}</h2>
+          {% if site.show_downloads %}
+            <section id="downloads">
+              <a class="zip_download_link" href="{{https://github.com/verlab/hero_common/archive/refs/heads/master.zip}}">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="{{https://github.com/verlab/hero_common/archive/refs/heads/master.tar.gz}}">Download this project as a tar.gz file</a>
+            </section>
+          {% endif %}
+          {% include nav.html %}
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        {{ content }}
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        {% if site.github.is_project_page %}
+        <p class="copyright">{{ HeRo 2.0}} maintained by <a href="{{ Paulo Rezeck }}">{{ rezeck.github.io }}</a></p>
+        {% endif %}
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+  </body>
+</html>
