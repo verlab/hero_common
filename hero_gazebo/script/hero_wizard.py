@@ -242,7 +242,7 @@ class Ui(QtWidgets.QMainWindow):
 			urdf_file = "hero.urdf"
 		
 		if self.current_model_states is None:
-			self.statusBar.showMessage("> Command: failed to generate launch! Gazebo isn't ready!")
+			self.statusBar.showMessage("> Command: failed to generate launch! Gazebo isn't ready! Try unpause the physics first! ")
 			return
 		launch_file = "<launch>"
 		
@@ -277,7 +277,9 @@ class Ui(QtWidgets.QMainWindow):
 		launch_file += """
 </launch>"""
 		print("\33[95m{}\33[0m".format(launch_file))
-		with open(self.rospack.get_path('hero_gazebo')+"/launch/env_spawn.launch", "w") as out_file:
+		self.preferedName = self.rospack.get_path('hero_gazebo')+"/launch/custom_env.launch"
+		self.launchFileName = QtWidgets.QFileDialog.getSaveFileName(directory=self.preferedName)[0]
+		with open(self.launchFileName, "w") as out_file:
 			out_file.write(launch_file)
 
 
