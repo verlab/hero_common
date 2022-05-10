@@ -51,7 +51,8 @@ permalink: /materials/
     <td class="tg-pwav" rowspan="15">PCB</td>
     <td class="tg-oqs5">R0, R1, R2, R3, R4, R5, R6, R7</td>
     <td class="tg-oqs5">Resistor 472</td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5">![image](https://user-images.githubusercontent.com/14208261/167717028-58604adf-fd62-43c2-8723-ea49ea5b6c72.png)
+</td>
     <td class="tg-oqs5">SMD R0805</td>
     <td class="tg-oqs5">8</td>
     <td class="tg-oqs5"><span style="font-weight:400;font-style:normal">SMD </span>Resistor 4K7 Ohm</td>
