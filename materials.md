@@ -1,10 +1,9 @@
 ---
 layout: page
-title: Bill of Materials
+title: Materials
 permalink: /materials/
 ---
 <h2>What components do I need to buy?</h2>
-
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
@@ -18,19 +17,19 @@ permalink: /materials/
 .tg .tg-pwav{background-color:#f9f9f9;border-color:#ffffff;text-align:center;vertical-align:middle}
 .tg .tg-v0mg{border-color:#ffffff;text-align:center;vertical-align:middle}
 </style>
-<table class="tg" style="undefined;table-layout: fixed; width: 1986px">
+<table class="tg" style="undefined;table-layout: fixed; width: 1980px">
 <colgroup>
 <col style="width: 170.89655px">
 <col style="width: 130.89655px">
 <col style="width: 222.89655px">
-<col style="width: 404.7931px">
-<col style="width: 148.7931px">
-<col style="width: 76.7931px">
-<col style="width: 266.7931px">
-<col style="width: 159.7931px">
+<col style="width: 403.7931px">
+<col style="width: 147.7931px">
+<col style="width: 75.7931px">
+<col style="width: 265.7931px">
+<col style="width: 158.7931px">
 <col style="width: 120.89655px">
 <col style="width: 121.89655px">
-<col style="width: 161.7931px">
+<col style="width: 160.7931px">
 </colgroup>
 <thead>
   <tr>
@@ -198,7 +197,7 @@ permalink: /materials/
     <td class="tg-oqs5">Connector JST-PH-2</td>
     <td class="tg-oqs5"><img src="https://user-images.githubusercontent.com/14208261/167721896-9bdbf7a5-4cf1-4353-918b-becf7a9a67fe.png" alt="Image" width="110" height="110"></td>
     <td class="tg-oqs5">JST-PH-2</td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5">2</td>
     <td class="tg-oqs5"><span style="font-style:normal">2 pin JST PH 2.0mm Through Hole Header Vertical Straight Top Entry</span></td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5">link</td>
@@ -207,11 +206,11 @@ permalink: /materials/
   </tr>
   <tr>
     <td class="tg-zv4m">I2C|UART</td>
-    <td class="tg-zv4m">PINHD-1X4</td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m"><span style="font-weight:400;font-style:normal">Female Socket Header</span> 1X4</td>
+    <td class="tg-zv4m"><img src="https://user-images.githubusercontent.com/14208261/167722946-423242ff-882f-436c-8722-1d0dc7ef33d8.png" alt="Image" width="110" height="110"></td>
     <td class="tg-zv4m">PH</td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m">40 Pin 1×40 Single Row Male 2.54mm Breakable Vertical Pin Header</td>
+    <td class="tg-zv4m">1</td>
+    <td class="tg-zv4m"><span style="font-weight:400;font-style:normal">1×4</span> Pin Single Row Female 2.54mm Vertical Socket Header</td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
@@ -219,11 +218,11 @@ permalink: /materials/
   </tr>
   <tr>
     <td class="tg-oqs5">E_LEFT, E_RIGHT, M_LEFT, M_RIGHT</td>
-    <td class="tg-oqs5">PINHD-1X3</td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5">40 Pin 1×40 Single Row Male 2.54mm Breakable Pin Header</td>
+    <td class="tg-oqs5"><span style="font-style:normal">Male Pin Header</span> 1X3</td>
+    <td class="tg-oqs5"><img src="https://user-images.githubusercontent.com/14208261/167723228-fa6d0212-9901-4953-bcec-bf3c89771a55.png" alt="Image" width="110" height="110"></td>
+    <td class="tg-oqs5">PH</td>
+    <td class="tg-oqs5">4</td>
+    <td class="tg-oqs5"><span style="font-weight:400;font-style:normal">1×3 </span>Pin Single Row Male 2.54mm Breakable Pin Header</td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
@@ -235,7 +234,7 @@ permalink: /materials/
     <td class="tg-zv4m">Capacitor 10 uF</td>
     <td class="tg-zv4m"><img src="https://user-images.githubusercontent.com/14208261/167720621-5d7c3244-4730-4901-8562-29384ee80710.png" alt="Image" width="110" height="110"></td>
     <td class="tg-zv4m">SMD C0603</td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m">1</td>
     <td class="tg-zv4m"><span style="font-weight:400;font-style:normal">SMD Ceramic </span>Capacitor 10 uF</td>
     <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
@@ -247,7 +246,7 @@ permalink: /materials/
     <td class="tg-oqs5">Resistor 103</td>
     <td class="tg-oqs5"><img src="https://user-images.githubusercontent.com/14208261/167717028-58604adf-fd62-43c2-8723-ea49ea5b6c72.png" alt="Image" width="100" height="66"></td>
     <td class="tg-oqs5">SMD R0805</td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5">1</td>
     <td class="tg-oqs5"><span style="font-weight:400;font-style:normal">SMD </span>Resistor 1K Ohm</td>
     <td class="tg-oqs5"></td>
     <td class="tg-oqs5"></td>
@@ -259,7 +258,7 @@ permalink: /materials/
     <td class="tg-zv4m">Resistor 102</td>
     <td class="tg-zv4m"><img src="https://user-images.githubusercontent.com/14208261/167717028-58604adf-fd62-43c2-8723-ea49ea5b6c72.png" alt="Image" width="100" height="66"></td>
     <td class="tg-zv4m">SMD R0805</td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m">1</td>
     <td class="tg-zv4m"><span style="font-weight:400;font-style:normal">SMD </span>Resistor 100 Ohm</td>
     <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
@@ -271,7 +270,7 @@ permalink: /materials/
     <td class="tg-oqs5">Resistor 122</td>
     <td class="tg-oqs5"><img src="https://user-images.githubusercontent.com/14208261/167717028-58604adf-fd62-43c2-8723-ea49ea5b6c72.png" alt="Image" width="100" height="66"></td>
     <td class="tg-oqs5">SMD R0805</td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5">1</td>
     <td class="tg-oqs5"><span style="font-weight:400;font-style:normal">SMD </span>Resistor 120 Ohm</td>
     <td class="tg-oqs5"></td>
     <td class="tg-oqs5"></td>
@@ -280,10 +279,10 @@ permalink: /materials/
   </tr>
   <tr>
     <td class="tg-zv4m">STDBY</td>
-    <td class="tg-zv4m">LEDS ML 0805 Green</td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m">LED SML 0805 Green</td>
+    <td class="tg-zv4m"><img src="https://user-images.githubusercontent.com/14208261/167723417-c5159691-29ca-4ac3-bbed-ea504c131bc6.png" alt="Image" width="110" height="110"></td>
     <td class="tg-zv4m">SMD SML0805</td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m">1</td>
     <td class="tg-zv4m">SMD LED Green (Standby)</td>
     <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
@@ -292,10 +291,10 @@ permalink: /materials/
   </tr>
   <tr>
     <td class="tg-oqs5">CHRG</td>
-    <td class="tg-oqs5">LEDS ML 0805 Red</td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5">LED SML 0805 Red</td>
+    <td class="tg-oqs5"><img src="https://user-images.githubusercontent.com/14208261/167723417-c5159691-29ca-4ac3-bbed-ea504c131bc6.png" alt="Image" width="110" height="110"></td>
     <td class="tg-oqs5">SMD SML0805</td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5">1</td>
     <td class="tg-oqs5">SMD LED Red (Charging)</td>
     <td class="tg-oqs5"></td>
     <td class="tg-oqs5"></td>
@@ -305,10 +304,10 @@ permalink: /materials/
   <tr>
     <td class="tg-zv4m">TP4056</td>
     <td class="tg-zv4m">TP4056</td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m"><img src="https://user-images.githubusercontent.com/14208261/167723526-3c991479-6f52-4a39-8341-5a517ff11b53.png" alt="Image" width="110" height="110"></td>
     <td class="tg-zv4m">SOP-8</td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m">1</td>
+    <td class="tg-zv4m">1A Standalone Linear Li-lon Battery Charger with Thermal Regulation</td>
     <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
