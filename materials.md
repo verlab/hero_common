@@ -4,7 +4,6 @@ title: Materials
 permalink: /materials/
 ---
 <h2>What components do I need to buy?</h2>
-
 <style type="text/css">
 .tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
 .tg td{background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
@@ -316,11 +315,11 @@ permalink: /materials/
   <tr>
     <td class="tg-pwav" rowspan="6">Integrated Systems</td>
     <td class="tg-oqs5">ESP-12E</td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5">ESP-12 NodeMCU CP2102</td>
+    <td class="tg-oqs5"><img src="https://user-images.githubusercontent.com/14208261/167724462-94048954-9fa1-4947-b29d-3fb255c859d1.png" alt="Image" width="101" height="101"></td>
+    <td class="tg-oqs5">Socket</td>
+    <td class="tg-oqs5">1</td>
+    <td class="tg-oqs5"><span style="font-weight:400;font-style:normal">Slim Dev Kit based on microcontroller ESP8266 with WiFi SoC, integrates GPIO, PWM, I2C, 1-Wire and ADC all in one board. Version with CP2102 USB-TTL.</span></td>
     <td class="tg-oqs5"></td>
     <td class="tg-oqs5"></td>
     <td class="tg-oqs5"></td>
