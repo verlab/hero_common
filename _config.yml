@@ -13,12 +13,13 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Hero 
-email: your-email@example.com
+title: HeRo 2.0 
+email: rezeck@dcc.ufmg.br
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  The design of a novel platform for swarm robotics applications that is low cost, 
+  easy to assemble using off-the-shelf components, and deeply integrated with the 
+  most used robotic framework available today, ROS (Robot Operating System). 
+  The robotic platform is entirely open, composed of a 3D printed body and open-source software.
 baseurl: "/hero_common" # the subpath of your site, e.g. /blog
 url: "https://verlab.github.io" # the base hostname & protocol for your site, e.g. http://example.com=
 github_username:  Hero
