@@ -4,6 +4,7 @@ title: Materials
 permalink: /materials/
 ---
 <h2>What components do I need to buy?</h2>
+
 <style type="text/css">
 .tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
 .tg td{background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
@@ -16,19 +17,19 @@ permalink: /materials/
 .tg .tg-pwav{background-color:#f9f9f9;border-color:#ffffff;text-align:center;vertical-align:middle}
 .tg .tg-v0mg{border-color:#ffffff;text-align:center;vertical-align:middle}
 </style>
-<table class="tg" style="undefined;table-layout: fixed; width: 1980px">
+<table class="tg" style="undefined;table-layout: fixed; width: 1974px">
 <colgroup>
 <col style="width: 170.89655px">
 <col style="width: 130.89655px">
 <col style="width: 222.89655px">
-<col style="width: 403.7931px">
-<col style="width: 147.7931px">
-<col style="width: 75.7931px">
-<col style="width: 265.7931px">
-<col style="width: 158.7931px">
+<col style="width: 402.7931px">
+<col style="width: 146.7931px">
+<col style="width: 74.7931px">
+<col style="width: 264.7931px">
+<col style="width: 157.7931px">
 <col style="width: 120.89655px">
 <col style="width: 121.89655px">
-<col style="width: 160.7931px">
+<col style="width: 159.7931px">
 </colgroup>
 <thead>
   <tr>
@@ -235,8 +236,8 @@ permalink: /materials/
     <td class="tg-zv4m">SMD C0603</td>
     <td class="tg-zv4m">1</td>
     <td class="tg-zv4m"><span style="font-weight:400;font-style:normal">SMD Ceramic </span>Capacitor 10 uF</td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m">link</td>
+    <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
   </tr>
@@ -247,8 +248,8 @@ permalink: /materials/
     <td class="tg-oqs5">SMD R0805</td>
     <td class="tg-oqs5">1</td>
     <td class="tg-oqs5"><span style="font-weight:400;font-style:normal">SMD </span>Resistor 1K Ohm</td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5">link</td>
+    <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
     <td class="tg-oqs5"></td>
   </tr>
@@ -259,8 +260,8 @@ permalink: /materials/
     <td class="tg-zv4m">SMD R0805</td>
     <td class="tg-zv4m">1</td>
     <td class="tg-zv4m"><span style="font-weight:400;font-style:normal">SMD </span>Resistor 100 Ohm</td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m">link</td>
+    <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
   </tr>
@@ -271,8 +272,8 @@ permalink: /materials/
     <td class="tg-oqs5">SMD R0805</td>
     <td class="tg-oqs5">1</td>
     <td class="tg-oqs5"><span style="font-weight:400;font-style:normal">SMD </span>Resistor 120 Ohm</td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5">link</td>
+    <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
     <td class="tg-oqs5"></td>
   </tr>
@@ -283,8 +284,8 @@ permalink: /materials/
     <td class="tg-zv4m">SMD SML0805</td>
     <td class="tg-zv4m">1</td>
     <td class="tg-zv4m">SMD LED Green (Standby)</td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m">link</td>
+    <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
   </tr>
@@ -295,8 +296,8 @@ permalink: /materials/
     <td class="tg-oqs5">SMD SML0805</td>
     <td class="tg-oqs5">1</td>
     <td class="tg-oqs5">SMD LED Red (Charging)</td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5">link</td>
+    <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
     <td class="tg-oqs5"></td>
   </tr>
@@ -307,8 +308,8 @@ permalink: /materials/
     <td class="tg-zv4m">SOP-8</td>
     <td class="tg-zv4m">1</td>
     <td class="tg-zv4m">1A Standalone Linear Li-lon Battery Charger with Thermal Regulation</td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m">link</td>
+    <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
   </tr>
@@ -320,8 +321,8 @@ permalink: /materials/
     <td class="tg-oqs5">Socket</td>
     <td class="tg-oqs5">1</td>
     <td class="tg-oqs5"><span style="font-weight:400;font-style:normal">Slim Dev Kit based on microcontroller ESP8266 with WiFi SoC, integrates GPIO, PWM, I2C, 1-Wire and ADC all in one board. Version with CP2102 USB-TTL.</span></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5">link</td>
+    <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
     <td class="tg-oqs5"></td>
   </tr>
@@ -330,10 +331,10 @@ permalink: /materials/
     <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
+    <td class="tg-zv4m">1</td>
     <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m">link</td>
+    <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
   </tr>
