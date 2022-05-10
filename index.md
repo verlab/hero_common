@@ -13,10 +13,7 @@ categories: jekyll update
 
 
  <p>An Open Platform for Swarm Robotics Research</p>
- 
- <p align="justify">Check the design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today: ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software.</p>
-
-![hero_view](https://user-images.githubusercontent.com/14208261/164282588-12616cae-14fd-46a3-98aa-fb93370dcca4.png)
+ <iframe width="560" height="315" src="https://www.youtube.com/embed/JQvuYeF24lY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 <h2>Requirements</h2>
