@@ -1,3 +1,11 @@
+---
+layout: page
+title: Bill of Materials
+permalink: /materials/
+---
+<h2>What components do I need to buy?</h2>
+
+
 <style type="text/css">
 .tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
 .tg td{background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
