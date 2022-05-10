@@ -8,10 +8,9 @@ date:   2022-05-01 12:07:07 -0300
 categories: jekyll update
 ---
 <!-- Inserir texto em markdown para a página home -->
-<div>
-  <h1>Meet | HeRo</h1>
- 
-</div>
+
+<h1>Meet | HeRo</h1>
+
 
  <p>An Open Platform for Swarm Robotics Research</p>
  
@@ -20,10 +19,13 @@ categories: jekyll update
 ![hero_view](https://user-images.githubusercontent.com/14208261/164282588-12616cae-14fd-46a3-98aa-fb93370dcca4.png)
 
 
-## Requirements
-The robot was designed so that it is easy to assemble and reproduce. To build and operate a robot, you need:
+<h2>Requirements</h2>
+ <p>The robot was designed so that it is easy to assemble and reproduce. To build and operate a robot, you need:</p>
 
-- Order some electronic components, motors, screws, etc...
-- Order PCB board;
-- Skills with soldering iron (SMD);
-- Programming practice (Arduino, ROS);
+ <ul class="fa-ul">
+    <li><span class="fa-li"><i class="fa-solid fa-check-square"></i></span>Order some electronic components, motors, screws, etc...</li>
+    <li><span class="fa-li"><i class="fa-solid fa-check-square"></i></span>Order PCB board;</li>
+    <li><span class="fa-li"><i class="fa-solid fa-spinner fa-pulse"></i></span>Skills with soldering iron (SMD);</li>
+    <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Programming practice (Arduino, ROS);</li>
+ </ul>
+
