@@ -22,20 +22,20 @@ categories: jekyll update
 <!------------- Features ------------->
 <h3 style="padding-left: 25px;"><i class="fa fa-book" aria-hidden="true"></i>Features</h3>
  <ul class="fa-ul">
-    <li><span>&#9881;</span><i class="fa-solid fa-check-square"></i></span> Wheels Encoders (Odometry)</li>
-    <li><span>&#9881;</span><i class="fa-solid fa-check-square"></i></span> Inertial Motion Unit (IMU)</li>
-    <li><span>&#9881;</span><i class="fa-solid fa-spinner fa-pulse"></i></span> 8x Long-range IR proximity sensors (20 cm)</li>
-    <li><span>&#9881;</span><i class="fa-regular fa-square"></i></span> 2x Addressable RGBA LED</li>
-    <li><span>&#9881;</span><i class="fa-regular fa-square"></i></span> Long-time Autonomy 3-9 hours (1800 mA LiPo Battery)</li>
-    <li><span>&#9881;</span><i class="fa-regular fa-square"></i></span> PID speed control</li>
-    <li><span>&#9881;</span><i class="fa-regular fa-square"></i></span> Built-in battery charge</li>
-    <li><span>&#9881;</span><i class="fa-regular fa-square"></i></span> General Purpose Bus on top (I2C/Serial/IO)</li>
-    <li><span>&#9881;</span><i class="fa-regular fa-square"></i></span> Robust Communication Protocols</li>
-    <li><span>&#9881;</span><i class="fa-regular fa-square"></i></span> Setup via Web Interface</li>
-    <li><span>&#9881;</span><i class="fa-regular fa-square"></i></span> Small Design</li>
-    <li><span>&#9881;</span><i class="fa-regular fa-square"></i></span> ROS Compatible</li>
-    <li><span>&#9881;</span><i class="fa-regular fa-square"></i></span> Gazebo Simulation</li>
-    <li><span>&#9881;</span><i class="fa-regular fa-square"></i></span> Open Hardware and Software</li>
+    <li><span>&#9881;</span> Wheels Encoders (Odometry)</li>
+    <li><span>&#9881;</span> Inertial Motion Unit (IMU)</li>
+    <li><span>&#9881;</span> 8x Long-range IR proximity sensors (20 cm)</li>
+    <li><span>&#9881;</span> 2x Addressable RGBA LED</li>
+    <li><span>&#9881;</span> Long-time Autonomy 3-9 hours (1800 mA LiPo Battery)</li>
+    <li><span>&#9881;</span> PID speed control</li>
+    <li><span>&#9881;</span> Built-in battery charge</li>
+    <li><span>&#9881;</span> General Purpose Bus on top (I2C/Serial/IO)</li>
+    <li><span>&#9881;</span> Robust Communication Protocols</li>
+    <li><span>&#9881;</span> Setup via Web Interface</li>
+    <li><span>&#9881;</span> Small Design</li>
+    <li><span>&#9881;</span> ROS Compatible</li>
+    <li><span>&#9881;</span> Gazebo Simulation</li>
+    <li><span>&#9881;</span> Open Hardware and Software</li>
  </ul> 
 
 <!-- <h2>Requirements</h2>
