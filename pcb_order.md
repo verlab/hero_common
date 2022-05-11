@@ -10,7 +10,7 @@ permalink: /pcb_order/
 
 .column {
   float: left;
-  width: 33.33%;
+  width: 50.0%;
   padding: 5px;
 }
 
