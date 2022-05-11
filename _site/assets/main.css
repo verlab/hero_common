@@ -213,7 +213,7 @@ table {
     line-height: 1.5; }
     .site-nav .page-link:not(:last-child) {
       margin-right: 20px; }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 700px) {
     .site-nav {
       position: absolute;
       top: 9px;
