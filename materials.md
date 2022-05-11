@@ -14,22 +14,23 @@ permalink: /materials/
 .tg .tg-km2t{border-color:#ffffff;font-weight:bold;text-align:left;vertical-align:top}
 .tg .tg-oqs5{background-color:#f9f9f9;border-color:#ffffff;text-align:left;vertical-align:top}
 .tg .tg-zv4m{border-color:#ffffff;text-align:left;vertical-align:top}
+.tg .tg-aw21{border-color:#ffffff;font-weight:bold;text-align:center;vertical-align:top}
 .tg .tg-pwav{background-color:#f9f9f9;border-color:#ffffff;text-align:center;vertical-align:middle}
 .tg .tg-v0mg{border-color:#ffffff;text-align:center;vertical-align:middle}
 </style>
-<table class="tg" style="undefined;table-layout: fixed; width: 1974px">
+<table class="tg" style="undefined;table-layout: fixed; width: 1227px">
 <colgroup>
-<col style="width: 170.89655px">
-<col style="width: 130.89655px">
-<col style="width: 222.89655px">
-<col style="width: 402.7931px">
-<col style="width: 146.7931px">
-<col style="width: 74.7931px">
-<col style="width: 264.7931px">
-<col style="width: 157.7931px">
-<col style="width: 120.89655px">
-<col style="width: 121.89655px">
-<col style="width: 159.7931px">
+<col style="width: 123.52874px">
+<col style="width: 133.52874px">
+<col style="width: 121.52874px">
+<col style="width: 120.52874px">
+<col style="width: 111.52874px">
+<col style="width: 71.52874px">
+<col style="width: 217.52874px">
+<col style="width: 89.52874px">
+<col style="width: 79.52874px">
+<col style="width: 68.52874px">
+<col style="width: 89.52874px">
 </colgroup>
 <thead>
   <tr>
@@ -43,7 +44,7 @@ permalink: /materials/
     <th class="tg-zv4m"><span style="font-weight:bold">Datasheet</span></th>
     <th class="tg-zv4m"><span style="font-weight:bold">Supplier</span></th>
     <th class="tg-km2t">Cost*</th>
-    <th class="tg-km2t">Assembly Total</th>
+    <th class="tg-aw21">Assembly Total</th>
   </tr>
 </thead>
 <tbody>
@@ -58,7 +59,7 @@ permalink: /materials/
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5" rowspan="15"></td>
   </tr>
   <tr>
     <td class="tg-zv4m">R8</td>
@@ -69,7 +70,6 @@ permalink: /materials/
     <td class="tg-zv4m"><span style="font-weight:400;font-style:normal">SMD </span>Resistor 4K7 Ohm</td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m">link</td>
-    <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
   </tr>
   <tr>
@@ -82,7 +82,6 @@ permalink: /materials/
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
   </tr>
   <tr>
     <td class="tg-zv4m">R10</td>
@@ -93,7 +92,6 @@ permalink: /materials/
     <td class="tg-zv4m"><span style="font-weight:400;font-style:normal">SMD </span>Resistor 18 Ohm</td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m">link</td>
-    <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
   </tr>
   <tr>
@@ -106,7 +104,6 @@ permalink: /materials/
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
   </tr>
   <tr>
     <td class="tg-zv4m">R15</td>
@@ -117,7 +114,6 @@ permalink: /materials/
     <td class="tg-zv4m"><span style="font-weight:400;font-style:normal">SMD </span>Resistor 0 Ohm</td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m">link</td>
-    <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
   </tr>
   <tr>
@@ -130,7 +126,6 @@ permalink: /materials/
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
   </tr>
   <tr>
     <td class="tg-zv4m">LED0, LED1</td>
@@ -141,7 +136,6 @@ permalink: /materials/
     <td class="tg-zv4m"><span style="font-weight:400;font-style:normal">SMD </span>Intelligent Control LED</td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m">link</td>
-    <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
   </tr>
   <tr>
@@ -154,7 +148,6 @@ permalink: /materials/
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
   </tr>
   <tr>
     <td class="tg-zv4m">MUX</td>
@@ -165,7 +158,6 @@ permalink: /materials/
     <td class="tg-zv4m">CD4051BM CMOS Single 8-Channel Analog Multiplexer/Demultiplexer</td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m">link</td>
-    <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
   </tr>
   <tr>
@@ -178,7 +170,6 @@ permalink: /materials/
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
   </tr>
   <tr>
     <td class="tg-zv4m">SWITCH</td>
@@ -189,7 +180,6 @@ permalink: /materials/
     <td class="tg-zv4m">SS12F23 Horizontal Slide Switch Handle Height 2 mm</td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m">link</td>
-    <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
   </tr>
   <tr>
@@ -202,7 +192,6 @@ permalink: /materials/
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
   </tr>
   <tr>
     <td class="tg-zv4m">I2C|UART</td>
@@ -214,7 +203,6 @@ permalink: /materials/
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
   </tr>
   <tr>
     <td class="tg-oqs5">E_LEFT, E_RIGHT, M_LEFT, M_RIGHT</td>
@@ -225,7 +213,6 @@ permalink: /materials/
     <td class="tg-oqs5"><span style="font-weight:400;font-style:normal">1×3 </span>Pin Single Row Male 2.54mm Breakable Pin Header</td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5">link</td>
-    <td class="tg-oqs5"></td>
     <td class="tg-oqs5"></td>
   </tr>
   <tr>
@@ -239,7 +226,7 @@ permalink: /materials/
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m" rowspan="7"></td>
   </tr>
   <tr>
     <td class="tg-oqs5">R12</td>
@@ -250,7 +237,6 @@ permalink: /materials/
     <td class="tg-oqs5"><span style="font-weight:400;font-style:normal">SMD </span>Resistor 1K Ohm</td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5">link</td>
-    <td class="tg-oqs5"></td>
     <td class="tg-oqs5"></td>
   </tr>
   <tr>
@@ -263,7 +249,6 @@ permalink: /materials/
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
   </tr>
   <tr>
     <td class="tg-oqs5">R14</td>
@@ -274,7 +259,6 @@ permalink: /materials/
     <td class="tg-oqs5"><span style="font-weight:400;font-style:normal">SMD </span>Resistor 120 Ohm</td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5">link</td>
-    <td class="tg-oqs5"></td>
     <td class="tg-oqs5"></td>
   </tr>
   <tr>
@@ -287,7 +271,6 @@ permalink: /materials/
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
   </tr>
   <tr>
     <td class="tg-oqs5">CHRG</td>
@@ -299,7 +282,6 @@ permalink: /materials/
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
   </tr>
   <tr>
     <td class="tg-zv4m">TP4056</td>
@@ -310,7 +292,6 @@ permalink: /materials/
     <td class="tg-zv4m">1A Standalone Linear Li-lon Battery Charger with Thermal Regulation</td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m">link</td>
-    <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
   </tr>
   <tr>
@@ -324,126 +305,118 @@ permalink: /materials/
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5" rowspan="6"></td>
   </tr>
   <tr>
     <td class="tg-zv4m">MT3608</td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m">MT3608 Step-up Module</td>
+    <td class="tg-zv4m"><img src="https://user-images.githubusercontent.com/14208261/167740500-471df913-74b6-4348-98bf-da3f3f034a3d.png" alt="Image" width="100" height="100"></td>
+    <td class="tg-zv4m">Wire</td>
     <td class="tg-zv4m">1</td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m"><span style="font-weight:500;font-style:normal">MT3608 DC-DC Inverter Boost Converter Voltage Step Up Adjustable Power Step-up Supply Module 2A</span></td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m">link</td>
-    <td class="tg-zv4m"></td>
     <td class="tg-zv4m"></td>
   </tr>
   <tr>
     <td class="tg-oqs5">IMU</td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5"><span style="font-weight:400;font-style:normal">MPU6050/</span>GY-521 Module</td>
+    <td class="tg-oqs5"><img src="https://user-images.githubusercontent.com/14208261/167741019-5ac17eae-ff13-4f75-8f27-7d535506d73c.png" alt="Image" width="100" height="100"></td>
+    <td class="tg-oqs5">Socket</td>
+    <td class="tg-oqs5">1</td>
+    <td class="tg-oqs5"><span style="font-weight:400;font-style:normal">Module MPU6050</span> with 3 Axis Analog Gyro and 3 Axis Accelerometer <span style="font-weight:400;font-style:normal">Sensors and I</span>2C communications protocol.</td>
+    <td class="tg-oqs5">link</td>
+    <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
   </tr>
   <tr>
     <td class="tg-zv4m">TP4056</td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m"><span style="font-weight:400;font-style:normal">TP4056 Charging Module</span></td>
+    <td class="tg-zv4m"><img src="https://user-images.githubusercontent.com/14208261/167741508-ae444189-10da-4e37-9975-c411ab6ba477.png" alt="Image" width="100" height="100"></td>
+    <td class="tg-zv4m">Wire</td>
+    <td class="tg-zv4m">1</td>
+    <td class="tg-zv4m">TP4056 Charging Module 5V Micro USB 1A Lithium Battery Charging Board with Protection Charger Module.</td>
+    <td class="tg-zv4m">link</td>
+    <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
   </tr>
   <tr>
-    <td class="tg-oqs5">LI-PO Battery 3.7 1800 mAh</td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5"><span style="font-weight:500;font-style:normal">Battery</span></td>
+    <td class="tg-oqs5">3.7v 1800 mAh LIPO Battery</td>
+    <td class="tg-oqs5"><img src="https://user-images.githubusercontent.com/14208261/167745932-399629ed-ab0d-4cea-ada9-a89fffbe3b0e.png" alt="Image" width="100" height="100"></td>
+    <td class="tg-oqs5">103450</td>
+    <td class="tg-oqs5">1</td>
+    <td class="tg-oqs5"><span style="font-weight:500;font-style:normal">LiPo Rechargeable Battery With </span><span style="font-weight:400;font-style:normal">2-pin JST-PH Connector and Max Package for </span>103450</td>
+    <td class="tg-oqs5">link</td>
+    <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
   </tr>
   <tr>
-    <td class="tg-zv4m">2 Mouse Rotary Encoder 48 pulse</td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m">Encoder</td>
+    <td class="tg-zv4m">Rotary Encoder 48 PPR</td>
+    <td class="tg-zv4m"><img src="https://user-images.githubusercontent.com/14208261/167749148-351ddd28-63ee-4b76-9cbb-452bb32f1326.png" alt="Image" width="100" height="100"></td>
+    <td class="tg-zv4m">9MM</td>
+    <td class="tg-zv4m">2</td>
+    <td class="tg-zv4m"><span style="font-weight:500;font-style:normal">Kailh 9/10/11/12mm Rotary Mouse Scroll Wheel Encoder 1.74 mm Hole 40g Force</span></td>
+    <td class="tg-zv4m">link</td>
+    <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
   </tr>
   <tr>
     <td class="tg-pwav" rowspan="5">Chassis</td>
+    <td class="tg-oqs5">Wheel</td>
     <td class="tg-oqs5">Rubber O-ring</td>
+    <td class="tg-oqs5"><img src="https://user-images.githubusercontent.com/14208261/167751364-49c48a14-4c06-473a-821f-2c315ccaefc2.png" alt="Image" width="100" height="100"></td>
+    <td class="tg-oqs5">OD50CS5</td>
+    <td class="tg-oqs5">2</td>
+    <td class="tg-oqs5"><span style="font-weight:500;font-style:normal">NBR Rubber O RING OD50 </span>CS5mm</td>
+    <td class="tg-oqs5">link</td>
+    <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5" rowspan="4"></td>
   </tr>
   <tr>
-    <td class="tg-zv4m">M3x20mm bolt with nut and pressure washer</td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-  </tr>
-  <tr>
-    <td class="tg-oqs5">16 M2.5x10mm screws selt-tapping</td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-  </tr>
-  <tr>
-    <td class="tg-zv4m">2 bearing  623zz 3x10x4mm</td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m">Bearing</td>
+    <td class="tg-zv4m"><span style="font-weight:400;font-style:normal">Bearing 623zz </span></td>
+    <td class="tg-zv4m"><img src="https://user-images.githubusercontent.com/14208261/167751831-3140f6e7-3146-44da-bf46-520d059557eb.png" alt="Image" width="100" height="100"></td>
+    <td class="tg-zv4m">3x10x4mm</td>
+    <td class="tg-zv4m">2</td>
+    <td class="tg-zv4m">Ball Bearing 623ZZ 3X10X4mm</td>
+    <td class="tg-zv4m">link</td>
+    <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
   </tr>
   <tr>
-    <td class="tg-oqs5">2 steels balls 4mm diameter</td>
+    <td class="tg-oqs5">Castor Wheels</td>
+    <td class="tg-oqs5">Steels Balls </td>
+    <td class="tg-oqs5"><img src="https://user-images.githubusercontent.com/14208261/167752160-ae1a0db8-9ae7-40d7-9e13-a72fc13e9532.png" alt="Image" width="100" height="100"></td>
+    <td class="tg-oqs5">4mm Diameter</td>
+    <td class="tg-oqs5">2</td>
+    <td class="tg-oqs5">Steels Balls 4mm Diameter</td>
+    <td class="tg-oqs5">link</td>
+    <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
+  </tr>
+  <tr>
+    <td class="tg-zv4m">Wheel Fastening</td>
+    <td class="tg-zv4m">M3x20mm Bolt with Nut and Pressure Washer</td>
+    <td class="tg-zv4m"><img src="https://user-images.githubusercontent.com/14208261/167752341-6b30a521-98e2-4914-8e82-c95c0e9402e6.png" alt="Image" width="100" height="100"></td>
+    <td class="tg-zv4m">M3</td>
+    <td class="tg-zv4m">2</td>
+    <td class="tg-zv4m">M3x20mm Bolt with Nut and Pressure Washer</td>
+    <td class="tg-zv4m">link</td>
+    <td class="tg-zv4m">link</td>
+    <td class="tg-zv4m"></td>
+  </tr>
+  <tr>
+    <td class="tg-oqs5">Chassis Fastening</td>
+    <td class="tg-oqs5">M2.5x10mm Screws Self-Tapping</td>
+    <td class="tg-oqs5"><img src="https://user-images.githubusercontent.com/14208261/167752938-33f63c19-a901-49aa-b24b-7d4f28f21de5.png" alt="Image" width="100" height="100"></td>
+    <td class="tg-oqs5">M2.5</td>
+    <td class="tg-oqs5">16</td>
+    <td class="tg-oqs5">M2.5x10mm Screws Self-Tapping</td>
+    <td class="tg-oqs5">link</td>
+    <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
     <td class="tg-oqs5"></td>
   </tr>
