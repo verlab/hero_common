@@ -1,63 +1,75 @@
 <style>
-a {
-  text-decoration: none;
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial;
 }
 
-nav {
-  font-family: monospace;
-}
-
-ul {
-/*   background: darkorange; */
-  list-style: none;
-  margin: 0;
-  padding-left: 0;
-}
-
-li {
-  color: #fff;
-/*   background: darkorange; */
-  display: block;
+/* Links inside the navbar */
+.navbar a {
   float: left;
-  padding: 1rem;
-  position: relative;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
   text-decoration: none;
-  transition-duration: 0.5s;
-}
-  
-li a {
-  color: #fff;
 }
 
-li:hover {
-  background: grey;
-  cursor: pointer;
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
 }
 
-ul li ul {
-/*   background: orange; */
-  visibility: hidden;
-  opacity: 0;
-  min-width: 5rem;
-  position: absolute;
-  transition: all 0.5s ease;
-  margin-top: 1rem;
-  left: 0;
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
   display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 }
 
-ul li:hover > ul,
-ul li ul:hover {
-  visibility: visible;
-  opacity: 1;
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
   display: block;
+  text-align: left;
 }
 
-ul li ul li {
-  clear: both;
-  width: 100%;
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 </style>
+
 <header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">HeRo 2.0</a><nav class="site-nav">
@@ -70,19 +82,37 @@ ul li ul li {
           </span>
         </label>
     
-    <nav role="navigation">
-  <ul>
-    <li><a href="#">One</a></li>
-    <li><a href="#">Two</a>
-      <ul class="dropdown">
-        <li><a href="#">Sub-1</a></li>
-        <li><a href="#">Sub-2</a></li>
-        <li><a href="#">Sub-3</a></li>
-      </ul>
-    </li>
-    <li><a href="#">Three</a></li>
-  </ul>
-</nav>
+<div class="navbar">
+  <a class="page-link" href="/hero_common/">Home</a> 
+  <a class="page-link" href="/hero_common/news">News</a>
+  <div class="dropdown">
+    <button class="dropbtn" onclick="myFunction()">Assembly
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content" id="myDropdown">
+      <a class="page-link" href="/hero_common/materials">Materials</a>
+      <a class="page-link" href="/hero_common/pcb">PCB Order</a>
+      <a class="page-link" href="/hero_common/pcb">PCB Assembly</a>
+      <a class="page-link" href="/hero_common/printing">3D Printed Parts</a>
+      <a class="page-link" href="/hero_common/assembly">Assembly & Calibration</a>
+    </div>
+  </div> 
+  
+  <div class="dropdown">
+    <button class="dropbtn" onclick="myFunction()">Programming
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content" id="myDropdown">
+      <a class="page-link" href="/hero_common/instalation">Instalation</a>
+      <a class="page-link" href="/hero_common/simulations">Simulations</a>
+      <a class="page-link" href="/hero_common/pcb">ROS</a>
+      <a class="page-link" href="/hero_common/printing">Firmware</a>
+    </div>
+  </div>   
+ 
+  <a class="page-link" href="/hero_common/publications/">Publications</a>
+  <a class="page-link" href="/hero_common/about/">About</a>
+</div>
 <!-- 
         <div class="trigger">
           <a class="page-link" href="/hero_common/">Home</a> 
