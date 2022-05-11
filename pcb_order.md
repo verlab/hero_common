@@ -47,7 +47,7 @@ permalink: /pcb_order/
     <img src="https://user-images.githubusercontent.com/14208261/167929288-c28a8c2d-f3f0-4023-b38a-1e36fa129a3e.svg" alt="Image" width="350">
   </div>
   <div class="column">
-    <img src="https://user-images.githubusercontent.com/14208261/167929288-c28a8c2d-f3f0-4023-b38a-1e36fa129a3e.svg" alt="Image" width="350">
+    <img src="https://user-images.githubusercontent.com/14208261/167940870-3abeac49-8621-4768-960b-5b8727596ad0.svg" alt="Image" width="350">
   </div>
 </div>
 
