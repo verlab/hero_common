@@ -47,7 +47,7 @@ permalink: /materials/
     <th class="tg-zv4m"><span style="font-weight:bold">Description</span></th>
     <th class="tg-zv4m"><span style="font-weight:bold">Datasheet</span></th>
     <th class="tg-zv4m"><span style="font-weight:bold">Supplier</span></th>
-    <th class="tg-km2t">Cost*</th>
+    <th class="tg-km2t">Cost* (USD)</th>
     <th class="tg-aw21">Assembly Total</th>
   </tr>
 </thead>
@@ -371,12 +371,12 @@ permalink: /materials/
     <td class="tg-oqs5">Wheel</td>
     <td class="tg-oqs5">Rubber O-ring</td>
     <td class="tg-oqs5"><img src="https://user-images.githubusercontent.com/14208261/167751364-49c48a14-4c06-473a-821f-2c315ccaefc2.png" alt="Image" width="100" height="100"></td>
-    <td class="tg-oqs5">OD50CS5</td>
+    <td class="tg-oqs5">OD48CS5</td>
     <td class="tg-oqs5">2</td>
-    <td class="tg-oqs5"><span style="font-weight:500;font-style:normal">NBR Rubber O RING OD50 </span>CS5mm</td>
+    <td class="tg-oqs5"><span style="font-weight:500;font-style:normal">NBR Rubber O RING OD48 </span>CS5mm</td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"><a href="https://pt.aliexpress.com/item/32957616646.html?spm=a2g0o.productlist.0.0.2c393a7eiopPBg&algo_pvid=95a00ad4-451d-40da-9c25-3b4fc99602df&algo_exp_id=95a00ad4-451d-40da-9c25-3b4fc99602df-4&pdp_ext_f=%7B%22sku_id%22%3A%2266559748451%22%7D&pdp_npi=2%40dis%21BRL%21%218.19%21%21%2143.17%21%21%400bb0623f16522754347306105e3a28%2166559748451%21sea" target="_blank" rel="noopener noreferrer">link</a></td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5">0.20</td>
     <td class="tg-oqs5" rowspan="4"></td>
   </tr>
   <tr>
