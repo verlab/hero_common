@@ -3,6 +3,24 @@ layout: page
 title: PCB Order
 permalink: /pcb_order/
 ---
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
 
 <h3>How to request a PCB manufacturing service?</h3>
 
@@ -21,15 +39,17 @@ permalink: /pcb_order/
   <li> Finished Copper >= 1 oz</li>
   <li> Min Hole Size: 0.3mm</li>
   <li> Min Track/Spacing: 6/6mil</li>
- </ul> 
+ </ul>
  
- <h3>Top view</h3>
- <p align="center"><img src="https://user-images.githubusercontent.com/14208261/167929288-c28a8c2d-f3f0-4023-b38a-1e36fa129a3e.svg" alt="Image" width="400"></p>
- 
- <h3>Botton view</h3>
-<p align="center"><img src="https://user-images.githubusercontent.com/14208261/167929301-e34dbdb7-4145-4fde-afc5-590196f6bcba.svg" alt="Image" width="400"></p>
-
-
+ <h4>PCB view</h4>
+ <div class="row">
+  <div class="column">
+    <img src="https://user-images.githubusercontent.com/14208261/167929288-c28a8c2d-f3f0-4023-b38a-1e36fa129a3e.svg" alt="Image" width="300">
+  </div>
+  <div class="column">
+    <img src="https://user-images.githubusercontent.com/14208261/167929288-c28a8c2d-f3f0-4023-b38a-1e36fa129a3e.svg" alt="Image" width="300">
+  </div>
+</div>
 
 <p align="justify">Here is an exemple using the JLCPCB manufacturing service.</p>
 
