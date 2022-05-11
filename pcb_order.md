@@ -44,10 +44,10 @@ permalink: /pcb_order/
  <h4>PCB view</h4>
  <div class="row">
   <div class="column">
-    <img src="https://user-images.githubusercontent.com/14208261/167929288-c28a8c2d-f3f0-4023-b38a-1e36fa129a3e.svg" alt="Image" width="300">
+    <img src="https://user-images.githubusercontent.com/14208261/167929288-c28a8c2d-f3f0-4023-b38a-1e36fa129a3e.svg" alt="Image" width="350">
   </div>
   <div class="column">
-    <img src="https://user-images.githubusercontent.com/14208261/167929288-c28a8c2d-f3f0-4023-b38a-1e36fa129a3e.svg" alt="Image" width="300">
+    <img src="https://user-images.githubusercontent.com/14208261/167929288-c28a8c2d-f3f0-4023-b38a-1e36fa129a3e.svg" alt="Image" width="350">
   </div>
 </div>
 
