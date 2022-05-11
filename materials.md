@@ -5,6 +5,10 @@ permalink: /materials/
 ---
 <h2>What components do I need to buy?</h2>
 
+<p align="justify">To assemble the PCB, it is necessary to buy some electro-mechanical components. To achieve a low cost of production of the robot, we decide to use parts available on sites like eBay and Aliexpress. But feel free to buy from other companies.</p>
+
+<p align="justify">Below are some specifications, quantities, and where each component will be placed. Note that there is an optional built-in module for battery charging using IC TP4056, so if you want to build the board entirely, buy these components as well. Otherwise, you can just buy a TP4056 module and use the battery's auxiliary pin to recharge the robot.</p>
+
 <style type="text/css">
 .tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
 .tg td{background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
