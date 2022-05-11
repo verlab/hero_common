@@ -21,8 +21,8 @@ categories: jekyll update
 
 
 <!------------- Features ------------->
-<h3 style="padding-left: 25px;"><i class="fa fa-book" aria-hidden="true"></i>Features</h3>
- <ul class="fa-ul">
+<h3>Features</h3>
+ <ul class="fa-ul" style="list-style: none;">
     <li><span>&#9881;</span> Wheels Encoders (Odometry)</li>
     <li><span>&#9881;</span> Inertial Motion Unit (IMU)</li>
     <li><span>&#9881;</span> 8x Long-range IR proximity sensors (20 cm)</li>
