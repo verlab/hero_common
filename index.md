@@ -11,8 +11,9 @@ categories: jekyll update
 
 <h1>Meet | HeRo</h1>
 
-<div style="margin: 15px; text-align: justify;">This project presents the design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today: ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software. We describe its architecture, present its main features, and evaluate its functionalities executing experiments using a couple of robots. Results demonstrate that the proposed mobile robot is very effective given its small size and reduced cost, being suitable for swarm robotics research and education.
- 
+<div style="margin: 15px; text-align: justify;">This project presents the design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today: ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software. We describe its architecture, present its main features, and evaluate its functionalities executing experiments using a couple of robots. Results demonstrate that the proposed mobile robot is very effective given its small size and reduced cost, being suitable for swarm robotics research and education.</div>
+
+<div style="margin: 15px; text-align: justify;">
 <strong>Keywords:</strong> Swarm Robotics, Mobile Robot Platforms, Multi-robot Systems, Robot Design and Control, Robot Operating System (ROS).
 </div>
 
