@@ -28,10 +28,10 @@ categories: jekyll update
     <li><span>&#9881;</span> 8x Long-range IR proximity sensors (20 cm)</li>
     <li><span>&#9881;</span> 2x Addressable RGBA LED</li>
     <li><span>&#9881;</span> Long-time Autonomy 3-9 hours (1800 mA LiPo Battery)</li>
-    <li><span>&#9881;</span> PID speed control</li>
-    <li><span>&#9881;</span> Built-in battery charge</li>
+    <li><span>&#9881;</span> PID Speed Control</li>
+    <li><span>&#9881;</span> Built-in Battery Charge</li>
     <li><span>&#9881;</span> General Purpose Bus on top (I2C/Serial/IO)</li>
-    <li><span>&#9881;</span> Robust Communication Protocols</li>
+    <li><span>&#9881;</span> Robust Communication Protocols (TCP/IP)</li>
     <li><span>&#9881;</span> Setup via Web Interface</li>
     <li><span>&#9881;</span> Small Design</li>
     <li><span>&#9881;</span> ROS Compatible</li>
