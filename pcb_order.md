@@ -22,10 +22,19 @@ permalink: /pcb_order/
   <li> Min Hole Size: 0.3mm</li>
   <li> Min Track/Spacing: 6/6mil</li>
  </ul> 
+ 
+ <h3>Top view</h3>
+ <p align="center"><img src="https://user-images.githubusercontent.com/14208261/167929288-c28a8c2d-f3f0-4023-b38a-1e36fa129a3e.svg" alt="Image" width="400"></p>
+ 
+ <h3>Botton view</h3>
+<p align="center"><img src="https://user-images.githubusercontent.com/14208261/167929301-e34dbdb7-4145-4fde-afc5-590196f6bcba.svg" alt="Image" width="400"></p>
 
-<p align="justify">Example using the JLCPCB manufacturing service.</p>
 
-<p align="center"><img src="https://user-images.githubusercontent.com/14208261/164277947-3ef9de0e-b7b9-4c3a-8b72-91000c95bc08.png" alt="Image" width="600"></p>
+
+<p align="justify">Here is an exemple using the JLCPCB manufacturing service.</p>
+
+<p align="center"><img src="https://user-images.githubusercontent.com/14208261/167928212-f264abf8-bd7c-41f0-a239-05c4a3284ae5.gif" alt="Image" width="600"></p>
+
 
 <p align="justify">After a few days we receive the PCBs and we can start assembling the components.</p>
 <p align="center"><img src="https://user-images.githubusercontent.com/14208261/167909052-f92410ec-06e9-4d90-a296-35aeae01de86.png" alt="Image" width="600"></p>
