@@ -4,8 +4,6 @@
 
 layout: page
 title:  "Home"
-date:   2022-05-01 12:07:07 -0300
-categories: jekyll update
 ---
 <!-- Inserir texto em markdown para a página home -->
 
