@@ -340,7 +340,7 @@ permalink: /materials/
     <td class="tg-zv4m">Wire</td>
     <td class="tg-zv4m">1</td>
     <td class="tg-zv4m">TP4056 Charging Module 5V Micro USB 1A Lithium Battery Charging Board with Protection Charger Module.</td>
-    <td class="tg-zv4m">link</td>
+    <td class="tg-zv4m"><a href="https://github.com/verlab/hero_common/blob/master/hero_resources/datasheet/TP4056.pdf" target="_blank" rel="noopener noreferrer">link</a></td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
   </tr>
