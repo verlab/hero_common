@@ -1,21 +1,15 @@
+---
+layout: page
+title: 3D Printed Parts
+permalink: /printing/
+---
 
-
-
-
-After making the [[robot's mainboard|PCB-Assembly]], we started making its chassis. At this stage, it is also necessary to buy some parts and next we provide a list. In addition, it is necessary to have access to a 3D printer or some service.
+After assembly the PCB, we started creating the robot's chassis. At this stage, it is also necessary to buy some parts suchs as bolts, bearing, etc. (check the list of materials). In addition, it is necessary to have access to a 3D printer or maybe order the parts from a manufacture service.
 
 > **The mechanical design is open-source and was developed using [Autodesk F360](https://www.autodesk.com/products/fusion-360) software.**: If you want to extend/modify it, the project is available [here](https://a360.co/36zKPdi).
 
 In the end, it is expected to get the robot as in the image below.
 ![hero_view](https://user-images.githubusercontent.com/14208261/164281570-9db151b4-c538-479a-b654-469616ad4e62.png)
-
-# What components do I need to buy?
-- 2 rubber rings 50mm;
-- 2 M3x20mm bolt with nut and pressure washer;
-- 16 M2.5x10mm screws self-tapping;
-- 2 mouse rotary encoder >= 48 pulse;
-- 2 bearings 623zz 3x10x4
-- 2 steel balls 4mm diameter;
 
 # What parts do I need to print?
 The robot's chassis and some mechanical parts are made using additive manufacturing (3D printer). Mechanical parts like gears need to be printed in good quality, and maybe some minor adjustments (using sandpaper) are required. 
@@ -39,5 +33,3 @@ Below is a description of each part.
 - [motor_shaft.stl](https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/motor_shaft.stl): Wheel shaft supports the connection of the wheel to the chassis;
 - [wheel.stl](https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/wheel.stl): Wheel spur geared;
 
-
-# How to assemble the robot? (coming soon)
