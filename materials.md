@@ -138,7 +138,7 @@ permalink: /materials/
     <td class="tg-zv4m">SMD 5050</td>
     <td class="tg-zv4m">2</td>
     <td class="tg-zv4m"><span style="font-weight:400;font-style:normal">SMD </span>Intelligent Control LED</td>
-    <td class="tg-zv4m">link</td>
+    <td class="tg-zv4m"><a href="https://github.com/verlab/hero_common/blob/master/hero_resources/datasheet/WS2812B.pdf">link</a></td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
   </tr>
@@ -171,7 +171,7 @@ permalink: /materials/
     <td class="tg-oqs5">TCRT5000L</td>
     <td class="tg-oqs5">8</td>
     <td class="tg-oqs5">Reflective Optical Sensor with Transistor Output (long lead version)</td>
-    <td class="tg-oqs5">link</td>
+    <td class="tg-oqs5"><a href="https://github.com/verlab/hero_common/blob/master/hero_resources/datasheet/tcrt5000.pdf">link</a></td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
   </tr>
@@ -182,7 +182,7 @@ permalink: /materials/
     <td class="tg-zv4m">SS12F23</td>
     <td class="tg-zv4m">1</td>
     <td class="tg-zv4m">SS12F23 Horizontal Slide Switch Handle Height 2 mm</td>
-    <td class="tg-zv4m">link</td>
+    <td class="tg-zv4m"><a href="https://github.com/verlab/hero_common/blob/master/hero_resources/datasheet/12F23.pdf">link</a></td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
   </tr>
@@ -329,7 +329,7 @@ permalink: /materials/
     <td class="tg-oqs5">Socket</td>
     <td class="tg-oqs5">1</td>
     <td class="tg-oqs5"><span style="font-weight:400;font-style:normal">Module MPU6050</span> with 3 Axis Analog Gyro and 3 Axis Accelerometer <span style="font-weight:400;font-style:normal">Sensors and I</span>2C communications protocol.</td>
-    <td class="tg-oqs5">link</td>
+    <td class="tg-oqs5"><a href="https://github.com/verlab/hero_common/blob/master/hero_resources/datasheet/mpu6050.pdf">link</a></td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
   </tr>
