@@ -149,7 +149,7 @@ permalink: /materials/
     <td class="tg-oqs5">SOT23</td>
     <td class="tg-oqs5">1</td>
     <td class="tg-oqs5">SMD N-Channel Mosfet</td>
-    <td class="tg-oqs5">link</td>
+    <td class="tg-oqs5"><a href="https://github.com/verlab/hero_common/blob/master/hero_resources/datasheet/irlml2502pbf.pdf" target="_blank" rel="noopener noreferrer">link</a></td>
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"></td>
   </tr>
@@ -160,7 +160,7 @@ permalink: /materials/
     <td class="tg-zv4m">SOIC-16</td>
     <td class="tg-zv4m">1</td>
     <td class="tg-zv4m">CD4051BM CMOS Single 8-Channel Analog Multiplexer/Demultiplexer</td>
-    <td class="tg-zv4m">link</td>
+    <td class="tg-zv4m"><a href="https://github.com/verlab/hero_common/blob/master/hero_resources/datasheet/cd4051b.pdf" target="_blank" rel="noopener noreferrer">link</a></td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
   </tr>
@@ -294,7 +294,7 @@ permalink: /materials/
     <td class="tg-zv4m">SOP-8</td>
     <td class="tg-zv4m">1</td>
     <td class="tg-zv4m">1A Standalone Linear Li-lon Battery Charger with Thermal Regulation</td>
-    <td class="tg-zv4m">link</td>
+    <td class="tg-zv4m"><a href="https://github.com/verlab/hero_common/blob/master/hero_resources/datasheet/TP4056.pdf" target="_blank" rel="noopener noreferrer">link</a></td>
     <td class="tg-zv4m">link</td>
     <td class="tg-zv4m"></td>
   </tr>
