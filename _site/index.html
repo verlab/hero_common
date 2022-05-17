@@ -3,42 +3,152 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Home | Hero</title>
+<title>Home | HeRo 2.0</title>
 <meta name="generator" content="Jekyll v3.8.6" />
 <meta property="og:title" content="Home" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
-<meta property="og:description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
-<meta property="og:site_name" content="Hero" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-05-01T12:07:07-03:00" />
+<meta name="description" content="The design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today, ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software." />
+<meta property="og:description" content="The design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today, ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software." />
+<link rel="canonical" href="http://localhost:4000/hero_common/" />
+<meta property="og:url" content="http://localhost:4000/hero_common/" />
+<meta property="og:site_name" content="HeRo 2.0" />
+<meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Home" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","dateModified":"2022-05-01T12:07:07-03:00","datePublished":"2022-05-01T12:07:07-03:00","description":"Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.","headline":"Home","name":"Hero","url":"http://localhost:4000/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","description":"The design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today, ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software.","headline":"Home","name":"HeRo 2.0","url":"http://localhost:4000/hero_common/"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Hero" /></head>
-<body><header class="site-header" role="banner">
+<link rel="stylesheet" href="/hero_common/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/hero_common/feed.xml" title="HeRo 2.0" /></head>
+<body><style>
 
-  <div class="wrapper"><a class="site-title" rel="author" href="/">Hero</a><nav class="site-nav">
-        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-        <label for="nav-trigger">
-          <span class="menu-icon">
-            <svg viewBox="0 0 18 15" width="18px" height="15px">
-              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
-            </svg>
-          </span>
-        </label>
+  .navbar {
+    overflow: hidden;
+    background-color: inherit;
+    font-family: inherit;
+  }
+  
+  /* Links inside the navbar */
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* The dropdown container */
+  .dropdown {
+    float: left;
+    overflow: hidden;
+    
+  }
+  
+  /* Dropdown button */
+  .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: black;
+    background-color: inherit;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+    display: block;
+    padding: 17px 20px;
+  }
+  .dropdown .dropbtn:not(:last-child) {
+            margin-right: 0; }
+  
+  /* Add a red background color to navbar links on hover */
+  .navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: inherit;
+  }
+  
+  /* Dropdown content (hidden by default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  /* Add a grey background color to dropdown links on hover */
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  </style>
 
-        <div class="trigger">
-          <a class="page-link" href="/">Home</a> 
-          <a class="page-link" href="/hero/">News</a>
-          <a class="page-link" href="/about/">About</a>
-        </div>
-      </nav></div>
-</header><main class="page-content" aria-label="Content">
+
+        <header class="site-header" role="banner">
+
+          <div class="wrapper"><a class="site-title" rel="author" href="/">Hero</a><nav class="site-nav">
+                <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+                <label for="nav-trigger">
+                  <span class="menu-icon">
+                    <svg viewBox="0 0 18 15" width="18px" height="15px">
+                      <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+                    </svg>
+                  </span>
+                </label>
+        
+                <div class="trigger">
+                  <div class="navbar">
+              <a class="page-link" href="/hero_common/">Home</a> 
+              <a class="page-link" href="/hero_common/news">News</a>
+              <div class="dropdown">
+                <button class="dropbtn" onclick="myFunction()">Assembly
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+                  <a class="page-link" href="/hero_common/materials">Materials</a>
+                  <a class="page-link" href="/hero_common/pcb_order">PCB Order</a>
+                  <a class="page-link" href="/hero_common/pcb_assembly">PCB Assembly</a>
+                  <a class="page-link" href="/hero_common/printing">3D Printed Parts</a>
+                  <a class="page-link" href="/hero_common/assembly">Assembly & Calibration</a>
+                </div>
+              </div>
+              
+              <div class="dropdown">
+                <button class="dropbtn" onclick="myFunction()">Programming
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+                  <a class="page-link" href="/hero_common/instalation">Installation</a>
+                  <a class="page-link" href="/hero_common/simulations">Simulations</a>
+                  <a class="page-link" href="/hero_common/pcb">ROS</a>
+                  <a class="page-link" href="/hero_common/printing">Firmware</a>
+                </div>
+              </div>   
+             
+              <a class="page-link" href="/hero_common/publications/">Publications</a>
+              <a class="page-link" href="/hero_common/about/">About</a>
+            </div>
+                </div>
+            </nav>
+           </div>
+          </header>
+    
+
+    
+</header>
+<main class="page-content" aria-label="Content">
       <div class="wrapper">
         <article class="post">
 
@@ -47,7 +157,47 @@
   </header>
 
   <div class="post-content">
-    <p>Inserir texto em markdown para a página home</p>
+    <!-- Inserir texto em markdown para a página home -->
+
+<h1>Meet | HeRo</h1>
+
+<div style="margin: 15px; text-align: justify;">This project presents the design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today: ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software. We describe its architecture, present its main features, and evaluate its functionalities executing experiments using a couple of robots. Results demonstrate that the proposed mobile robot is very effective given its small size and reduced cost, being suitable for swarm robotics research and education.</div>
+
+<div style="margin: 15px; text-align: justify;">
+<strong>Keywords:</strong> Swarm Robotics, Mobile Robot Platforms, Multi-robot Systems, Robot Design and Control, Robot Operating System (ROS).
+</div>
+
+<p align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/JQvuYeF24lY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></p>
+
+<!------------- Features ------------->
+<h3>Features</h3>
+<ul class="fa-ul" style="list-style: none;">
+    <li><span>&#9881;</span> Wheels Encoders (Odometry)</li>
+    <li><span>&#9881;</span> Inertial Motion Unit (IMU)</li>
+    <li><span>&#9881;</span> 8x Long-range IR proximity sensors (20 cm)</li>
+    <li><span>&#9881;</span> 2x Addressable RGBA LED</li>
+    <li><span>&#9881;</span> Long-time Autonomy 3-9 hours (1800 mA LiPo Battery)</li>
+    <li><span>&#9881;</span> PID Speed Control</li>
+    <li><span>&#9881;</span> Built-in Battery Charge</li>
+    <li><span>&#9881;</span> General Purpose Bus on top (I2C/Serial/IO)</li>
+    <li><span>&#9881;</span> Robust Communication Protocols (TCP/IP)</li>
+    <li><span>&#9881;</span> Setup via Web Interface</li>
+    <li><span>&#9881;</span> Small Design</li>
+    <li><span>&#9881;</span> ROS Compatible</li>
+    <li><span>&#9881;</span> Gazebo Simulation</li>
+    <li><span>&#9881;</span> Open Hardware and Software</li>
+ </ul>
+
+<!-- <h2>Requirements</h2>
+ <p>The robot was designed so that it is easy to assemble and reproduce. To build and operate a robot, you need:</p>
+
+ <ul class="fa-ul">
+    <li><span class="fa-li"><i class="fa-solid fa-check-square"></i></span>Order some electronic components, motors, screws, etc...</li>
+    <li><span class="fa-li"><i class="fa-solid fa-check-square"></i></span>Order PCB board;</li>
+    <li><span class="fa-li"><i class="fa-solid fa-spinner fa-pulse"></i></span>Skills with soldering iron (SMD);</li>
+    <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>Programming practice (Arduino, ROS);</li>
+ </ul> -->
+
 
   </div>
 
@@ -59,24 +209,25 @@
   
     <div class="wrapper">
   
-      <h2 class="footer-heading">Hero</h2>
+      <h2 class="footer-heading">HeRo 2.0</h2>
   
       <div class="footer-col-wrapper">
         <div class="footer-col footer-col-1">
           <ul class="contact-list">
-            <li class="p-name">Hero</li><li><a class="u-email" href="mailto:your-email@example.com">your-email@example.com</a></li></ul>
+            <li class="p-name">Paulo Rezeck</li><li><a class="u-email" href="mailto:your-email@example.com">rezeck@dcc.ufmg.br</a></li></ul>
         </div>
   
-        <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/verlab/hero_common/" target="_blank"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">Hero</span></a></li>
+        <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/verlab/hero_common/" target="_blank"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">GitHub</span></a></li>
   </div>
   
         <div class="footer-col footer-col-3">
-          <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</p>
+          <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
         </div>
       </div>
   
     </div>
   
-  </footer></body>
+  </footer>
+</body>
 
 </html>

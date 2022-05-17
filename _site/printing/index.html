@@ -3,20 +3,20 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>About | HeRo 2.0</title>
+<title>3D Printed Parts | HeRo 2.0</title>
 <meta name="generator" content="Jekyll v3.8.6" />
-<meta property="og:title" content="About" />
+<meta property="og:title" content="3D Printed Parts" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="The design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today, ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software." />
 <meta property="og:description" content="The design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today, ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software." />
-<link rel="canonical" href="http://localhost:4000/hero_common/about/" />
-<meta property="og:url" content="http://localhost:4000/hero_common/about/" />
+<link rel="canonical" href="http://localhost:4000/hero_common/printing/" />
+<meta property="og:url" content="http://localhost:4000/hero_common/printing/" />
 <meta property="og:site_name" content="HeRo 2.0" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="About" />
+<meta property="twitter:title" content="3D Printed Parts" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"The design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today, ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software.","headline":"About","name":"HeRo 2.0","url":"http://localhost:4000/hero_common/about/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"The design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today, ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software.","headline":"3D Printed Parts","url":"http://localhost:4000/hero_common/printing/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/hero_common/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/hero_common/feed.xml" title="HeRo 2.0" /></head>
 <body><style>
@@ -153,26 +153,43 @@
         <article class="post">
 
   <header class="post-header">
-    <h1 class="post-title">About</h1>
+    <h1 class="post-title">3D Printed Parts</h1>
   </header>
 
   <div class="post-content">
-    <h1 id="creative-commons">Creative Commons</h1>
+    <p>After assembly the PCB, we started creating the robot’s chassis. At this stage, it is also necessary to buy some parts suchs as bolts, bearing, etc. (check the list of materials). In addition, it is necessary to have access to a 3D printer or maybe order the parts from a manufacture service.</p>
 
-<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+<blockquote>
+  <p><strong>The mechanical design is open-source and was developed using <a href="https://www.autodesk.com/products/fusion-360">Autodesk F360</a> software.</strong>: If you want to extend/modify it, the project is available <a href="https://a360.co/36zKPdi">here</a>.</p>
+</blockquote>
 
-<!-- This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+<p>In the end, it is expected to get the robot as in the image below.
+<img src="https://user-images.githubusercontent.com/14208261/164281570-9db151b4-c538-479a-b654-469616ad4e62.png" alt="hero_view" /></p>
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+<h1 id="what-parts-do-i-need-to-print">What parts do I need to print?</h1>
+<p>The robot’s chassis and some mechanical parts are made using additive manufacturing (3D printer). Mechanical parts like gears need to be printed in good quality, and maybe some minor adjustments (using sandpaper) are required.</p>
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+<p>We use PLA/ABS because they are inexpensive, but other types can be used/tested. The required quality for printing is at least 200 microns.</p>
 
+<p>The robot is composed of 16 parts, which preferably must be printed separately.</p>
 
-[jekyll-organization]: https://github.com/jekyll -->
+<p>The files for printing (stl format) are available <a href="https://github.com/verlab/hero_common/tree/nodemcu/hero_resources/3d_parts">here</a>. If you want to modify or extend any part, I suggest using the CAD available <a href="https://github.com/verlab/hero_common/tree/nodemcu/hero_resources/cad">here</a>.</p>
+
+<p>Below is a description of each part.</p>
+<ul>
+  <li><a href="https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/castor_wheel.stl">castor_wheel.stl</a>: Screw-on castor wheel for robot balance adjustment.</li>
+  <li><a href="https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/chasis_b.stl">chasis_b.stl</a>: Chassis that supports the mainboard and encoders;</li>
+  <li><a href="https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/chassis_a.stl">chassis_a.stl</a>: Chassis that supports the motors and wheels;</li>
+  <li><a href="https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/cover.stl">cover.stl</a>: Dust protection cover;</li>
+  <li><a href="https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/cover_usb.stl">cover_usb.stl</a>: Sliding part for access to the USB connector;</li>
+  <li><a href="https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/ehat.stl">ehat.stl</a>: e-hat component to enclose mainboard expansions;</li>
+  <li><a href="https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/ehat_glove.stl">ehat_glove.stl</a>: Adapters for e-hat component;</li>
+  <li><a href="https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/encoder_shaft.stl">encoder_shaft.stl</a>: Spur gear/shaft encoder for wheel-encoder transmission;</li>
+  <li><a href="https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/motor_gear.stl">motor_gear.stl</a>: Coupled to the servo motor shaft and acts directly on the wheel;</li>
+  <li><a href="https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/motor_shaft.stl">motor_shaft.stl</a>: Wheel shaft supports the connection of the wheel to the chassis;</li>
+  <li><a href="https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/wheel.stl">wheel.stl</a>: Wheel spur geared;</li>
+</ul>
+
 
   </div>
 

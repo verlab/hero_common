@@ -3,20 +3,20 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>About | HeRo 2.0</title>
+<title>PCB Order | HeRo 2.0</title>
 <meta name="generator" content="Jekyll v3.8.6" />
-<meta property="og:title" content="About" />
+<meta property="og:title" content="PCB Order" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="The design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today, ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software." />
 <meta property="og:description" content="The design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today, ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software." />
-<link rel="canonical" href="http://localhost:4000/hero_common/about/" />
-<meta property="og:url" content="http://localhost:4000/hero_common/about/" />
+<link rel="canonical" href="http://localhost:4000/hero_common/pcb_order/" />
+<meta property="og:url" content="http://localhost:4000/hero_common/pcb_order/" />
 <meta property="og:site_name" content="HeRo 2.0" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="About" />
+<meta property="twitter:title" content="PCB Order" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"The design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today, ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software.","headline":"About","name":"HeRo 2.0","url":"http://localhost:4000/hero_common/about/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"The design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today, ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software.","headline":"PCB Order","url":"http://localhost:4000/hero_common/pcb_order/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/hero_common/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/hero_common/feed.xml" title="HeRo 2.0" /></head>
 <body><style>
@@ -153,26 +153,65 @@
         <article class="post">
 
   <header class="post-header">
-    <h1 class="post-title">About</h1>
+    <h1 class="post-title">PCB Order</h1>
   </header>
 
   <div class="post-content">
-    <h1 id="creative-commons">Creative Commons</h1>
+    <style>
+* {
+  box-sizing: border-box;
+}
 
-<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
+.column {
+  float: left;
+  width: 50.0%;
+  padding: 5px;
+}
 
-<!-- This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+<h3>How to request a PCB manufacturing service?</h3>
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+<p align="justify">Today it is extremely easy and affordable to prototype PCBs. The following is a tutorial on how you can request a PCB manufacturing service.</p>
 
+<p align="justify">After designing the robot's PCB, we requested the services of the <a href="https://jlcpcb.com" target="_blank" rel="noopener noreferrer">JLCPCB company</a>, as it is good in quality and low cost. 
+  Of course, other companies are just as good, so feel free to choose.</p>
 
-[jekyll-organization]: https://github.com/jekyll -->
+<p align="justify">About the color of the PCB, we opted for the white color because it improves the brightness performance of the LEDs, but there are no restrictions on this.</p>
+
+<p align="justify">Although we used some SMD components, we had no difficulty using the soldering iron to solder them. That way, a stencil board was not required.</p>
+
+<p align="justify">To start an order, simply download the <a href="https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/schematic/EAGLE/projects/hero_v2.6/board_2022-04-20.zip" target="_blank" rel="noopener noreferrer">Gerber File</a>, and send it to the PCB manufacturing service of your choice. Just pay attention to these requirements:</p>
+
+<ul class="fa-ul" style="list-style: none;">
+  <li> Finished Copper &gt;= 1 oz</li>
+  <li> Min Hole Size: 0.3mm</li>
+  <li> Min Track/Spacing: 6/6mil</li>
+ </ul>
+
+<h4>PCB view</h4>
+<div class="row">
+  <div class="column">
+    <img src="https://user-images.githubusercontent.com/14208261/167929288-c28a8c2d-f3f0-4023-b38a-1e36fa129a3e.svg" alt="Image" width="400" />
+  </div>
+  <div class="column">
+    <img src="https://user-images.githubusercontent.com/14208261/167940870-3abeac49-8621-4768-960b-5b8727596ad0.svg" alt="Image" width="400" />
+  </div>
+</div>
+
+<p align="justify">Here is an exemple using the JLCPCB manufacturing service.</p>
+
+<p align="center"><img src="https://user-images.githubusercontent.com/14208261/167928212-f264abf8-bd7c-41f0-a239-05c4a3284ae5.gif" alt="Image" width="600" /></p>
+
+<p align="justify">After a few days we receive the PCBs and we can start assembling the components.</p>
+<p align="center"><img src="https://user-images.githubusercontent.com/14208261/167909052-f92410ec-06e9-4d90-a296-35aeae01de86.png" alt="Image" width="600" /></p>
+
 
   </div>
 
