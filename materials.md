@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Materials1
-permalink: /materials1/
+title: Materials
+permalink: /materials/
 ---
 <h2>What components do I need to buy?</h2>
 
