@@ -9,7 +9,7 @@ permalink: /materials/
 
 <p align="justify">Below are some specifications, quantities, and where each component will be placed. Note that there is an optional built-in module for battery charging using IC TP4056, so if you want to build the board entirely, buy these components as well. Otherwise, you can just buy a TP4056 module and use the battery's auxiliary pin to recharge the robot.</p>
 
-<p align="justify">Link to download: <a href="hero_resources/assembly_materials.pdf">assembly_materials.pdf</a>
+<p align="justify">Link to download: <a href="../_site/hero_resources/assembly_materials">assembly_materials.pdf</a>
 </p>
 <style type="text/css">
 .tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
