@@ -22,7 +22,8 @@ permalink: /materials/
 .tg .tg-pwav{background-color:#f9f9f9;border-color:#ffffff;text-align:center;vertical-align:middle}
 .tg .tg-v0mg{border-color:#ffffff;text-align:center;vertical-align:middle}
 </style>
-<table class="tg" style="undefined;table-layout: fixed; width: 1227px">
+<div style="display: block; overflow-x: auto;;">
+<table class="tg" style="table-layout: fixed;"  >
 <colgroup>
 <col style="width: 123.52874px">
 <col style="width: 133.52874px">
