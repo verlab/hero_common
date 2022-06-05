@@ -17,6 +17,10 @@ title:  "Home"
 
 <p align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/JQvuYeF24lY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
 
+<!------------- News ------------->
+<h3>News</h3>
+HeRo is featured on Wevolver. <a href="[https://www.w3schools.com](https://www.wevolver.com/article/hero-20-an-ultra-low-cost-3d-printed-robotics-platform-could-open-swarm-robotics-experimentation-up-to-all)">Check the full article here!</a>
+
 
 <!------------- Features ------------->
 <h3>Features</h3>
