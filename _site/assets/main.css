@@ -82,6 +82,7 @@ a {
     color: #1756a9; }
   a:hover {
     color: #111;
+    letter-spacing: 0.22em;
     text-decoration: underline; }
   .social-media-list a:hover {
     text-decoration: none; }
