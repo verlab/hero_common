@@ -149,7 +149,7 @@ class Ui_Form(object):
 
     def run(self):
         rate = rospy.Rate(5)
-        rospy.loginfo("[RGBScreen]: Trying to change color!")
+        rospy.loginfo("[RGBScreen]: Changing color!")
         color = ColorRGBA()
         color.r = float(abs(int(self.spinBoxRed.text()) - 256))
         color.g  = float(abs(int(self.spinBoxGreen.text()) - 256))
