@@ -4,14 +4,11 @@ title: PCB Order
 permalink: /pcb_order/
 ---
 <style>
-* {
-  box-sizing: border-box;
-}
-
 .column {
   float: left;
   width: 50.0%;
   padding: 5px;
+  box-sizing: border-box;
 }
 
 /* Clearfix (clear floats) */
