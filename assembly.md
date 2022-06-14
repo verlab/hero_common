@@ -1,3 +1,9 @@
+---
+layout: page
+title: Robot Assembly Tutorial
+permalink: /assembly/
+---
+
 # Robot Assembly Tutotorial
 
 Below we describe a step-by-step guide on how to assemble the robot. 
