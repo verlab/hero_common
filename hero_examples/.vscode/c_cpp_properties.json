@@ -1,0 +1,25 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/vitor/Documents/catkin_ws/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/vitor/Documents/catkin_ws/src/beginner_tutorials/include/**",
+        "/home/vitor/Documents/catkin_ws/src/hero_common/hero_gazebo/include/**",
+        "/home/vitor/Documents/catkin_ws/src/template_gui_package/include/**",
+        "/home/vitor/Documents/catkin_ws/src/template_package/template_package/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
