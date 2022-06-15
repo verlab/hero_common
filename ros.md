@@ -7,7 +7,7 @@ permalink: /ros/
 # Connecting Hero and your computer
 - Create a hotspot in your computer, follow this guide https://www.how2shout.com/how-to/2-ways-to-create-wifi-hotspot-in-ubuntu-20-04-lts-focal-fossa.html
 
-- In Ubuntu 20.04 there are some bugs when you try to create a hotspot for the first time, maybe it will be blocked as in the screenshot. To resolve this you just need to change tabs in Settings, for example click in Network and then click back in Wifi.
+- In Ubuntu 20.04 there are some bugs when you try to create a hotspot for the first time, maybe it will be blocked like it is in the screenshot. To resolve this you just need to change tabs in Settings, for example click in Network and then click back in Wifi.
 <img src="https://github.com/verlab/hero_common/raw/master/hero_resources/media/images/hero_hotspotbug.png" width="800">
 
 - Run ifconfig to get your IP
