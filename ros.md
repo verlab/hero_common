@@ -8,11 +8,11 @@ permalink: /ros/
 - Create a hotspot in your computer, follow this guide https://www.how2shout.com/how-to/2-ways-to-create-wifi-hotspot-in-ubuntu-20-04-lts-focal-fossa.html
 
 - In Ubuntu 20.04 there are some bugs when you try to create a hotspot for the first time, maybe it will be blocked as in the screenshot. To resolve this you just need to change tabs in Settings, for example click in Network and then click back in Wifi.
-<img src="hero_resources/media/images/hero_hotspotbug.png" width="800">
+<img src="https://github.com/verlab/hero_common/raw/master/hero_resources/media/images/hero_hotspotbug.png" width="800">
 
 - Run ifconfig to get your IP
-<img src="hero_resources/media/images/hero_ifconfig.png" width="800">
-<img src="hero_resources/media/images/hero_inet.png" width="800">
+<img src="https://github.com/verlab/hero_common/raw/master/hero_resources/media/images/hero_ifconfig.png" width="800">
+<img src="https://github.com/verlab/hero_common/raw/master/hero_resources/media/images/hero_inet.png" width="800">
 
 - Turn off hotspot
 
@@ -21,7 +21,7 @@ permalink: /ros/
 - Connect your computer in a WIFI called "HERO_ROBOT_???" (password: s3cr3tp4ss)
 
 - Open this link in your web browser http://192.168.4.1/ and configure your_wifi_password. It must be the same SSID and password as the WIFI hotspot
-<img src="hero_resources/media/images/hero_webconfig.png" width="800">
+<img src="https://github.com/verlab/hero_common/raw/master/hero_resources/media/images/hero_webconfig.png" width="800">
 
 - Save and turn off Hero
 
