@@ -131,7 +131,7 @@
                   <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content" id="myDropdown">
-                  <a class="page-link" href="/hero_common/instalation">Installation</a>
+                  <a class="page-link" href="/hero_common/installation">Installation</a>
                   <a class="page-link" href="/hero_common/robot_simulation">Robot Simulation</a>
                   <a class="page-link" href="/hero_common/ros">ROS</a>
                   <a class="page-link" href="/hero_common/firmware">Firmware</a>
@@ -158,7 +158,107 @@
   </header>
 
   <div class="post-content">
-    <p>Lorem Ipsum</p>
+    <h1 id="connecting-hero-and-your-computer">Connecting Hero and your computer</h1>
+<ul>
+  <li>
+    <p>Create a hotspot in your computer, follow this guide https://www.how2shout.com/how-to/2-ways-to-create-wifi-hotspot-in-ubuntu-20-04-lts-focal-fossa.html</p>
+  </li>
+  <li>
+    <p>In Ubuntu 20.04 there are some bugs when you try to create a hotspot for the first time, maybe it will be blocked as in the screenshot. To resolve this you just need to change tabs in Settings, for example click in Network and then click back in Wifi.
+<img src="hero_resources/media/images/hero_hotspotbug.png" width="800" /></p>
+  </li>
+  <li>
+    <p>Run ifconfig to get your IP
+<img src="hero_resources/media/images/hero_ifconfig.png" width="800" />
+<img src="hero_resources/media/images/hero_inet.png" width="800" /></p>
+  </li>
+  <li>
+    <p>Turn off hotspot</p>
+  </li>
+  <li>
+    <p>Turn on Hero while all sensors are covered, the RGB Led will be flashing pink</p>
+  </li>
+  <li>
+    <p>Connect your computer in a WIFI called “HERO_ROBOT_???” (password: s3cr3tp4ss)</p>
+  </li>
+  <li>
+    <p>Open this link in your web browser http://192.168.4.1/ and configure your_wifi_password. It must be the same SSID and password as the WIFI hotspot
+<img src="hero_resources/media/images/hero_webconfig.png" width="800" /></p>
+  </li>
+  <li>
+    <p>Save and turn off Hero</p>
+  </li>
+  <li>
+    <p>Turn on Hotspot</p>
+  </li>
+  <li>
+    <p>Turn on Hero. Hero will be flashing red. If it was configured correctly, it will flash Blue and the RGB Led will turn off. The following video shows how this process works in practice.
+[Video]</p>
+  </li>
+  <li>
+    <p>Once Hero is connected with your computer, you won’t need to configure it again. (Just if you change your computer’s WIFI hotspot configuration). So, everytime you want to use Hero you must turn on your computer’s WIFI hotspot.</p>
+  </li>
+</ul>
+
+<h1 id="how-to-start-a-ros-node">How to start a ROS Node</h1>
+<ul>
+  <li>Run roscore (keep it running)
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ roscore
+</code></pre></div>    </div>
+  </li>
+  <li>In another terminal, run the hero_bringup.launch file with: (keep it running)
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ roslaunch hero_bringup hero_bringup.launch
+</code></pre></div>    </div>
+  </li>
+  <li>Turn on the Robot(s)</li>
+</ul>
+
+<h2 id="teleop-demo">Teleop Demo</h2>
+<ul>
+  <li>In another terminal, run hero_teleop.launch file to move Hero around, you must set the specific robot id:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ roslaunch hero_bringup hero_teleop.launch id:=3
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="available-topics">Available Topics</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rostopic list
+/hero_3/cmd_vel
+/hero_3/encoder
+/hero_3/imu
+/hero_3/laser
+/hero_3/led
+/hero_3/motor
+/hero_3/odom
+/tf
+</code></pre></div></div>
+
+<h2 id="available-services">Available Services</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ rosservice list
+/hero_3/pid_calibration
+/hero_3/set_frequency
+/hero_3/set_odom
+/hero_3/set_pid_parameters
+</code></pre></div></div>
+
+<h1 id="some-videos">Some Videos</h1>
+<p><a href="http://www.youtube.com/watch?v=foQDcUG9Arg" title="Video Title"><img src="http://img.youtube.com/vi/foQDcUG9Arg/0.jpg" alt="IMAGE ALT TEXT" /></a></p>
+
+<h1 id="reference">Reference</h1>
+<p>Rezeck, Paulo AF, Hector Azpurua, and Luiz Chaimowicz. “HeRo: An open platform for robotics research and education.” 2017 Latin American Robotics Symposium (LARS) and 2017 Brazilian Symposium on Robotics (SBR). IEEE, 2017.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@inproceedings{rezeck2017hero,
+  title={HeRo: An open platform for robotics research and education},
+  author={Rezeck, Paulo AF and Azpurua, Hector and Chaimowicz, Luiz},
+  booktitle={2017 Latin American Robotics Symposium (LARS) and 2017 Brazilian Symposium on Robotics (SBR)},
+  pages={1--6},
+  year={2017},
+  organization={IEEE}
+}
+</code></pre></div></div>
+
+<h1 id="creative-commons">Creative Commons</h1>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
 
   </div>
 

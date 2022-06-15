@@ -3,20 +3,20 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Instalation | HeRo 2.0</title>
+<title>Installation | HeRo 2.0</title>
 <meta name="generator" content="Jekyll v3.8.6" />
-<meta property="og:title" content="Instalation" />
+<meta property="og:title" content="Installation" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="The design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today, ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software." />
 <meta property="og:description" content="The design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today, ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software." />
-<link rel="canonical" href="http://localhost:4000/hero_common/instalation/" />
-<meta property="og:url" content="http://localhost:4000/hero_common/instalation/" />
+<link rel="canonical" href="http://localhost:4000/hero_common/installation/" />
+<meta property="og:url" content="http://localhost:4000/hero_common/installation/" />
 <meta property="og:site_name" content="HeRo 2.0" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Instalation" />
+<meta property="twitter:title" content="Installation" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"The design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today, ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software.","headline":"Instalation","url":"http://localhost:4000/hero_common/instalation/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"The design of a novel platform for swarm robotics applications that is low cost, easy to assemble using off-the-shelf components, and deeply integrated with the most used robotic framework available today, ROS (Robot Operating System). The robotic platform is entirely open, composed of a 3D printed body and open-source software.","headline":"Installation","url":"http://localhost:4000/hero_common/installation/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/hero_common/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/hero_common/feed.xml" title="HeRo 2.0" /></head>
 <body><style>
@@ -131,7 +131,7 @@
                   <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content" id="myDropdown">
-                  <a class="page-link" href="/hero_common/instalation">Installation</a>
+                  <a class="page-link" href="/hero_common/installation">Installation</a>
                   <a class="page-link" href="/hero_common/robot_simulation">Robot Simulation</a>
                   <a class="page-link" href="/hero_common/ros">ROS</a>
                   <a class="page-link" href="/hero_common/firmware">Firmware</a>
@@ -154,11 +154,52 @@
         <article class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Instalation</h1>
+    <h1 class="post-title">Installation</h1>
   </header>
 
   <div class="post-content">
-    <p>Lorem Ipsum</p>
+    <h1 id="how-to-install-hero-common-node">How to install HeRo common node</h1>
+<ul>
+  <li>
+    <p>If you don’t have a ROS Workspace, you must download and configure it. Please, follow the instructions in http://wiki.ros.org/ROS/Installation and http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment.</p>
+  </li>
+  <li>Using git (or download the zip file) clone this repository into ROS Workspace.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone https://github.com/verlab/hero_common.git
+</code></pre></div>    </div>
+  </li>
+  <li>Compile with:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ catkin_make # or catkin build
+</code></pre></div>    </div>
+  </li>
+  <li>Fixing package dependencies:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ apt install ros-noetic-usb-cam
+$ apt install ros-noetic-rosserial
+$ apt install ros-noetic-rosserial-server
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h1 id="how-to-install-the-firmware">How to install the firmware</h1>
+<ul>
+  <li>Open the arduino IDE.</li>
+  <li>Go to preferences:</li>
+  <li>Change the sketchbook location to access the folder firmware.</li>
+  <li>Add (http://arduino.esp8266.com/stable/package_esp8266com_index.json) to Additional Boards Manager URLS.</li>
+  <li>Restart the IDE.</li>
+  <li>Go to Sketchbook/hero/firware</li>
+</ul>
+
+<h1 id="robots-firmware">Robots Firmware</h1>
+<ul>
+  <li>Open the robot code inside the sketchbook.</li>
+  <li>All configuration parameters are available at config.h
+    <ul>
+      <li>WiFi Essid and password for connection with ROS master</li>
+      <li>Robot ID</li>
+    </ul>
+  </li>
+  <li>Connect HeRo at USB and upload the code.</li>
+</ul>
 
   </div>
 
