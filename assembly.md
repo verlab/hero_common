@@ -4,8 +4,6 @@ title: Robot Assembly Tutorial
 permalink: /assembly/
 ---
 
-# Robot Assembly Tutotorial
-
 Below we describe a step-by-step guide on how to assemble the robot. 
 
 To make it easier, we created a summary if you want to view the steps.
