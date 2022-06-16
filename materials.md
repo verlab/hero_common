@@ -370,7 +370,7 @@ permalink: /materials/
     <td class="tg-zv4m"></td>
   </tr>
   <tr>
-    <td class="tg-pwav" rowspan="5">Chassis</td>
+    <td class="tg-pwav" rowspan="6">Chassis</td>
     <td class="tg-oqs5">Wheel</td>
     <td class="tg-oqs5">Rubber O-ring</td>
     <td class="tg-oqs5"><img src="https://user-images.githubusercontent.com/14208261/167751364-49c48a14-4c06-473a-821f-2c315ccaefc2.png" alt="Image" width="100" height="100"></td>
@@ -380,7 +380,7 @@ permalink: /materials/
     <td class="tg-oqs5">link</td>
     <td class="tg-oqs5"><a href="https://pt.aliexpress.com/item/32957616646.html?spm=a2g0o.productlist.0.0.2c393a7eiopPBg&algo_pvid=95a00ad4-451d-40da-9c25-3b4fc99602df&algo_exp_id=95a00ad4-451d-40da-9c25-3b4fc99602df-4&pdp_ext_f=%7B%22sku_id%22%3A%2266559748451%22%7D&pdp_npi=2%40dis%21BRL%21%218.19%21%21%2143.17%21%21%400bb0623f16522754347306105e3a28%2166559748451%21sea" target="_blank" rel="noopener noreferrer">link</a></td>
     <td class="tg-oqs5">0.20</td>
-    <td class="tg-oqs5" rowspan="4"></td>
+    <td class="tg-pwav" rowspan="6">1.20</td>
   </tr>
   <tr>
     <td class="tg-zv4m">Bearing</td>
@@ -390,8 +390,8 @@ permalink: /materials/
     <td class="tg-zv4m">2</td>
     <td class="tg-zv4m">Ball Bearing 623ZZ 3X10X4mm</td>
     <td class="tg-zv4m">link</td>
-    <td class="tg-zv4m">link</td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m"><a href="https://www.aliexpress.com/item/4001139691289.html?spm=a2g0o.productlist.0.0.5dc85d3cK2sjNp&algo_pvid=f3f28488-0ba3-4c72-b116-1557be07fa46&algo_exp_id=f3f28488-0ba3-4c72-b116-1557be07fa46-3&pdp_ext_f=%7B%22sku_id%22%3A%2210000014781403682%22%7D&pdp_npi=2%40dis%21USD%217.66%213.76%21%21%214.67%21%21%4021031a5516554168841701718ec7a9%2110000014781403682%21sea" target="_blank" rel="noopener noreferrer">link</a></td>
+    <td class="tg-zv4m">0.40</td>
   </tr>
   <tr>
     <td class="tg-oqs5">Castor Wheels</td>
@@ -401,8 +401,8 @@ permalink: /materials/
     <td class="tg-oqs5">2</td>
     <td class="tg-oqs5">Steels Balls 4mm Diameter</td>
     <td class="tg-oqs5">link</td>
-    <td class="tg-oqs5">link</td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5"><a href="https://www.aliexpress.com/item/4001175695365.html?spm=a2g0o.productlist.0.0.157036de9UbJ3V&algo_pvid=d5c70d3a-dad1-488a-89a4-6964f874a97a&algo_exp_id=d5c70d3a-dad1-488a-89a4-6964f874a97a-2&pdp_ext_f=%7B%22sku_id%22%3A%2210000015045635481%22%7D&pdp_npi=2%40dis%21USD%21%213.59%21%21%215.93%21%21%40210318b816554167413363268ec007%2110000015045635481%21sea" target="_blank" rel="noopener noreferrer">link</a></td>
+    <td class="tg-oqs5">0.05</td>
   </tr>
   <tr>
     <td class="tg-zv4m">Wheel Fastening</td>
@@ -412,8 +412,8 @@ permalink: /materials/
     <td class="tg-zv4m">2</td>
     <td class="tg-zv4m">M3x20mm Bolt with Nut and Pressure Washer</td>
     <td class="tg-zv4m">link</td>
-    <td class="tg-zv4m">link</td>
-    <td class="tg-zv4m"></td>
+    <td class="tg-zv4m"><a href="https://www.aliexpress.com/item/4001323750672.html?spm=a2g0o.productlist.0.0.30dd501fkaSk9j&algo_pvid=3d1de878-47ee-48f7-a116-b2f7aa4410f9&algo_exp_id=3d1de878-47ee-48f7-a116-b2f7aa4410f9-0&pdp_ext_f=%7B%22sku_id%22%3A%2210000015711889169%22%7D&pdp_npi=2%40dis%21USD%21%212.73%21%21%215.34%21%21%40210318cf16554165507353714ec08f%2110000015711889169%21sea" target="_blank" rel="noopener noreferrer">link</a></td>
+    <td class="tg-zv4m">0.20</td>
   </tr>
   <tr>
     <td class="tg-oqs5">Chassis Fastening</td>
@@ -423,9 +423,20 @@ permalink: /materials/
     <td class="tg-oqs5">16</td>
     <td class="tg-oqs5">M2.5x10mm Screws Self-Tapping</td>
     <td class="tg-oqs5">link</td>
-    <td class="tg-oqs5">link</td>
-    <td class="tg-oqs5"></td>
-    <td class="tg-oqs5"></td>
+    <td class="tg-oqs5"><a href="https://www.aliexpress.com/item/4000027708283.html?spm=a2g0o.productlist.0.0.36f65b18zLCKvN&algo_pvid=4892d2ac-ee9f-4001-8bd0-142eca902a88&algo_exp_id=4892d2ac-ee9f-4001-8bd0-142eca902a88-34&pdp_ext_f=%7B%22sku_id%22%3A%2210000000062982256%22%7D&pdp_npi=2%40dis%21USD%21%210.93%21%21%213.16%21%21%402101fd4b16554163082026964e8ec2%2110000000062982256%21sea" target="_blank" rel="noopener noreferrer">link</a></td>
+    <td class="tg-oqs5">0.25</td>
+  </tr>
+  <tr>
+    <td class="tg-zv4m">Pinion Gear Shaft</td>
+    <td class="tg-zv4m">Standard Aluminium Rivets</td>
+    <td class="tg-zv4m"><img src="https://user-images.githubusercontent.com/14208261/174165824-df60a9f1-cc62-4cc2-8ef2-31c6c3348a4b.png" alt="Image" width="100" height="100" /></td>
+    <td class="tg-zv4m">Mandrel Diameter 1.8mm</td>
+    <td class="tg-zv4m">2</td>
+    <td class="tg-zv4m">Required Only the Mandrel part of Rivet Diameter 1.8mm</td>
+    <td class="tg-zv4m"><a href="https://github.com/verlab/hero_common/blob/master/hero_resources/datasheet/rivet-datasheet.pdf" target="_blank" rel="noopener noreferrer">link</a></td>
+    <td class="tg-zv4m"><a href="https://www.aliexpress.com/item/4000071704665.html?spm=a2g0o.productlist.0.0.50276d33Buz65M&algo_pvid=91c316c9-d142-48e8-9b22-17a5298c21d6&algo_exp_id=91c316c9-d142-48e8-9b22-17a5298c21d6-23&pdp_ext_f=%7B%22sku_id%22%3A%2210000000183977787%22%7D&pdp_npi=2%40dis%21USD%21%214.07%21%21%217.42%21%21%40210318d116554149149131271eef53%2110000000183977787%21sea" target="_blank" rel="noopener noreferrer">link</a></td>
+    <td class="tg-zv4m">0.10</td>
+    <!-- <td class="tg-zv4m"></td> -->
   </tr>
 </tbody>
 </table>
