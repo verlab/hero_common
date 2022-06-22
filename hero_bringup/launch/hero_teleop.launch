@@ -2,6 +2,6 @@
 <launch>
     <arg name="id" default="0" />
     <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_twist_keyboard" output="screen">
-        <remap from="/cmd_vel" to="/hero_$(arg id)/cmd_vel"/>
+        <remap from="/cmd_vel" to="/hero_$(arg id)/velocity_controller/cmd_vel"/>
     </node>
 </launch>
