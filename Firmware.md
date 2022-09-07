@@ -39,10 +39,10 @@ Open the robot code inside the sketchbook.
 ![image](https://user-images.githubusercontent.com/14208261/188976507-afc0d992-4fb8-440e-9c5b-f0d023f4c159.png)
 
 All configuration parameters are available at config.h:
-  - WiFi Essid and password for connection with ROS master
-  - Robot ID
-  
-> You can change this parameters later by using the web interface.
+  - WiFi ESSID and password for connection with ROS master
+  - Robot ID, etc.
+> We recommend not changing dynamic parameters, such as network ESSID and robot ID in the config file. 
+> Try to use the web interface built in the robot firmware to change such parameters. 
 
 ![image](https://user-images.githubusercontent.com/14208261/188977085-3b0410be-4e94-402d-abeb-3569f74e4c5d.png)
 
