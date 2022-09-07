@@ -9,12 +9,14 @@ RUN apt-get update && apt-get install -y \
       ros-${ROS_DISTRO}-robot-state-publisher \
       ros-${ROS_DISTRO}-usb-cam \
       ros-${ROS_DISTRO}-xacro \
+      ros-${ROS_DISTRO}-urdfdom-py \
       ros-${ROS_DISTRO}-rosserial \
       ros-${ROS_DISTRO}-rosserial-server \
       ros-${ROS_DISTRO}-urdf \
       ros-${ROS_DISTRO}-teleop-twist-keyboard \
       ros-${ROS_DISTRO}-gazebo-ros-pkgs \ 
-      ros-${ROS_DISTRO}-gazebo-plugins && \
+      ros-${ROS_DISTRO}-gazebo-plugins \
+      ros-${ROS_DISTRO}-gazebo-ros-control && \
     rm -rf /var/lib/apt/lists/*
 
 # Booststrap workspace.
