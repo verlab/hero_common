@@ -4,10 +4,7 @@ title: Installation
 permalink: /installation/
 ---
 
-# How to install HeRo package
-
 ## Dependencies
-- Ubuntu or similar;
 - [ROS](http://wiki.ros.org/ROS/Installation) (tested on Melodic and Noetic);
 - [rosserial](http://wiki.ros.org/rosserial);
 - [Gazebo](https://gazebosim.org/home);
