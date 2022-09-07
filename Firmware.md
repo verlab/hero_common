@@ -5,7 +5,7 @@ permalink: /firmware/
 ---
 
 
-## How to build this firmare and install it on your HeRo
+## Burning HeRo firmware
 
 ### Arduino Installation
 - Install the latest version from the [Arduino website](https://www.arduino.cc/en/Main/Software).
