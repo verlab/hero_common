@@ -7,7 +7,7 @@ permalink: /ros/
 ## Network Setup
 In order to remotely operate the robots by using ROS middleware, you need to set on the robot the network credentials where it should conect and also the IP address of the computer running ROS, so called ROSMaster IP and Port. Here, there many alternatives such as create access point (hotspot) on your computer, or using a router.
 
-> HeRo WiFi only works for 2.4GHz band.
+> HeRo WiFi only works with 2.4GHz network.
 
 ## Setting HeRo Network Credentials, Name, Etc.
 The robot firmware has two operation mode: config mode (works as a server for a web configuration page) and ros mode. 
