@@ -18,7 +18,7 @@ $ roslaunch hero_gazebo gazebo_wizard.launch
 ```
 It will open gazebo and this UI interface:
 
-![system](https://github.com/verlab/hero_common/blob/master/hero_resources/media/images/gazebo_wizard1.png)))
+![system](https://github.com/verlab/hero_common/blob/master/hero_resources/media/images/gazebo_wizard1.png)
 
 ### Steps:
 
@@ -29,7 +29,7 @@ It will open gazebo and this UI interface:
 5. By clicking on commit swarm button, the robots will be instantiate on gazebo. Clear swarm will remove them.
 6. By using gazebo simulator, make adjustments on the scene, and using the Generate Launch File button will compile the scene in a launch file for future uses.
 
-![system](https://github.com/verlab/hero_common/blob/master/hero_resources/media/images/gazebo_wizard2.png))
+![system](https://github.com/verlab/hero_common/blob/master/hero_resources/media/images/gazebo_wizard2.png)
 
 Once you have properly setup your arena on Gazebo, close Gazebo sim and HeRo wizard window.
 
