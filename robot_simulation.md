@@ -4,8 +4,7 @@ title: Robot Simulation
 permalink: /robot_simulation/
 ---
 
-# How to start a HeRo simulation
-HeRo is also simulated into Gazebo simulator.
+HeRo is simulated into Gazebo simulator.
 
 ## HeRo Wizard
 We create a high-level UI interface that should help others to instantiate a gazebo environment.
@@ -19,7 +18,7 @@ $ roslaunch hero_gazebo gazebo_wizard.launch
 ```
 It will open gazebo and this UI interface:
 
-![system](https://github.com/verlab/hero_common/blob/master/hero_resources/media/images/gazebo_wizard1.png))
+![system](https://github.com/verlab/hero_common/blob/master/hero_resources/media/images/gazebo_wizard1.png)))
 
 ### Steps:
 
