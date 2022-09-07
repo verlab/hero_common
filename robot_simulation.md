@@ -77,7 +77,7 @@ $ rostopic list
 
 ![gazebo_wizard3](https://user-images.githubusercontent.com/14208261/188969444-d0c3c0ef-be1b-4514-a5cc-db8f41a67edd.png)
 
-<p align="center"><iframe width="560" height="315" src="https://www.youtube.com/watch?v=IO7FPEwkZkE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+<p align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/IO7FPEwkZkE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
 
 
 ## Features
