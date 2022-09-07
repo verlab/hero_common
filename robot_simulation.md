@@ -17,7 +17,8 @@ To create a environment, use this launch file:
 $ roslaunch hero_gazebo gazebo_wizard.launch
 ```
 It will open gazebo and this UI interface:
-![wizard1](https://github.com/verlab/hero_common/blob/master/hero_resources/media/images/gazebo_wizard1.png)
+
+![gazebo_wizard1](https://user-images.githubusercontent.com/14208261/188969510-db02aee6-692f-40f9-902f-cb6f7a21f7ba.png)
 
 ### Steps:
 
@@ -28,7 +29,7 @@ It will open gazebo and this UI interface:
 5. By clicking on commit swarm button, the robots will be instantiate on gazebo. Clear swarm will remove them.
 6. By using gazebo simulator, make adjustments on the scene, and using the Generate Launch File button will compile the scene in a launch file for future uses.
 
-![wizard2](https://github.com/verlab/hero_common/blob/master/hero_resources/media/images/gazebo_wizard2.png)
+![gazebo_wizard2](https://user-images.githubusercontent.com/14208261/188969494-215a6a56-789d-4aa9-97c7-d1bbd31c1fb4.png)
 
 Once you have properly setup your arena on Gazebo, close Gazebo sim and HeRo wizard window.
 
@@ -74,7 +75,9 @@ $ rostopic list
 /tf_static
 ```
 
-![wizard3](https://github.com/verlab/hero_common/blob/master/hero_resources/media/images/gazebo_wizard3.png)
+![gazebo_wizard3](https://user-images.githubusercontent.com/14208261/188969444-d0c3c0ef-be1b-4514-a5cc-db8f41a67edd.png)
+
+<p align="center"><iframe width="560" height="315" src="https://www.youtube.com/watch?v=IO7FPEwkZkE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
 
 
 ## Features
