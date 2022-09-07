@@ -76,7 +76,7 @@ $ rostopic list
 /tf_static
 ```
 
-![system](https://github.com/verlab/hero_common/blob/master/hero_resources/media/images/gazebo_wizard3.png))
+![system](https://github.com/verlab/hero_common/blob/master/hero_resources/media/images/gazebo_wizard3.png)
 
 
 ## Features
