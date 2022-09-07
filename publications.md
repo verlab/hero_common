@@ -7,22 +7,21 @@ permalink: /publications/
 ## Citation
 If you use HeRo in an academic work, please cite:
 
-Rezeck, P., Azpurua, H., Correa, M. F., & Chaimowicz, L. (2022). HeRo 2.0: A Low-Cost Robot for Swarm Robotics Research. arXiv preprint arXiv:2202.12391.
+- Rezeck, P., Azpurua, H., Correa, M. F., & Chaimowicz, L. (2022). HeRo 2.0: A Low-Cost Robot for Swarm Robotics Research. arXiv preprint arXiv:2202.12391.
 ```
 @misc{https://doi.org/10.48550/arxiv.2202.12391,
   doi = {10.48550/ARXIV.2202.12391},
   url = {https://arxiv.org/abs/2202.12391},
   author = {Rezeck, Paulo and Azpurua, Hector and Correa, Mauricio FS and Chaimowicz, Luiz}, 
-  keywords = {Robotics (cs.RO), Artificial Intelligence (cs.AI), Multiagent Systems (cs.MA)},
+  keywords = {Robotics (cs.RO), Multiagent Systems (cs.MA)},
   title = {HeRo 2.0: A Low-Cost Robot for Swarm Robotics Research},
   publisher = {arXiv},
   year = {2022},
   copyright = {Creative Commons Attribution 4.0 International}
 }
-
 ```
 
-Rezeck, Paulo AF, Hector Azpurua, and Luiz Chaimowicz. "HeRo: An open platform for robotics research and education." 2017 Latin American Robotics Symposium (LARS) and 2017 Brazilian Symposium on Robotics (SBR). IEEE, 2017.
+- Rezeck, Paulo AF, Hector Azpurua, and Luiz Chaimowicz. "HeRo: An open platform for robotics research and education." 2017 Latin American Robotics Symposium (LARS) and 2017 Brazilian Symposium on Robotics (SBR). IEEE, 2017.
 ```
 @inproceedings{rezeck2017hero,
   title={HeRo: An open platform for robotics research and education},
