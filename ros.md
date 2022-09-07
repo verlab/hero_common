@@ -14,6 +14,7 @@ The robot firmware has two operation mode: config mode (works as a server for a 
 In this stage you need to start the robots into **config mode**.
 
 Turn on Hero while all sensors are covered, the RGB Led will be flashing pink.
+
 ![image](https://user-images.githubusercontent.com/14208261/188984464-a642f4ca-eccd-42a8-a5de-ba6c5ceef6fb.png)
 
 In this config mode the robot will work as an WIFI access point. 
@@ -24,6 +25,7 @@ Now, uses your computer or smartphone to connect to this WIFI access point.
 ![image](https://user-images.githubusercontent.com/14208261/188985377-c601eed2-55ee-4b30-83ae-48a2ab747848.png)
 
 Open this link in your web browser http://192.168.4.1/ and set the network credentials where the robot should connect.
+
 ![image](https://user-images.githubusercontent.com/14208261/188985741-89d5bb6e-dc7a-4a43-aa26-55446060de00.png)
 
 ![image](https://user-images.githubusercontent.com/14208261/188985952-9429cf34-2c73-4fb4-9175-931fcb21fc47.png)
