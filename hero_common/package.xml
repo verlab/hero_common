@@ -54,9 +54,17 @@
   <build_depend>message_generation</build_depend>
   <!-- <build_depend>ar_track_alvar</build_depend> -->
   <!-- <build_depend>ar_track_alvar_msgs</build_depend> -->
+  <build_depend>rosserial</build_depend>
   <build_depend>rosserial_server</build_depend>
-  <build_depend>usb_cam</build_depend>
+  <build_depend>robot_state_publisher</build_depend>
+  <build_depend>xacro</build_depend>
+  <build_depend>urdf</build_depend>
+  <build_depend>urdfdom_py</build_depend>
   <build_depend>teleop_twist_keyboard</build_depend>
+  <build_depend>gazebo_ros_pkgs</build_depend>
+  <build_depend>gazebo_plugins</build_depend>
+  <build_depend>gazebo_ros_control</build_depend>
+  <build_depend>usb_cam</build_depend>
 
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>rospy</build_export_depend>
