@@ -1,0 +1,53 @@
+Partlist
+
+Exported from board.sch at 4/17/19 4:55 PM
+
+EAGLE Version 9.2.2 Copyright (c) 1988-2018 Autodesk, Inc.
+
+Assembly variant: 
+
+Part      Value          Device          Package       Library       Sheet
+
+BATT                     PINHD-1X2       1X02          pinhead       4
+C1        0.10 nF        C-USC0603       C0603         adafruit      3
+C2        0.10 nF        C-USC0603       C0603         adafruit      3
+C3        10 uF          C-USC0603       C0603         resistor      4
+C4        10 uF          C-USC0603       C0603         resistor      4
+CHRG                     LEDCHIP-LED0603 CHIP-LED0603  led           4
+E_LEFT                   PINHD-1X3       1X03          pinhead       1
+E_RIGHT                  PINHD-1X3       1X03          pinhead       1
+I2C|UART                 PINHD-1X4       1X04          pinhead       1
+IC1       TP4056         TP4056          SOP-8         TP4056        4
+IC2       4051D          4051D           SO16          40xx          2
+IRLML2502                MOSFET-NREFLOW  SOT23         adafruit      2
+LED0      WS2812B5050    WS2812B5050     WS2812B       adafruit      3
+LED1      WS2812B5050    WS2812B5050     WS2812B       adafruit      3
+M_LEFT                   PINHD-1X3       1X03          pinhead       1
+M_RIGHT                  PINHD-1X3       1X03          pinhead       1
+OS1                      STEPUP          STEPUP        stepup        4
+P0                       TCRT5000        TCRT5000      tcrt5000      2
+P1                       TCRT5000        TCRT5000      tcrt5000      2
+P2                       TCRT5000        TCRT5000      tcrt5000      2
+P3                       TCRT5000        TCRT5000      tcrt5000      2
+P4                       TCRT5000        TCRT5000      tcrt5000      2
+P5                       TCRT5000        TCRT5000      tcrt5000      2
+P6                       TCRT5000        TCRT5000      tcrt5000      2
+P7                       TCRT5000        TCRT5000      tcrt5000      2
+R0        4k7            R-US_M0805      M0805         adafruit      2
+R1        4k7            R-US_M0805      M0805         adafruit      2
+R2        4k7            R-US_M0805      M0805         adafruit      2
+R3        4k7            R-US_M0805      M0805         adafruit      2
+R4        4k7            R-US_M0805      M0805         adafruit      2
+R5        4k7            R-US_M0805      M0805         adafruit      2
+R6        4k7            R-US_M0805      M0805         adafruit      2
+R7        4k7            R-US_M0805      M0805         adafruit      2
+R8        4k7            R-US_R0805      R0805         resistor      2
+R9        0 R            R-US_R0805      R0805         resistor      2
+R10       18 R           R-US_R0805      R0805         resistor      2
+R11       NM             R-US_R0805      R0805         resistor      2
+R12       102            R-US_R0603      R0603         resistor      4
+R13       102            R-US_R0603      R0603         resistor      4
+R14       122            R-EU_R0603      R0603         resistor      4
+STDBY                    LEDCHIP-LED0603 CHIP-LED0603  led           4
+SWITCH    TL37YO         TL37YO          TL3XYO        switch        4
+U$1       ESP12E_DEVKIT  ESP12E_DEVKIT   ESP12E_DEVKIT ESP12E_DEVKIT 1
