@@ -237,7 +237,7 @@ permalink: /materials/
   </tr>
   <tr>
     <td class="tg-oqs5">R12</td>
-    <td class="tg-oqs5">Resistor 103</td>
+    <td class="tg-oqs5">Resistor 102</td>
     <td class="tg-oqs5"><img src="https://user-images.githubusercontent.com/14208261/167717028-58604adf-fd62-43c2-8723-ea49ea5b6c72.png" alt="Image" width="100" height="66"></td>
     <td class="tg-oqs5">SMD R0805</td>
     <td class="tg-oqs5">1</td>
@@ -248,7 +248,7 @@ permalink: /materials/
   </tr>
   <tr>
     <td class="tg-zv4m">R13</td>
-    <td class="tg-zv4m">Resistor 102</td>
+    <td class="tg-zv4m">Resistor 101</td>
     <td class="tg-zv4m"><img src="https://user-images.githubusercontent.com/14208261/167717028-58604adf-fd62-43c2-8723-ea49ea5b6c72.png" alt="Image" width="100" height="66"></td>
     <td class="tg-zv4m">SMD R0805</td>
     <td class="tg-zv4m">1</td>
@@ -259,7 +259,7 @@ permalink: /materials/
   </tr>
   <tr>
     <td class="tg-oqs5">R14</td>
-    <td class="tg-oqs5">Resistor 122</td>
+    <td class="tg-oqs5">Resistor 121</td>
     <td class="tg-oqs5"><img src="https://user-images.githubusercontent.com/14208261/167717028-58604adf-fd62-43c2-8723-ea49ea5b6c72.png" alt="Image" width="100" height="66"></td>
     <td class="tg-oqs5">SMD R0805</td>
     <td class="tg-oqs5">1</td>
