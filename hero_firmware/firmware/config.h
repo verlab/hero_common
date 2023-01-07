@@ -30,7 +30,7 @@
 /* Version Configuration */
 #define CONFIG_VERSION "v2.3"
 #define HARDWARE_VERSION "v2.5"
-#define FIRMWARE_VERSION "v3.1"
+#define FIRMWARE_VERSION "v3.5"
 
 /*Robot name */
 #define ROBOT_NAME "/hero_"
