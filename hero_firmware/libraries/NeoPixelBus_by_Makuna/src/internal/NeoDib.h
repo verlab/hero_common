@@ -25,6 +25,32 @@ License along with NeoPixel.  If not, see
 -------------------------------------------------------------------------*/
 #pragma once
 
+template<typename T_COLOR_OBJECT> class NeoShaderNop
+{
+public:
+    NeoShaderNop()
+    {
+    }
+
+    bool IsDirty() const
+    {
+        return true;
+    };
+
+    void Dirty()
+    {
+    };
+
+    void ResetDirty()
+    {
+    };
+
+    T_COLOR_OBJECT Apply(uint16_t, T_COLOR_OBJECT color)
+    {
+        return color;
+    };
+};
+
 class NeoShaderBase
 {
 public:
@@ -66,6 +92,25 @@ public:
     ~NeoDib()
     {
         free((uint8_t*)_pixels);
+    }
+
+    NeoDib& operator=(const NeoDib& other)
+    {
+        // check for self-assignment
+        if (&other == this)
+        {
+            return *this;
+        }
+
+        uint16_t copyCount = other.PixelCount() < PixelCount() ? other.PixelCount() : PixelCount();
+
+        for (uint16_t pixel = 0; pixel < copyCount; pixel++)
+        {
+            _pixels[pixel] = other.Pixels()[pixel];
+        }
+
+        Dirty();
+        return *this;
     }
 
     T_COLOR_OBJECT* Pixels() const
@@ -118,7 +163,8 @@ public:
         Dirty();
     };
 
-    template <typename T_COLOR_FEATURE, typename T_SHADER> void Render(NeoBufferContext<T_COLOR_FEATURE> destBuffer, T_SHADER& shader)
+    template <typename T_COLOR_FEATURE, typename T_SHADER> 
+    void Render(NeoBufferContext<T_COLOR_FEATURE> destBuffer, T_SHADER& shader, uint16_t destIndexPixel = 0)
     {
         if (IsDirty() || shader.IsDirty())
         {
@@ -132,7 +178,7 @@ public:
             for (uint16_t indexPixel = 0; indexPixel < countPixels; indexPixel++)
             {
                 T_COLOR_OBJECT color = shader.Apply(indexPixel, _pixels[indexPixel]);
-                T_COLOR_FEATURE::applyPixelColor(destBuffer.Pixels, indexPixel, color);
+                T_COLOR_FEATURE::applyPixelColor(destBuffer.Pixels, destIndexPixel + indexPixel, color);
             }
 
             shader.ResetDirty();
