@@ -1,10 +1,24 @@
 #ifndef direct_pin_read_h_
 #define direct_pin_read_h_
 
-#if defined(__AVR__) || (defined(__arm__) && defined(CORE_TEENSY))
+#if defined(__AVR__)
 
 #define IO_REG_TYPE			uint8_t
 #define PIN_TO_BASEREG(pin)             (portInputRegister(digitalPinToPort(pin)))
+#define PIN_TO_BITMASK(pin)             (digitalPinToBitMask(pin))
+#define DIRECT_PIN_READ(base, mask)     (((*(base)) & (mask)) ? 1 : 0)
+
+#elif defined(TEENSYDUINO) && (defined(KINETISK) || defined(KINETISL))
+
+#define IO_REG_TYPE			uint8_t
+#define PIN_TO_BASEREG(pin)             (portInputRegister(digitalPinToPort(pin)))
+#define PIN_TO_BITMASK(pin)             (digitalPinToBitMask(pin))
+#define DIRECT_PIN_READ(base, mask)     (((*(base)) & (mask)) ? 1 : 0)
+
+#elif defined(__IMXRT1052__) || defined(__IMXRT1062__)
+
+#define IO_REG_TYPE			uint32_t
+#define PIN_TO_BASEREG(pin)             (portOutputRegister(pin))
 #define PIN_TO_BITMASK(pin)             (digitalPinToBitMask(pin))
 #define DIRECT_PIN_READ(base, mask)     (((*(base)) & (mask)) ? 1 : 0)
 
@@ -30,12 +44,27 @@
 #define PIN_TO_BITMASK(pin)             (digitalPinToBitMask(pin))
 #define DIRECT_PIN_READ(base, mask)     (((*(base)) & (mask)) ? 1 : 0)
 
-#elif defined(__SAMD21G18A__)
+/* ESP32  Arduino (https://github.com/espressif/arduino-esp32) */
+#elif defined(ESP32)
+
+#define IO_REG_TYPE			uint32_t
+#define PIN_TO_BASEREG(pin)             (portInputRegister(digitalPinToPort(pin)))
+#define PIN_TO_BITMASK(pin)             (digitalPinToBitMask(pin))
+#define DIRECT_PIN_READ(base, mask)     (((*(base)) & (mask)) ? 1 : 0)
+
+#elif defined(__SAMD21G18A__) || defined(__SAMD21E18A__)
 
 #define IO_REG_TYPE                     uint32_t
 #define PIN_TO_BASEREG(pin)             portModeRegister(digitalPinToPort(pin))
 #define PIN_TO_BITMASK(pin)             (digitalPinToBitMask(pin))
 #define DIRECT_PIN_READ(base, mask)     (((*((base)+8)) & (mask)) ? 1 : 0)
+
+#elif defined(__SAMD51__)
+
+#define IO_REG_TYPE                     uint32_t
+#define PIN_TO_BASEREG(pin)             portInputRegister(digitalPinToPort(pin))
+#define PIN_TO_BITMASK(pin)             (digitalPinToBitMask(pin))
+#define DIRECT_PIN_READ(base, mask)     (((*(base)) & (mask)) ? 1 : 0)
 
 #elif defined(RBL_NRF51822)
 
@@ -43,6 +72,18 @@
 #define PIN_TO_BASEREG(pin)             (0)
 #define PIN_TO_BITMASK(pin)             (pin)
 #define DIRECT_PIN_READ(base, pin)      nrf_gpio_pin_read(pin)
+
+#elif defined(ARDUINO_ARCH_NRF52840)
+#define IO_REG_TYPE                     uint32_t
+#define PIN_TO_BASEREG(pin)             (0)
+#define PIN_TO_BITMASK(pin)             digitalPinToPinName(pin)
+#define DIRECT_PIN_READ(base, pin)      nrf_gpio_pin_read(pin)
+
+#elif defined(ARDUINO_NANO_RP2040_CONNECT)
+#define IO_REG_TYPE                     pin_size_t
+#define PIN_TO_BASEREG(pin)             (0)
+#define PIN_TO_BITMASK(pin)             pin
+#define DIRECT_PIN_READ(base, pin)      digitalRead(pin)
 
 #elif defined(__arc__) /* Arduino101/Genuino101 specifics */
 
