@@ -26,27 +26,38 @@ License along with NeoPixel.  If not, see
 
 #pragma once
 
-class DotStarGenericMethod
+// must also check for arm due to Teensy incorrectly having ARDUINO_ARCH_AVR set
+#if defined(ARDUINO_ARCH_AVR) && !defined(__arm__)
+#include "TwoWireBitBangImpleAvr.h"
+#else
+#include "TwoWireBitBangImple.h"
+#endif
+
+
+template<typename T_TWOWIRE> class DotStarMethodBase
 {
 public:
-    DotStarGenericMethod(uint8_t pinClock, uint8_t pinData, uint16_t pixelCount, size_t elementSize) :
-        _pinClock(pinClock),
-        _pinData(pinData),
-        _sizePixels(pixelCount * elementSize)
-    {
-        pinMode(pinClock, OUTPUT);
-        pinMode(pinData, OUTPUT);
+    typedef typename T_TWOWIRE::SettingsObject SettingsObject;
 
-        _pixels = (uint8_t*)malloc(_sizePixels);
-        memset(_pixels, 0, _sizePixels);
+    DotStarMethodBase(uint8_t pinClock, uint8_t pinData, uint16_t pixelCount, size_t elementSize, size_t settingsSize) :
+        _sizeData(pixelCount * elementSize + settingsSize),
+        _sizeEndFrame((pixelCount + 15) / 16), // 16 = div 2 (bit for every two pixels) div 8 (bits to bytes)
+        _wire(pinClock, pinData)
+    {
+        _data = static_cast<uint8_t*>(malloc(_sizeData));
+        // data cleared later in Begin()
     }
 
-    ~DotStarGenericMethod()
+#if !defined(__AVR_ATtiny85__) && !defined(ARDUINO_attiny)
+    DotStarMethodBase(uint16_t pixelCount, size_t elementSize, size_t settingsSize) :
+        DotStarMethodBase(SCK, MOSI, pixelCount, elementSize, settingsSize)
     {
-        pinMode(_pinClock, INPUT);
-        pinMode(_pinData, INPUT);
+    }
+#endif
 
-        free(_pixels);
+    ~DotStarMethodBase()
+    {
+        free(_data);
     }
 
     bool IsReadyToUpdate() const
@@ -54,75 +65,106 @@ public:
         return true; // dot stars don't have a required delay
     }
 
+#if defined(ARDUINO_ARCH_ESP32)
+    void Initialize(int8_t sck, int8_t miso, int8_t mosi, int8_t ss)
+    {
+        _wire.begin(sck, miso, mosi, ss);
+    }
+#endif
+
     void Initialize()
     {
-        digitalWrite(_pinClock, LOW);
-        digitalWrite(_pinData, LOW);
+        _wire.begin();
     }
 
-    void Update()
+    void Update(bool)
     {
+        const uint8_t startFrame[4] = { 0x00 };
+        const uint8_t resetFrame[4] = { 0x00 };
+        
+        _wire.beginTransaction();
+
         // start frame
-        for (int startFrameByte = 0; startFrameByte < 4; startFrameByte++)
-        {
-            _transmitByte(0x00);
-        }
+        _wire.transmitBytes(startFrame, sizeof(startFrame));
         
         // data
-        uint8_t* data = _pixels;
-        const uint8_t* endData = _pixels + _sizePixels;
-        while (data < endData)
-        {
-            _transmitByte(*data++);
-        }
+        _wire.transmitBytes(_data, _sizeData);
+
+       // reset frame
+        _wire.transmitBytes(resetFrame, sizeof(resetFrame));
         
         // end frame 
+        
         // one bit for every two pixels with no less than 1 byte
-        const uint16_t countEndFrameBytes = ((_sizePixels / 4) + 15) / 16;
-        for (uint16_t endFrameByte = 0; endFrameByte < countEndFrameBytes; endFrameByte++)
+        for (size_t endFrameByte = 0; endFrameByte < _sizeEndFrame; endFrameByte++)
         {
-           _transmitByte(0xff);
+            _wire.transmitByte(0x00);
         }
-
-        // set clock and data back to low between updates
-        digitalWrite(_pinData, LOW);
+        
+        _wire.endTransaction();
     }
 
-    uint8_t* getPixels() const
+    uint8_t* getData() const
     {
-        return _pixels;
+        return _data;
     };
 
-    size_t getPixelsSize() const
+    size_t getDataSize() const
     {
-        return _sizePixels;
+        return _sizeData;
     };
+
+    void applySettings([[maybe_unused]] const SettingsObject& settings)
+    {
+        _wire.applySettings(settings);
+    }
 
 private:
-    const uint8_t  _pinClock;     // output pin number for clock line
-    const uint8_t  _pinData;      // output pin number for data line
-    const size_t   _sizePixels;   // Size of '_pixels' buffer below
+    const size_t   _sizeData;   // Size of '_data' buffer below
+    const size_t   _sizeEndFrame;
 
-    uint8_t* _pixels;       // Holds LED color values
-
-    void _transmitByte(uint8_t data)
-    {
-        for (int bit = 7; bit >= 0; bit--)
-        {
-            // set data bit on pin
-            digitalWrite(_pinData, (data & 0x80) == 0x80 ? HIGH : LOW);
-
-            // set clock high as data is ready
-            digitalWrite(_pinClock, HIGH);
-
-            data <<= 1;
-
-            // set clock low as data pin is changed
-            digitalWrite(_pinClock, LOW);
-        }
-    }
+    T_TWOWIRE _wire;
+    uint8_t* _data;       // Holds LED color values
 };
 
-typedef DotStarGenericMethod DotStarMethod;
+typedef DotStarMethodBase<TwoWireBitBangImple> DotStarMethod;
 
+#if !defined(__AVR_ATtiny85__) && !defined(ARDUINO_attiny)
+#include "TwoWireSpiImple.h"
+typedef DotStarMethodBase<TwoWireSpiImple<SpiSpeed40Mhz>> DotStarSpi40MhzMethod;
+typedef DotStarMethodBase<TwoWireSpiImple<SpiSpeed20Mhz>> DotStarSpi20MhzMethod;
+typedef DotStarMethodBase<TwoWireSpiImple<SpiSpeed10Mhz>> DotStarSpi10MhzMethod;
+typedef DotStarMethodBase<TwoWireSpiImple<SpiSpeed5Mhz>> DotStarSpi5MhzMethod;
+typedef DotStarMethodBase<TwoWireSpiImple<SpiSpeed2Mhz>> DotStarSpi2MhzMethod;
+typedef DotStarMethodBase<TwoWireSpiImple<SpiSpeed1Mhz>> DotStarSpi1MhzMethod;
+typedef DotStarMethodBase<TwoWireSpiImple<SpiSpeed500Khz>> DotStarSpi500KhzMethod;
+typedef DotStarMethodBase<TwoWireSpiImple<SpiSpeedHz>> DotStarSpiHzMethod;
 
+typedef DotStarSpi10MhzMethod DotStarSpiMethod;
+#endif
+
+#if defined(ARDUINO_ARCH_ESP32)
+// Give option to use Vspi alias of Spi class if wanting to specify which SPI peripheral is used on the ESP32
+typedef DotStarMethodBase<TwoWireSpiImple<SpiSpeed40Mhz>> DotStarVspi40MhzMethod;
+typedef DotStarMethodBase<TwoWireSpiImple<SpiSpeed20Mhz>> DotStarVspi20MhzMethod;
+typedef DotStarMethodBase<TwoWireSpiImple<SpiSpeed10Mhz>> DotStarVspi10MhzMethod;
+typedef DotStarMethodBase<TwoWireSpiImple<SpiSpeed5Mhz>> DotStarVspi5MhzMethod;
+typedef DotStarMethodBase<TwoWireSpiImple<SpiSpeed2Mhz>> DotStarVspi2MhzMethod;
+typedef DotStarMethodBase<TwoWireSpiImple<SpiSpeed1Mhz>> DotStarVspi1MhzMethod;
+typedef DotStarMethodBase<TwoWireSpiImple<SpiSpeed500Khz>> DotStarVspi500KhzMethod;
+typedef DotStarMethodBase<TwoWireSpiImple<SpiSpeedHz>> DotStarVspiHzMethod;
+
+typedef DotStarSpi10MhzMethod DotStarVspiMethod;
+
+#include "TwoWireHspiImple.h"
+typedef DotStarMethodBase<TwoWireHspiImple<SpiSpeed40Mhz>> DotStarHspi40MhzMethod;
+typedef DotStarMethodBase<TwoWireHspiImple<SpiSpeed20Mhz>> DotStarHspi20MhzMethod;
+typedef DotStarMethodBase<TwoWireHspiImple<SpiSpeed10Mhz>> DotStarHspi10MhzMethod;
+typedef DotStarMethodBase<TwoWireHspiImple<SpiSpeed5Mhz>> DotStarHspi5MhzMethod;
+typedef DotStarMethodBase<TwoWireHspiImple<SpiSpeed2Mhz>> DotStarHspi2MhzMethod;
+typedef DotStarMethodBase<TwoWireHspiImple<SpiSpeed1Mhz>> DotStarHspi1MhzMethod;
+typedef DotStarMethodBase<TwoWireHspiImple<SpiSpeed500Khz>> DotStarHspi500KhzMethod;
+typedef DotStarMethodBase<TwoWireHspiImple<SpiSpeedHz>> DotStarHspiHzMethod;
+
+typedef DotStarHspi10MhzMethod DotStarHspiMethod;
+#endif

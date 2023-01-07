@@ -189,7 +189,9 @@ public:
         return color;
     };
 
-    void Blt(NeoBufferContext<T_COLOR_FEATURE> destBuffer,
+
+    template <typename T_SHADER> void Render(NeoBufferContext<T_COLOR_FEATURE> destBuffer,
+        T_SHADER& shader,
         uint16_t indexPixel,
         int16_t xSrc,
         int16_t ySrc,
@@ -204,10 +206,11 @@ public:
         {
             for (int16_t x = 0; x < wSrc && indexPixel < destPixelCount; x++, indexPixel++)
             {
-                if ((uint16_t)xSrc < _width)
+                if (static_cast<uint16_t>(xSrc) < _width)
                 {
                     if (readPixel(&color))
                     {
+                        color = shader.Apply(indexPixel, color);
                         xSrc++;
                     }
                 }
@@ -216,8 +219,20 @@ public:
             }
         }
     }
-
+    
     void Blt(NeoBufferContext<T_COLOR_FEATURE> destBuffer,
+        uint16_t indexPixel,
+        int16_t xSrc,
+        int16_t ySrc,
+        int16_t wSrc)
+    {
+        NeoShaderNop<typename T_COLOR_FEATURE::ColorObject> shaderNop;
+
+        Render<NeoShaderNop<typename T_COLOR_FEATURE::ColorObject>>(destBuffer, shaderNop, indexPixel, xSrc, ySrc, wSrc);
+    };
+
+    template <typename T_SHADER> void Render(NeoBufferContext<T_COLOR_FEATURE> destBuffer,
+        T_SHADER& shader,
         int16_t xDest,
         int16_t yDest,
         int16_t xSrc,
@@ -238,15 +253,16 @@ public:
             {
                 for (int16_t x = 0; x < wSrc; x++)
                 {
-                    if ((uint16_t)xFile < _width)
+                    uint16_t indexDest = layoutMap(xDest + x, yDest + y);
+
+                    if (static_cast<uint16_t>(xFile) < _width)
                     {
                         if (readPixel(&color))
                         {
+                            color = shader.Apply(indexDest, color);
                             xFile++;
                         }
                     }
- 
-                    uint16_t indexDest = layoutMap(xDest + x, yDest + y);
 
                     if (indexDest < destPixelCount)
                     {
@@ -255,6 +271,28 @@ public:
                 }
             }
         }
+    };
+
+    void Blt(NeoBufferContext<T_COLOR_FEATURE> destBuffer,
+        int16_t xDest,
+        int16_t yDest,
+        int16_t xSrc,
+        int16_t ySrc,
+        int16_t wSrc,
+        int16_t hSrc,
+        LayoutMapCallback layoutMap)
+    {
+        NeoShaderNop<typename T_COLOR_FEATURE::ColorObject> shaderNop;
+
+        Render<NeoShaderNop<typename T_COLOR_FEATURE::ColorObject>>(destBuffer,
+            shaderNop, 
+            xDest,
+            yDest,
+            xSrc,
+            ySrc,
+            wSrc,
+            hSrc,
+            layoutMap);
     };
 
 
@@ -273,7 +311,7 @@ private:
         {
             x = 0;
         }
-        else if ((uint16_t)x >= _width)
+        else if (static_cast<uint16_t>(x) >= _width)
         {
             x = _width - 1;
         }
@@ -286,7 +324,7 @@ private:
         {
             y = 0;
         }
-        else if ((uint16_t)y >= _height)
+        else if (static_cast<uint16_t>(y) >= _height)
         {
             y = _height - 1;
         }
