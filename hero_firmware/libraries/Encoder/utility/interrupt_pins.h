@@ -216,6 +216,7 @@
   #define CORE_INT5_PIN		5
   // GPIO6-GPIO11 are typically used to interface with the flash memory IC on 
   // most esp8266 modules, so we should avoid adding interrupts to these pins.
+  #define CORE_INT10_PIN	10 // Use with DIO mode - Check this first
   #define CORE_INT12_PIN	12
   #define CORE_INT13_PIN	13
   #define CORE_INT14_PIN	14
