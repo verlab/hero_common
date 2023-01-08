@@ -45,10 +45,12 @@ void RangeSensor::init(ros::NodeHandle &nh, String heroName) {
   /* Address laser publisher */
   this->laserTopic = heroName + String("/laser");                                        /* Update topic name */
   this->laserPub = new ros::Publisher(this->laserTopic.c_str(), &this->laserMessage);    /* Instantiate publisher */
-  this->laserFrame = heroName + String("/laser_link");                                   /* Update frame name */
+  String namespace_ = heroName;
+  namespace_.replace("/", "");
+  this->laserFrame =  namespace_ + String("/laser_link");                  /* Update frame name */
   
   this->laserMessage.header.frame_id = this->laserFrame.c_str();                         /* Set frame name */
-  this->laserMessage.header.seq = -1;                                                    /* Start message sequency */
+  this->laserMessage.header.seq = 0;                                                     /* Start message sequency */
   
   this->laserMessage.range_min = 0.07367/2.0; //0.0;                                                    /* Min laser range */
   this->laserMessage.range_max = 0.20;                                                   /* Max laser range */
@@ -77,6 +79,7 @@ void RangeSensor::update(unsigned long rate) {
     this->readSensor();
     /* Send laser message to be published into ROS */
     this->laserMessage.header.stamp = this->nh_->now();
+    this->laserMessage.header.seq += 1;
     this->laserPub->publish( &laserMessage );
     this->timer = millis();
   }
