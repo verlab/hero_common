@@ -53,7 +53,7 @@ void RangeSensor::init(ros::NodeHandle &nh, String heroName) {
   this->laserMessage.header.seq = 0;                                                     /* Start message sequency */
   
   this->laserMessage.range_min = 0.07367/2.0; //0.0;                                                    /* Min laser range */
-  this->laserMessage.range_max = 0.20;                                                   /* Max laser range */
+  this->laserMessage.range_max = 0.20f;                                                   /* Max laser range */
   this->laserMessage.angle_min = -M_PI;                                                  /* Initial angle */
   this->laserMessage.angle_max = M_PI;                                                   /* Final angle */
   this->laserMessage.angle_increment = 0.79/2.0;                                             /* Angle increment */
@@ -111,6 +111,7 @@ float RangeSensor::meterFromIntensity(int idx, float value){
 
 
 void RangeSensor::readSensor() {
+  pinMode(MUX_EN, OUTPUT);
   for (int count = 0; count <= 7; count++) {
     /* Select the input  */
     int r0 = count & 0x01;
@@ -126,6 +127,7 @@ void RangeSensor::readSensor() {
       4. Wait until A1 Espera até A1 desaturate and repeat for A1 {until A7}
       PS. It seems that the darker emissors recover faster than the light ones during over the saturation
     */
+    analogWrite(MUX_EN, 0);
     delayMicroseconds(500);  // diode should power up in 100 us
     float env = (float) analogRead(A0);
     analogWrite(MUX_EN, 1024); // turn on all diode and enable mux
@@ -147,6 +149,7 @@ void RangeSensor::readSensor() {
 
 
 bool RangeSensor::configModeCheck() {
+  pinMode(MUX_EN, OUTPUT);
   for (int count = 0; count <= 7; count++) {
     /* Select the input  */
     int r0 = count & 0x01;
