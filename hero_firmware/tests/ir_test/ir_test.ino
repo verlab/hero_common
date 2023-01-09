@@ -10,6 +10,8 @@
  * Computer Vision and Robotics Lab
  * Federal University of Minas Gerais - Brazil
  ************************************************************************/
+/* ROS Library */
+#define ROSSERIAL_ARDUINO_TCP
 #include <ros.h>
 #include <sensor_msgs/LaserScan.h>
 #include <std_msgs/ColorRGBA.h>

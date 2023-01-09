@@ -10,6 +10,8 @@
   Computer Vision and Robotics Lab
   Federal University of Minas Gerais - Brazil
 ************************************************************************/
+/* ROS Library */
+#define ROSSERIAL_ARDUINO_TCP
 #include <ros.h>
 #include <sensor_msgs/LaserScan.h>
 #include <std_msgs/ColorRGBA.h>
@@ -34,7 +36,7 @@
 #define HERO_ID "0"
 
 const uint16_t PixelCount = 7; // this example assumes 4 pixels, making it smaller will cause a failure
-NeoPixelBrightnessBus<NeoGrbFeature, NeoEsp8266Uart800KbpsMethod> strip(PixelCount);
+NeoPixelBrightnessBus<NeoGrbFeature, NeoEsp8266Uart1800KbpsMethod> strip(PixelCount);
 RgbColor red(colorSaturation, 0, 0);
 RgbColor green(0, colorSaturation, 0);
 RgbColor black(0, 0, 0);
@@ -44,7 +46,7 @@ double timer, log_timer, rate = 10;
 
 ///* Wifi setup */
 IPAddress ROS_MASTER_ADDRESS(10, 42, 0, 1); // ros master ip
-char* WIFI_SSID = "hero_network"; // network name
+char* WIFI_SSID = "rezeck"; // network name
 char* WIFI_PASSWD = "s3cr3tp4ss"; // network password
 
 /* ROS Setup */
@@ -188,6 +190,7 @@ void loop() {
 }
 
 void readIR() {
+  pinMode(enable, OUTPUT);
   for (int count = 0; count <= 7; count++) {
     /* select the input  */
     int r0 = count & 0x01;
