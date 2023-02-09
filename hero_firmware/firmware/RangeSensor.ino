@@ -52,12 +52,12 @@ void RangeSensor::init(ros::NodeHandle &nh, String heroName) {
   this->laserMessage.header.frame_id = this->laserFrame.c_str();                         /* Set frame name */
   this->laserMessage.header.seq = 0;                                                     /* Start message sequency */
   
-  this->laserMessage.range_min = 0.07367/2.0; //0.0;                                                    /* Min laser range */
+  this->laserMessage.range_min = ROBOT_DIAMETER/2.0;                 /* Min laser range */
   this->laserMessage.range_max = 0.20f;                                                   /* Max laser range */
-  this->laserMessage.angle_min = -M_PI;                                                  /* Initial angle */
+  this->laserMessage.angle_min = -M_PI;                                                   /* Initial angle */
   this->laserMessage.angle_max = M_PI;                                                   /* Final angle */
-  this->laserMessage.angle_increment = 0.79/2.0;                                             /* Angle increment */
-  this->laserMessage.ranges_length = 16;                                                  /* Samples; 8 proximity sensors */
+  this->laserMessage.angle_increment = 0.79/2.0;                                         /* Angle increment */
+  this->laserMessage.ranges_length = 16;                                                 /* Samples; 8 proximity sensors */
   this->laserMessage.ranges = (float *)malloc(this->laserMessage.ranges_length * sizeof(float));                        /* Instantiate ranges vector */
   this->laserMessage.intensities_length = 16;                                             /* Samples; 8 proximity sensors */
   this->laserMessage.intensities = (float *)malloc(this->laserMessage.intensities_length * sizeof(float));                   /* Instantiate intensities vector */
@@ -131,7 +131,7 @@ void RangeSensor::readSensor() {
     delayMicroseconds(500);  // diode should power up in 100 us
     float env = (float) analogRead(A0);
     analogWrite(MUX_EN, 1024); // turn on all diode and enable mux
-    delayMicroseconds(100);  // diode should power up in 100 us -> 180 us
+    delayMicroseconds(80);  // diode should power up in 100 us -> 180 us
 
     this->laserMessage.ranges[real_pos_inter[count]] = this->meterFromIntensity(real_pos[count], (float)(analogRead(A0)) - env);
     this->laserMessage.intensities[real_pos_inter[count]] = (float)analogRead(A0) - (float)env;//env;
@@ -165,10 +165,11 @@ bool RangeSensor::configModeCheck() {
       4. Wait until A1 Espera até A1 desaturate and repeat for A1 {until A7}
       PS. It seems that the darker emissors recover faster than the light ones during over the saturation
     */
+    analogWrite(MUX_EN, 0);
     delayMicroseconds(500);  // diode should power up in 100 us
     int env = analogRead(A0);
     analogWrite(MUX_EN, 1024); // turn on all diode and enable mux
-    delayMicroseconds(100);  // diode should power up in 100 us -> 180 us
+    delayMicroseconds(80);  // diode should power up in 100 us -> 180 us
 
     if ((analogRead(A0) - env) < TOUCH_THRESHOLD)
       return false;
