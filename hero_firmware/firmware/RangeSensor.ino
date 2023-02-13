@@ -30,8 +30,9 @@ RangeSensor::RangeSensor(unsigned long rate) {
   EEPROM.begin(MEM_ALOC_SIZE);
   EEPROM.get(MEM_INIT_POS_IR_CALIB, irCalib);
   EEPROM.end();
-  
 
+  /* TODO: Check if irCalib is consistent to avoid memory trash */
+  
   this->timer = millis();
   this->connect();
   this->setRate(rate);
@@ -52,14 +53,14 @@ void RangeSensor::init(ros::NodeHandle &nh, String heroName) {
   this->laserMessage.header.frame_id = this->laserFrame.c_str();                         /* Set frame name */
   this->laserMessage.header.seq = 0;                                                     /* Start message sequency */
   
-  this->laserMessage.range_min = 0.07367/2.0; //0.0;                                                    /* Min laser range */
-  this->laserMessage.range_max = 0.20f;                                                   /* Max laser range */
+  this->laserMessage.range_min = ROBOT_DIAMETER/2.0;                                     /* Min laser range */
+  this->laserMessage.range_max = MAX_RANGE + ROBOT_DIAMETER/2.0;                         /* Max laser range */
   this->laserMessage.angle_min = -M_PI;                                                  /* Initial angle */
   this->laserMessage.angle_max = M_PI;                                                   /* Final angle */
-  this->laserMessage.angle_increment = 0.79/2.0;                                             /* Angle increment */
-  this->laserMessage.ranges_length = 16;                                                  /* Samples; 8 proximity sensors */
+  this->laserMessage.angle_increment = 0.79/2.0;                                         /* Angle increment */
+  this->laserMessage.ranges_length = 16;                                                 /* Samples; 8 proximity sensors */
   this->laserMessage.ranges = (float *)malloc(this->laserMessage.ranges_length * sizeof(float));                        /* Instantiate ranges vector */
-  this->laserMessage.intensities_length = 16;                                             /* Samples; 8 proximity sensors */
+  this->laserMessage.intensities_length = 16;                                            /* Samples; 8 proximity sensors */
   this->laserMessage.intensities = (float *)malloc(this->laserMessage.intensities_length * sizeof(float));                   /* Instantiate intensities vector */
   
   this->nh_->advertise(*this->laserPub);    
@@ -99,14 +100,13 @@ void RangeSensor::connect() {
   analogWrite(MUX_EN, 0);
 }
 
-float RangeSensor::meterFromIntensity(int idx, float value){
-  if (value > 6){
-        value = (float) irCalib.alpha[idx]/sqrt(value) + this->laserMessage.range_min; // Transform the analog value to a distance value in meters (given from field tests).
-    } else{
-        value = this->laserMessage.range_max;
-    }
-    value = max(min(value, this->laserMessage.range_max), this->laserMessage.range_min);
-    return value;
+float RangeSensor::meterFromIntensity(int idx, float intensity){
+  float distance = this->laserMessage.range_max;
+  if (intensity > 2.0){
+    distance = sqrt((float)irCalib.alpha[idx]/intensity) + this->laserMessage.range_min; // Transform the analog value to a distance value in meters d = sqrt(a/(s-b))
+  }
+  distance = max(min(distance, this->laserMessage.range_max), this->laserMessage.range_min);
+  return distance;
 }
 
 
@@ -132,9 +132,10 @@ void RangeSensor::readSensor() {
     float env = (float) analogRead(A0);
     analogWrite(MUX_EN, 1024); // turn on all diode and enable mux
     delayMicroseconds(100);  // diode should power up in 100 us -> 180 us
+    float intensity = (float)(analogRead(A0)) - env;
 
-    this->laserMessage.ranges[real_pos_inter[count]] = this->meterFromIntensity(real_pos[count], (float)(analogRead(A0)) - env);
-    this->laserMessage.intensities[real_pos_inter[count]] = (float)analogRead(A0) - (float)env;//env;
+    this->laserMessage.ranges[real_pos_inter[count]] = this->meterFromIntensity(real_pos[count], intensity);
+    this->laserMessage.intensities[real_pos_inter[count]] = intensity;//env;
 
     analogWrite(MUX_EN, 0); /* Turn off all diode and enable mux */
   }

@@ -81,6 +81,7 @@ bool config_mode = false;       /* If you cover all the IR sensors with the hand
 #define MUX_C 12              /* PIN D6 */
 #define MUX_EN 2              /* PIN D4 */
 #define TOUCH_THRESHOLD 450   /* If sensor readings reach 900 than we assume a touch sensor */
+#define MAX_RANGE 0.30        /* Max range (in meter) for IR distance sensor */
 const int real_pos[8] = {0, 1, 2, 7, 3, 6, 4, 5}; /* Sort proximity sensors*/
 const int real_pos_inter[8] = {0, 2, 4, 14, 6, 12, 8, 10}; /* Sort proximity sensors*/
 
