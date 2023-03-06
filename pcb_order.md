@@ -30,7 +30,7 @@ permalink: /pcb_order/
   
 <p align="justify">Although we used some SMD components, we had no difficulty using the soldering iron to solder them. That way, a stencil board was not required.</p>
 
-<p align="justify">To start an order, simply download the <a href="https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/schematic/EAGLE/projects/hero_v2.7/board_2022-10-09.zip" target="_blank" rel="noopener noreferrer">Gerber File</a>, and send it to the PCB manufacturing service of your choice. Just pay attention to these requirements:</p>
+<p align="justify">To start an order, simply download the <a href="https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/schematic/EAGLE/projects/hero_v2.7/board_2023-03-05.zip" target="_blank" rel="noopener noreferrer">Gerber File</a>, and send it to the PCB manufacturing service of your choice. Just pay attention to these requirements:</p>
 
  <ul class="fa-ul" style="list-style: none;">
   <li> Finished Copper >= 1 oz</li>
