@@ -9,7 +9,7 @@ If you use HeRo in an academic work, please cite:
 
 - Rezeck, P., Azpúrua, H., Corrêa, M.F.S. et al. HeRo 2.0: a low-cost robot for swarm robotics research. Auton Robot (2023). https://doi.org/10.1007/s10514-023-10100-0
 ```
-@article{Rezeck2023,
+@article{rezeck2023,
   author={Rezeck, Paulo and Azp{\'u}rua, H{\'e}ctor and Corr{\^e}a, Maur{\'i}cio F. S. and Chaimowicz, Luiz},
   title={HeRo 2.0: a low-cost robot for swarm robotics research},
   journal={Autonomous Robots},
