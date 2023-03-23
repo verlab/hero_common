@@ -7,17 +7,19 @@ permalink: /publications/
 ## Citation
 If you use HeRo in an academic work, please cite:
 
-- Rezeck, P., Azpurua, H., Correa, M. F., & Chaimowicz, L. (2022). HeRo 2.0: A Low-Cost Robot for Swarm Robotics Research. arXiv preprint arXiv:2202.12391.
+- Rezeck, P., Azpúrua, H., Corrêa, M.F.S. et al. HeRo 2.0: a low-cost robot for swarm robotics research. Auton Robot (2023). https://doi.org/10.1007/s10514-023-10100-0
 ```
-@misc{https://doi.org/10.48550/arxiv.2202.12391,
-  doi = {10.48550/ARXIV.2202.12391},
-  url = {https://arxiv.org/abs/2202.12391},
-  author = {Rezeck, Paulo and Azpurua, Hector and Correa, Mauricio FS and Chaimowicz, Luiz}, 
-  keywords = {Robotics (cs.RO), Multiagent Systems (cs.MA)},
-  title = {HeRo 2.0: A Low-Cost Robot for Swarm Robotics Research},
-  publisher = {arXiv},
-  year = {2022},
-  copyright = {Creative Commons Attribution 4.0 International}
+@article{Rezeck2023,
+  author={Rezeck, Paulo and Azp{\'u}rua, H{\'e}ctor and Corr{\^e}a, Maur{\'i}cio F. S. and Chaimowicz, Luiz},
+  title={HeRo 2.0: a low-cost robot for swarm robotics research},
+  journal={Autonomous Robots},
+  year={2023},
+  volume={},
+  number={},
+  pages={},
+  doi={10.1007/s10514-023-10100-0},
+  url={https://doi.org/10.1007/s10514-023-10100-0},
+  publisher={Springer}
 }
 ```
 
