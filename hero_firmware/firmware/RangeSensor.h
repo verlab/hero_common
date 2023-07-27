@@ -58,15 +58,20 @@ class RangeSensor {
 
   public:
     RangeSensor(unsigned long rate);
+    void init(void);
     void init(ros::NodeHandle &nh, String heroName);
     void update();
     void update(unsigned long rate);
     void connect();
     void setRate(unsigned long rate);
+    void selectInput(int input);
     void readSensor();
     float meterFromIntensity(int idx, float value);
-    bool configModeCheck();
+    int configModeCheck();
+    void storeIRCalibrationData(const float *alpha);
     void setIRCalibCallback(const hero_common::SetIRCalibration::Request& req, hero_common::SetIRCalibration::Response& res);
+
+    sensor_msgs::LaserScan getMessage(void);
 };
 
 

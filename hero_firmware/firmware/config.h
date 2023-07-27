@@ -30,7 +30,7 @@
 /* Version Configuration */
 #define CONFIG_VERSION "v2.3"
 #define HARDWARE_VERSION "v2.5"
-#define FIRMWARE_VERSION "v3.5"
+#define FIRMWARE_VERSION "v3.6"
 
 /*Robot name */
 #define ROBOT_NAME "/hero_"
@@ -49,10 +49,11 @@ bool default_config = true;
 #define SYNC_RATE 20            /* Default loop frequency */
 #define MAX_BUFFER_SIZE 100     /* Max debug string buffer */
 #define WIFI_CONNECT_LOOP 500   /* Time sleep when trying to connect the WIFI to an AP */
-bool config_mode = false;       /* If you cover all the IR sensors with the hand, the robot start as a config mode accessed by AP mode*/
+int config_mode = 0;            /* If you cover all the IR sensors with the hand, the robot start as a config mode accessed by AP mode*/
 
 /* Robot Configuration */
-#define WHEEL_DIAMETER 0.0492 //0.04955     /* Wheel diameter in m. */
+#define ROBOT_DIAMETER 0.07367             /* Robot footprint diameter (m)*/
+#define WHEEL_DIAMETER 0.0492 //0.04955    /* Wheel diameter in m. */
 #define WHEEL_SEPARATION 0.063 //0.06335   /* Separation between wheels (m) */
 #define WHEEL_CIRCUMFERENCE ((WHEEL_DIAMETER * M_PI))   /* Wheel circumference (meters). */
 #define MOT_STEP_DIST (WHEEL_CIRCUMFERENCE/288.0)             /* Distance for each motor step (meters); a complete turn is 288 steps (0.000535598 meters per step (m/steps)). */

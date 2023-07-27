@@ -61,6 +61,7 @@ class WheelEncoder {
 
   public:
     WheelEncoder(unsigned long rate);
+    void init(void);
     void init(ros::NodeHandle &nh, String heroName);
     void update(void);
     void update(unsigned long rate);

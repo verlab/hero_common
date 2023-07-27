@@ -106,6 +106,7 @@ class VelocityControl {
 
   public:
     VelocityControl(unsigned long rate);
+    void init(MotorDriver& motorDriver, WheelEncoder& wheelEncoder);
     void init(ros::NodeHandle &nh, String heroName, MotorDriver& motorDriver, WheelEncoder& wheelEncoder);
     void update();
     void update(unsigned long rate);

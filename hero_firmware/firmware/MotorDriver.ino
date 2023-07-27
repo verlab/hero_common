@@ -49,6 +49,10 @@ MotorDriver::MotorDriver(unsigned long rate) {
   }
 }
 
+void MotorDriver::init(void){
+  
+}
+
 void MotorDriver::init(ros::NodeHandle &nh, String heroName) {
   this->nh_ = &nh;   /* ROS Node Handle */
   this->heroName = heroName;
