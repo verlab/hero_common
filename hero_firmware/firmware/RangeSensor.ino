@@ -39,7 +39,7 @@ RangeSensor::RangeSensor(unsigned long rate) {
 
 void RangeSensor::init() {
   this->laserMessage.range_min = ROBOT_DIAMETER / 2.0;                                                     /* Min laser range */
-  this->laserMessage.range_max = 0.20f;                                                                    /* Max laser range */
+  this->laserMessage.range_max = 0.20f + this->laserMessage.range_min;                                     /* Max laser range */
   this->laserMessage.angle_min = -M_PI;                                                                    /* Initial angle */
   this->laserMessage.angle_max = M_PI;                                                                     /* Final angle */
   this->laserMessage.angle_increment = 0.79 / 2.0;                                                         /* Angle increment */
@@ -64,7 +64,7 @@ void RangeSensor::init(ros::NodeHandle &nh, String heroName) {
   this->laserMessage.header.seq = 0;                             /* Start message sequency */
 
   this->laserMessage.range_min = ROBOT_DIAMETER / 2.0;                                                     /* Min laser range */
-  this->laserMessage.range_max = 0.20f;                                                                    /* Max laser range */
+  this->laserMessage.range_max = 0.20f + this->laserMessage.range_min;                                     /* Max laser range */
   this->laserMessage.angle_min = -M_PI;                                                                    /* Initial angle */
   this->laserMessage.angle_max = M_PI;                                                                     /* Final angle */
   this->laserMessage.angle_increment = 0.79 / 2.0;                                                         /* Angle increment */
@@ -111,13 +111,9 @@ void RangeSensor::connect() {
 }
 
 float RangeSensor::meterFromIntensity(int idx, float value) {
-  if (value > 6) {
-    value = (float)irCalib.alpha[idx] / sqrt(value) + this->laserMessage.range_min;  // Transform the analog value to a distance value in meters (given from field tests).
-  } else {
-    value = this->laserMessage.range_max;
-  }
-  value = max(min(value, this->laserMessage.range_max), this->laserMessage.range_min);
-  return value;
+  float meter = sqrt((float) irCalib.alpha[idx] / value);  // Transform the analog value to a distance value in meters (given from field tests).
+  meter = max(min(meter, 0.22f), 0.01f);
+  return meter + this->laserMessage.range_min;
 }
 
 void RangeSensor::selectInput(int input) {
@@ -137,6 +133,7 @@ void RangeSensor::readSensor() {
   for (int sensor = 0; sensor <= 7; sensor++) {
     /* Select the input  */
     selectInput(sensor);
+    delayMicroseconds(10);
     /* Photodiode needs sleep for while since all the emissors are turned on at same time
         1. Read A0 sensor light
         2. Turn on the emissors and wait 100 us
@@ -145,19 +142,19 @@ void RangeSensor::readSensor() {
         PS. It seems that the darker emissors recover faster than the light ones during over the saturation
     */
     analogWrite(MUX_EN, 0);
-    delayMicroseconds(500);             // Photodiode needs sleep for a while since all the emitters are turned on at the same time
-    float env = (float)analogRead(A0);  // Reading the ambient light level from sensor A0
+    delayMicroseconds(100);              // Photodiode needs sleep for a while since all the emitters are turned on at the same time
+    float env = (float) analogRead(A0);  // Reading the ambient light level from sensor A0
 
-    analogWrite(MUX_EN, 1023);  // Turning on all diodes/emitters and enabling the multiplexer
-    delayMicroseconds(80);      // Waiting for the diodes/emitters to power up (100 microseconds)
+    analogWrite(MUX_EN, 1024);   // Turning on all diodes/emitters and enabling the multiplexer
+    delayMicroseconds(380);      // Waiting for the diodes/emitters to power up (100 microseconds)
 
-    float sensor_reading = (float)analogRead(A0) - env;  // Reading the proximity level from sensor A0 and subtracting the ambient light level
+    float sensor_reading = max(0.0f, (float)analogRead(A0) - env);  // Reading the proximity level from sensor A0 and subtracting the ambient light level
+    this->laserMessage.intensities[real_pos_inter[sensor]] = sensor_reading;
     this->laserMessage.ranges[real_pos_inter[sensor]] = this->meterFromIntensity(real_pos[sensor], sensor_reading);
-    this->laserMessage.intensities[real_pos_inter[sensor]] = env;
 
-    analogWrite(MUX_EN, 0);  // Turning off all diodes/emitters and disabling the multiplexer
-    delayMicroseconds(80);   // Waiting for the diodes/emitters to power down (80 microseconds)
   }
+  analogWrite(MUX_EN, 0);  // Turning off all diodes/emitters and disabling the multiplexer
+  // delayMicroseconds(100);   // Waiting for the diodes/emitters to power down (100 microseconds)
 
 #define RANGE_INTERPOLATION
 #ifdef RANGE_INTERPOLATION
@@ -176,6 +173,7 @@ int RangeSensor::configModeCheck() {
   for (int sensor = 0; sensor <= 7; sensor++) {
     /* Select the input  */
     selectInput(sensor);
+    delayMicroseconds(10);
     /* Photodiode needs sleep for while since all the emissors are turned on at same time
         1. Read A0 sensor light
         2. Turn on the emissors and wait 100 us
@@ -184,10 +182,10 @@ int RangeSensor::configModeCheck() {
         PS. It seems that the darker emissors recover faster than the light ones during over the saturation
     */
     analogWrite(MUX_EN, 0);
-    delayMicroseconds(500);  // diode should power up in 100 us
+    delayMicroseconds(100);  // diode should power up in 100 us
     int env = analogRead(A0);
     analogWrite(MUX_EN, 1024);  // turn on all diode and enable mux
-    delayMicroseconds(80);      // diode should power up in 100 us -> 180 us
+    delayMicroseconds(400);      // diode should power up in 100 us -> 180 us
 
     if (!((analogRead(A0) - env) < TOUCH_THRESHOLD)) {
       // return 0;
