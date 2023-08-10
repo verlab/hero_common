@@ -1,7 +1,7 @@
 <launch>
     <arg name="model" default="$(find hero_description)/robot/hero.urdf.xacro"/>
     <param name="/description" command="$(find xacro)/xacro --inorder $(arg model)" />
-    <node pkg="rosserial_python" type="serial_node.py" name="hero_bringup" output="screen">
+    <node pkg="rosserial_python" type="serial_node.py" name="hero_bringup" respawn="true" output="screen">
         <param name="fork_server" value="False"/>
         <param name="port" value="tcp"/>
         <param name="tcp_port" value="11411"/>
