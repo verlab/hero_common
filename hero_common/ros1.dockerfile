@@ -14,6 +14,10 @@ RUN apt-get update && apt-get install -y \
       ros-${ROS_DISTRO}-rosserial \
       ros-${ROS_DISTRO}-rosserial-server \
       ros-${ROS_DISTRO}-urdf \
+      ros-${ROS_DISTRO}-rqt \
+      ros-${ROS_DISTRO}-rqt-plot \
+      ros-${ROS_DISTRO}-rqt-ez-publisher \
+      ros-${ROS_DISTRO}-rqt-rviz \
       ros-${ROS_DISTRO}-teleop-twist-keyboard \
       ros-${ROS_DISTRO}-gazebo-ros-pkgs \ 
       ros-${ROS_DISTRO}-gazebo-plugins \
@@ -30,9 +34,17 @@ RUN mkdir -p $CATKIN_DIR/src \
     && echo 'source ${CATKIN_DIR}/devel/setup.bash' >> /root/.bashrc"
 
 WORKDIR $CATKIN_DIR
+
+RUN cd $CATKIN_DIR/src \
+    && git clone --depth 1 --branch noetic-devel https://github.com/rezeck/rosserial.git \
+    && cd $CATKIN_DIR \
+    && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash \
+    # && rosdep install --from-paths src --ignore-src -r -y \
+    && catkin_make"
+
 RUN cd $CATKIN_DIR/src \
     && git clone --depth 1 --branch noetic-devel https://github.com/verlab/hero_common.git \
     && cd $CATKIN_DIR \
     && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash \
-    && rosdep install --from-paths src --ignore-src -r -y \
+    # && rosdep install --from-paths src --ignore-src -r -y \
     && catkin_make"
