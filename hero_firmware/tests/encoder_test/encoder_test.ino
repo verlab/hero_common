@@ -1,4 +1,4 @@
- /************************************************************************
+/************************************************************************
  *  H E R O   E N C O D E R   T E S T
  ************************************************************************
  *
@@ -10,10 +10,10 @@
  * Computer Vision and Robotics Lab
  * Federal University of Minas Gerais - Brazil
  ************************************************************************/
- /* ESP Library */
+/* ESP Library */
 #include <ESP8266WiFi.h>
 
- /* ROS Library */
+/* ROS Library */
 #include <ros.h>
 #include <hero_common/Encoder.h>
 
@@ -23,10 +23,10 @@
 #define INPUT_PULLUP
 #define ENCODER_USE_INTERRUPTS
 
-#define ENC_A_LEFT 14                   /* PIN D2 */
-#define ENC_B_LEFT 4                    /* PIN D5 */
-#define ENC_A_RIGHT 10                  /* PIN SD3 */
-#define ENC_B_RIGHT 5                   /* PIN D1 */
+#define ENC_A_LEFT 14  /* PIN D2 */
+#define ENC_B_LEFT 4   /* PIN D5 */
+#define ENC_A_RIGHT 10 /* PIN SD3 */
+#define ENC_B_RIGHT 5  /* PIN D1 */
 
 // Change these two numbers to the pins connected to your encoder.
 //   Best Performance: both pins have interrupt capability
@@ -42,21 +42,21 @@ void setup() {
   //pinMode(9, INPUT_PULLUP);
 }
 
-long prevlpos  = -999;
-long prevrpos  = -999;
+long prevlpos = -999;
+long prevrpos = -999;
 unsigned long timer = 0;
 
 void loop() {
   long rpos = e_right.read();
   long lpos = e_left.read();
-  while(millis()-timer < 20);
+  while (millis() - timer < 20)
+    ;
   timer = millis();
-  if (prevlpos != lpos || prevrpos != rpos){
-      Serial.print(e_left.read());
-      Serial.print(',');
-      Serial.println(e_right.read());
-      prevlpos = lpos;
-      prevrpos = rpos;
+  if (prevlpos != lpos || prevrpos != rpos) {
+    Serial.print(e_left.read());
+    Serial.print(',');
+    Serial.println(e_right.read());
+    prevlpos = lpos;
+    prevrpos = rpos;
   }
-  
-  }
+}

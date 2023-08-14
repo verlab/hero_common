@@ -170,10 +170,10 @@ void loop() {
       {
         if (rosHandle.connected()) {
           /* Get data from sensor and send it to ROS */
-          motorDriver.update(2);
-          rangeSensor.update(20);
+          motorDriver.update(10);
           imuSensor.update(30);
           ledStatus.update(2);
+          rangeSensor.update(5);
           odometry.update(30);
           wheelEncoder.update(30);
           positionControl.update(50);

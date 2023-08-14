@@ -34,10 +34,10 @@ IMUSensor::IMUSensor(unsigned long rate) {
 
 void IMUSensor::init(ros::NodeHandle &nh, String heroName) {
   this->nh_ = &nh;   /* ROS Node Handle */
-  this->heroName = heroName;
+  this->heroName = (heroName.charAt(0) == '/') ? heroName.substring(1) : heroName;
 
   /* Address IMU publisher */
-  this->imuTopic = this->heroName + String("/imu");                       /* Update topic name */
+  this->imuTopic = String("/") + this->heroName + String("/imu");                       /* Update topic name */
   this->imuPub = new ros::Publisher(this->imuTopic.c_str(), &this->imuMessage);    /* Instantiate publisher */
   this->imuFrame = this->heroName + String("/hat_link");                       /* Update frame name */
   this->imuMessage.header.frame_id = this->imuFrame.c_str();                  /* Set frame name */

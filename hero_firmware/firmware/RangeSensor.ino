@@ -52,13 +52,12 @@ void RangeSensor::init() {
 void RangeSensor::init(ros::NodeHandle &nh, String heroName) {
   this->nh_ = &nh; /* ROS Node Handle */
   this->heroName = heroName;
+  this->heroName = (heroName.charAt(0) == '/') ? heroName.substring(1) : heroName;
 
   /* Address laser publisher */
-  this->laserTopic = heroName + String("/laser");                                     /* Update topic name */
+  this->laserTopic = String("/") + this->heroName + String("/laser");                                     /* Update topic name */
   this->laserPub = new ros::Publisher(this->laserTopic.c_str(), &this->laserMessage); /* Instantiate publisher */
-  String namespace_ = heroName;
-  namespace_.replace("/", "");
-  this->laserFrame = namespace_ + String("/laser_link"); /* Update frame name */
+  this->laserFrame = this->heroName + String("/laser_link"); /* Update frame name */
 
   this->laserMessage.header.frame_id = this->laserFrame.c_str(); /* Set frame name */
   this->laserMessage.header.seq = 0;                             /* Start message sequency */
@@ -76,7 +75,7 @@ void RangeSensor::init(ros::NodeHandle &nh, String heroName) {
   this->nh_->advertise(*this->laserPub);
 
   /* Address set PID motors service */
-  this->setIRCalibTopic = this->heroName + String("/ir_calibration");                                                                                                                                                    /* Update service name */
+  this->setIRCalibTopic = String("/") + this->heroName + String("/ir_calibration");                                                                                                                                                    /* Update service name */
   this->setIRCalibService = new ros::ServiceServer<hero_common::SetIRCalibration::Request, hero_common::SetIRCalibration::Response, RangeSensor>(this->setIRCalibTopic.c_str(), &RangeSensor::setIRCalibCallback, this); /* Instantiate service */
   this->nh_->advertiseService(*this->setIRCalibService); /* Address fix motors service */                                                                                                                                /* Address Laser */
 }

@@ -76,6 +76,7 @@ class MotorDriver {
     void update();
     void update(unsigned long rate);
     void compute();
+    void controlMotorWithStiffness(Servo &servo, int motorCmd);
     void command (int leftMotorCmd, int rightMotorCmd);
     void halt ();
 

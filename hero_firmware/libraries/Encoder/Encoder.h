@@ -52,7 +52,7 @@
 #endif
 
 // Use ICACHE_RAM_ATTR for ISRs to prevent ESP8266 resets
-#if defined(ESP8266) || defined(ESP32)
+#if defined(ESP8266)
 #define ENCODER_ISR_ATTR ICACHE_RAM_ATTR
 #else
 #define ENCODER_ISR_ATTR
@@ -210,11 +210,7 @@ public:
 	// update() is not meant to be called from outside Encoder,
 	// but it is public to allow static interrupt routines.
 	// DO NOT call update() directly from sketches.
-#if defined(IRAM_ATTR)
-	static IRAM_ATTR void update(Encoder_internal_state_t *arg) {
-#else
 	static void update(Encoder_internal_state_t *arg) {
-#endif
 #if defined(__AVR__)
 		// The compiler believes this is just 1 line of code, so
 		// it will inline this function into each interrupt

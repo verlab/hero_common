@@ -52,10 +52,10 @@ void WheelEncoder::init(void) {
 
 void WheelEncoder::init(ros::NodeHandle &nh, String heroName) {
   this->nh_ = &nh;   /* ROS Node Handle */
-  this->heroName = heroName;
+  this->heroName = (heroName.charAt(0) == '/') ? heroName.substring(1) : heroName;
 
   /* Address encoder publisher */
-  this->encoderTopic = this->heroName + String("/encoder");                         /* Update topic name */
+  this->encoderTopic = String("/") + this->heroName + String("/encoder");                         /* Update topic name */
   this->encoderPub = new ros::Publisher(this->encoderTopic.c_str(), &this->encoderMessage);    /* Instantiate publisher */
   this->encoderFrame = this->heroName + String("/encoder");                         /* Update frame name */
   this->encoderMessage.header.frame_id = this->encoderFrame.c_str();                    /* Set frame name */
