@@ -2,17 +2,17 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- Some properties of HERO -->
-  <xacro:property name="PI" value="3.1415926535897931" />
-  <xacro:property name="wheel_separation" value="0.06460" />
+  <property name="PI" value="3.1415926535897931" />
+  <property name="wheel_separation" value="0.06460" />
   <!-- <property name="wheel_diameter" value="0.0496" /> -->
-  <xacro:property name="wheel_diameter" value="0.050" />
+  <property name="wheel_diameter" value="0.050" />
 
-  <xacro:macro name="cylinder_inertia" params="m r h">
+  <macro name="cylinder_inertia" params="m r h">
     <inertia ixx="${m*(3*r*r+h*h)/12}" ixy = "0" ixz = "0" iyy="${m*(3*r*r+h*h)/12}" iyz = "0" izz="${m*r*r/2}" />
-  </xacro:macro>
+  </macro>
 
-  <xacro:macro name="box_inertia" params="m x y z">
+  <macro name="box_inertia" params="m x y z">
     <inertia ixx="${m*(y*y+z*z)/12}" ixy = "0" ixz = "0" iyy="${m*(x*x+z*z)/12}" iyz = "0" izz="${m*(x*x+z*z)/12}" />
-  </xacro:macro>
+  </macro>
 
 </robot>

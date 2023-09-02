@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
+import imp
 import rospy
 
 from std_msgs.msg import ColorRGBA
+import time
 import numpy as np
 import sys
 
@@ -14,27 +16,36 @@ class BlinkDemo(object):
         self.pub = rospy.Publisher('/hero_4/led', ColorRGBA, queue_size=10)
 
     def run(self):
-        rate = rospy.Rate(5)
+        # rate = rospy.Rate(5)
         rospy.loginfo("[Blink Demo]: Running!")
         color = ColorRGBA()
         B = [0.6, 0.8, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.8,0.6]
         i = 0
         while not rospy.is_shutdown():
-            c = list(np.random.choice(range(256), size=3))
-            color.r = c[0]/256.0
-            color.g = c[1]/256.0
-            color.b = c[2]/256.0
-            color.a = 1
+            # c = list(np.random.choice(range(256), size=3))
+            self.pub.publish(color)
+            print("color.r: ")
+            s = input("")
+            color.r = float(s)
+            print("color.g: ")
+            s = input("")
+            color.g  = float(s)
+            print("color.b: ")
+            s = input("")
+            color.b = float(s)
+            color.a = 1.0
+            print(color)
+            input("Press any key to send the color...")
             # color.r = 0
             # color.g = 0
             # color.b = 0.8
             # color.a = B[i % (len(B))]
-            i += 1            
+            # i += 1            
 
-            self.pub.publish(color)
+            # self.pub.publish(color)
             
-            # wait till 10 hz
-            rate.sleep()
+            # wait till 2 sec
+            time.sleep(2)
 
 
 # Main function
