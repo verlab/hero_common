@@ -19065,7 +19065,7 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <sheet>
 <description>&lt;p&gt;MCU and Motors&lt;/p&gt;</description>
 <plain>
-<text x="48.34" y="-7.62" size="6.4516" layer="94">HeRo v2.7
+<text x="48.34" y="-7.62" size="6.4516" layer="94">HeRo v2.6
 VeRLab</text>
 <text x="128.27" y="-7.112" size="1.778" layer="94">REV:A</text>
 </plain>
@@ -19357,7 +19357,7 @@ VeRLab</text>
 <sheet>
 <description>&lt;p&gt;Proximity Sensors&lt;/p&gt;</description>
 <plain>
-<text x="58.5" y="-40.64" size="6.4516" layer="94">HeRo v2.7
+<text x="58.5" y="-40.64" size="6.4516" layer="94">HeRo v2.6
 VeRLab</text>
 <text x="138.43" y="-40.132" size="1.778" layer="94">REV:A</text>
 </plain>
@@ -19905,7 +19905,7 @@ VeRLab</text>
 <sheet>
 <description>&lt;p&gt; LED RGB&lt;/p&gt;</description>
 <plain>
-<text x="101.68" y="-25.4" size="6.4516" layer="94">HeRo v2.7
+<text x="101.68" y="-25.4" size="6.4516" layer="94">HeRo v2.6
 VeRLab</text>
 <text x="181.61" y="-24.892" size="1.778" layer="94">REV:A</text>
 </plain>
@@ -20010,7 +20010,7 @@ VeRLab</text>
 <sheet>
 <description>&lt;p&gt;Power Supply&lt;/p&gt;</description>
 <plain>
-<text x="33.1" y="-73.66" size="6.4516" layer="94">HeRo v2.7
+<text x="33.1" y="-73.66" size="6.4516" layer="94">HeRo v2.6
 VeRLab</text>
 <text x="79.426" y="21.486" size="1.778" layer="94">BATTERY: Li-Po 3v7 1000 mAh</text>
 <text x="113.03" y="-73.152" size="1.778" layer="94">REV:A</text>

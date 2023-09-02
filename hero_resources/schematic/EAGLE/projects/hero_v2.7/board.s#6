@@ -19012,7 +19012,7 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <part name="GND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="GND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="GND12" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="MT3608" library="stepup" deviceset="MT3608" device=""/>
+<part name="MT3608" library="stepup" deviceset="MT3608" device="" override_package3d_urn="urn:adsk.eagle:package:37623777/2" override_package_urn="urn:adsk.eagle:footprint:37623778/1" override_locally_modified="yes"/>
 <part name="GND13" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="P+5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 <part name="GND14" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
@@ -20018,12 +20018,12 @@ VeRLab</text>
 <text x="113.03" y="-73.152" size="1.778" layer="94">REV:A</text>
 </plain>
 <instances>
-<instance part="MT3608" gate="G$1" x="32.2" y="4.3348" smashed="yes"/>
+<instance part="MT3608" gate="G$1" x="32.2" y="1.7948" smashed="yes"/>
 <instance part="GND13" gate="1" x="24.326" y="2.8108" smashed="yes">
 <attribute name="VALUE" x="24.326" y="0.2708" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="P+5" gate="VCC" x="24.6308" y="17.1872" smashed="yes" rot="R90">
-<attribute name="VALUE" x="24.1228" y="18.7112" size="1.778" layer="96" rot="R180"/>
+<instance part="P+5" gate="VCC" x="22.0908" y="14.6472" smashed="yes" rot="R90">
+<attribute name="VALUE" x="21.5828" y="16.1712" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="GND14" gate="1" x="77.3612" y="0.982" smashed="yes">
 <attribute name="VALUE" x="77.3612" y="-1.558" size="1.778" layer="96" rot="R180"/>
@@ -20099,14 +20099,14 @@ VeRLab</text>
 <segment>
 <pinref part="MT3608" gate="G$1" pin="GND"/>
 <pinref part="GND13" gate="1" pin="GND"/>
-<wire x1="29.8284" y1="9.5832" x2="24.326" y2="9.4148" width="0.1524" layer="91"/>
-<wire x1="24.326" y1="9.4148" x2="24.326" y2="5.3508" width="0.1524" layer="91"/>
+<wire x1="29.8284" y1="7.0432" x2="24.326" y2="7.1288" width="0.1524" layer="91"/>
+<wire x1="24.326" y1="7.1288" x2="24.326" y2="5.3508" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="MT3608" gate="G$1" pin="B-"/>
 <pinref part="GND14" gate="1" pin="GND"/>
-<wire x1="73.0084" y1="9.5832" x2="77.285" y2="9.6246" width="0.1524" layer="91"/>
-<wire x1="77.285" y1="9.6246" x2="77.3612" y2="3.522" width="0.1524" layer="91"/>
+<wire x1="73.0084" y1="7.0432" x2="77.285" y2="7.0846" width="0.1524" layer="91"/>
+<wire x1="77.285" y1="7.0846" x2="77.3612" y2="3.522" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="GND27" gate="1" pin="GND"/>
@@ -20144,8 +20144,8 @@ VeRLab</text>
 <segment>
 <pinref part="MT3608" gate="G$1" pin="5V"/>
 <pinref part="P+5" gate="VCC" pin="VCC"/>
-<wire x1="29.8284" y1="17.2032" x2="29.7268" y2="17.2032" width="0.1524" layer="91"/>
-<wire x1="29.7268" y1="17.2032" x2="27.1708" y2="17.1872" width="0.1524" layer="91"/>
+<wire x1="29.8284" y1="14.6632" x2="27.1868" y2="14.6632" width="0.1524" layer="91"/>
+<wire x1="27.1868" y1="14.6632" x2="24.6308" y2="14.6472" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="P+6" gate="VCC" pin="VCC"/>
@@ -20249,9 +20249,9 @@ VeRLab</text>
 <wire x1="3.31" y1="36.7" x2="71.3" y2="36.5" width="0.1524" layer="91"/>
 <wire x1="71.3" y1="36.5" x2="74.4" y2="36.5" width="0.1524" layer="91"/>
 <wire x1="74.4" y1="36.5" x2="74.45" y2="21.65" width="0.1524" layer="91"/>
-<wire x1="74.45" y1="21.65" x2="74.4568" y2="17.2168" width="0.1524" layer="91"/>
+<wire x1="74.45" y1="21.65" x2="74.4568" y2="14.6768" width="0.1524" layer="91"/>
 <pinref part="MT3608" gate="G$1" pin="B+"/>
-<wire x1="74.4568" y1="17.2168" x2="73.0084" y2="17.2032" width="0.1524" layer="91"/>
+<wire x1="74.4568" y1="14.6768" x2="73.0084" y2="14.6632" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="TP_BS" class="0">
@@ -20307,6 +20307,11 @@ will not be understood (or retained) with this version.
 Since Version 8.3, EAGLE supports the association of 3D packages
 with devices in libraries, schematics, and board files. Those 3D
 packages will not be understood (or retained) with this version.
+</note>
+<note version="9.4" severity="warning">
+Since Version 9.4, EAGLE supports the overriding of 3D packages
+in schematics and board files. Those overridden 3d packages
+will not be understood (or retained) with this version.
 </note>
 </compatibility>
 </eagle>
