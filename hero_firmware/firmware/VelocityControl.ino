@@ -68,6 +68,11 @@ VelocityControl::VelocityControl(unsigned long rate) {
   }
 }
 
+void VelocityControl::init(MotorDriver& motorDriver, WheelEncoder& wheelEncoder) {
+  this->motorDriver = &motorDriver;
+  this->wheelEncoder = &wheelEncoder;
+}
+
 void VelocityControl::init(ros::NodeHandle &nh, String heroName, MotorDriver& motorDriver, WheelEncoder& wheelEncoder) {
   this->motorDriver = &motorDriver;
   this->wheelEncoder = &wheelEncoder;
@@ -104,7 +109,7 @@ void VelocityControl::update() {
 void VelocityControl::update(unsigned long rate) {
   if (((millis() - this->timer) > (1000 / rate)) && ((millis() - this->watchdog) < 1000)) {
     /* Position-Control */
-    //    this->wheelEncoder->readSensor();
+    this->wheelEncoder->readSensor();
     this->leftMotorInput = (double)this->wheelEncoder->getMessage().left_speed_filtered;
     this->rightMotorInput = (double)this->wheelEncoder->getMessage().right_speed_filtered;;
     if (this->tuning) {

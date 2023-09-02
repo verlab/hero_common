@@ -39,7 +39,7 @@ MotorDriver::MotorDriver(unsigned long rate) {
   EEPROM.begin(MEM_ALOC_SIZE);
   EEPROM.get(MEM_INIT_POS_MOTOR_POSITION, motorData);
   EEPROM.end();
-  
+
   if ((motorData.leftMotorDeadzone > 1000) && (motorData.leftMotorDeadzone < 2000)) {
     this->leftMotorDeadzone = motorData.leftMotorDeadzone;
   }
@@ -49,31 +49,50 @@ MotorDriver::MotorDriver(unsigned long rate) {
   }
 }
 
-void MotorDriver::init(ros::NodeHandle &nh, String heroName) {
-  this->nh_ = &nh;   /* ROS Node Handle */
+void MotorDriver::init(void) {
+}
+
+void MotorDriver::init(ros::NodeHandle& nh, String heroName) {
+  this->nh_ = &nh; /* ROS Node Handle */
   this->heroName = heroName;
 
   /* Address motor pwm subscribe */
-  this->motorTopic = this->heroName + String("/cmd_motor");                                                      /* Update topic name */
-  this->motorSub = new ros::Subscriber<hero_common::Motor, MotorDriver>(this->motorTopic.c_str(), &MotorDriver::motorCallback, this);        /* Instantiate subscriber */
-  this->nh_->subscribe(*this->motorSub);                                                                                                  /* Address set odom service */
+  this->motorTopic = this->heroName + String("/cmd_motor");                                                                           /* Update topic name */
+  this->motorSub = new ros::Subscriber<hero_common::Motor, MotorDriver>(this->motorTopic.c_str(), &MotorDriver::motorCallback, this); /* Instantiate subscriber */
+  this->nh_->subscribe(*this->motorSub);                                                                                              /* Address set odom service */
 
   /* Address set PID motors service */
-  this->setMotorTopic = this->heroName + String("/motors_parameters");                                                                                                 /* Update service name */
-  this->setMotorService = new ros::ServiceServer<hero_common::SetMotor::Request, hero_common::SetMotor::Response, MotorDriver>(this->setMotorTopic.c_str(), &MotorDriver::setMotorCallback, this);               /* Instantiate service */
-  this->nh_->advertiseService(*this->setMotorService);                                                                                                                          /* Address fix motors service */
+  this->setMotorTopic = this->heroName + String("/motors_parameters");                                                                                                                             /* Update service name */
+  this->setMotorService = new ros::ServiceServer<hero_common::SetMotor::Request, hero_common::SetMotor::Response, MotorDriver>(this->setMotorTopic.c_str(), &MotorDriver::setMotorCallback, this); /* Instantiate service */
+  this->nh_->advertiseService(*this->setMotorService);                                                                                                                                             /* Address fix motors service */
 }
 
-void MotorDriver::command (int leftMotorCmd, int rightMotorCmd) {
+void MotorDriver::controlMotorWithStiffness(Servo& servo, int motorCmd) {
+  int currentCmd = servo.readMicroseconds();  // Read the current servo angle
+
+  // Calculate the difference between the target velocity and the current velocity
+  int cmdDifference = motorCmd - currentCmd;
+
+  // Apply stiffness to the servo movement
+  int adjustedCmd = currentCmd + cmdDifference / MOTOR_STIFFNESS;
+
+  // Keep the adjusted cmd within valid limits (usually 1000-2000 us)
+  adjustedCmd = constrain(adjustedCmd, 1000, 2000);
+
+  // Set the servo to the adjusted angle
+  servo.writeMicroseconds(adjustedCmd);
+}
+
+void MotorDriver::command(int leftMotorCmd, int rightMotorCmd) {
   if (!this->leftMotor.attached()) this->leftMotor.attach(MOTOR_LEFT);
   if (!this->rightMotor.attached()) this->rightMotor.attach(MOTOR_RIGHT);
-  this->leftMotor.writeMicroseconds(leftMotorCmd);
-  this->rightMotor.writeMicroseconds(rightMotorCmd);
+  this->controlMotorWithStiffness(this->leftMotor, leftMotorCmd);
+  this->controlMotorWithStiffness(this->rightMotor, rightMotorCmd);
   delayMicroseconds(500);
   this->watchdogTimer = millis();
 }
 
-void MotorDriver::halt () {
+void MotorDriver::halt() {
   if (this->leftMotor.attached()) this->leftMotor.detach();
   if (this->rightMotor.attached()) this->rightMotor.detach();
   delayMicroseconds(1000);
@@ -104,7 +123,7 @@ void MotorDriver::motorCallback(const hero_common::Motor& msg) {
 void MotorDriver::setMotorCallback(const hero_common::SetMotor::Request& req, hero_common::SetMotor::Response& res) {
   motorData.leftMotorDeadzone = req.left_motor_pwm;
   motorData.rightMotorDeadzone = req.right_motor_pwm;
-  
+
   this->leftMotorDeadzone = req.left_motor_pwm;
   this->rightMotorDeadzone = req.right_motor_pwm;
 
@@ -115,7 +134,7 @@ void MotorDriver::setMotorCallback(const hero_common::SetMotor::Request& req, he
   EEPROM.put(MEM_INIT_POS_MOTOR_POSITION, motorData);
   EEPROM.end();
 
-  sprintf(this->stream,  "\33[92m[%s] Motor Parameters has been succesfully recorded! \33[0m", this->heroName.c_str());
+  sprintf(this->stream, "\33[92m[%s] Motor Parameters has been succesfully recorded! \33[0m", this->heroName.c_str());
   this->nh_->loginfo(this->stream);
   res.success = 1;
   res.message = "Motor Parameters has been succesfully recorded!";

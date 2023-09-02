@@ -23,64 +23,46 @@
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
   ******************************************************************************/
-
-#ifndef __LED_STATUS_H__
-#define __LED_STATUS_H__
+ 
+#ifndef __RANDOM_WALK_H__
+#define __RANDOM_WALK_H__
 
 /* ROS Library */
 #define ROSSERIAL_ARDUINO_TCP
 #include <ros.h>
 
-#include <NeoPixelBus.h>                /* https://learn.adafruit.com/adafruit-neopixel-uberguide/arduino-library-use */
-#include <NeoPixelBrightnessBus.h>
+#include "VelocityControl.h"
+#include "RangeSensor.h"
+#include "LEDStatus.h"
 
-/* Message types */
+#include <geometry_msgs/Twist.h>
 #include <std_msgs/ColorRGBA.h>
 
-///* Addressable LED WS2812b */
-
-//#define PIXEL_COUNT 7         /* NUMBER OF LED */
-//#define COLOR_SATURATION 255  /* MAX SATURATION COLOR */
-
-class LEDStatus {
+class RandomWalkDemo {
   private:
-    ros::NodeHandle *nh_;
-    String heroName;
+    
+    float p0 = 0.15; // Maximal sensor distance (in meters)
+    float max_speed = 0.10; // Maximal speed of the robot (in meters/s)
+    float theta_factor = 120.0; // angular speed factor
 
-    /* LED callback */
-    String ledTopic;                                     /* Topic name */
-    ros::Subscriber<std_msgs::ColorRGBA, LEDStatus> *ledSub;        /* Message type */
-
-
-    /* Addressable LEDs WS2812 Configuration */
-    const uint16_t PixelCount = PIXEL_COUNT;
-    NeoPixelBrightnessBus<NeoGrbFeature, NeoEsp8266Uart1800KbpsMethod> *strip;
-
-    bool reseted = false;
+    VelocityControl *velocityControl;
+    RangeSensor *rangeSensor;
+    LEDStatus *ledStatus;
+    
     unsigned long watchdogTimer = 0;
     unsigned long rate = 20, timer;
 
-  public:
-    LEDStatus(unsigned long rate);
-    void init(ros::NodeHandle &nh, String heroName);
+    char stream[100];
 
+  public:
+    
+    RandomWalkDemo(unsigned long rate);
+    void init(VelocityControl &velocityControl, RangeSensor &rangeSensor, LEDStatus &ledStatus);
     void update();
     void update(unsigned long rate);
-    void reset(void);
+    void halt ();
 
     void setRate(unsigned long rate);
-    void welcome(RgbColor color, unsigned long timer);
-    void setColors(RgbColor color0, RgbColor color1);
-
-    /* Callback function */
-    void ledCallback(const std_msgs::ColorRGBA& msg);
-
-    RgbColor *red;
-    RgbColor *green;
-    RgbColor *blue;
-    RgbColor *cyan;
-    RgbColor *magenta;
-    RgbColor *black;
 };
 
 

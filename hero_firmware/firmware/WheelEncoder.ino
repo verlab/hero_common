@@ -42,22 +42,27 @@ WheelEncoder::WheelEncoder(unsigned long rate) {
   this->rightEncoder->write(0);
 }
 
-void WheelEncoder::init(ros::NodeHandle &nh, String heroName) {
-  this->nh_ = &nh;   /* ROS Node Handle */
-  this->heroName = heroName;
-  /* Address encoder publisher */
-  this->encoderTopic = this->heroName + String("/encoder");                         /* Update topic name */
-  this->encoderPub = new ros::Publisher(this->encoderTopic.c_str(), &this->encoderMessage);    /* Instantiate publisher */
-  this->encoderFrame = this->heroName + String("/encoder");                         /* Update frame name */
-  this->encoderMessage.header.frame_id = this->encoderFrame.c_str();                    /* Set frame name */
-  this->encoderMessage.header.seq = -1;                                          /* Start message sequency */
-  this->nh_->advertise(*this->encoderPub);                                           /* Address Laser */
-
+void WheelEncoder::init(void) {
   this->encoderMessage.left_speed_filtered = 0.0001;
   this->encoderMessage.right_speed_filtered = 0.0001;
 
   this->encoderMessage.left_speed = 0.001;
   this->encoderMessage.right_speed = 0.001;
+}
+
+void WheelEncoder::init(ros::NodeHandle &nh, String heroName) {
+  this->nh_ = &nh;   /* ROS Node Handle */
+  this->heroName = (heroName.charAt(0) == '/') ? heroName.substring(1) : heroName;
+
+  /* Address encoder publisher */
+  this->encoderTopic = String("/") + this->heroName + String("/encoder");                         /* Update topic name */
+  this->encoderPub = new ros::Publisher(this->encoderTopic.c_str(), &this->encoderMessage);    /* Instantiate publisher */
+  this->encoderFrame = this->heroName + String("/encoder");                         /* Update frame name */
+  this->encoderMessage.header.frame_id = this->encoderFrame.c_str();                    /* Set frame name */
+  this->encoderMessage.header.seq = -1;                                          /* Start message sequency */
+  this->nh_->advertise(*this->encoderPub);                                           /* Address Laser */
+  
+  this->init();
 }
 
 void WheelEncoder::setRate(unsigned long rate) {

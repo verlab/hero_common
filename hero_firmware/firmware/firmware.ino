@@ -64,6 +64,8 @@ PositionControl positionControl(20);
 #include "VelocityControl.h"
 VelocityControl velocityControl(20);
 
+#include "RandomWalk.h"
+RandomWalkDemo randomWalkDemo(5);
 
 /* Main Setup */
 void setup() {
@@ -78,62 +80,112 @@ void setup() {
   config_mode = rangeSensor.configModeCheck();
   /* Clean status led */
   ledStatus.reset();
-  if (config_mode) {
-    /* Create an AP that enables the user to setup some parameter of the robot. See config_via_wifi.h. */
-    webConfig.init(ledStatus);
-  }
-  else {
-    /* Setup ROS Communication */
-    rosHandle.init(ledStatus);
 
-    /* Setup LED to communicate with ROS */
-    ledStatus.init(rosHandle.nh, rosHandle.heroName);
-    /* Setup range sensor to communicate with ROS */
-    rangeSensor.init(rosHandle.nh, rosHandle.heroName);
-    /* Setup imu sensor to communicate with ROS */
-    imuSensor.init(rosHandle.nh, rosHandle.heroName);
-    /* Setup wheel encoder sensor to communicate with ROS */
-    wheelEncoder.init(rosHandle.nh, rosHandle.heroName);
+  switch (config_mode) {
+    case 17:  // RandomWalk demo
+      {
+        // Disable Wi-Fi
+        WiFi.mode(WIFI_OFF);
+        // Blink blue led
+        ledStatus.welcome(*ledStatus.blue, 100);
+        // Setup wheel encoder sensor
+        wheelEncoder.init();
+        // Setup motor driver
+        motorDriver.init();
+        // Setup range sensor
+        rangeSensor.init();
+        // Setup velocity controller
+        velocityControl.init(motorDriver, wheelEncoder);
+        // Setup random walk controller
+        randomWalkDemo.init(velocityControl, rangeSensor, ledStatus);
+        break;
+      }
 
-    /* Compute odometry to send with ROS */
+    case 255:
+      {
+        // Create an AP that enables the user to setup some parameters of the robot. See config_via_wifi.h.
+        webConfig.init(ledStatus);
+        break;
+      }
+
+    default:
+      {
+        // Setup ROS Communication
+        rosHandle.init(ledStatus);
+
+        // Setup LED to communicate with ROS
+        ledStatus.init(rosHandle.nh, rosHandle.heroName);
+        // Setup range sensor to communicate with ROS
+        rangeSensor.init(rosHandle.nh, rosHandle.heroName);
+        // Setup imu sensor to communicate with ROS
+        imuSensor.init(rosHandle.nh, rosHandle.heroName);
+        // Setup wheel encoder sensor to communicate with ROS
+        wheelEncoder.init(rosHandle.nh, rosHandle.heroName);
+
+        // Compute odometry to send with ROS
 #ifdef __IMU_SENSOR_H__
-    odometry.init(rosHandle.nh, rosHandle.heroName, wheelEncoder, imuSensor);
+        odometry.init(rosHandle.nh, rosHandle.heroName, wheelEncoder, imuSensor);
 #else
-    odometry.init(rosHandle.nh, rosHandle.heroName, wheelEncoder);
+        odometry.init(rosHandle.nh, rosHandle.heroName, wheelEncoder);
 #endif
-    /* Setup motors to communicate with ROS */
-    motorDriver.init(rosHandle.nh, rosHandle.heroName);
 
+        // Setup motors to communicate with ROS
+        motorDriver.init(rosHandle.nh, rosHandle.heroName);
 
-    /* Compute position control to by receving commands from ROS */
-    positionControl.init(rosHandle.nh, rosHandle.heroName, motorDriver, wheelEncoder);
-    /* Compute velocity control to by receving commands from ROS */
-    velocityControl.init(rosHandle.nh, rosHandle.heroName, motorDriver, wheelEncoder);
+        // Compute position control to by receiving commands from ROS
+        positionControl.init(rosHandle.nh, rosHandle.heroName, motorDriver, wheelEncoder);
+        // Compute velocity control to by receiving commands from ROS
+        velocityControl.init(rosHandle.nh, rosHandle.heroName, motorDriver, wheelEncoder);
 
-    ledStatus.welcome(*ledStatus.cyan, 100);
+        ledStatus.welcome(*ledStatus.cyan, 100);
+        break;
+      }
   }
 }
 
 
 /* Main loop */
 void loop() {
-  if (config_mode) { // Web Configuration Mode
-    webConfig.update();
-  }
-  else if (rosHandle.connected()) { // ROS Mode
-    /* Get data from sensor and send it to ROS */
-    motorDriver.update(2);
-    rangeSensor.update(20);
-    imuSensor.update(30);
-    ledStatus.update(2);
-    odometry.update(30);
-    wheelEncoder.update(30);
-    positionControl.update(50);
-    velocityControl.update(50);
 
-    rosHandle.sync();
-  } else {
-    delayMicroseconds(50000);
-    rosHandle.sync();
+  switch (config_mode) {
+    case 17:  // Random Walk demo
+      {
+        // random walk controller update
+        randomWalkDemo.update(5);
+        // led status update
+        ledStatus.update(2);
+        // velocity controller update
+        velocityControl.update(50);
+        delayMicroseconds(50000);
+        break;
+      }
+
+    case 255:  // Web Configuration Mode
+      {
+        webConfig.update();
+        break;
+      }
+
+    default:  // ROS Mode
+      {
+        if (rosHandle.connected()) {
+          /* Get data from sensor and send it to ROS */
+          motorDriver.update(10);
+          imuSensor.update(30);
+          ledStatus.update(2);
+          rangeSensor.update(5);
+          odometry.update(30);
+          wheelEncoder.update(30);
+          positionControl.update(50);
+          velocityControl.update(50);
+
+          rosHandle.sync();
+        } else {
+          // ROS Mode with delay
+          delayMicroseconds(50000);
+          rosHandle.sync();
+        }
+        break;
+      }
   }
 }

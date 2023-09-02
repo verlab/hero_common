@@ -34,6 +34,7 @@ LEDStatus::LEDStatus(unsigned long rate) {
 
   this->red = new  RgbColor(COLOR_SATURATION, 0, 0);
   this->green = new  RgbColor(0, COLOR_SATURATION, 0);
+  this->blue = new  RgbColor(0, 0, COLOR_SATURATION);
   this->cyan = new  RgbColor(0, COLOR_SATURATION, COLOR_SATURATION);
   this->magenta = new  RgbColor(COLOR_SATURATION, 0, COLOR_SATURATION);
   this->black = new  RgbColor(0, 0, 0);
