@@ -1,6 +1,7 @@
 # HeRo: An Open Platform for Robotics Research and Education
-
+<p align="justify">
 Welcome to the HeRo project! This initiative introduces an innovative platform tailored for swarm robotics applications. It boasts affordability, ease of assembly using readily available components, and seamless integration with the industry-standard ROS (Robot Operating System). Our robotic platform is fully open-source, featuring a 3D-printed body coupled with open-source software. Within this repository, you'll discover a comprehensive range of ROS packages, firmware, simulations, examples, as well as additional resources such as CAD files, 3D models, schematics, and more.
+</p>
 
 For more in-depth information, please visit our documentation page [here](https://verlab.github.io/hero_common/).
 
