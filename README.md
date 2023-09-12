@@ -4,7 +4,9 @@ Welcome to the HeRo project! This initiative introduces an innovative platform t
 
 For more in-depth information, please visit our documentation page [here](https://verlab.github.io/hero_common/).
 
-![hero_view](https://user-images.githubusercontent.com/14208261/188993419-52fea191-6da7-48d5-9ff6-0117f13973f2.gif)
+<p align="center">
+<img alt="gif" width="400px" src="https://user-images.githubusercontent.com/14208261/188993419-52fea191-6da7-48d5-9ff6-0117f13973f2.gif"/>
+</p>
 
 ## Authors
 [![Paulo Rezeck](https://github.com/rezeck.png?size=50)](https://rezeck.github.io/)
