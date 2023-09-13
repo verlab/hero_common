@@ -248,27 +248,39 @@ class Ui(QtWidgets.QMainWindow):
 		
 		launch_file += """
 	<param name="/robot_description" textfile="{}"/>
-		""".format("$(find hero_description)/robot/"+urdf_file)
+			""".format("$(find hero_description)/robot/"+urdf_file)
 
 		for i in range(len(self.current_model_states.name)):
 			model_name = self.current_model_states.name[i]
 			model_pose = self.current_model_states.pose[i]
-
 			if "hero_" in model_name:
 				launch_file += """
-	<node name="spawn_urdf_{}" pkg="gazebo_ros" type="spawn_model" args="-urdf -model {} -x {} -y {} -z {} -robot_namespace {} -file {}" />""".format(model_name, model_name, round(model_pose.position.x, 4), round(model_pose.position.y, 4), round(model_pose.position.z+0.2, 4), model_name, "$(find hero_description)/robot/"+urdf_file)
-				launch_file += """
-	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_{}">
-		<param name="publish_frequency" type="double" value="30.0" />
-		<param name="tf_prefix" value="{}" />
-		<param name="use_tf_static" value="False" />
-	</node>
-	<node pkg="tf" type="static_transform_publisher" name="{}_broadcaster" args="0 0 0 0 0 0 world /{}/odom 20" />""".format(model_name, model_name, model_name, model_name)
-
+    <group ns ="{}">
+        <param name="tf_prefix" value="{}" />
+        <param name="robot_description_{}" command="$(find xacro)/xacro '$(find hero_description)/robot/hero_light.urdf'"/>
+        <node name="spawn_urdf_{}" pkg="gazebo_ros" type="spawn_model" args="-urdf -model {} -x {} -y {} -z {} -robot_namespace {} -file {}" />
+        <node pkg="tf" type="static_transform_publisher" name="{}_broadcaster" args="0 0 0 0 0 0 world /{}/odom 20" />
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>""".format(
+                    model_name,
+                    model_name,
+                    model_name,
+                    model_name,
+                    model_name,
+                    round(model_pose.position.x, 4),
+                    round(model_pose.position.y, 4),
+                    round(model_pose.position.z + 0.2, 4),
+                    model_name,
+                    "$(find hero_description)/robot/" + urdf_file,
+                    model_name,
+                    model_name,
+                )
 				if self.local_planner_checkBox.isChecked():
 					launch_file += """
-	<node name="hero_local_planner_{}" pkg="hero_examples" type="local_planner.py" args="{}" output="screen"/> 
-""".format(model_name, model_name)
+		<node name="hero_local_planner_{}" pkg="hero_examples" type="local_planner.py" args="{}" output="screen"/>""".format(
+                        model_name, model_name
+                    )
+				launch_file += """
+    </group>"""
 
 			if "arena" in model_name:
 				launch_file += """
