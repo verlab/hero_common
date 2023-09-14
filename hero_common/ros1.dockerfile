@@ -42,6 +42,15 @@ RUN cd $CATKIN_DIR/src \
     # && rosdep install --from-paths src --ignore-src -r -y \
     && catkin_make"
 
+# Before tf_prefix deprecation decision
+RUN cd $CATKIN_DIR/src \
+    && git clone https://github.com/ros-simulation/gazebo_ros_pkgs.git \
+    && cd gazebo_ros_pkgs \
+    && git checkout b0ed38f9ecedbe929340f5e8b0aa7a457248e015 \
+    && cd $CATKIN_DIR \
+    && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash && rosdep install --from-paths src --ignore-src -r -y \
+    && catkin_make"    
+
 RUN cd $CATKIN_DIR/src \
     && git clone --depth 1 --branch noetic-devel https://github.com/verlab/hero_common.git \
     && cd $CATKIN_DIR \
