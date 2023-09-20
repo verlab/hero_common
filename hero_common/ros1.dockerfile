@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
       ros-${ROS_DISTRO}-rqt-plot \
       ros-${ROS_DISTRO}-rqt-ez-publisher \
       ros-${ROS_DISTRO}-rqt-rviz \
+      ros-${ROS_DISTRO}-map-server \
       ros-${ROS_DISTRO}-teleop-twist-keyboard \
       ros-${ROS_DISTRO}-gazebo-ros-pkgs \ 
       ros-${ROS_DISTRO}-gazebo-plugins \
