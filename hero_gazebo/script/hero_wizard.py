@@ -79,7 +79,7 @@ class Ui(QtWidgets.QMainWindow):
 
 		self.select_arena_box = self.findChild(QtWidgets.QComboBox, "select_arena_box")
 		self.select_arena_box.currentIndexChanged.connect(self.on_click_select_arena_box)
-		self.arenas = ["arena_1", "arena_2", "arena_3", "arena_4"]
+		self.arenas = [f"arena_{i}" for i in range(8)]
 		self.select_arena_box.addItems(self.arenas)
 		self.current_arena = self.arenas[0]
 

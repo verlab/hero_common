@@ -226,7 +226,7 @@ QPushButton:pressed {
             <string notr="true"/>
            </property>
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:26pt; color:#f57900;&quot;&gt;HeRo Simulation Wizard&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:26pt; color:#f57900;&quot;&gt;HeRo Sim Wizard&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -242,7 +242,7 @@ QPushButton:pressed {
             </size>
            </property>
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:16pt; color:#f57900; vertical-align:super;&quot;&gt;Version: 1.0.3&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:16pt; color:#f57900; vertical-align:super;&quot;&gt;Version: 1.0.4&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -262,7 +262,7 @@ QPushButton:pressed {
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <widget class="QFrame" name="">
+          <widget class="QFrame" name="frame">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -479,7 +479,7 @@ QPushButton:pressed {
           </widget>
          </item>
          <item>
-          <widget class="QFrame" name="">
+          <widget class="QFrame" name="frame">
            <property name="minimumSize">
             <size>
              <width>0</width>
