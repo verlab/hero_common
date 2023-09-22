@@ -252,12 +252,12 @@
   <gazebo reference="laser_link">
     <sensor name="hero_laser_sensor" type="ray">
       <pose>0 0 0.051 0 0 0</pose>
-      <visualize>true</visualize>
-      <update_rate>20</update_rate>
+      <visualize>false</visualize>
+      <update_rate>10</update_rate>
       <ray>
         <scan>
           <horizontal>
-            <samples>360</samples>
+            <samples>16</samples>
             <resolution>1</resolution>
             <min_angle>-3.14159265359</min_angle>
             <max_angle>3.14159265359</max_angle>
@@ -273,7 +273,7 @@
         <topicName>laser</topicName>
         <frameName>laser_link</frameName>
         <gaussianNoise>0.001</gaussianNoise>
-        <updateRate>20</updateRate>
+        <updateRate>10</updateRate>
       </plugin>
     </sensor>
   </gazebo>
