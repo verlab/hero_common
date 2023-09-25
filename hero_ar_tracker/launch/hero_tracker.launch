@@ -1,32 +1,22 @@
 <launch>
+  <arg name="launch_prefix" default="" /> <!-- set to value="gdbserver localhost:10000" for remote debugging -->
+  <arg name="node_namespace" default="apriltag_ros_continuous_node" />
+  <arg name="camera_name" default="/usb_cam" />
+  <arg name="camera_frame" default="usb_cam" />
+  <arg name="image_topic" default="image_rect" />
 
-	<node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen">
-		<param name="video_device" value="/dev/video1" />
-		<param name="image_width" value="1600" />
-		<param name="image_height" value="1200" />
-		<param name="pixel_format" value="mjpeg" />
-		<param name="camera_frame_id" value="usb_cam" />
-		<param name="io_method" value="mmap"/>
-		<param name="framerate" value="30"/>
-		<param name="camera_info_url" value="file://$(find hero_ar_tracker)/config/camera_calibration.yaml"/>
-	</node>
+  <!-- Set parameters -->
+  <rosparam command="load" file="$(find hero_ar_tracker)/config/settings.yaml" ns="$(arg node_namespace)" />
+  <rosparam command="load" file="$(find hero_ar_tracker)/config/tags.yaml" ns="$(arg node_namespace)" />
 
-	<arg name="marker_size" default="6.0" />
-	<arg name="max_new_marker_error" default="0.08" />
-	<arg name="max_track_error" default="0.2" />
+   <include file="$(find hero_ar_tracker)/launch/usb_cam_image_proc.launch.launch">
+  
+  <node pkg="apriltag_ros" type="apriltag_ros_continuous_node" name="$(arg node_namespace)" clear_params="true" output="screen" launch-prefix="$(arg launch_prefix)" >
+    <!-- Remap topics from those used in code to those on the ROS network -->
+    <remap from="image_rect" to="$(arg camera_name)/$(arg image_topic)" />
+    <remap from="camera_info" to="$(arg camera_name)/camera_info" />
 
-	<arg name="cam_image_topic" default="/usb_cam/image_raw/compressed" />
-	<arg name="cam_info_topic" default="/usb_cam/camera_info" />
-	<arg name="output_frame" default="/usb_cam" />
-
-	<node name="ar_track_alvar" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen">
-		<param name="marker_size" type="double" value="$(arg marker_size)" />
-		<param name="max_new_marker_error" type="double" value="$(arg max_new_marker_error)" />
-		<param name="max_track_error" type="double" value="$(arg max_track_error)" />
-		<param name="output_frame" type="string" value="$(arg output_frame)" />
-
-		<remap from="camera_image" to="$(arg cam_image_topic)" />
-		<remap from="camera_info" to="$(arg cam_info_topic)" />
-	</node>
-
+    <param name="camera_frame" type="str" value="$(arg camera_frame)" />
+    <param name="publish_tag_detections_image" type="bool" value="true" />      <!-- default: false -->
+  </node>
 </launch>

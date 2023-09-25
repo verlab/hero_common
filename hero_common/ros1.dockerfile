@@ -53,6 +53,13 @@ RUN cd $CATKIN_DIR/src \
     && catkin_make"    
 
 RUN cd $CATKIN_DIR/src \
+    && git clone https://github.com/AprilRobotics/apriltag.git \ 
+    && git clone https://github.com/AprilRobotics/apriltag_ros.git \ 
+    && cd $CATKIN_DIR \
+    && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash && rosdep install --from-paths src --ignore-src -r -y \
+    && catkin_make" 
+
+RUN cd $CATKIN_DIR/src \
     && git clone --depth 1 --branch noetic-devel https://github.com/verlab/hero_common.git \
     && cd $CATKIN_DIR \
     && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash \
