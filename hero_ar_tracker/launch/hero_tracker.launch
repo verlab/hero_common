@@ -10,6 +10,8 @@
   <rosparam command="load" file="$(find hero_ar_tracker)/config/tags.yaml" ns="$(arg node_namespace)" />
 
   <include file="$(find hero_ar_tracker)/launch/usb_cam_image_proc.launch"/>
+
+  <node pkg="hero_ar_tracker" type="tag2pose.py" name="tag2pose"  output="screen"/>
   
   <node pkg="apriltag_ros" type="apriltag_ros_continuous_node" name="$(arg node_namespace)" clear_params="true" output="screen" launch-prefix="$(arg launch_prefix)" >
     <!-- Remap topics from those used in code to those on the ROS network -->
