@@ -30,7 +30,7 @@ permalink: /pcb_order/
   
 <p align="justify">Although we used some SMD components, we had no difficulty using the soldering iron to solder them. That way, a stencil board was not required.</p>
 
-<p align="justify">To start an order, simply download the <a href="https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/schematic/EAGLE/projects/hero_v2.7/board_2023-03-05.zip" target="_blank" rel="noopener noreferrer">Gerber File</a>, and send it to the PCB manufacturing service of your choice. Just pay attention to these requirements:</p>
+<p align="justify">To start an order, simply download the <a href="https://github.com/verlab/hero_common/blob/noetic-devel/hero_resources/schematic/EAGLE/projects/hero_v2.7/board_2023-10-08.zip" target="_blank" rel="noopener noreferrer">Gerber File</a>, and send it to the PCB manufacturing service of your choice. Just pay attention to these requirements:</p>
 
  <ul class="fa-ul" style="list-style: none;">
   <li> Finished Copper >= 1 oz</li>
@@ -41,12 +41,14 @@ permalink: /pcb_order/
  <h4>PCB view</h4>
  <div class="row">
   <div class="column">
-    <img src="https://user-images.githubusercontent.com/14208261/194778362-6d556dfd-6a14-47cf-9218-a31822cb786b.svg" alt="Image" width="400">
+    <img src="https://raw.githubusercontent.com/verlab/hero_common/2c502fd24a114fc421d46477e1705b1533370b89/hero_resources/schematic/EAGLE/projects/hero_v2.7/board_gerber_viewer/bottom.svg" alt="Image" width="400">
   </div>
   <div class="column">
-    <img src="https://user-images.githubusercontent.com/14208261/194778363-b37aa1b8-d42a-43fe-bcd3-108b1da481c5.svg" alt="Image" width="400">
+    <img src="https://raw.githubusercontent.com/verlab/hero_common/2c502fd24a114fc421d46477e1705b1533370b89/hero_resources/schematic/EAGLE/projects/hero_v2.7/board_gerber_viewer/top.svg" alt="Image" width="400">
   </div>
 </div>
+
+
 
 <p align="justify">Here is an exemple using the JLCPCB manufacturing service.</p>
 
