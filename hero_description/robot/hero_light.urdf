@@ -152,7 +152,7 @@
     <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
       <!--robotNamespace>/</robotNamespace-->
       <legacyModeNS>true</legacyModeNS>
-      <controlPeriod>0.060</controlPeriod>
+      <controlPeriod>0.01</controlPeriod>
     </plugin>
   </gazebo>
   <!-- Differential drive controller plugin -->
@@ -160,7 +160,7 @@
     <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
       <!--robotNamespace>/</robotNamespace-->
       <alwaysOn>true</alwaysOn>
-      <updateRate>30</updateRate>
+      <updateRate>10</updateRate>
       <leftJoint>left_wheel_joint</leftJoint>
       <rightJoint>right_wheel_joint</rightJoint>
       <wheelSeparation>0.0646</wheelSeparation>
