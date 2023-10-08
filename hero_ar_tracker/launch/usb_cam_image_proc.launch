@@ -5,12 +5,12 @@
 
   <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
     <param name="camera_info_url" value="file://$(find hero_ar_tracker)/config/camera_calibration.yaml"/>
-    <param name="video_device" value="/dev/v4l/by-id/usb-046d_HD_Pro_Webcam_C920_408FF8FF-video-index0" />
+    <param name="video_device" value="/dev/video2" />
     <param name="image_width" value="1920" />
     <param name="image_height" value="1080" />
     <param name="pixel_format" value="mjpeg" />
-    <param name="autofocus" value="false"/>
-    <param name="focus" value="0"/>
+    <param name="focus_automatic_continuous" value="false"/>
+    <!-- <param name="focus" value="0"/> -->
     <!-- <param name="contrast" value="180"/> -->
     <!-- <param name="brightness" value="212"/> -->
     <!-- <param name="sharpness" value="212"/> -->
