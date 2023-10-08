@@ -9,14 +9,14 @@
       <origin rpy="0 0 -4.71238898038" xyz="0 0 0"/>
       <!-- <origin xyz="0 0 0" rpy="0 0 0" /> -->
       <geometry>
-        <mesh filename="package://hero_gazebo/worlds/models/arena_1/arena.dae" scale="1 1 1"/>
+        <mesh filename="package://hero_gazebo/worlds/models/arena_1/arena.obj" scale="1 1 1"/>
       </geometry>
     </collision>
     <visual>
       <origin rpy="0 0 -4.71238898038" xyz="0 0 0"/>
       <!-- <origin xyz="0 0 0" rpy="0 0 0" /> -->
       <geometry>
-        <mesh filename="package://hero_gazebo/worlds/models/arena_1/arena.dae" scale="1 1 1"/>
+        <mesh filename="package://hero_gazebo/worlds/models/arena_1/arena.obj" scale="1 1 1"/>
       </geometry>
     </visual>
     <inertial>

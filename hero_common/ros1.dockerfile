@@ -18,6 +18,11 @@ RUN apt-get update && apt-get install -y \
       ros-${ROS_DISTRO}-rqt-plot \
       ros-${ROS_DISTRO}-rqt-ez-publisher \
       ros-${ROS_DISTRO}-rqt-rviz \
+      ros-${ROS_DISTRO}-rqt-image-view \
+      ros-${ROS_DISTRO}-map-server \
+      ros-${ROS_DISTRO}-image-geometry \
+      ros-${ROS_DISTRO}-image-proc \
+      ros-${ROS_DISTRO}-camera-calibration \
       ros-${ROS_DISTRO}-teleop-twist-keyboard \
       ros-${ROS_DISTRO}-gazebo-ros-pkgs \ 
       ros-${ROS_DISTRO}-gazebo-plugins \
@@ -48,12 +53,21 @@ RUN cd $CATKIN_DIR/src \
     && cd gazebo_ros_pkgs \
     && git checkout b0ed38f9ecedbe929340f5e8b0aa7a457248e015 \
     && cd $CATKIN_DIR \
-    && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash && rosdep install --from-paths src --ignore-src -r -y \
+    && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash \
+    # && rosdep install --from-paths src --ignore-src -r -y \
     && catkin_make"    
+
+RUN cd $CATKIN_DIR/src \
+    && git clone https://github.com/AprilRobotics/apriltag.git \ 
+    && git clone https://github.com/AprilRobotics/apriltag_ros.git \ 
+    && cd $CATKIN_DIR \
+    && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash \
+    # && rosdep install --from-paths src --ignore-src -r -y \
+    && catkin_make_isolated" 
 
 RUN cd $CATKIN_DIR/src \
     && git clone --depth 1 --branch noetic-devel https://github.com/verlab/hero_common.git \
     && cd $CATKIN_DIR \
     && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash \
     # && rosdep install --from-paths src --ignore-src -r -y \
-    && catkin_make"
+    && catkin_make_isolated"

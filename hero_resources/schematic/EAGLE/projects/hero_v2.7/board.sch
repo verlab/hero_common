@@ -530,7 +530,7 @@ Based on the following sources:
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="4051" urn="urn:adsk.eagle:component:857/4" prefix="IC" library_version="3">
+<deviceset name="4051" urn="urn:adsk.eagle:component:857/5" prefix="IC" library_version="7">
 <description>8-channel &lt;b&gt;ANALOG MULTIPLEXER&lt;/b&gt;</description>
 <gates>
 <gate name="A" symbol="4051" x="20.32" y="0"/>
@@ -560,7 +560,9 @@ Based on the following sources:
 <package3dinstance package3d_urn="urn:adsk.eagle:package:922/2"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="15" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="D" package="SO16">
@@ -586,7 +588,9 @@ Based on the following sources:
 <package3dinstance package3d_urn="urn:adsk.eagle:package:821/2"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="5" constant="no"/>
+</technology>
 </technologies>
 </device>
 </devices>
@@ -17050,7 +17054,7 @@ Source: http://www.ledtronics.com/ds/smd-0603/Dstr0092.pdf</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="LED" urn="urn:adsk.eagle:component:15916/9" prefix="LED" uservalue="yes" library_version="4">
+<deviceset name="LED" urn="urn:adsk.eagle:component:15916/10" prefix="LED" uservalue="yes" library_version="5">
 <description>&lt;b&gt;LED&lt;/b&gt;&lt;p&gt;
 &lt;u&gt;OSRAM&lt;/u&gt;:&lt;br&gt;
 
@@ -17139,7 +17143,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15796/2"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="20" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="LD260" package="LD260">
@@ -17151,7 +17157,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15794/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="SQR2X5" package="LED2X5">
@@ -17163,7 +17171,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15800/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="2" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="3MM" package="LED3MM">
@@ -17175,7 +17185,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15797/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="97" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="5MM" package="LED5MM">
@@ -17187,7 +17199,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15799/2"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="93" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="LSU260" package="LSU260">
@@ -17199,7 +17213,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15805/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="LZR181" package="LZR181">
@@ -17211,7 +17227,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15808/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="1" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="B152" package="Q62902-B152">
@@ -17223,7 +17241,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15803/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="B153" package="Q62902-B153">
@@ -17235,7 +17255,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15804/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="B155" package="Q62902-B155">
@@ -17247,7 +17269,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15807/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="B156" package="Q62902-B156">
@@ -17259,7 +17283,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15806/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="SFH480" package="SFH480">
@@ -17271,7 +17297,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15809/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="2" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="SFH482" package="SFH482">
@@ -17283,7 +17311,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15795/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="SQR5.7X3.2" package="U57X32">
@@ -17295,7 +17325,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15789/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="IRL80A" package="IRL80A">
@@ -17307,7 +17339,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15810/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="P-LCC-2" package="P-LCC-2">
@@ -17319,7 +17353,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15817/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="2" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="MINI-TOP" package="OSRAM-MINI-TOP-LED">
@@ -17331,7 +17367,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15811/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="SIDELED" package="OSRAM-SIDELED">
@@ -17343,7 +17381,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15812/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="2" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="SMART-LED" package="SMART-LED">
@@ -17355,7 +17395,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15814/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="P-LCC-2-BACK" package="P-LCC-2-TOPLED-RG">
@@ -17367,7 +17409,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15813/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="MICRO-SIDELED" package="MICRO-SIDELED">
@@ -17379,7 +17423,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15815/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="P-LCC-4" package="P-LCC-4">
@@ -17391,7 +17437,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15816/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="CHIP-LED0603" package="CHIP-LED0603">
@@ -17403,7 +17451,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15819/3"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="26" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="CHIP-LED0805" package="CHIP-LED0805">
@@ -17415,7 +17465,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15818/2"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="68" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="TOPLED-SANTANA" package="MINI-TOPLED-SANTANA">
@@ -17427,7 +17479,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15820/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="CHIPLED_0805" package="CHIPLED_0805">
@@ -17439,7 +17493,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15821/2"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="52" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="CHIPLED_1206" package="CHIPLED_1206">
@@ -17451,7 +17507,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15823/2"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="28" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="CHIPLED_0603" package="CHIPLED_0603">
@@ -17463,7 +17521,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15822/2"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="28" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="CHIPLED-0603-TTW" package="CHIPLED-0603-TTW">
@@ -17475,7 +17535,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15824/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="" package="SMARTLED-TTW">
@@ -17487,7 +17549,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15825/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="3" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="-LUMILED+" package="LUMILED+">
@@ -17499,7 +17563,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15826/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="-LUMILED" package="LUMILED">
@@ -17511,7 +17577,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15827/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="10MM" package="LED10MM">
@@ -17523,7 +17591,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15828/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="2" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="KA-3528ASYC" package="KA-3528ASYC">
@@ -17535,7 +17605,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15831/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="0" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="SML0805" package="SML0805">
@@ -17547,7 +17619,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15830/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="17" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="SML1206" package="SML1206">
@@ -17559,7 +17633,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15829/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="6" constant="no"/>
+</technology>
 </technologies>
 </device>
 <device name="SML0603" package="SML0603">
@@ -17571,7 +17647,9 @@ Source: www.kingbright.com</description>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:15832/1"/>
 </package3dinstances>
 <technologies>
-<technology name=""/>
+<technology name="">
+<attribute name="POPULARITY" value="17" constant="no"/>
+</technology>
 </technologies>
 </device>
 </devices>
@@ -19062,6 +19140,9 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <part name="IRLML2502" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="MOSFET-N" device="REFLOW" package3d_urn="urn:adsk.eagle:package:6240836/1"/>
 <part name="R15" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-EU_" device="R0805" package3d_urn="urn:adsk.eagle:package:23553/2" value="0R"/>
 <part name="BATT1" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_02" device="JST-PTH-2" package3d_urn="urn:adsk.eagle:package:38053/1"/>
+<part name="GND28" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="GND29" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="P+7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -19535,6 +19616,15 @@ VeRLab</text>
 <attribute name="NAME" x="28.56" y="8.335" size="1.27" layer="95"/>
 <attribute name="VALUE" x="28.41" y="7.43" size="1.27" layer="96"/>
 </instance>
+<instance part="MUX" gate="P" x="-7.62" y="93.98" smashed="yes">
+<attribute name="NAME" x="-10.16" y="93.345" size="1.778" layer="95"/>
+</instance>
+<instance part="GND28" gate="1" x="-7.62" y="81.95" smashed="yes">
+<attribute name="VALUE" x="-3.81" y="80.934" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="GND29" gate="1" x="-12.7" y="81.95" smashed="yes">
+<attribute name="VALUE" x="-11.938" y="80.934" size="1.778" layer="96" rot="R180"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -19721,6 +19811,16 @@ VeRLab</text>
 <pinref part="GND11" gate="1" pin="GND"/>
 <pinref part="IRLML2502" gate="G$1" pin="S"/>
 <wire x1="25.89" y1="0.16" x2="25.87" y2="3.62" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="GND29" gate="1" pin="GND"/>
+<pinref part="MUX" gate="P" pin="VEE"/>
+<wire x1="-12.7" y1="84.49" x2="-12.7" y2="86.36" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="GND28" gate="1" pin="GND"/>
+<pinref part="MUX" gate="P" pin="GND"/>
+<wire x1="-7.62" y1="84.49" x2="-7.62" y2="86.36" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="MUX_X0" class="0">
@@ -20019,8 +20119,8 @@ VeRLab</text>
 </plain>
 <instances>
 <instance part="MT3608" gate="G$1" x="32.2" y="4.3348" smashed="yes"/>
-<instance part="GND13" gate="1" x="24.326" y="2.8108" smashed="yes">
-<attribute name="VALUE" x="24.326" y="0.2708" size="1.778" layer="96" rot="R180"/>
+<instance part="GND13" gate="1" x="23.818" y="2.8108" smashed="yes">
+<attribute name="VALUE" x="26.358" y="2.0488" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="P+5" gate="VCC" x="24.6308" y="17.1872" smashed="yes" rot="R90">
 <attribute name="VALUE" x="24.1228" y="18.7112" size="1.778" layer="96" rot="R180"/>
@@ -20091,6 +20191,9 @@ VeRLab</text>
 <attribute name="NAME" x="97.3972" y="14.2406" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="107.3286" y="17.6482" size="1.778" layer="96" rot="R180"/>
 </instance>
+<instance part="P+7" gate="VCC" x="-59.7668" y="19.5448" smashed="yes" rot="R270">
+<attribute name="VALUE" x="-59.2588" y="18.0208" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -20099,8 +20202,8 @@ VeRLab</text>
 <segment>
 <pinref part="MT3608" gate="G$1" pin="GND"/>
 <pinref part="GND13" gate="1" pin="GND"/>
-<wire x1="29.8284" y1="9.5832" x2="24.326" y2="9.4148" width="0.1524" layer="91"/>
-<wire x1="24.326" y1="9.4148" x2="24.326" y2="5.3508" width="0.1524" layer="91"/>
+<wire x1="29.8284" y1="9.5832" x2="23.818" y2="9.4148" width="0.1524" layer="91"/>
+<wire x1="23.818" y1="9.4148" x2="23.818" y2="5.3508" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="MT3608" gate="G$1" pin="B-"/>
@@ -20164,6 +20267,12 @@ VeRLab</text>
 <wire x1="-30.1" y1="35.2292" x2="-110.2228" y2="35.2292" width="0.1524" layer="91"/>
 <junction x="-30.1" y="22.33"/>
 </segment>
+<segment>
+<pinref part="TP4056" gate="G$1" pin="CE"/>
+<pinref part="P+7" gate="VCC" pin="VCC"/>
+<wire x1="-64.1" y1="19.56" x2="-62.3068" y2="19.56" width="0.1524" layer="91"/>
+<wire x1="-62.3068" y1="19.56" x2="-62.3068" y2="19.5448" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="STDBY" class="0">
 <segment>
@@ -20206,11 +20315,6 @@ VeRLab</text>
 </segment>
 </net>
 <net name="TP_B+" class="0">
-<segment>
-<pinref part="TP4056" gate="G$1" pin="CE"/>
-<wire x1="-64.1" y1="19.56" x2="-61.9" y2="19.56" width="0.1524" layer="91"/>
-<label x="-61.85" y="19.55" size="1.778" layer="95" xref="yes"/>
-</segment>
 <segment>
 <pinref part="TP4056" gate="G$1" pin="BAT"/>
 <pinref part="C3" gate="G$1" pin="1"/>
@@ -20272,7 +20376,6 @@ VeRLab</text>
 <approved hash="113,1,-53.138,97.5639,M_LEFT,,,,,"/>
 <approved hash="113,1,-84.2517,69.6239,E_RIGHT,,,,,"/>
 <approved hash="113,1,-52.9238,69.6239,E_LEFT,,,,,"/>
-<approved hash="113,1,70.8793,66.995,I2C|UART,,,,,"/>
 <approved hash="113,2,-41.91,109.446,P4,,,,,"/>
 <approved hash="113,2,-41.91,71.3461,P2,,,,,"/>
 <approved hash="113,2,-41.91,33.2461,P1,,,,,"/>
@@ -20281,6 +20384,7 @@ VeRLab</text>
 <approved hash="113,2,85.09,33.2461,P5,,,,,"/>
 <approved hash="113,2,85.09,71.3461,P7,,,,,"/>
 <approved hash="113,2,85.09,109.446,P6,,,,,"/>
+<approved hash="113,4,51.4184,12.7803,MT3608,,,,,"/>
 <approved hash="113,2,20.851,43.711,FRAME1,,,,,"/>
 <approved hash="113,3,64.031,58.951,FRAME3,,,,,"/>
 <approved hash="113,4,-4.549,10.691,FRAME4,,,,,"/>
