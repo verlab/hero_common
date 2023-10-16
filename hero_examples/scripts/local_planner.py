@@ -33,11 +33,10 @@ class PositionController(object):
 
     def run(self):
         rospy.init_node("local_controller", anonymous=True)
-        # self.namespace = rospy.get_param("namespace")
         rospy.loginfo("[{}] Starting local planner...".format(self.namespace))
-        self.pub = rospy.Publisher(self.namespace + "/cmd_vel", Twist, queue_size=1)
-        rospy.Subscriber(self.namespace + "/odom", Odometry, self.odom_cb)
-        rospy.Subscriber(self.namespace + "/goal", Pose2D, self.goal_cb)
+        self.pub = rospy.Publisher("cmd_vel", Twist, queue_size=1)
+        rospy.Subscriber("odom", Odometry, self.odom_cb)
+        rospy.Subscriber("goal", Pose2D, self.goal_cb)
 
         self.rate = rospy.Rate(20)  # 20 hz
 
