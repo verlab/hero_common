@@ -21,6 +21,9 @@ We welcome and appreciate contributions from the community. If you have ideas, b
 Thank you 🙏 to all our contributors!
 
 [<img alt="vitorHoller" width="40px" src="https://github.com/vitorHoller.png"/>](https://github.com/vitorHoller)
+[<img alt="Suptree" width="40px" src="https://github.com/Suptree.png"/>](https://github.com/Suptree)
+[<img alt="CaioContiG" width="40px" src="https://github.com/CaioContiG.png"/>](https://github.com/CaioContiG)
+
 
 
 ## License
