@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
       byobu \
       qt5-default \
       python3-pyqt5 \
+      python3-catkin-tools \
       ros-${ROS_DISTRO}-robot-state-publisher \
       ros-${ROS_DISTRO}-usb-cam \
       ros-${ROS_DISTRO}-xacro \
@@ -34,7 +35,7 @@ ENV CATKIN_DIR=/catkin_ws
 RUN mkdir -p $CATKIN_DIR/src \
     && cd $CATKIN_DIR \
     && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash \
-    && catkin_make \
+    && catkin build \
     && echo 'source /opt/ros/${ROS_DISTRO}/setup.bash' >> /root/.bashrc \
     && echo 'source ${CATKIN_DIR}/devel/setup.bash' >> /root/.bashrc"
 
@@ -45,7 +46,7 @@ RUN cd $CATKIN_DIR/src \
     && cd $CATKIN_DIR \
     && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash \
     # && rosdep install --from-paths src --ignore-src -r -y \
-    && catkin_make"
+    && catkin build"
 
 # Before tf_prefix deprecation decision
 RUN cd $CATKIN_DIR/src \
@@ -55,7 +56,7 @@ RUN cd $CATKIN_DIR/src \
     && cd $CATKIN_DIR \
     && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash \
     # && rosdep install --from-paths src --ignore-src -r -y \
-    && catkin_make"    
+    && catkin build"    
 
 RUN cd $CATKIN_DIR/src \
     && git clone https://github.com/AprilRobotics/apriltag.git \ 
@@ -63,11 +64,11 @@ RUN cd $CATKIN_DIR/src \
     && cd $CATKIN_DIR \
     && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash \
     # && rosdep install --from-paths src --ignore-src -r -y \
-    && catkin_make_isolated" 
+    && catkin build" 
 
 RUN cd $CATKIN_DIR/src \
     && git clone --depth 1 --branch noetic-devel https://github.com/verlab/hero_common.git \
     && cd $CATKIN_DIR \
     && /bin/bash -c "source /opt/ros/${ROS_DISTRO}/setup.bash \
     # && rosdep install --from-paths src --ignore-src -r -y \
-    && catkin_make_isolated"
+    && catkin build"
