@@ -1,0 +1,153 @@
+{
+  "keys": {},
+  "groups": {
+    "mainwindow": {
+      "keys": {
+        "geometry": {
+          "repr(QByteArray.hex)": "QtCore.QByteArray(b'01d9d0cb0003000000000000000000000000077f000003fe00000000000000250000077f000003fe0000000100000000078000000000000000250000077f000003fe')",
+          "type": "repr(QByteArray.hex)",
+          "pretty-print": "               %            %    "
+        },
+        "state": {
+          "repr(QByteArray.hex)": "QtCore.QByteArray(b'000000ff00000000fd000000010000000300000780000003b0fc0100000001fc00000000000007800000037600fffffffc0200000002fb00000042007200710074005f0070006c006f0074005f005f0050006c006f0074005f005f0031005f005f00440061007400610050006c006f007400570069006400670065007401000000140000030c0000008800fffffffb0000006a007200710074005f0065007a005f007000750062006c00690073006800650072005f005f0045007a005000750062006c00690073006800650072005f005f0031005f005f0045007a005000750062006c006900730068006500720050006c007500670069006e0055006901000003260000009e0000009e00ffffff000007800000000000000004000000040000000800000008fc00000001000000030000000100000036004d0069006e0069006d0069007a006500640044006f0063006b00570069006400670065007400730054006f006f006c0062006100720000000000ffffffff0000000000000000')",
+          "type": "repr(QByteArray.hex)",
+          "pretty-print": "                     v                                                                                                          &                                                              "
+        }
+      },
+      "groups": {
+        "toolbar_areas": {
+          "keys": {
+            "MinimizedDockWidgetsToolbar": {
+              "repr": "8",
+              "type": "repr"
+            }
+          },
+          "groups": {}
+        }
+      }
+    },
+    "pluginmanager": {
+      "keys": {
+        "running-plugins": {
+          "repr": "{'rqt_ez_publisher/EzPublisher': [1], 'rqt_plot/Plot': [1]}",
+          "type": "repr"
+        }
+      },
+      "groups": {
+        "plugin__rqt_ez_publisher__EzPublisher__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__EzPublisherPluginUi": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "''",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "True",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            },
+            "plugin": {
+              "keys": {
+                "configurable": {
+                  "repr": "True",
+                  "type": "repr"
+                },
+                "publish_interval": {
+                  "repr": "100",
+                  "type": "repr"
+                },
+                "texts": {
+                  "repr": "['/hero_4/cmd_motor/left_motor_pwm', '/hero_4/cmd_motor/right_motor_pwm']",
+                  "type": "repr"
+                }
+              },
+              "groups": {
+                "hero_7": {
+                  "keys": {},
+                  "groups": {
+                    "cmd_motor": {
+                      "keys": {
+                        "left_motor_pwm_is_repeat": {
+                          "repr": "False",
+                          "type": "repr"
+                        },
+                        "left_motor_pwm_range": {
+                          "repr": "(1000, 2000)",
+                          "type": "repr"
+                        },
+                        "right_motor_pwm_is_repeat": {
+                          "repr": "False",
+                          "type": "repr"
+                        },
+                        "right_motor_pwm_range": {
+                          "repr": "(1000, 2000)",
+                          "type": "repr"
+                        }
+                      },
+                      "groups": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "plugin__rqt_plot__Plot__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__DataPlotWidget": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'MatPlot'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "True",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            },
+            "plugin": {
+              "keys": {
+                "autoscroll": {
+                  "repr": "True",
+                  "type": "repr"
+                },
+                "plot_type": {
+                  "repr": "1",
+                  "type": "repr"
+                },
+                "topics": {
+                  "repr": "['/hero_4/encoder/left_speed_filtered', '/hero_4/encoder/right_speed_filtered']",
+                  "type": "repr"
+                },
+                "x_limits": {
+                  "repr": "[-0.13006281852722168, 100.86993718147278]",
+                  "type": "repr"
+                },
+                "y_limits": {
+                  "repr": "[-0.05, 0.05]",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
