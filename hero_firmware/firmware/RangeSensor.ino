@@ -55,9 +55,9 @@ void RangeSensor::init(ros::NodeHandle &nh, String heroName) {
   this->heroName = (heroName.charAt(0) == '/') ? heroName.substring(1) : heroName;
 
   /* Address laser publisher */
-  this->laserTopic = String("/") + this->heroName + String("/laser");                                     /* Update topic name */
+  this->laserTopic = String("/") + this->heroName + String("/laser");                 /* Update topic name */
   this->laserPub = new ros::Publisher(this->laserTopic.c_str(), &this->laserMessage); /* Instantiate publisher */
-  this->laserFrame = this->heroName + String("/laser_link"); /* Update frame name */
+  this->laserFrame = this->heroName + String("/laser_link");                          /* Update frame name */
 
   this->laserMessage.header.frame_id = this->laserFrame.c_str(); /* Set frame name */
   this->laserMessage.header.seq = 0;                             /* Start message sequency */
@@ -74,8 +74,14 @@ void RangeSensor::init(ros::NodeHandle &nh, String heroName) {
 
   this->nh_->advertise(*this->laserPub);
 
+  /* Address laser enable subscriber */
+  this->laserEnableMessage.data = true;
+  this->laserEnableTopic = this->heroName + String("/laser_enable");                                                                                /* Update topic name */
+  this->laserEnableSub = new ros::Subscriber<std_msgs::Bool, RangeSensor>(this->laserEnableTopic.c_str(), &RangeSensor::laserEnableCallback, this); /* Instantiate subscriber */
+  this->nh_->subscribe(*this->laserEnableSub);
+
   /* Address set PID motors service */
-  this->setIRCalibTopic = String("/") + this->heroName + String("/ir_calibration");                                                                                                                                                    /* Update service name */
+  this->setIRCalibTopic = String("/") + this->heroName + String("/ir_calibration");                                                                                                                                      /* Update service name */
   this->setIRCalibService = new ros::ServiceServer<hero_common::SetIRCalibration::Request, hero_common::SetIRCalibration::Response, RangeSensor>(this->setIRCalibTopic.c_str(), &RangeSensor::setIRCalibCallback, this); /* Instantiate service */
   this->nh_->advertiseService(*this->setIRCalibService); /* Address fix motors service */                                                                                                                                /* Address Laser */
 }
@@ -85,6 +91,10 @@ void RangeSensor::setRate(unsigned long rate) {
 }
 
 void RangeSensor::update(unsigned long rate) {
+  if (!this->laserEnableMessage.data) {
+    return;
+  }
+
   if ((millis() - this->timer) > (1000 / rate)) {
     this->readSensor();
     /* Send laser message to be published into ROS */
@@ -110,7 +120,7 @@ void RangeSensor::connect() {
 }
 
 float RangeSensor::meterFromIntensity(int idx, float value) {
-  float meter = sqrt((float) irCalib.alpha[idx] / value);  // Transform the analog value to a distance value in meters (given from field tests).
+  float meter = sqrt((float)irCalib.alpha[idx] / value);  // Transform the analog value to a distance value in meters (given from field tests).
   meter = max(min(meter, 0.22f), 0.01f);
   return meter + this->laserMessage.range_min;
 }
@@ -141,16 +151,15 @@ void RangeSensor::readSensor() {
         PS. It seems that the darker emissors recover faster than the light ones during over the saturation
     */
     analogWrite(MUX_EN, 0);
-    delayMicroseconds(100);              // Photodiode needs sleep for a while since all the emitters are turned on at the same time
-    float env = (float) analogRead(A0);  // Reading the ambient light level from sensor A0
+    delayMicroseconds(100);             // Photodiode needs sleep for a while since all the emitters are turned on at the same time
+    float env = (float)analogRead(A0);  // Reading the ambient light level from sensor A0
 
-    analogWrite(MUX_EN, 1024);   // Turning on all diodes/emitters and enabling the multiplexer
-    delayMicroseconds(380);      // Waiting for the diodes/emitters to power up (100 microseconds)
+    analogWrite(MUX_EN, 1024);  // Turning on all diodes/emitters and enabling the multiplexer
+    delayMicroseconds(380);     // Waiting for the diodes/emitters to power up (100 microseconds)
 
     float sensor_reading = max(0.0f, (float)analogRead(A0) - env);  // Reading the proximity level from sensor A0 and subtracting the ambient light level
     this->laserMessage.intensities[real_pos_inter[sensor]] = sensor_reading;
     this->laserMessage.ranges[real_pos_inter[sensor]] = this->meterFromIntensity(real_pos[sensor], sensor_reading);
-
   }
   analogWrite(MUX_EN, 0);  // Turning off all diodes/emitters and disabling the multiplexer
   // delayMicroseconds(100);   // Waiting for the diodes/emitters to power down (100 microseconds)
@@ -184,7 +193,7 @@ int RangeSensor::configModeCheck() {
     delayMicroseconds(100);  // diode should power up in 100 us
     int env = analogRead(A0);
     analogWrite(MUX_EN, 1024);  // turn on all diode and enable mux
-    delayMicroseconds(400);      // diode should power up in 100 us -> 180 us
+    delayMicroseconds(400);     // diode should power up in 100 us -> 180 us
 
     if (!((analogRead(A0) - env) < TOUCH_THRESHOLD)) {
       // return 0;
@@ -237,4 +246,8 @@ void RangeSensor::setIRCalibCallback(const hero_common::SetIRCalibration::Reques
 
 sensor_msgs::LaserScan RangeSensor::getMessage(void) {
   return this->laserMessage;
+}
+
+void RangeSensor::laserEnableCallback(const std_msgs::Bool &msg) {
+  this->laserEnableMessage.data = msg.data;
 }

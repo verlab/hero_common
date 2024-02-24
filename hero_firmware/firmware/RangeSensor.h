@@ -33,6 +33,7 @@
 
 /* Message types */
 #include <sensor_msgs/LaserScan.h>
+#include <std_msgs/Bool.h>
 #include <hero_common/SetIRCalibration.h>
 
 #define MEM_INIT_POS_IR_CALIB 220
@@ -43,10 +44,15 @@ class RangeSensor {
     ros::NodeHandle *nh_;
     String heroName;
     /* Laser publisher */
-    sensor_msgs::LaserScan laserMessage;   /* Message Type */
-    String laserTopic;                 /* Topic name */
-    ros::Publisher *laserPub;          /* Publisher */
-    String laserFrame;                 /* Laser link frame */
+    sensor_msgs::LaserScan laserMessage;        /* Message Type */
+    String laserTopic;                          /* Topic name */
+    ros::Publisher *laserPub;                   /* Publisher */
+    String laserFrame;                          /* Laser link frame */
+
+    String laserEnableTopic;                                         /* Topic name */
+    std_msgs::Bool laserEnableMessage;                               /* Laser Status Message */
+    ros::Subscriber<std_msgs::Bool, RangeSensor> *laserEnableSub;    /* Subscriber */
+    
     
     String setIRCalibTopic; 
     ros::ServiceServer<hero_common::SetIRCalibration::Request, hero_common::SetIRCalibration::Response, RangeSensor> *setIRCalibService;    /* Service Type */
@@ -70,6 +76,7 @@ class RangeSensor {
     int configModeCheck();
     void storeIRCalibrationData(const float *alpha);
     void setIRCalibCallback(const hero_common::SetIRCalibration::Request& req, hero_common::SetIRCalibration::Response& res);
+    void laserEnableCallback(const std_msgs::Bool& msg);
 
     sensor_msgs::LaserScan getMessage(void);
 };
