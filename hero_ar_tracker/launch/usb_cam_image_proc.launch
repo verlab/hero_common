@@ -9,11 +9,11 @@
     <param name="image_width" value="1920" />
     <param name="image_height" value="1080" />
     <param name="pixel_format" value="mjpeg" />
-    <param name="focus_automatic_continuous" value="false"/>
+    <!-- <param name="focus_automatic_continuous" value="0"/> -->
     <!-- <param name="focus" value="0"/> -->
-    <!-- <param name="contrast" value="180"/> -->
-    <!-- <param name="brightness" value="212"/> -->
-    <!-- <param name="sharpness" value="212"/> -->
+    <!-- <param name="contrast" value="180"/>
+    <param name="brightness" value="212"/>
+    <param name="sharpness" value="212"/> -->
     <param name="camera_frame_id" value="usb_cam" />
     <param name="io_method" value="mmap"/>
   </node>
