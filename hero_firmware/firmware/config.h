@@ -30,7 +30,7 @@
 /* Version Configuration */
 #define CONFIG_VERSION "v2.3"
 #define HARDWARE_VERSION "v2.5"
-#define FIRMWARE_VERSION "v3.7"
+#define FIRMWARE_VERSION "v3.8"
 
 /*Robot name */
 #define ROBOT_NAME "/hero_"
@@ -73,7 +73,7 @@ int config_mode = 0;          /* If you cover all the IR sensors with the hand, 
 #define MOTOR_LEFT 0              /* PIN D0 */
 #define MOTOR_RIGHT_HALT_PWM 1500 /* PWM Range 1000-2000*/
 #define MOTOR_LEFT_HALT_PWM 1500  /* PWM Range 1000-2000*/
-#define MOTOR_STIFFNESS 2         /* Apply stiffness to the motor movement */
+#define MOTOR_STIFFNESS 1         /* Apply stiffness to the motor movement */
 #define MOTOR_PWM_SUBSCRIBER_ENABLE true
 
 /* Laser Configuration */

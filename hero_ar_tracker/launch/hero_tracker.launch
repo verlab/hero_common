@@ -1,19 +1,55 @@
 <launch>
-  <arg name="launch_prefix" default="" /> <!-- set to value="gdbserver localhost:10000" for remote debugging -->
+  <arg name="launch_prefix" default="" /> <!-- set to value="gdbserver localhost:10000" for remote
+  debugging -->
   <arg name="node_namespace" default="apriltag_ros_continuous_node" />
   <arg name="camera_name" default="/usb_cam" />
   <arg name="camera_frame" default="usb_cam" />
   <arg name="image_topic" default="image_rect" />
 
   <!-- Set parameters -->
-  <rosparam command="load" file="$(find hero_ar_tracker)/config/settings.yaml" ns="$(arg node_namespace)" />
-  <rosparam command="load" file="$(find hero_ar_tracker)/config/tags.yaml" ns="$(arg node_namespace)" />
+  <rosparam command="load" file="$(find hero_ar_tracker)/config/settings.yaml"
+    ns="$(arg node_namespace)" />
+  <rosparam command="load" file="$(find hero_ar_tracker)/config/tags.yaml"
+    ns="$(arg node_namespace)" />
 
-  <include file="$(find hero_ar_tracker)/launch/usb_cam_image_proc.launch"/>
+  <!-- <include file="$(find hero_ar_tracker)/launch/usb_cam_image_proc.launch"/> -->
 
-  <node pkg="hero_ar_tracker" type="tag2pose.py" name="tag2pose"  output="screen"/>
-  
-  <node pkg="apriltag_ros" type="apriltag_ros_continuous_node" name="$(arg node_namespace)" clear_params="true" output="screen" launch-prefix="$(arg launch_prefix)" >
+  <node pkg="hero_ar_tracker" type="tag2pose.py" name="tag2pose" output="screen" />
+
+  <!-- Include your localization launch file here -->
+  <include file="$(find hero_bringup)/launch/hero_localization.launch">
+    <arg name="id" value="0" />
+  </include>
+  <include file="$(find hero_bringup)/launch/hero_localization.launch">
+    <arg name="id" value="1" />
+  </include>
+  <include file="$(find hero_bringup)/launch/hero_localization.launch">
+    <arg name="id" value="2" />
+  </include>
+  <include file="$(find hero_bringup)/launch/hero_localization.launch">
+    <arg name="id" value="3" />
+  </include>
+  <include file="$(find hero_bringup)/launch/hero_localization.launch">
+    <arg name="id" value="4" />
+  </include>
+  <include file="$(find hero_bringup)/launch/hero_localization.launch">
+    <arg name="id" value="5" />
+  </include>
+  <include file="$(find hero_bringup)/launch/hero_localization.launch">
+    <arg name="id" value="6" />
+  </include>
+  <include file="$(find hero_bringup)/launch/hero_localization.launch">
+    <arg name="id" value="7" />
+  </include>
+  <include file="$(find hero_bringup)/launch/hero_localization.launch">
+    <arg name="id" value="8" />
+  </include>
+  <include file="$(find hero_bringup)/launch/hero_localization.launch">
+    <arg name="id" value="9" />
+  </include>
+
+  <node pkg="apriltag_ros" type="apriltag_ros_continuous_node" name="$(arg node_namespace)"
+    clear_params="true" output="screen" launch-prefix="$(arg launch_prefix)">
     <!-- Remap topics from those used in code to those on the ROS network -->
     <remap from="image_rect" to="$(arg camera_name)/$(arg image_topic)" />
     <remap from="camera_info" to="$(arg camera_name)/camera_info" />
