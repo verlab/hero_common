@@ -27,6 +27,9 @@
 #include "IMUSensor.h"
 
 IMUSensor::IMUSensor(unsigned long rate) {
+  this->nh_ = nullptr;
+  this->imuPub = nullptr;
+  this->mpu = nullptr;
   this->timer = millis();
   this->setRate(rate);
 }
@@ -65,8 +68,7 @@ void IMUSensor::init(ros::NodeHandle &nh, String heroName) {
 
   /* Setup IMU I2C communication */
   /* Initiate IMU */
-  Wire.pins(I2C_SDA, I2C_SCL); //3 as SDA and 1 as SCL
-  Wire.begin(); //3 as SDA and 1 as SCL
+  Wire.begin(I2C_SDA, I2C_SCL);
   Wire.setClock(400000); // 400kHz I2C clock.
   /* Initialize device */
   delay(10);
@@ -110,6 +112,29 @@ void IMUSensor::init(ros::NodeHandle &nh, String heroName) {
   //  }/
 }
 
+#if IMU_ENABLE
+void IMUSensor::initForWeb(void) {
+  if (this->dmpReady) return;
+
+  Wire.begin(I2C_SDA, I2C_SCL);
+  Wire.setClock(400000);
+  delay(10);
+  this->mpu = new MPU6050();
+  this->mpu->initialize();
+  this->devStatus = this->mpu->dmpInitialize();
+  if (this->devStatus == 0) {
+    this->mpu->setDMPEnabled(true);
+    this->mpuIntStatus = this->mpu->getIntStatus();
+    this->dmpReady = true;
+    this->packetSize = this->mpu->dmpGetFIFOPacketSize();
+    this->IMUSensorEnable = true;
+  } else {
+    this->IMUSensorEnable = false;
+  }
+  this->readSensor();
+}
+#endif
+
 bool IMUSensor::isEnable(void) {
   return this->IMUSensorEnable;
 }
@@ -129,9 +154,10 @@ void IMUSensor::setRate(unsigned long rate) {
 void IMUSensor::update(unsigned long rate) {
   if (((millis() - this->timer) > (1000 / rate)) && IMUSensorEnable) {
     this->readSensor();
-    /* Send laser message to be published into ROS */
-    this->imuMessage.header.stamp = this->nh_->now();
-    this->imuPub->publish( &this->imuMessage);
+    if (this->nh_ && this->imuPub) {
+      this->imuMessage.header.stamp = this->nh_->now();
+      this->imuPub->publish(&this->imuMessage);
+    }
     this->timer = millis();
   }
 }

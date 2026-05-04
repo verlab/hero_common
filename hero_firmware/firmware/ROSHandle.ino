@@ -43,7 +43,7 @@ void ROSHandle::init(LEDStatus& ledStatus) {
   EEPROM.get(MEM_INIT_POS, configurationData);
   EEPROM.end();
   default_config = true;
-  if (configurationData.robot_id != -1) {
+  if (configurationData.robot_id != (uint)-1) {
     default_config = false;
   }
 
@@ -113,7 +113,7 @@ return this->nh.connected();
 
 void ROSHandle::sync(unsigned long sync_rate) {
   if ((millis() - this->debug_timer) > (1000 / debug_rate)) {
-    sprintf(this->stream, "\33[96m[%s] Conected at time %d\33[0m", this->heroName.c_str(), millis());
+    sprintf(this->stream, "\33[96m[%s] Conected at time %lu\33[0m", this->heroName.c_str(), (unsigned long)millis());
     this->nh.loginfo(this->stream);
     this->debug_timer = millis();
   }

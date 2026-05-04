@@ -28,7 +28,7 @@
 #define __CONFIG_H__
 
 /* Version Configuration */
-#define CONFIG_VERSION "v2.3"
+#define CONFIG_VERSION "v2.5"
 #define HARDWARE_VERSION "v2.5"
 #define FIRMWARE_VERSION "v3.8"
 
@@ -73,7 +73,10 @@ int config_mode = 0;          /* If you cover all the IR sensors with the hand, 
 #define MOTOR_LEFT 0              /* PIN D0 */
 #define MOTOR_RIGHT_HALT_PWM 1500 /* PWM Range 1000-2000*/
 #define MOTOR_LEFT_HALT_PWM 1500  /* PWM Range 1000-2000*/
-#define MOTOR_STIFFNESS 1         /* Apply stiffness to the motor movement */
+#define MOTOR_STIFFNESS 1         /* Legacy name; ramp uses MOTOR_PWM_DEFAULT_RAMP_US_S */
+#define MOTOR_PWM_DEFAULT_RAMP_US_S 2500 /* Default slew rate: max PWM change per second (µs/s) */
+#define MOTOR_PWM_RAMP_MIN_US_S 100
+#define MOTOR_PWM_RAMP_MAX_US_S 8000
 #define MOTOR_PWM_SUBSCRIBER_ENABLE true
 
 /* Laser Configuration */
@@ -155,14 +158,19 @@ struct DATA {
   ""
 };
 
+/* Packed 10 bytes @ MEM_INIT_POS_MOTOR_POSITION; PID starts @ 110. */
+#pragma pack(push, 1)
 struct MOTOR_P {
   int leftMotorDeadzone;
   int rightMotorDeadzone;
+  /** PWM slew limit (µs per second toward cmd target). Legacy EEPROM ≤1000 treated as old blend code remaps on load. */
+  uint16_t pwm_ramp_us_per_s;
 } motorData = {
-  // The default values
   -1,
-  -1
+  -1,
+  (uint16_t)MOTOR_PWM_DEFAULT_RAMP_US_S,
 };
+#pragma pack(pop)
 
 
 struct IR_CALIB {

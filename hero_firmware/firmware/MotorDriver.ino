@@ -25,28 +25,46 @@
   ******************************************************************************/
 
 #include "MotorDriver.h"
+#include "config.h"
+#include <math.h>
 
+static_assert(sizeof(MOTOR_P) == 10, "MOTOR_P EEPROM layout must stay 10 bytes (PID @ 110)");
 
 MotorDriver::MotorDriver(unsigned long rate) {
-  /* Initiate Motors */
+  this->nh_ = nullptr;
   this->leftMotor.detach();
   this->rightMotor.detach();
   delayMicroseconds(3000);
   this->halt();
   this->timer = millis();
+  this->lastRampMs = 0;
   this->setRate(rate);
 
   EEPROM.begin(MEM_ALOC_SIZE);
   EEPROM.get(MEM_INIT_POS_MOTOR_POSITION, motorData);
   EEPROM.end();
 
+  this->applyMotorDataFromGlobals();
+}
+
+void MotorDriver::applyMotorDataFromGlobals(void) {
   if ((motorData.leftMotorDeadzone > 1000) && (motorData.leftMotorDeadzone < 2000)) {
     this->leftMotorDeadzone = motorData.leftMotorDeadzone;
   }
-
   if ((motorData.rightMotorDeadzone > 1000) && (motorData.rightMotorDeadzone < 2000)) {
     this->rightMotorDeadzone = motorData.rightMotorDeadzone;
   }
+
+  uint16_t r = motorData.pwm_ramp_us_per_s;
+  if (r == 0 || r == 0xFFFF) {
+    r = MOTOR_PWM_DEFAULT_RAMP_US_S;
+  } else if (r <= 1000) {
+    /* Legacy stiffness-permille field: map to a usable ramp rate (µs/s). */
+    r = (uint16_t)(400u + (unsigned)r * 7u);
+  }
+  if (r < MOTOR_PWM_RAMP_MIN_US_S) r = MOTOR_PWM_RAMP_MIN_US_S;
+  if (r > MOTOR_PWM_RAMP_MAX_US_S) r = MOTOR_PWM_RAMP_MAX_US_S;
+  this->pwmRampUsPerS = r;
 }
 
 void MotorDriver::init(void) {
@@ -56,39 +74,66 @@ void MotorDriver::init(ros::NodeHandle& nh, String heroName) {
   this->nh_ = &nh; /* ROS Node Handle */
   this->heroName = heroName;
 
-  /* Address motor pwm subscribe */
-  this->motorTopic = this->heroName + String("/cmd_motor");                                                                           /* Update topic name */
-  this->motorSub = new ros::Subscriber<hero_common::Motor, MotorDriver>(this->motorTopic.c_str(), &MotorDriver::motorCallback, this); /* Instantiate subscriber */
-  this->nh_->subscribe(*this->motorSub);                                                                                              /* Address set odom service */
+  this->motorTopic = this->heroName + String("/cmd_motor");
+  this->motorSub = new ros::Subscriber<hero_common::Motor, MotorDriver>(this->motorTopic.c_str(), &MotorDriver::motorCallback, this);
+  this->nh_->subscribe(*this->motorSub);
 
-  /* Address set PID motors service */
-  this->setMotorTopic = this->heroName + String("/motors_parameters");                                                                                                                             /* Update service name */
-  this->setMotorService = new ros::ServiceServer<hero_common::SetMotor::Request, hero_common::SetMotor::Response, MotorDriver>(this->setMotorTopic.c_str(), &MotorDriver::setMotorCallback, this); /* Instantiate service */
-  this->nh_->advertiseService(*this->setMotorService);                                                                                                                                             /* Address fix motors service */
+  this->setMotorTopic = this->heroName + String("/motors_parameters");
+  this->setMotorService = new ros::ServiceServer<hero_common::SetMotor::Request, hero_common::SetMotor::Response, MotorDriver>(this->setMotorTopic.c_str(), &MotorDriver::setMotorCallback, this);
+  this->nh_->advertiseService(*this->setMotorService);
 }
 
-void MotorDriver::controlMotorWithStiffness(Servo& servo, int motorCmd) {
-  int currentCmd = servo.readMicroseconds();  // Read the current servo angle
+int MotorDriver::stepToward(int current, int target, int maxStep) {
+  int d = target - current;
+  if (d == 0) return current;
+  if (abs(d) <= maxStep) return target;
+  return current + (d > 0 ? maxStep : -maxStep);
+}
 
-  // Calculate the difference between the target velocity and the current velocity
-  int cmdDifference = motorCmd - currentCmd;
+void MotorDriver::processRamp(void) {
+  bool L = this->leftMotor.attached();
+  bool R = this->rightMotor.attached();
+  if (!L && !R) {
+    this->lastRampMs = millis();
+    return;
+  }
 
-  // Apply stiffness to the servo movement
-  int adjustedCmd = currentCmd + cmdDifference / MOTOR_STIFFNESS;
+  unsigned long now = millis();
+  unsigned long dt = now - this->lastRampMs;
+  if (this->lastRampMs == 0) dt = 1;
+  this->lastRampMs = now;
+  if (dt > 400) dt = 400;
 
-  // Keep the adjusted cmd within valid limits (usually 1000-2000 us)
-  adjustedCmd = constrain(adjustedCmd, 1000, 2000);
+  long maxStep = (long)this->pwmRampUsPerS * (long)dt / 1000L;
+  if (maxStep < 1L) maxStep = 1L;
+  int ms = (int)maxStep;
 
-  // Set the servo to the adjusted angle
-  servo.writeMicroseconds(adjustedCmd);
+  if (L) {
+    this->leftActualUs = MotorDriver::stepToward(this->leftActualUs, this->leftTargetUs, ms);
+    this->leftMotor.writeMicroseconds(this->leftActualUs);
+  }
+  if (R) {
+    this->rightActualUs = MotorDriver::stepToward(this->rightActualUs, this->rightTargetUs, ms);
+    this->rightMotor.writeMicroseconds(this->rightActualUs);
+  }
 }
 
 void MotorDriver::command(int leftMotorCmd, int rightMotorCmd) {
-  if (!this->leftMotor.attached()) this->leftMotor.attach(MOTOR_LEFT);
-  if (!this->rightMotor.attached()) this->rightMotor.attach(MOTOR_RIGHT);
-  this->controlMotorWithStiffness(this->leftMotor, leftMotorCmd);
-  this->controlMotorWithStiffness(this->rightMotor, rightMotorCmd);
-  delayMicroseconds(500);
+  this->leftTargetUs = constrain(leftMotorCmd, 1000, 2000);
+  this->rightTargetUs = constrain(rightMotorCmd, 1000, 2000);
+
+  if (!this->leftMotor.attached()) {
+    this->leftMotor.attach(MOTOR_LEFT);
+    int rd = this->leftMotor.readMicroseconds();
+    this->leftActualUs = (rd >= 1000 && rd <= 2000) ? rd : this->leftMotorDeadzone;
+  }
+  if (!this->rightMotor.attached()) {
+    this->rightMotor.attach(MOTOR_RIGHT);
+    int rd = this->rightMotor.readMicroseconds();
+    this->rightActualUs = (rd >= 1000 && rd <= 2000) ? rd : this->rightMotorDeadzone;
+  }
+
+  this->processRamp();
   this->watchdogTimer = millis();
 }
 
@@ -96,6 +141,11 @@ void MotorDriver::halt() {
   if (this->leftMotor.attached()) this->leftMotor.detach();
   if (this->rightMotor.attached()) this->rightMotor.detach();
   delayMicroseconds(1000);
+  this->leftActualUs = this->leftMotorDeadzone;
+  this->rightActualUs = this->rightMotorDeadzone;
+  this->leftTargetUs = this->leftActualUs;
+  this->rightTargetUs = this->rightActualUs;
+  this->lastRampMs = 0;
 }
 
 void MotorDriver::setRate(unsigned long rate) {
@@ -106,26 +156,22 @@ void MotorDriver::update() {
   this->update(this->rate);
 }
 
-/* Motor update */
 void MotorDriver::update(unsigned long rate) {
-  if ((millis() - this->timer) > (1000 / rate) && (millis() - this->watchdogTimer) > 1000) {
+  this->processRamp();
+
+  if (this->autoHaltEnabled && (millis() - this->timer) > (1000 / rate) && (millis() - this->watchdogTimer) > 1000) {
     this->halt();
     this->timer = millis();
   }
 }
 
-/* Set motor pwm */
 void MotorDriver::motorCallback(const hero_common::Motor& msg) {
   this->command((int)msg.left_motor_pwm, (int)msg.right_motor_pwm);
 }
 
-/* Set Motor parameters for both motors */
 void MotorDriver::setMotorCallback(const hero_common::SetMotor::Request& req, hero_common::SetMotor::Response& res) {
   motorData.leftMotorDeadzone = req.left_motor_pwm;
   motorData.rightMotorDeadzone = req.right_motor_pwm;
-
-  this->leftMotorDeadzone = req.left_motor_pwm;
-  this->rightMotorDeadzone = req.right_motor_pwm;
 
   sprintf(this->stream, "\33[92m[%s] Recording values in the flash... \33[0m", this->heroName.c_str());
   this->nh_->loginfo(this->stream);
@@ -138,4 +184,5 @@ void MotorDriver::setMotorCallback(const hero_common::SetMotor::Request& req, he
   this->nh_->loginfo(this->stream);
   res.success = 1;
   res.message = "Motor Parameters has been succesfully recorded!";
+  this->applyMotorDataFromGlobals();
 }

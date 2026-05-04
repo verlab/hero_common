@@ -29,6 +29,9 @@
 
 
 WheelEncoder::WheelEncoder(unsigned long rate) {
+  this->nh_ = nullptr;
+  this->encoderPub = nullptr;
+
   this->leftEncoder = new Encoder(ENC_A_LEFT, ENC_B_LEFT);            /* Left Encoder Configuration */
   this->rightEncoder = new Encoder(ENC_A_RIGHT, ENC_B_RIGHT);          /* Right Encoder Configuration */
 
@@ -124,8 +127,10 @@ void WheelEncoder::readSensor(void) {
 void WheelEncoder::update(unsigned long rate) {
   if ((millis() - this->timer) > (1000 / rate)) {
     this->readSensor();
-    this->encoderMessage.header.stamp = this->nh_->now();
-    this->encoderPub->publish( &this->encoderMessage );
+    if (this->nh_ && this->encoderPub) {
+      this->encoderMessage.header.stamp = this->nh_->now();
+      this->encoderPub->publish(&this->encoderMessage);
+    }
     this->timer = millis();
   }
 }

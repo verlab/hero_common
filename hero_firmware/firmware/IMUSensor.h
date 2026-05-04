@@ -27,6 +27,7 @@
 #ifndef __IMU_SENSOR_H__
 #define __IMU_SENSOR_H__
 
+#include "config.h"
 #include "I2Cdev.h"
 #include "MPU6050_6Axis_MotionApps20.h" /* https://playground.arduino.cc/Main/MPU-6050 */
 #include "Wire.h" /* Arduino Wire library is required if I2Cdev I2CDEV_ARDUINO_WIRE implementation */
@@ -73,6 +74,9 @@ class IMUSensor {
   public:
     IMUSensor(unsigned long rate);
     void init(ros::NodeHandle &nh, String heroName);
+#if IMU_ENABLE
+    void initForWeb(void);
+#endif
     void update();
     void update(unsigned long rate);
     void enable(void);

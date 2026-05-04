@@ -39,6 +39,8 @@
 #include <hero_common/Motor.h>
 #include <hero_common/SetMotor.h>
 
+#include "config.h"
+
 #define MEM_INIT_POS_MOTOR_POSITION 100
 #define MEM_ALOC_SIZE 512
 
@@ -66,19 +68,34 @@ class MotorDriver {
 
     char stream[100];
 
+    /** When false (e.g. web config motor test), PWM is not auto-cut after timeout. */
+    bool autoHaltEnabled = true;
+
+    int leftTargetUs = 1500;
+    int rightTargetUs = 1500;
+    int leftActualUs = 1500;
+    int rightActualUs = 1500;
+    unsigned long lastRampMs = 0;
+    uint16_t pwmRampUsPerS = MOTOR_PWM_DEFAULT_RAMP_US_S;
+
+    void processRamp(void);
+    static int stepToward(int current, int target, int maxStep);
+
   public:
     int leftMotorDeadzone = MOTOR_LEFT_HALT_PWM;
     int rightMotorDeadzone = MOTOR_RIGHT_HALT_PWM;
-  
+
     MotorDriver(unsigned long rate);
     void init(void);
     void init(ros::NodeHandle &nh, String heroName);
     void update();
     void update(unsigned long rate);
     void compute();
-    void controlMotorWithStiffness(Servo &servo, int motorCmd);
     void command (int leftMotorCmd, int rightMotorCmd);
     void halt ();
+
+    void setAutoHaltEnabled(bool enabled) { this->autoHaltEnabled = enabled; }
+    void applyMotorDataFromGlobals(void);
 
     void setRate(unsigned long rate);
     void readSensor();

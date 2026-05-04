@@ -103,8 +103,16 @@ void setup() {
 
     case 255:
       {
-        // Create an AP that enables the user to setup some parameters of the robot. See config_via_wifi.h.
-        webConfig.init(ledStatus);
+        // AP mode: web UI for EEPROM + hardware tuning (no ROS / no internet).
+        wheelEncoder.init();
+        motorDriver.init();
+        rangeSensor.init();
+#if IMU_ENABLE
+        imuSensor.initForWeb();
+        webConfig.init(ledStatus, wheelEncoder, motorDriver, rangeSensor, &imuSensor);
+#else
+        webConfig.init(ledStatus, wheelEncoder, motorDriver, rangeSensor, nullptr);
+#endif
         break;
       }
 

@@ -27,6 +27,11 @@
 #include "RangeSensor.h"
 
 RangeSensor::RangeSensor(unsigned long rate) {
+  this->nh_ = nullptr;
+  this->laserPub = nullptr;
+  this->laserEnableSub = nullptr;
+  this->setIRCalibService = nullptr;
+
   EEPROM.begin(MEM_ALOC_SIZE);
   EEPROM.get(MEM_INIT_POS_IR_CALIB, irCalib);
   EEPROM.end();
@@ -38,6 +43,8 @@ RangeSensor::RangeSensor(unsigned long rate) {
 }
 
 void RangeSensor::init() {
+  this->laserEnableMessage.data = true;
+
   this->laserMessage.range_min = ROBOT_DIAMETER / 2.0;                                                     /* Min laser range */
   this->laserMessage.range_max = 0.20f + this->laserMessage.range_min;                                     /* Max laser range */
   this->laserMessage.angle_min = -M_PI;                                                                    /* Initial angle */
@@ -97,10 +104,11 @@ void RangeSensor::update(unsigned long rate) {
 
   if ((millis() - this->timer) > (1000 / rate)) {
     this->readSensor();
-    /* Send laser message to be published into ROS */
-    this->laserMessage.header.stamp = this->nh_->now();
-    this->laserMessage.header.seq += 1;
-    this->laserPub->publish(&laserMessage);
+    if (this->nh_ && this->laserPub) {
+      this->laserMessage.header.stamp = this->nh_->now();
+      this->laserMessage.header.seq += 1;
+      this->laserPub->publish(&laserMessage);
+    }
     this->timer = millis();
   }
 }

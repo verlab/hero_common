@@ -25,8 +25,10 @@
   ******************************************************************************/
  
 #include "LEDStatus.h"
+#include "config.h"
 
 LEDStatus::LEDStatus(unsigned long rate) {
+  this->nh_ = nullptr;
   this->timer = millis();
   this->setRate(rate);
 
@@ -107,12 +109,26 @@ void LEDStatus::welcome(RgbColor color, unsigned long wait) {
   this->reset();
 }
 
+void LEDStatus::showWebColor(uint8_t r, uint8_t g, uint8_t b, uint8_t brightness) {
+  this->reseted = false;
+  this->strip->Begin();
+  delayMicroseconds(500);
+  RgbColor color(r, g, b);
+  for (uint16_t i = 0; i < this->PixelCount; i++) {
+    this->strip->SetPixelColor(i, color);
+  }
+  this->strip->SetBrightness(brightness);
+  this->strip->Show();
+  delayMicroseconds(500);
+  this->watchdogTimer = millis();
+}
+
 void LEDStatus::ledCallback(const std_msgs::ColorRGBA& msg) {
   this->reseted = false;
   this->strip->Begin();
   delayMicroseconds(500);
   RgbColor color(msg.r * 255, msg.g * 255, msg.b * 255);
-  for (int i = 0; i <= PixelCount; i++) {
+  for (uint16_t i = 0; i < this->PixelCount; i++) {
     this->strip->SetPixelColor(i, color);
   }
   this->strip->SetBrightness(msg.a * 255);

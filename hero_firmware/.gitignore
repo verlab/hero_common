@@ -1,0 +1,4 @@
+.pio
+.vscode/.browse.c_cpp.db*
+.clang_complete
+compile_commands.json
