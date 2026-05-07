@@ -56,11 +56,9 @@ class RangeSensor {
     
     String setIRCalibTopic; 
     ros::ServiceServer<hero_common::SetIRCalibration::Request, hero_common::SetIRCalibration::Response, RangeSensor> *setIRCalibService;    /* Service Type */
-    
+
     unsigned long rate = 20, timer;
     char stream[100];
-
-    
 
   public:
     RangeSensor(unsigned long rate);

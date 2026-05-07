@@ -6,7 +6,7 @@
 
 static const char HTML_DOC[] PROGMEM = R"HEROHTML(<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>HERO | Field configuration</title>
+<title>HERO Setup</title>
 <style>
 :root{--bg:#0c0e12;--surface:#141922;--card:#1a2130;--border:#2a3344;--text:#e6edf3;--muted:#8b9cb3;--accent:#00d4aa;--accent-dim:#00997a;--warn:#ffb020;--danger:#f85149;--shadow:0 4px 24px rgba(0,0,0,.45)}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;letter-spacing:.01em}
@@ -14,7 +14,10 @@ header{padding:1rem 1.25rem;background:linear-gradient(180deg,var(--surface) 0%,
 header h1{margin:0;font-size:1.15rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
 header p{margin:.4rem 0 0;font-size:.8rem;color:var(--muted);max-width:52rem}
 .wrap{max-width:1080px;margin:0 auto;padding:1rem}
-.tabs{display:flex;flex-wrap:wrap;gap:.25rem;margin:1rem 0;border-bottom:1px solid var(--border);padding-bottom:2px}
+.statusbar{display:flex;flex-wrap:wrap;align-items:center;gap:.65rem 1.1rem;padding:.45rem 0 .65rem;margin-bottom:.25rem;border-bottom:1px solid var(--border);font-size:.78rem;color:var(--muted)}
+.statusbar .motor-val{font-size:.95rem}
+.hdr-sub{margin:.35rem 0 0;font-size:.74rem;color:var(--muted);max-width:48rem}
+.tabs{display:flex;flex-wrap:wrap;gap:.25rem;margin:.35rem 0 1rem;border-bottom:1px solid var(--border);padding-bottom:2px}
 .tab{padding:.5rem .9rem;border:1px solid transparent;border-radius:6px 6px 0 0;background:transparent;color:var(--muted);cursor:pointer;font-size:.78rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
 .tab:hover{color:var(--text);background:var(--surface)}
 .tab.on{background:var(--card);color:var(--accent);border-color:var(--border);border-bottom-color:var(--card);margin-bottom:-1px}
@@ -38,58 +41,53 @@ table.const th{background:var(--surface);color:var(--muted);text-transform:upper
 .ledrow{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center}
 code{font-size:.78em;background:var(--surface);padding:.1rem .35rem;border-radius:4px;border:1px solid var(--border)}
 </style></head><body>
-<header><div class="wrap"><h1>HERO · Field configuration</h1><p>Access point mode · offline · Wi‑Fi network <code>HERO_ROBOT_*</code> · PWM neutral is typically 1500 µs (below / above drives opposite directions).</p></div></header>
+<header><div class="wrap"><h1>HERO Setup</h1><p class="hdr-sub">Access point · SSID <code>HERO_ROBOT_*</code> · PWM neutral 1500 µs</p></div></header>
 <div class="wrap">
+<div class="statusbar"><span id="verInfo" class="badge">…</span></div>
 <div class="tabs" id="tabs">
 <button type="button" class="tab on" data-t="t1">Connection</button>
-<button type="button" class="tab" data-t="t2">Motors (test)</button>
-<button type="button" class="tab" data-t="t3">Motors (EEPROM)</button>
+<button type="button" class="tab" data-t="t2">Motors</button>
+<button type="button" class="tab" data-t="t3">Motors EEPROM</button>
 <button type="button" class="tab" data-t="t4">Encoders</button>
 <button type="button" class="tab" data-t="t5">Proximity</button>
 <button type="button" class="tab" data-t="t6">LEDs</button>
 <button type="button" class="tab" data-t="t7">PID</button>
-<button type="button" class="tab" data-t="t8">Firmware</button>
+<button type="button" class="tab" data-t="t8">Build</button>
 </div>
-<section id="t1" class="panel on"><h2>Connection &amp; identity</h2>
+<section id="t1" class="panel on"><h2>Connection</h2>
 <form id="fConn"><div class="row"><div><label>Robot ID</label><input name="robotId" id="robotId" type="number" min="0" max="999" required/></div>
 <div><label>Description</label><input name="robotDescription" id="robotDescription" maxlength="19"/></div></div>
 <div class="row"><div><label>Wi‑Fi SSID (STA)</label><input name="wificSSID" id="wificSSID" maxlength="19" required/></div>
 <div><label>Wi‑Fi password</label><input name="wificPassword" id="wificPassword" maxlength="19" required/></div></div>
-<label>ROS master (IP or hostname)</label><input name="rosMasterAddress" id="rosMasterAddress" maxlength="19" required/>
-<p><button class="btn" type="submit">Save connection</button></p></form>
-<p><span id="verInfo" class="badge">…</span></p>
+<label>ROS master</label><input name="rosMasterAddress" id="rosMasterAddress" maxlength="19" required/>
+<p><button class="btn" type="submit">Save</button></p></form>
 </section>
-<section id="t2" class="panel"><h2>Motor PWM test</h2>
-<p class="hint">Servo PWM in microseconds (1000–2000). Output is <strong>slew‑limited</strong> in firmware toward the setpoint (see <em>Motors (EEPROM)</em> for rate). Command holds until <strong>Stop motors</strong>.</p>
+<section id="t2" class="panel"><h2>Motor test</h2>
 <div class="grid2"><div><label>Left <span id="lv" class="motor-val">1500</span> µs</label><input type="range" id="sl" min="1000" max="2000" value="1500"/></div>
 <div><label>Right <span id="rv" class="motor-val">1500</span> µs</label><input type="range" id="sr" min="1000" max="2000" value="1500"/></div></div>
 <p><button class="btn" type="button" id="bApply">Apply PWM</button><button class="btn warn" type="button" id="bStop">Stop motors</button></p>
 </section>
-<section id="t3" class="panel"><h2>Motors — EEPROM</h2>
-<p class="hint"><strong>Ramp rate</strong> limits how fast PWM can move toward the command (µs per second). Lower = softer start / less inrush. Stored with stop PWM (neutral) values.</p>
-<form id="fMot"><div class="row"><div><label>Left stop PWM (µs)</label><input name="m_l" id="m_l" type="number" min="1000" max="2000" required/></div>
-<div><label>Right stop PWM (µs)</label><input name="m_r" id="m_r" type="number" min="1000" max="2000" required/></div></div>
-<div class="row"><div><label>Ramp rate (µs/s)</label><input name="m_ramp" id="m_ramp" type="number" min="100" max="8000" step="50" required/></div></div>
-<p><button class="btn" type="submit">Save motors (EEPROM)</button></p></form>
+<section id="t3" class="panel"><h2>Motor EEPROM</h2>
+<form id="fMot"><div class="row"><div><label>Left stop µs</label><input name="m_l" id="m_l" type="number" min="1000" max="2000" required/></div>
+<div><label>Right stop µs</label><input name="m_r" id="m_r" type="number" min="1000" max="2000" required/></div></div>
+<div class="row"><div><label>Ramp µs/s</label><input name="m_ramp" id="m_ramp" type="number" min="100" max="8000" step="50" required/></div></div>
+<p><button class="btn" type="submit">Save</button></p></form>
 </section>
 <section id="t4" class="panel"><h2>Encoders</h2>
-<p class="hint">Filtered wheel speeds from live telemetry (~5 Hz).</p>
 <canvas id="c1" width="480" height="110"></canvas>
-<h3>IMU snapshot</h3><pre id="imu" style="background:var(--surface);padding:.65rem;border-radius:6px;font-size:.72rem;border:1px solid var(--border);overflow:auto">—</pre>
+<h3>IMU</h3><pre id="imu" style="background:var(--surface);padding:.65rem;border-radius:6px;font-size:.72rem;border:1px solid var(--border);overflow:auto">—</pre>
 </section>
-<section id="t5" class="panel"><h2>Proximity (IR)</h2>
-<p class="hint">Estimated range per channel (mm) using current calibration. Autocalib matches <code>hero_ir_calib.py</code>: 100 samples, mean intensity × d² → α, then written to EEPROM.</p>
+<section id="t5" class="panel"><h2>Proximity</h2>
 <canvas id="cIrMm" width="480" height="140"></canvas>
-<h3>Raw intensity (debug)</h3>
+<h3>IR raw</h3>
 <canvas id="c2" width="480" height="90"></canvas>
-<div class="row"><div><label>Autocalib standoff (mm)</label><input type="number" id="irDmm" value="100" min="20" max="500"/></div>
-<div><label>Autocalib status</label><pre id="irCalibStatus" style="background:var(--surface);padding:.5rem;border-radius:6px;font-size:.72rem;margin:.5rem 0 0;border:1px solid var(--border)">—</pre></div></div>
-<p><button class="btn" type="button" id="bIrStart">Start autocalib (100 samples)</button><button class="btn warn" type="button" id="bIrCancel">Cancel</button></p>
-<form id="fIr"><h3>Calibration α (per channel)</h3><div class="row" id="laserIrRow"></div>
-<p><button class="btn" type="submit">Save α to EEPROM</button></p></form>
+<div class="row"><div><label>Autocalib mm</label><input type="number" id="irDmm" value="100" min="20" max="500"/></div>
+<div><label>Autocalib</label><pre id="irCalibStatus" style="background:var(--surface);padding:.5rem;border-radius:6px;font-size:.72rem;margin:.5rem 0 0;border:1px solid var(--border)">—</pre></div></div>
+<p><button class="btn" type="button" id="bIrStart">Autocalib</button><button class="btn warn" type="button" id="bIrCancel">Cancel</button></p>
+<form id="fIr"><h3>α</h3><div class="row" id="laserIrRow"></div>
+<p><button class="btn" type="submit">Save α</button></p></form>
 </section>
-<section id="t6" class="panel"><h2>WS2812 LEDs</h2>
-<p class="hint">Local test pattern (no ROS). Default brightness max.</p>
+<section id="t6" class="panel"><h2>LEDs</h2>
 <div class="ledrow">
 <button class="btn" type="button" data-lr="255" data-lg="0" data-lb="0">Red</button>
 <button class="btn" type="button" data-lr="0" data-lg="255" data-lb="0">Green</button>
@@ -110,8 +108,7 @@ code{font-size:.78em;background:var(--surface);padding:.1rem .35rem;border-radiu
 <p><button class="btn" type="submit">Save PID</button></p></form>
 <p><button class="btn danger" type="button" id="bReset">Full EEPROM reset</button></p>
 </section>
-<section id="t8" class="panel"><h2>Compiled constants (<code>config.h</code>)</h2>
-<p class="hint">Read‑only. Changing values requires rebuild and reflash.</p>
+<section id="t8" class="panel"><h2>Build constants</h2>
 <div id="constBox">Loading…</div>
 </section>
 </div>
@@ -124,7 +121,8 @@ function fit(C){C.width=C.parentElement.clientWidth||480}
 function line(g,arr,col){var n=arr.length,w=g.canvas.width,h=g.canvas.height,pad=h*0.05,i,x;if(n<2)return;var mn=Math.min.apply(null,arr),mx=Math.max.apply(null,arr);if(mx-mn<1e-6){mn-=1;mx+=1}g.strokeStyle=col;g.beginPath();for(i=0;i<n;i++){x=i/(n-1)*w;var y=h-(arr[i]-mn)/(mx-mn)*h*0.9-pad;if(!i)g.moveTo(x,y);else g.lineTo(x,y)}g.stroke()}
 function encBG(g){var w=g.canvas.width,h=g.canvas.height,i;g.clearRect(0,0,w,h);g.fillStyle='#141922';g.fillRect(0,0,w,h);g.strokeStyle='#2a3344';for(i=0;i<=4;i++){g.beginPath();g.moveTo(0,i*h/4);g.lineTo(w,i*h/4);g.stroke()}}
 function encDraw(g,a1,a2,c1,c2){encBG(g);line(g,a1,c1);line(g,a2,c2)}
-function irBarDraw(g,mm,maxMm){var w=g.canvas.width,h=g.canvas.height,n=8,i,v,bw=w/n*0.62,pad=(w/n-bw)/2,mx=maxMm||220;g.clearRect(0,0,w,h);g.fillStyle='#141922';g.fillRect(0,0,w,h);g.strokeStyle='#2a3344';for(i=0;i<=4;i++){g.beginPath();g.moveTo(0,i*h/5);g.lineTo(w,i*h/5);g.stroke()}for(i=0;i<n;i++){v=(mm&&mm[i])||0;if(v<0)v=0;if(v>mx)v=mx;var bh=(v/mx)*(h-28),x=i*(w/n)+pad,y=h-bh-18;g.fillStyle='#00d4aa';g.fillRect(x,y,bw,bh);g.fillStyle='#e6edf3';g.font='11px ui-monospace,monospace';g.fillText(String(i),x,y-3);g.fillText(Math.round(v)+' mm',x,Math.min(h-4,y+bh+12))}}
+function irMmBarScale(mm,capMm){var arr=mm||[],hi=0,i;for(i=0;i<arr.length;i++)if(arr[i]>hi)hi=arr[i];var floor=100;return Math.min(2000,Math.max(floor,capMm>0?capMm*1.06:0,hi*1.15))}
+function irBarDraw(g,mm,maxMm,slots){var w=g.canvas.width,h=g.canvas.height,n=8,i,v,bw=w/n*0.62,pad=(w/n-bw)/2,mx=maxMm>10?maxMm:300;g.clearRect(0,0,w,h);g.fillStyle='#141922';g.fillRect(0,0,w,h);g.strokeStyle='#2a3344';for(i=0;i<=4;i++){g.beginPath();g.moveTo(0,i*h/5);g.lineTo(w,i*h/5);g.stroke()}for(i=0;i<n;i++){v=(mm&&mm[i])||0;if(v<0)v=0;if(v>mx)v=mx;var bh=(v/mx)*(h-28),x=i*(w/n)+pad,y=h-bh-18;g.fillStyle='#00d4aa';g.fillRect(x,y,bw,bh);g.fillStyle='#e6edf3';g.font='11px ui-monospace,monospace';var lab=(slots&&slots.length>i)?String(slots[i]):String(i);g.fillText(lab,x,y-3);g.fillText(Math.round(v)+' mm',x,Math.min(h-4,y+bh+12))}}
 function ajax(u,m,d,cb){var x=new XMLHttpRequest();x.open(m||'GET',u,1);x.onreadystatechange=function(){if(x.readyState===4)cb(x.status,x.responseText)};if(d){x.setRequestHeader('Content-Type','application/x-www-form-urlencoded');x.send(d)}else x.send()}
 function tabs(){var t=document.querySelectorAll('.tab'),p=document.querySelectorAll('.panel');t.forEach(function(b){b.onclick=function(){var id=b.getAttribute('data-t');t.forEach(function(x){x.classList.toggle('on',x===b)});p.forEach(function(x){x.classList.toggle('on',x.id===id)});if(id==='t8')loadConst()}})}
 function loadConst(){ajax('/api/constants',0,0,function(st,tx){var b=document.getElementById('constBox');if(st!==200){b.textContent='Load failed';return}var o,j;try{o=JSON.parse(tx)}catch(e){b.textContent='Invalid JSON';return}
@@ -132,7 +130,9 @@ var k=Object.keys(o).sort(),html='<table class="const"><tr><th>Name</th><th>Valu
 function poll(){ajax('/api/telemetry',0,0,function(st,tx){if(st!==200)return;var d;try{d=JSON.parse(tx)}catch(e){return}
 document.getElementById('verInfo').textContent='FW '+d.versions.firmware+' · HW '+d.versions.hardware+' · CFG '+d.versions.config;
 var v=d.enc||{};h1.push(v.vLf||0);h2.push(v.vRf||0);while(h1.length>L){h1.shift();h2.shift()}
-fit(W1);fit(W2);fit(Wir);encDraw(g1,h1,h2,'#00d4aa','#ff8a65');encBG(g2);line(g2,(d.ir&&d.ir.i)||[],'#5c7cfa');irBarDraw(gIr,(d.irMm&&d.irMm.mm)||[],220);
+fit(W1);fit(W2);fit(Wir);encDraw(g1,h1,h2,'#00d4aa','#ff8a65');encBG(g2);line(g2,(d.ir&&d.ir.i)||[],'#5c7cfa');
+var imm=d.irMm||{},mmA=imm.mm||[],capM=imm.capMm||0,slots=imm.slot;
+irBarDraw(gIr,mmA,irMmBarScale(mmA,capM),slots);
 document.getElementById('imu').textContent=JSON.stringify(d.imu||{},null,2)})}
 function motorPost(l,r,stop){var q=stop?'stop=1':'l='+encodeURIComponent(l)+'&r='+encodeURIComponent(r);ajax('/api/motor','POST',q,function(){})}
 function formToQuery(f){return[].map.call(f.elements,function(el){return el.name?encodeURIComponent(el.name)+'='+encodeURIComponent(el.value):''}).filter(Boolean).join('&')}

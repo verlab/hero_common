@@ -30,7 +30,7 @@
 /* Version Configuration */
 #define CONFIG_VERSION "v2.5"
 #define HARDWARE_VERSION "v2.5"
-#define FIRMWARE_VERSION "v3.8"
+#define FIRMWARE_VERSION "v3.11"
 
 /*Robot name */
 #define ROBOT_NAME "/hero_"
@@ -85,8 +85,10 @@ int config_mode = 0;          /* If you cover all the IR sensors with the hand, 
 #define MUX_C 12                                             /* PIN D6 */
 #define MUX_EN 2                                             /* PIN D4 */
 #define TOUCH_THRESHOLD 450                                  /* If sensor readings reach 900 than we assume a touch sensor */
-const int real_pos[8] = { 0, 1, 2, 7, 3, 6, 4, 5 };          /* Sort proximity sensors*/
-const int real_pos_inter[8] = { 0, 2, 4, 14, 6, 12, 8, 10 }; /* Sort proximity sensors*/
+const int real_pos[8] = { 0, 1, 2, 7, 3, 6, 4, 5 };          /* Mux channel → calibration index */
+const int real_pos_inter[8] = { 0, 2, 4, 14, 6, 12, 8, 10 }; /* Mux channel → LaserScan.ranges index */
+/* ROS LaserScan angular order: physical beams occupy even indices 0…14 (see RangeSensor interpolation) */
+const int laser_scan_slot_angle_order[8] = { 0, 2, 4, 6, 8, 10, 12, 14 };
 
 /* I2C Configuration */
 #define I2C_SDA 3 /* PIN RX */

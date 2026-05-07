@@ -223,21 +223,28 @@ void WebConfig::handleApiTelemetry(void) {
   j += "},";
 
   j += "\"ir\":{\"i\":[";
-  for (int i = 0; i < 8; i++) {
-    if (i) j += ',';
+  for (int k = 0; k < 8; k++) {
+    if (k) j += ',';
+    int idx = laser_scan_slot_angle_order[k];
     float v = 0;
-    if (ls.intensities && ls.intensities_length > (unsigned)real_pos_inter[i])
-      v = ls.intensities[real_pos_inter[i]];
+    if (ls.intensities && ls.intensities_length > (unsigned)idx) v = ls.intensities[idx];
     j += String(v, 2);
   }
   j += "]},";
 
-  j += "\"irMm\":{\"mm\":[";
-  for (int i = 0; i < 8; i++) {
-    if (i) j += ',';
+  j += "\"irMm\":{\"capMm\":";
+  j += String(ls.range_max * 1000.0f, 1);
+  j += ",\"slot\":[";
+  for (int k = 0; k < 8; k++) {
+    if (k) j += ',';
+    j += String(laser_scan_slot_angle_order[k]);
+  }
+  j += "],\"mm\":[";
+  for (int k = 0; k < 8; k++) {
+    if (k) j += ',';
+    int idx = laser_scan_slot_angle_order[k];
     float mm = 0;
-    if (ls.ranges && ls.ranges_length > (unsigned)real_pos_inter[i])
-      mm = ls.ranges[real_pos_inter[i]] * 1000.0f;
+    if (ls.ranges && ls.ranges_length > (unsigned)idx) mm = ls.ranges[idx] * 1000.0f;
     j += String(mm, 1);
   }
   j += "]},";
