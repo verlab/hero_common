@@ -85,6 +85,9 @@ class MotorDriver {
     int leftMotorDeadzone = MOTOR_LEFT_HALT_PWM;
     int rightMotorDeadzone = MOTOR_RIGHT_HALT_PWM;
 
+    /** Force motor pins to driven LOW (call after Servo detach; GPIO may float otherwise). */
+    static void drivePinsSafe(void);
+
     MotorDriver(unsigned long rate);
     void init(void);
     void init(ros::NodeHandle &nh, String heroName);

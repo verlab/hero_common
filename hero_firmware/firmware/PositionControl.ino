@@ -102,7 +102,7 @@ void PositionControl::update() {
 
 /* Update control loop and set the output to the motors */
 void PositionControl::update(unsigned long rate) {
-  if (((millis() - this->timer) > (1000 / rate)) && ((millis() - this->watchdog) < 3000)) {
+  if (((millis() - this->timer) > (1000 / rate)) && (this->watchdog != 0) && ((millis() - this->watchdog) < 3000)) {
     /* Position-Control */
     this->leftMotorInput = ((double)this->wheelEncoder->getLeftEncoderTicks() - this->leftMotorStartPos);
     this->rightMotorInput = ((double)this->wheelEncoder->getRightEncoderTicks() - this->rightMotorStartPos);

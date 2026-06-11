@@ -107,7 +107,7 @@ void VelocityControl::update() {
 
 /* Update control loop and set the output to the motors */
 void VelocityControl::update(unsigned long rate) {
-  if (((millis() - this->timer) > (1000 / rate)) && ((millis() - this->watchdog) < 1000)) {
+  if (((millis() - this->timer) > (1000 / rate)) && (this->watchdog != 0) && ((millis() - this->watchdog) < 1000)) {
     /* Position-Control */
     this->wheelEncoder->readSensor();
     this->leftMotorInput = (double)this->wheelEncoder->getMessage().left_speed_filtered;

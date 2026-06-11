@@ -69,14 +69,14 @@ int config_mode = 0;          /* If you cover all the IR sensors with the hand, 
 #define ENCODER_SPEED_GAIN_AGGRESSIVE 1.0
 
 /* Motor Configuration */
-#define MOTOR_RIGHT 16            /* PIN D3 */
-#define MOTOR_LEFT 0              /* PIN D0 */
+#define MOTOR_RIGHT 16            /* GPIO16 — NodeMCU D0 (no internal pull-up) */
+#define MOTOR_LEFT 0              /* GPIO0  — NodeMCU D3 (boot strap: HIGH at reset) */
 #define MOTOR_RIGHT_HALT_PWM 1500 /* PWM Range 1000-2000*/
 #define MOTOR_LEFT_HALT_PWM 1500  /* PWM Range 1000-2000*/
 #define MOTOR_STIFFNESS 1         /* Legacy name; ramp uses MOTOR_PWM_DEFAULT_RAMP_US_S */
 #define MOTOR_PWM_DEFAULT_RAMP_US_S 2500 /* Default slew rate: max PWM change per second (µs/s) */
 #define MOTOR_PWM_RAMP_MIN_US_S 100
-#define MOTOR_PWM_RAMP_MAX_US_S 8000
+#define MOTOR_PWM_RAMP_MAX_US_S 20000
 #define MOTOR_PWM_SUBSCRIBER_ENABLE true
 
 /* Laser Configuration */

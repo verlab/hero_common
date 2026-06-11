@@ -34,6 +34,17 @@
 /* Libraries */
 #include "config.h"
 
+/* Drive motor pins LOW before any other global constructor runs (Servo pins float otherwise). */
+struct MotorPinsEarlyInit {
+  MotorPinsEarlyInit() {
+    pinMode(MOTOR_RIGHT, OUTPUT);
+    pinMode(MOTOR_LEFT, OUTPUT);
+    digitalWrite(MOTOR_RIGHT, LOW);
+    digitalWrite(MOTOR_LEFT, LOW);
+  }
+};
+static MotorPinsEarlyInit motorPinsEarlyInit;
+
 #include "LEDStatus.h"
 LEDStatus ledStatus(20);
 
@@ -69,11 +80,7 @@ RandomWalkDemo randomWalkDemo(5);
 
 /* Main Setup */
 void setup() {
-  /* Stopping Motors */
-  pinMode(MOTOR_RIGHT, OUTPUT);
-  pinMode(MOTOR_LEFT, OUTPUT);
-  digitalWrite(MOTOR_RIGHT, LOW);
-  digitalWrite(MOTOR_LEFT, LOW);
+  MotorDriver::drivePinsSafe();
   /* Setup laser Readings */
   rangeSensor.connect();
   /* Cover all the range sensor to enable web config mode */

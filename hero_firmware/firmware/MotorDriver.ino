@@ -30,10 +30,19 @@
 
 static_assert(sizeof(MOTOR_P) == 10, "MOTOR_P EEPROM layout must stay 10 bytes (PID @ 110)");
 
+void MotorDriver::drivePinsSafe(void) {
+  pinMode(MOTOR_RIGHT, OUTPUT);
+  pinMode(MOTOR_LEFT, OUTPUT);
+  digitalWrite(MOTOR_RIGHT, LOW);
+  digitalWrite(MOTOR_LEFT, LOW);
+}
+
 MotorDriver::MotorDriver(unsigned long rate) {
   this->nh_ = nullptr;
+  MotorDriver::drivePinsSafe();
   this->leftMotor.detach();
   this->rightMotor.detach();
+  MotorDriver::drivePinsSafe();
   delayMicroseconds(3000);
   this->halt();
   this->timer = millis();
@@ -140,6 +149,7 @@ void MotorDriver::command(int leftMotorCmd, int rightMotorCmd) {
 void MotorDriver::halt() {
   if (this->leftMotor.attached()) this->leftMotor.detach();
   if (this->rightMotor.attached()) this->rightMotor.detach();
+  MotorDriver::drivePinsSafe();
   delayMicroseconds(1000);
   this->leftActualUs = this->leftMotorDeadzone;
   this->rightActualUs = this->rightMotorDeadzone;

@@ -70,7 +70,7 @@ code{font-size:.78em;background:var(--surface);padding:.1rem .35rem;border-radiu
 <section id="t3" class="panel"><h2>Motor EEPROM</h2>
 <form id="fMot"><div class="row"><div><label>Left stop µs</label><input name="m_l" id="m_l" type="number" min="1000" max="2000" required/></div>
 <div><label>Right stop µs</label><input name="m_r" id="m_r" type="number" min="1000" max="2000" required/></div></div>
-<div class="row"><div><label>Ramp µs/s</label><input name="m_ramp" id="m_ramp" type="number" min="100" max="8000" step="50" required/></div></div>
+<div class="row"><div><label>Ramp µs/s</label><input name="m_ramp" id="m_ramp" type="number" min="100" max="20000" step="50" required/></div></div>
 <p><button class="btn" type="submit">Save</button></p></form>
 </section>
 <section id="t4" class="panel"><h2>Encoders</h2>
@@ -149,7 +149,7 @@ var pv=d.pidVel||{},p=d.pidPos||{},m=d.motor||{},ir=d.irAlpha||[];
 ['lkp','lki','lkd','rkp','rki','rkd'].forEach(function(k){var el=document.getElementById('v_'+k);if(el)el.value=pv[k]!==undefined&&pv[k]>=0?pv[k]:''});
 ['lkp','lki','lkd','rkp','rki','rkd'].forEach(function(k){var el=document.getElementById('p_'+k);if(el)el.value=p[k]!==undefined&&p[k]>=0?p[k]:''});
 document.getElementById('m_l').value=m.left>=0?m.left:1500;document.getElementById('m_r').value=m.right>=0?m.right:1500;
-var rp=document.getElementById('m_ramp');if(rp){var rv=(m.ramp_us_per_s!==undefined)?parseInt(m.ramp_us_per_s,10):2500;if(rv<100||rv>8000)rv=2500;rp.value=rv}
+var rp=document.getElementById('m_ramp');if(rp){var rv=(m.ramp_us_per_s!==undefined)?parseInt(m.ramp_us_per_s,10):2500;if(rv<100||rv>20000)rv=2500;rp.value=rv}
 fillLaserIrRow(ir)}
 var irPoll=null;
 function pollIrCalib(){ajax('/api/ir_autocalib','GET',0,function(st,tx){if(st!==200)return;var o;try{o=JSON.parse(tx)}catch(e){return}
