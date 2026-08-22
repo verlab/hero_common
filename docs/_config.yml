@@ -1,0 +1,37 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+title: HeRo 2.0 
+email: rezeck@dcc.ufmg.br
+description: >- # this means to ignore newlines until "baseurl:"
+  The design of a novel platform for swarm robotics applications that is low cost, 
+  easy to assemble using off-the-shelf components, and deeply integrated with the 
+  most used robotic framework available today, ROS (Robot Operating System). 
+  The robotic platform is entirely open, composed of a 3D printed body and open-source software.
+baseurl: "/hero_common" # the subpath of your site, e.g. /blog
+url: "https://verlab.github.io" # the base hostname & protocol for your site, e.g. http://example.com=
+github_username:  Hero
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+
+# GitHub Pages source is this folder (/docs on master).
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
