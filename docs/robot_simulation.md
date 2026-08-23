@@ -1,87 +1,52 @@
 ---
 layout: page
-title: Robot Simulation
+title: Simulate in Gazebo
 permalink: /robot_simulation/
+section: software
+lead: Step 4 of 4. Gazebo ships a differential-drive HeRo with odometry, IMU, and IR ranges (modeled as a laser). A small wizard drops an arena and a swarm, then writes a launch file.
 ---
 
-HeRo is simulated into Gazebo simulator.
+You can run this step without a physical robot. The topics use the same `/hero_N` namespace.
 
-## HeRo Wizard
-We create a high-level UI interface that should help others to instantiate a gazebo environment.
-Its is a simple wizard software that help select an environment and the robots. 
-After selecting, and commit the object, they should appear on gazebo were we can drag them and place them wherever we want.
-Finally, generate a launch file that compile this setup.
+## 1. Place an arena and a swarm
 
-To create a environment, use this launch file:
 ```sh
 $ roslaunch hero_gazebo gazebo_wizard.launch
 ```
-It will open gazebo and this UI interface:
 
-![gazebo_wizard1](https://user-images.githubusercontent.com/14208261/188969510-db02aee6-692f-40f9-902f-cb6f7a21f7ba.png)
+Gazebo opens with this wizard:
 
-### Steps:
+![HeRo wizard](https://user-images.githubusercontent.com/14208261/188969510-db02aee6-692f-40f9-902f-cb6f7a21f7ba.png)
 
-1. Select the arena in the list (see figure);
-2. By clicking on commit arena button, the object will be instantiate on gazebo. Clear arena button should remove it.
-3. Select the number of robots.
-4. Select the sensors available for the robots.
-5. By clicking on commit swarm button, the robots will be instantiate on gazebo. Clear swarm will remove them.
-6. By using gazebo simulator, make adjustments on the scene, and using the Generate Launch File button will compile the scene in a launch file for future uses.
+1. Select an arena and click **Commit arena**. **Clear arena** removes it.
+2. Choose how many robots and which sensors they carry.
+3. Click **Commit swarm**. **Clear swarm** removes them.
+4. Nudge poses in Gazebo if you want, then **Generate Launch File** to save the scene.
 
-![gazebo_wizard2](https://user-images.githubusercontent.com/14208261/188969494-215a6a56-789d-4aa9-97c7-d1bbd31c1fb4.png)
+![Wizard sensors](https://user-images.githubusercontent.com/14208261/188969494-215a6a56-789d-4aa9-97c7-d1bbd31c1fb4.png)
 
-Once you have properly setup your arena on Gazebo, close Gazebo sim and HeRo wizard window.
+Close Gazebo and the wizard when the launch file is written.
 
-## How to use
-Now, let start it again but without need for pre-set environment on HeRo wizard.
+## 2. Replay the scene
 
-First, start Gazebo simular by running this command:
+Start Gazebo, then spawn the saved arena and robots:
+
 ```sh
-$ roslaunch hero_gazebo gazebo_bringup.launch 
-```
-
-Then, run this command to spawn the robots and the arena:
-```sh
+$ roslaunch hero_gazebo gazebo_bringup.launch
 $ roslaunch hero_gazebo env_spawn.launch
 ```
 
-Now you can start using the robots! Check the topics:
 ```sh
 $ rostopic list
-/clock
-/gazebo/link_states
-/gazebo/model_states
-/gazebo/parameter_descriptions
-/gazebo/parameter_updates
-/gazebo/performance_metrics
-/gazebo/set_link_state
-/gazebo/set_model_state
 /hero_0/cmd_vel
 /hero_0/laser
 /hero_0/led
 /hero_0/odom
-/hero_1/cmd_vel
-/hero_1/laser
-/hero_1/led
-/hero_1/odom
-.
-.
-.
-/joint_states
-/rosout
-/rosout_agg
 /tf
-/tf_static
 ```
 
-![gazebo_wizard3](https://user-images.githubusercontent.com/14208261/188969444-d0c3c0ef-be1b-4514-a5cc-db8f41a67edd.png)
+![Gazebo swarm](https://user-images.githubusercontent.com/14208261/188969444-d0c3c0ef-be1b-4514-a5cc-db8f41a67edd.png)
 
-<p align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/IO7FPEwkZkE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/IO7FPEwkZkE" title="HeRo Gazebo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-
-## Features
-- Differential drive controller
-- Odometry
-- IMU
-- IR Proximity range (simulated with laser)
+The model includes a differential-drive controller, odometry, IMU, and IR proximity (simulated as a laser).

@@ -1,50 +1,45 @@
 ---
 layout: page
-title: Installation
+title: Install ROS
 permalink: /installation/
+section: software
+lead: Step 1 of 4. Clone the catkin workspace, then pick Docker or compile from source. Tested on ROS 1 Melodic and Noetic.
 ---
 
-## Dependencies
-- [ROS](http://wiki.ros.org/ROS/Installation) (tested on Melodic and Noetic);
-- [rosserial](http://wiki.ros.org/rosserial);
-- [Gazebo](https://gazebosim.org/home);
-- [QT](https://www.qt.io/);
-- [Arduino IDE](https://www.arduino.cc/en/software) (only for firmware programming);
+## What you need
 
-## Method 1: Docker
-> If you don't have Docker installed you may want to check this [tutorial](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html).
+- [ROS 1](http://wiki.ros.org/ROS/Installation) — Melodic or Noetic
+- [rosserial](http://wiki.ros.org/rosserial)
+- [Gazebo](https://gazebosim.org/home) and [Qt](https://www.qt.io/) if you will run the simulator later
 
-Using git (or download the zip file) clone this repository into your preferable directory.
+The Arduino IDE is only needed in the next step, when you flash the ESP8266.
+
+## Docker
+
+If Docker is not installed yet, follow the [NVIDIA container toolkit guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) (or the official Docker docs).
+
+Clone the repository and build the ROS 1 image:
+
 ```sh
 $ git clone https://github.com/verlab/hero_common.git
-```
-Access the folder hero_common, build the docker compose file:
-```sh
 $ cd hero_common/hero_common
-$ docker-compose build ros1 # for ROS 1 noetic installation
-$ docker-compose build # for ROS 2 foxy installation
+$ docker-compose build ros1
 ```
-> This package it not fully compatible with ROS 2, but you can execute the package on ROS 1 instance, and use ros1_bridge which is a ROS 2 package that allow ROS 2 to interface with ROS 1 topics and services.
 
-## Method 2: Build from source
-> If you don't have a ROS Workspace, you must download and configure it. 
-Please, follow the instructions in http://wiki.ros.org/ROS/Installation and http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment.
+## Build from source
 
-- Using git (or download the zip file) clone this repository into ROS Workspace (e.g. ~/catkin-ws). Select the properly branch given your ROS distro.
+If you do not have a catkin workspace yet, follow the [ROS install](http://wiki.ros.org/ROS/Installation) and [workspace](http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment) tutorials, then clone into `src`:
+
 ```sh
 $ cd ~/catkin_ws/src
-$ git clone --depth 1 --branch noetic-devel https://github.com/verlab/hero_common.git # select your ROS distro
+$ git clone --depth 1 --branch noetic-devel https://github.com/verlab/hero_common.git
 ```
 
-- Fixing package dependencies:
-```sh
-$ cd ..
-$ rosdep install --from-paths src/hero_common --ignore-src -r -y
-```
+Install dependencies and compile:
 
-- Compile your ROS workspace directory (e.g. ~/catkin-ws): 
 ```sh
 $ cd ~/catkin_ws
-$ catkin_make # or catkin build
-$ source devel/setup.bash # Set the appropriate bash extension
+$ rosdep install --from-paths src/hero_common --ignore-src -r -y
+$ catkin_make
+$ source devel/setup.bash
 ```

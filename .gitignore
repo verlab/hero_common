@@ -1,2 +1,4 @@
 .vscode
 .cursor/
+.DS_Store
+docs/assembly/*.docx

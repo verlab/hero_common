@@ -1,0 +1,33 @@
+name: Refresh HeRo citations
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  openalex:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Fetch from OpenAlex
+        env:
+          OPENALEX_MAILTO: rezeck@dcc.ufmg.br
+        run: python3 docs/scripts/fetch_citations.py
+      - name: Commit if the index changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/assets/data/citations.json
+          if git diff --staged --quiet; then
+            echo "No citation changes"
+          else
+            git commit -m "Refresh OpenAlex citation index for the HeRo papers."
+            git push
+          fi

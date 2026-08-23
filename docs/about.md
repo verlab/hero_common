@@ -2,24 +2,30 @@
 layout: page
 title: About
 permalink: /about/
+lead: HeRo is an open swarm-robotics platform from the Computer Vision and Robotics Lab (VeRLab) at UFMG.
 ---
 
-# Creative Commons
+HeRo started as a way to put a real multi-robot testbed on a student budget: a printable chassis, a board you can order from any PCB house, and software that already speaks ROS.
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-ShareALike 4.0 International License</a>.
+The current generation is **HeRo 2.0**. Firmware runs on an ESP8266, robots join the lab network over Wi‑Fi, and the same stack drives both hardware and Gazebo.
 
-![image](https://user-images.githubusercontent.com/14208261/188996202-4cdc755a-dbdd-4f70-bb5d-8eab56e15001.png)
+## People
 
+- [Paulo Rezeck](https://rezeck.github.io/)
+- [Héctor Azpúruá](https://github.com/h3ct0r)
+- [Maurício Ferrari](https://github.com/mauferrari)
+- Luiz Chaimowicz
 
-<!-- This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Contributors from the community are listed on the [repository](https://github.com/verlab/hero_common).
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+## Lab
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+[VeRLab](https://www.verlab.dcc.ufmg.br/) — Departamento de Ciência da Computação, Universidade Federal de Minas Gerais, Brazil.
 
+Contact: [rezeck@dcc.ufmg.br](mailto:rezeck@dcc.ufmg.br)
 
-[jekyll-organization]: https://github.com/jekyll -->
+## License
+
+Hardware documentation and this site are released under [CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/). Use HeRo for research and teaching; ask before a commercial run.
+
+![HeRo robots](https://user-images.githubusercontent.com/14208261/188996202-4cdc755a-dbdd-4f70-bb5d-8eab56e15001.png)

@@ -1,7 +1,9 @@
 ---
 layout: page
-title: PCB Order
+title: Order the PCB
 permalink: /pcb_order/
+section: build
+lead: Gerbers live under hero_resources/schematic. Homemade boards: v2.1. A fab house: latest in the repo is v2.7. The paper used a white soldermask so the LEDs read better — that is a preference, not a rule.
 ---
 <style>
 .column {

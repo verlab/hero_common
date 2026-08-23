@@ -2,9 +2,9 @@
 layout: page
 title: Calibration
 permalink: /calibration/
+section: build
+lead: Motors, PID gains, and IR distances are tuned over ROS services. The paper notes that cheap parts need occasional IR and motor calibration, per sensor and per wheel.
 ---
-
-It is possible to calibrate some processes remotely using ROS services raised by the robot. Next, we list the calibration process for motors, controllers and distance sensors.
 
 # Summary
 - [Enter Configuration Mode](#Enter-Configuration-Mode)

@@ -1,0 +1,8 @@
+<nav class="build-path" aria-label="Build sequence">
+  <a href="{{ '/materials/' | relative_url }}"{% if page.permalink == '/materials/' %} class="is-active"{% endif %}>1. Parts</a>
+  <a href="{{ '/pcb_order/' | relative_url }}"{% if page.permalink == '/pcb_order/' %} class="is-active"{% endif %}>2. Order PCB</a>
+  <a href="{{ '/pcb_assembly/' | relative_url }}"{% if page.permalink == '/pcb_assembly/' %} class="is-active"{% endif %}>3. Solder</a>
+  <a href="{{ '/printing/' | relative_url }}"{% if page.permalink == '/printing/' %} class="is-active"{% endif %}>4. Print</a>
+  <a href="{{ '/assembly/' | relative_url }}"{% if page.permalink == '/assembly/' %} class="is-active"{% endif %}>5. Assemble</a>
+  <a href="{{ '/calibration/' | relative_url }}"{% if page.permalink == '/calibration/' %} class="is-active"{% endif %}>6. Calibrate</a>
+</nav>

@@ -1,91 +1,142 @@
 ---
 layout: page
-title: Robot Assembly Tutorial
+title: Assemble the robot
 permalink: /assembly/
+section: build
+lead: About 45 minutes of reading and 110 minutes of building (tutorial v1.0, 27 Sep 2025). Figures are from that tutorial. Geometry and encoder ratios are from Rezeck et al., Auton. Robot (2023).
 ---
 
-Below we describe a step-by-step guide on how to assemble the robot. A printable [PDF tutorial]({{ site.baseurl }}/assembly/Hero%20V2%20Robot%20Build%20Tutorial-compressed.pdf) is also available. 
+<p class="toc"><a href="#casters">Casters</a> · <a href="#motors">Motors</a> · <a href="#wheels">Wheels</a> · <a href="#battery">Battery</a> · <a href="#encoders">Encoders</a> · <a href="#board">Board</a> · <a href="#ehat">E-hat</a> · <a href="#trouble">Troubleshooting</a></p>
 
-To make it easier, we created a summary if you want to view the steps.
+[PDF of the same tutorial]({{ '/assembly/Hero V2 Robot Build Tutorial-compressed.pdf' | relative_url }})
 
-# Summary
-- [Castor Wheel Assembly](#Castor-Wheels-Assembly)
-- [Wheel Assembly](#Wheel-Assembly)
-- Continuous Servo Motor
-- Motor Assembly
-- Motor tuning
-- Encoder
-- Encoder tuning
-- Mouting PCB board
-- E-hat
+## Casters {#casters}
 
+Take a printed caster shell, drop in a 4 mm steel ball, and crimp the rim with pliers so the ball stays in but still turns. Screw both casters to Chassis A. Set the height so the chassis sits level.
 
+<div class="figure-grid">
+  <figure class="figure"><img src="{{ '/assets/img/build/image21.jpg' | relative_url }}" alt="Inserting the caster ball"><figcaption>Ball in the cup.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image35.jpg' | relative_url }}" alt="Crimping the caster"><figcaption>Crimp just enough.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image37.jpg' | relative_url }}" alt="Casters on chassis A"><figcaption>On Chassis A.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image4.jpg' | relative_url }}" alt="Height adjustment"><figcaption>Adjust clearance.</figcaption></figure>
+</div>
 
+## Motors {#motors}
 
-# Castor Wheels Assembly
-1) Place the 4mm metal balls inside the printed castor wheels, and use pliers to attach them to the cavity. 
+Prefer SG90 units already converted to continuous rotation. The tutorial recommends the **green-label** variant (no resistor swap). Stock angular servos need a CR modification first; after that, command ~1500 µs to center.
 
-<img src="https://user-images.githubusercontent.com/14208261/174136123-085522cb-19ec-40af-be41-7a047021d603.png"  width="700">
+<figure class="figure">
+  <img src="{{ '/assets/img/build/image73.jpg' | relative_url }}" alt="SG90 continuous servo">
+  <figcaption>SG90 ready for the printed gear.</figcaption>
+</figure>
 
+**Gear adapter**
 
-2) Press only one side of the cavity so that the metal ball is stuck, but can also rotate without difficulty.
+1. Pick a stock horn that fits the printed motor gear. Cut it down to the cylindrical hub. Wear glasses — chips fly.
+2. Trim the hub until it press-fits the gear. A small drop of cyanoacrylate at the interface; keep glue off the teeth.
+3. If the servo shaft sticks out, shorten it ~1.00–1.20 mm, cut flat.
+4. Fasten with the original horn screw. Do not overtighten — friction kills the mesh.
 
-<img src="https://user-images.githubusercontent.com/14208261/174136443-69561000-9c4d-4bd4-b082-faa6364b02ae.png"  width="700">
+<div class="figure-grid">
+  <figure class="figure"><img src="{{ '/assets/img/build/image101.jpg' | relative_url }}" alt="Cutting the horn"><figcaption>Cut the horn to a hub.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image7.jpg' | relative_url }}" alt="Horn hub"><figcaption>Hub only.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image83.jpg' | relative_url }}" alt="Hub in gear"><figcaption>Press-fit, then glue.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image33.jpg' | relative_url }}" alt="Glued gear"><figcaption>Keep glue off the teeth.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image91.jpg' | relative_url }}" alt="Shortening the shaft"><figcaption>Shorten the shaft if needed.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image6.jpg' | relative_url }}" alt="Horn screw"><figcaption>Original horn screw.</figcaption></figure>
+</div>
 
-3) Use a screwdriver to screw the two castor wheels onto chassis A.
+Mount each servo on Chassis A. Align both outputs at the stop pulse (1500 µs). Leave the mount screws slightly loose so the 1:1 gear train can sit. Trim motor cables to about 10 cm.
 
-<img src="https://user-images.githubusercontent.com/14208261/174139032-3c576f9c-1993-4a0b-91d6-b8e0952d42a1.png"  width="700">
+<div class="figure-grid">
+  <figure class="figure"><img src="{{ '/assets/img/build/image63.jpg' | relative_url }}" alt="Servo on chassis"><figcaption>Servo in the printed mount.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image41.jpg' | relative_url }}" alt="Both motors installed"><figcaption>Both sides aligned.</figcaption></figure>
+</div>
 
-4)  After placing the wheels, adjust the height of the castor wheels so that the chassis is well balanced.
+The paper’s drivetrain is a **1:1 motor–wheel gear** plus a **1:6 wheel–encoder gear**. Combined with the 48 PPR mouse encoder that is a **1.25° / 0.54 mm** wheel step.
 
-<img src="https://user-images.githubusercontent.com/14208261/174139757-5355ea40-b48b-4877-934a-0d098ff86e48.png"  width="700">
+## Wheels {#wheels}
 
+Press a 623ZZ into each printed hub (vise or a flat spacer — do not hammer the bearing). Seat the O-ring. Fit the printed shaft sleeve so the wheel turns with almost no backlash and no wobble.
 
-# Wheel Assembly
-1) Separate components for wheel assembly.
+<div class="figure-grid">
+  <figure class="figure"><img src="{{ '/assets/img/build/image105.jpg' | relative_url }}" alt="Wheel parts"><figcaption>Wheel kit.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image69.jpg' | relative_url }}" alt="Pressing the bearing"><figcaption>Press the 623ZZ.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image10.jpg' | relative_url }}" alt="O-ring tire"><figcaption>O-ring on the rim.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image17.jpg' | relative_url }}" alt="Finished wheel"><figcaption>Ready to mesh.</figcaption></figure>
+</div>
 
-<img src="https://user-images.githubusercontent.com/14208261/174140219-18dff801-e466-4bef-ad81-ded5b7d9b7d5.png"  width="700">
+Install the wheel on the motor gear. The mesh should be smooth. A tiny drop of glue on the support screw into Chassis A keeps it from backing out.
 
-2) Use a hammer to fix the bearing on the wheel axle. If necessary, use a small file tool to remove artifacts from the 3D printing. Make it as flat as possible.
+<div class="figure-grid">
+  <figure class="figure"><img src="{{ '/assets/img/build/image57.jpg' | relative_url }}" alt="Wheel on shaft"><figcaption>Wheel on the axle.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image12.jpg' | relative_url }}" alt="Gear mesh"><figcaption>Motor gear to wheel.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image5.jpg' | relative_url }}" alt="Support screw"><figcaption>Support screw.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image30.jpg' | relative_url }}" alt="Both wheels"><figcaption>Check for wobble.</figcaption></figure>
+</div>
 
-<img src="https://user-images.githubusercontent.com/14208261/174140433-3f35f3bd-7137-4e3d-8773-33b857c429de.png"  width="700">
+## Battery and Chassis B {#battery}
 
-3) Attach the rubber oring to the wheel.
+Seat the 1S Li-Po (paper: 3.7 V, 1800 mAh) in the cradle between A and B. Chassis B is labeled **USB** and **Front**: battery cable through USB, motor cables through Front.
 
-<img src="https://user-images.githubusercontent.com/14208261/174141273-c8ef6855-5037-41a7-bcd6-5baf1c0371c5.png"  width="700">
+<div class="callout warn">A cover screw that is too long can pierce the pack. Check length before you tighten the top shell.</div>
 
-<img src="https://user-images.githubusercontent.com/14208261/174141521-e904c4b0-fa32-494c-9e5e-e6bc916c48c8.png"  width="700">
+<div class="figure-grid">
+  <figure class="figure"><img src="{{ '/assets/img/build/image34.jpg' | relative_url }}" alt="Battery in cradle"><figcaption>Battery in the cradle.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image107.jpg' | relative_url }}" alt="Cable routing"><figcaption>USB vs Front holes.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image24.jpg' | relative_url }}" alt="Stacking chassis B"><figcaption>Stack B on A.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image38.jpg' | relative_url }}" alt="Four screws"><figcaption>Four screws.</figcaption></figure>
+</div>
 
+## Encoders {#encoders}
 
-4) Insert the M3 screw with pressure washer as in the picture below. 
+Mouse-style quadrature encoders. Remove the detent spring so the shaft is smooth. Solder a JST-PH header. Cut shafts to length; wear glasses.
 
-<img src="https://user-images.githubusercontent.com/14208261/174141814-b9ac56fd-fab3-4d7a-8251-88cfb72711bc.png"  width="700">
+<div class="figure-grid">
+  <figure class="figure"><img src="{{ '/assets/img/build/image29.jpg' | relative_url }}" alt="Encoder spring"><figcaption>Drop the detent spring.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image26.jpg' | relative_url }}" alt="Encoder wiring"><figcaption>JST-PH on the pins.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image92.jpg' | relative_url }}" alt="Encoder in chassis B"><figcaption>Pocket in Chassis B.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image20.jpg' | relative_url }}" alt="Encoder gear mesh"><figcaption>Gear to the wheel. Sand if it binds.</figcaption></figure>
+</div>
 
-<img src="https://user-images.githubusercontent.com/14208261/174141914-b75d198a-6a4e-41b7-b12f-a55981063dcf.png"  width="700">
+## Board, cover, wiring {#board}
 
+Mount the populated PCB on Chassis B. Fit the cover with eight screws — moderate torque. Then put the wheels on for the final motor → wheel → encoder check.
 
+<div class="figure-grid">
+  <figure class="figure"><img src="{{ '/assets/img/build/image110.jpg' | relative_url }}" alt="Board on chassis B"><figcaption>Board on B.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image45.jpg' | relative_url }}" alt="ESP seated"><figcaption>ESP / NodeMCU seated.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image32.jpg' | relative_url }}" alt="Cover"><figcaption>Cover.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image28.jpg' | relative_url }}" alt="Cover screws"><figcaption>Eight screws, clear of the pack.</figcaption></figure>
+</div>
 
-5) Insert the 3D printed wheel shaft onto the M3 screw until it contacts the bearing. The wheel shaft must not be loose or too tight, as this can make the wheel difficult to turn.
+Servo leads: signal to PWM, red to 5 V, brown/black to GND. Battery JST last. Never reverse the pack.
 
-<img src="https://user-images.githubusercontent.com/14208261/174142208-5f90800e-e1ba-4c5b-ac7e-9ec42f616857.png"  width="700">
+<div class="figure-grid">
+  <figure class="figure"><img src="{{ '/assets/img/build/image59.jpg' | relative_url }}" alt="Servo plugs"><figcaption>Servo plugs.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image70.jpg' | relative_url }}" alt="Battery JST"><figcaption>Battery JST.</figcaption></figure>
+</div>
 
-<img src="https://user-images.githubusercontent.com/14208261/174142288-43e19c0f-9aa3-4cf4-b17c-f18ceb971046.png"  width="700">
+## E-hat {#ehat}
 
-6) Insert the two M3 nuts into chassis A as shown in the figure below. Use super glue if necessary.
+The paper’s e-hat is a 4-pin I²C/UART bus with 5 V at 800 mA. Solder male headers on the MPU6050, screw it into the printed hat, and plug the hat onto the I²C connector.
 
-<img src="https://user-images.githubusercontent.com/14208261/174143937-d20ebed9-dfad-49bc-8ed2-cccc3f38426f.png"  width="700">
+<div class="figure-grid">
+  <figure class="figure"><img src="{{ '/assets/img/build/image16.jpg' | relative_url }}" alt="IMU headers"><figcaption>IMU headers.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image84.jpg' | relative_url }}" alt="IMU in e-hat"><figcaption>IMU in the hat.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image106.jpg' | relative_url }}" alt="E-hat on the robot"><figcaption>Hat on the I²C bus.</figcaption></figure>
+  <figure class="figure"><img src="{{ '/assets/img/build/image51.jpg' | relative_url }}" alt="Finished robot"><figcaption>Mechanical check: free wheels, casters, no cable rub.</figcaption></figure>
+</div>
 
-7) Use a screwdriver to attach both wheels to chassis A. Leave it tight and check that both wheels are turning with minimal friction and that they cannot be out of level with the motor shaft. They cannot oscillate. Also adjust the height of the castor wheels so that the chassis does not wobble.
+## Troubleshooting {#trouble}
 
-<img src="https://user-images.githubusercontent.com/14208261/174144167-05a0fd9b-9f81-49bd-a2c0-a7872152c9d4.png"  width="700">
+| Symptom | What the tutorial says to check |
+|---|---|
+| Motors dead or weak | PWM–5 V–GND order; boost still 5 V under load; pack &gt; 3.6 V |
+| Wheel wobble / backlash | Hub seating, bearings fully in, sand or shim the gear adapter |
+| Encoder drops counts | Detent fully gone, JST joints, no lateral shaft play |
+| IR silent | Sensor orientation, LED polarity, current-limit resistors |
+| Board off | MT3608 at 5.0 V, JST polarity, switch solder |
+| Boost hot | Stay ≤ 0.8 A continuous or add a heatsink |
 
-<img src="https://user-images.githubusercontent.com/14208261/174145237-bcd9795f-920f-417f-931c-626f2805bc20.png"  width="700">
-
-<img src="https://user-images.githubusercontent.com/14208261/174151353-fe22a7f0-4ac9-4223-8127-4934595c7fc3.gif"  width="700">
-
-<img src="https://user-images.githubusercontent.com/14208261/174151777-c42f29af-1873-458a-9703-991711e814d1.gif"  width="700">
-
-
-# Continuous Servo Motor Adaptation
-
-# Motor Assembly
+Next: [flash firmware]({{ '/firmware/' | relative_url }}), [join ROS]({{ '/ros/' | relative_url }}), then [calibrate]({{ '/calibration/' | relative_url }}).

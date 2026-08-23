@@ -1,35 +1,94 @@
 ---
 layout: page
-title: 3D Printed Parts
+title: Print the body
 permalink: /printing/
+section: build
+lead: PLA, 0.20 mm layers, 0.4 mm nozzle. Gears print cleaner with a finer nozzle. CAD on A360.
 ---
 
-After assembly the PCB, we started creating the robot's chassis. At this stage, it is also necessary to buy some parts suchs as bolts, bearing, etc. (check the list of materials). In addition, it is necessary to have access to a 3D printer or maybe order the parts from a manufacture service.
+<div class="part-grid">
+  <article class="part-card">
+    <div class="stl-stage" data-stl="{{ '/assets/models/chassis_a.stl' | relative_url }}"></div>
+    <h3>Chassis A</h3>
+    <p>Motors and wheel shafts · 20% infill · support</p>
+    <a href="{{ '/assets/models/chassis_a.stl' | relative_url }}" download>Download chassis_a.stl</a>
+  </article>
+  <article class="part-card">
+    <div class="stl-stage" data-stl="{{ '/assets/models/chasis_b.stl' | relative_url }}"></div>
+    <h3>Chassis B</h3>
+    <p>Board, encoders, battery · 20% infill · no support</p>
+    <a href="{{ '/assets/models/chasis_b.stl' | relative_url }}" download>Download chasis_b.stl</a>
+  </article>
+  <article class="part-card">
+    <div class="stl-stage" data-stl="{{ '/assets/models/wheel.stl' | relative_url }}"></div>
+    <h3>Wheel ×2</h3>
+    <p>623ZZ press-fit · 20% infill · support</p>
+    <a href="{{ '/assets/models/wheel.stl' | relative_url }}" download>Download wheel.stl</a>
+  </article>
+  <article class="part-card">
+    <div class="stl-stage" data-stl="{{ '/assets/models/castor_wheel.stl' | relative_url }}"></div>
+    <h3>Castor ×2</h3>
+    <p>4 mm ball · 100% infill · no support</p>
+    <a href="{{ '/assets/models/castor_wheel.stl' | relative_url }}" download>Download castor_wheel.stl</a>
+  </article>
+  <article class="part-card">
+    <div class="stl-stage" data-stl="{{ '/assets/models/motor_gear.stl' | relative_url }}"></div>
+    <h3>Motor gear ×2</h3>
+    <p>1:1 to the wheel · 100% infill · no support</p>
+    <a href="{{ '/assets/models/motor_gear.stl' | relative_url }}" download>Download motor_gear.stl</a>
+  </article>
+  <article class="part-card">
+    <div class="stl-stage" data-stl="{{ '/assets/models/motor_shaft.stl' | relative_url }}"></div>
+    <h3>Motor shaft ×2</h3>
+    <p>Wheel axle sleeve · 100% infill · no support</p>
+    <a href="{{ '/assets/models/motor_shaft.stl' | relative_url }}" download>Download motor_shaft.stl</a>
+  </article>
+  <article class="part-card">
+    <div class="stl-stage" data-stl="{{ '/assets/models/encoder_shaft.stl' | relative_url }}"></div>
+    <h3>Encoder shaft ×2</h3>
+    <p>1:6 to the wheel · 100% infill · no support</p>
+    <a href="{{ '/assets/models/encoder_shaft.stl' | relative_url }}" download>Download encoder_shaft.stl</a>
+  </article>
+  <article class="part-card">
+    <div class="stl-stage" data-stl="{{ '/assets/models/cover.stl' | relative_url }}"></div>
+    <h3>Cover</h3>
+    <p>20% infill · support</p>
+    <a href="{{ '/assets/models/cover.stl' | relative_url }}" download>Download cover.stl</a>
+  </article>
+  <article class="part-card">
+    <div class="stl-stage" data-stl="{{ '/assets/models/cover_usb.stl' | relative_url }}"></div>
+    <h3>USB slider</h3>
+    <p>Door for the USB port</p>
+    <a href="{{ '/assets/models/cover_usb.stl' | relative_url }}" download>Download cover_usb.stl</a>
+  </article>
+  <article class="part-card">
+    <div class="stl-stage" data-stl="{{ '/assets/models/ehat.stl' | relative_url }}"></div>
+    <h3>E-hat</h3>
+    <p>20% infill · no support</p>
+    <a href="{{ '/assets/models/ehat.stl' | relative_url }}" download>Download ehat.stl</a>
+  </article>
+  <article class="part-card">
+    <div class="stl-stage" data-stl="{{ '/assets/models/ehat_glove.stl' | relative_url }}"></div>
+    <h3>E-hat glove</h3>
+    <p>100% infill · no support</p>
+    <a href="{{ '/assets/models/ehat_glove.stl' | relative_url }}" download>Download ehat_glove.stl</a>
+  </article>
+</div>
 
-> **The mechanical design is open-source and was developed using [Autodesk F360](https://www.autodesk.com/products/fusion-360) software.**: If you want to extend/modify it, the project is available [here](https://a360.co/36zKPdi).
+## Print settings
 
-In the end, it is expected to get the robot as in the image below.
-![hero_view](https://user-images.githubusercontent.com/14208261/164281570-9db151b4-c538-479a-b654-469616ad4e62.png)
+| | |
+|---|---|
+| Printer in the notes | Anet A8 |
+| Nozzle | 0.4 mm |
+| Filament | PLA |
+| Slicer | Cura 4.8 |
+| Default layer height | 0.20 mm |
 
-# What parts do I need to print?
-The robot's chassis and some mechanical parts are made using additive manufacturing (3D printer). Mechanical parts like gears need to be printed in good quality, and maybe some minor adjustments (using sandpaper) are required. 
+Print the encoder-height shim at 0.10 mm, in 0.1–0.4 mm thicknesses, and keep the one that meshes cleanly.
 
-We use PLA/ABS because they are inexpensive, but other types can be used/tested. The required quality for printing is at least 200 microns.
+[Fusion / A360](https://a360.co/3lWHiv0) · [all STLs on GitHub](https://github.com/verlab/hero_common/tree/master/hero_resources/3d_parts)
 
-The robot is composed of 16 parts, which preferably must be printed separately.
+<p><a class="btn btn-primary" href="{{ '/assembly/' | relative_url }}">Next: assemble the robot</a></p>
 
-The files for printing (stl format) are available [here](https://github.com/verlab/hero_common/tree/nodemcu/hero_resources/3d_parts). If you want to modify or extend any part, I suggest using the CAD available [here](https://github.com/verlab/hero_common/tree/nodemcu/hero_resources/cad).
-
-Below is a description of each part. 
-- [castor_wheel.stl](https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/castor_wheel.stl): Screw-on castor wheel for robot balance adjustment.
-- [chasis_b.stl](https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/chasis_b.stl): Chassis that supports the mainboard and encoders;
-- [chassis_a.stl](https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/chassis_a.stl): Chassis that supports the motors and wheels;
-- [cover.stl](https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/cover.stl): Dust protection cover;
-- [cover_usb.stl](https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/cover_usb.stl): Sliding part for access to the USB connector;
-- [ehat.stl](https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/ehat.stl): e-hat component to enclose mainboard expansions;
-- [ehat_glove.stl](https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/ehat_glove.stl): Adapters for e-hat component;
-- [encoder_shaft.stl](https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/encoder_shaft.stl): Spur gear/shaft encoder for wheel-encoder transmission;
-- [motor_gear.stl](https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/motor_gear.stl): Coupled to the servo motor shaft and acts directly on the wheel;
-- [motor_shaft.stl](https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/motor_shaft.stl): Wheel shaft supports the connection of the wheel to the chassis;
-- [wheel.stl](https://github.com/verlab/hero_common/blob/nodemcu/hero_resources/3d_parts/wheel.stl): Wheel spur geared;
-
+<script type="module" src="{{ '/assets/js/stl-viewer.js' | relative_url }}"></script>

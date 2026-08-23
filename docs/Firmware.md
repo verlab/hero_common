@@ -1,51 +1,45 @@
 ---
 layout: page
-title: Firmware
+title: Flash firmware
 permalink: /firmware/
+section: software
+lead: Step 2 of 4. The sketch lives in hero_firmware/firmware and targets the ESP8266. You need the Arduino IDE (or PlatformIO) and the Silicon Labs USB-UART driver.
 ---
 
+## 1. Arduino and USB driver
 
-## Burning HeRo firmware
+Install the latest Arduino IDE from the [Arduino website](https://www.arduino.cc/en/Main/Software).
 
-### Arduino Installation
-- Install the latest version from the [Arduino website](https://www.arduino.cc/en/Main/Software).
-- The following driver is required in order to your computer communication with the HeRo microcontroller. It probably is already installed in Linux distribuition, but check if this before you start burning the firmware on the robot microcontroller. Download and install the properly [driver version](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers) for your OS.
+The USB-UART chip needs the [Silicon Labs VCP driver](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers) for your OS. Linux often already has it.
 
-### Setup ESP8266 board
-First you need to update the board manager with a custom URL to enable Arduino IDE compile esp8266 mpu. 
-Open up Arduino, then go to the Preferences (File > Preferences). 
+## 2. ESP8266 board package
 
-- Change the sketchbook location to access the folder firmware.
-- Add ```http://arduino.esp8266.com/stable/package_esp8266com_index.json``` to Additional Boards Manager URLS.
+Open **File → Preferences**.
+
+- Set the sketchbook location to the firmware folder in this repo.
+- Add this URL to **Additional Boards Manager URLs**: `http://arduino.esp8266.com/stable/package_esp8266com_index.json`
 - Restart the IDE.
 
-![image](https://user-images.githubusercontent.com/14208261/188973944-474bb232-37c5-48e0-8865-7ba4c443a4ad.png)
+![Arduino preferences](https://user-images.githubusercontent.com/14208261/188973944-474bb232-37c5-48e0-8865-7ba4c443a4ad.png)
 
-After restart the IDE, navigate to the Board Manager by going to (Tools > Boards > Boards Manager). There
-should be a couple new entries in addition to the standard Arduino boards. Look for ```esp8266```.
-Click on that entry, then select Install. You need to install 2.5.0 version of esp8266 library. 
+Then **Tools → Boards → Boards Manager**, install **esp8266** version **2.5.0**.
 
-![image](https://user-images.githubusercontent.com/14208261/188975070-1a5e8aa5-92e0-4570-9a74-cf961a4afa0a.png)
+![Boards Manager](https://user-images.githubusercontent.com/14208261/188975070-1a5e8aa5-92e0-4570-9a74-cf961a4afa0a.png)
 
+Select **NodeMCU 1.0** and match the other Tools settings in this screenshot.
 
-- The download process should take some minutes depending on your internet speed. After the
-download is done, select NodeMCU 1.0 from the Tools tab and follow the other settings.
+![Board settings](https://user-images.githubusercontent.com/14208261/188975934-1b4051b8-77d2-4751-98d3-de9e04f2cf72.png)
 
-![image](https://user-images.githubusercontent.com/14208261/188975934-1b4051b8-77d2-4751-98d3-de9e04f2cf72.png)
+## 3. Upload the sketch
 
+Open the robot sketch from the sketchbook.
 
-## How to install the HeRo firmware
-Open the robot code inside the sketchbook.
-![image](https://user-images.githubusercontent.com/14208261/188976507-afc0d992-4fb8-440e-9c5b-f0d023f4c159.png)
+![Open sketch](https://user-images.githubusercontent.com/14208261/188976507-afc0d992-4fb8-440e-9c5b-f0d023f4c159.png)
 
-All configuration parameters are available at config.h:
-  - WiFi ESSID and password for connection with ROS master
-  - Robot ID, etc.
-> We recommend not changing dynamic parameters, such as network ESSID and robot ID in the config file. 
-> Try to use the web interface built in the robot firmware to change such parameters. 
+Static defaults live in `config.h` (Wi‑Fi, ROS master, robot id). Prefer the web configurator in the next step for network name and robot id — do not bake those into the sketch unless you have to.
 
-![image](https://user-images.githubusercontent.com/14208261/188977085-3b0410be-4e94-402d-abeb-3569f74e4c5d.png)
+![config.h](https://user-images.githubusercontent.com/14208261/188977085-3b0410be-4e94-402d-abeb-3569f74e4c5d.png)
 
-- Connect HeRo at USB and upload the code.
+Connect HeRo over USB and upload.
 
-![image](https://user-images.githubusercontent.com/14208261/188977467-1ae30670-dd9a-4d02-bb2e-10f7f653d594.png)
+![Upload](https://user-images.githubusercontent.com/14208261/188977467-1ae30670-dd9a-4d02-bb2e-10f7f653d594.png)

@@ -1,0 +1,18 @@
+<nav class="step-next" aria-label="Next software step">
+{% if page.permalink == '/installation/' %}
+  <span class="step-next-back"></span>
+  <a class="btn btn-primary" href="{{ '/firmware/' | relative_url }}">Next: Flash firmware</a>
+{% endif %}
+{% if page.permalink == '/firmware/' %}
+  <a class="btn btn-ghost" href="{{ '/installation/' | relative_url }}">Back: Install</a>
+  <a class="btn btn-primary" href="{{ '/ros/' | relative_url }}">Next: Connect a robot</a>
+{% endif %}
+{% if page.permalink == '/ros/' %}
+  <a class="btn btn-ghost" href="{{ '/firmware/' | relative_url }}">Back: Flash</a>
+  <a class="btn btn-primary" href="{{ '/robot_simulation/' | relative_url }}">Next: Simulate</a>
+{% endif %}
+{% if page.permalink == '/robot_simulation/' %}
+  <a class="btn btn-ghost" href="{{ '/ros/' | relative_url }}">Back: Connect</a>
+  <span class="step-next-back"></span>
+{% endif %}
+</nav>

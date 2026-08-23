@@ -3,3 +3,7 @@ _site/
 .jekyll-cache/
 .jekyll-metadata
 vendor/
+.vendor/
+.bundle/
+*.docx
+.DS_Store
