@@ -1,0 +1,28 @@
+<launch>
+  <arg name="num_robots" default="20"/>
+  <arg name="arena" default="0"/>
+  <arg name="gui" default="true"/>
+  <arg name="pattern" default="circle"/>
+  <arg name="backend" default="auto"/>
+  <!-- Circle demo is kinematic. Set physics_flag:=--physics for wheel contacts. -->
+  <arg name="physics_flag" default="--no-physics"/>
+  <arg name="engine_host" default="127.0.0.1"/>
+  <arg name="engine_port" default="11312"/>
+  <arg name="use_sim_time" default="true"/>
+
+  <param name="/use_sim_time" value="$(arg use_sim_time)"/>
+
+  <node pkg="hero_genesis" type="genesis_engine.py" name="genesis_engine" output="screen"
+        if="$(arg gui)"
+        args="--num-robots $(arg num_robots) --arena $(arg arena) --host $(arg engine_host) --port $(arg engine_port) --backend $(arg backend) --pattern $(arg pattern) --vis $(arg physics_flag)"/>
+
+  <node pkg="hero_genesis" type="genesis_engine.py" name="genesis_engine" output="screen"
+        unless="$(arg gui)"
+        args="--num-robots $(arg num_robots) --arena $(arg arena) --host $(arg engine_host) --port $(arg engine_port) --backend $(arg backend) --pattern $(arg pattern) $(arg physics_flag)"/>
+
+  <node pkg="hero_genesis" type="hero_genesis_node.py" name="hero_genesis" output="screen">
+    <param name="num_robots" value="$(arg num_robots)"/>
+    <param name="engine_host" value="$(arg engine_host)"/>
+    <param name="engine_port" value="$(arg engine_port)"/>
+  </node>
+</launch>

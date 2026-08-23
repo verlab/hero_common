@@ -1,0 +1,5 @@
+# Installed into /opt/genesis (Python >= 3.10) inside the ROS 1 image.
+# pymeshlab has no macOS/arm64 wheel; the Linux Docker image installs the full set.
+numpy<2
+torch
+genesis-world

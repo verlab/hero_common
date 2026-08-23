@@ -39,7 +39,7 @@ title: Home
     </article>
     <article class="card">
       <h3>3. Command</h3>
-      <p>Each robot appears as <code>/hero_N</code>. Drive with <code>cmd_vel</code>, read odom and the IR scan, or spawn a swarm in Gazebo first.</p>
+      <p>Each robot appears as <code>/hero_N</code>. Drive with <code>cmd_vel</code>, read odom and the IR scan, or spawn a swarm in Gazebo or Genesis first.</p>
       <a href="{{ '/ros/' | relative_url }}">ROS interface →</a>
     </article>
   </div>
@@ -56,7 +56,7 @@ title: Home
     <div class="feature"><strong>Onboard charging</strong><span>TP4056 path on recent PCB revisions.</span></div>
     <div class="feature"><strong>Expansion bus</strong><span>I2C, serial, and GPIO on the top hat.</span></div>
     <div class="feature"><strong>Wi‑Fi + TCP</strong><span>rosserial to the ROS master; no USB tether.</span></div>
-    <div class="feature"><strong>Gazebo twin</strong><span>Same namespace and sensors, plus a swarm wizard.</span></div>
+    <div class="feature"><strong>Gazebo + Genesis</strong><span>Same <code>/hero_N</code> topics. Wizard in Gazebo; GPU swarm viewer in Genesis World.</span></div>
     <div class="feature"><strong>Open hardware</strong><span>EAGLE schematics, STL files, and ROS packages in one repo.</span></div>
   </div>
 </section>

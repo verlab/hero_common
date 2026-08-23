@@ -10,7 +10,8 @@ lead: Step 1 of 4. Clone the catkin workspace, then pick Docker or compile from 
 
 - [ROS 1](http://wiki.ros.org/ROS/Installation) — Melodic or Noetic
 - [rosserial](http://wiki.ros.org/rosserial)
-- [Gazebo](https://gazebosim.org/home) and [Qt](https://www.qt.io/) if you will run the simulator later
+- [Gazebo](https://gazebosim.org/home) and [Qt](https://www.qt.io/) if you will run the **Gazebo** simulator later
+- Python 3.10–3.13 if you will run **[Genesis World]({{ '/robot_simulation/#genesis-world' | relative_url }})** (NVIDIA CUDA recommended; CPU works)
 
 The Arduino IDE is only needed in the next step, when you flash the ESP8266.
 

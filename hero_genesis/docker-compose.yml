@@ -1,0 +1,54 @@
+services:
+  genesis:
+    image: hero_common:genesis
+    container_name: hero_genesis
+    build:
+      context: ..
+      dockerfile: hero_genesis/docker/Dockerfile
+      args:
+        TORCH_INDEX: ${TORCH_INDEX:-https://download.pytorch.org/whl/cpu}
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DISPLAY=${DISPLAY:-}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    command:
+      - python
+      - /hero/hero_genesis/scripts/genesis_engine.py
+      - --vis
+      - --num-robots
+      - "20"
+      - --arena
+      - "0"
+      - --backend
+      - cpu
+      - --no-physics
+
+  genesis-gpu:
+    profiles: ["gpu"]
+    image: hero_common:genesis-gpu
+    container_name: hero_genesis_gpu
+    build:
+      context: ..
+      dockerfile: hero_genesis/docker/Dockerfile
+      args:
+        TORCH_INDEX: ${TORCH_INDEX:-https://download.pytorch.org/whl/cu126}
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DISPLAY=${DISPLAY:-}
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    gpus: all
+    command:
+      - python
+      - /hero/hero_genesis/scripts/genesis_engine.py
+      - --vis
+      - --num-robots
+      - "20"
+      - --arena
+      - "0"
+      - --backend
+      - gpu
+      - --no-physics

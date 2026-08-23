@@ -1,0 +1,6 @@
+# Official Genesis World: https://github.com/Genesis-Embodied-AI/genesis-world
+# Python >= 3.10, < 3.14
+# Install torch first for your device (CPU / cu126 / macOS), then this file.
+# NVIDIA: pip install torch --index-url https://download.pytorch.org/whl/cu126
+torch
+git+https://github.com/Genesis-Embodied-AI/genesis-world.git

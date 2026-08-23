@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>hero_genesis</name>
+  <version>0.1.0</version>
+  <description>HeRo swarm simulator on Genesis World, with the same ROS 1 topics as hero_gazebo.</description>
+  <maintainer email="rezeck@dcc.ufmg.br">Paulo Rezeck</maintainer>
+  <license>CC-BY-NC-SA-4.0</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>hero_common</build_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>roslib</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>tf</exec_depend>
+  <exec_depend>hero_common</exec_depend>
+</package>

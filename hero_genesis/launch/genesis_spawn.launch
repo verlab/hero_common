@@ -1,0 +1,11 @@
+<launch>
+  <!-- Same entry as bringup; kept so the Software/Gazebo habit (bringup + spawn) still works. -->
+  <arg name="num_robots" default="20"/>
+  <arg name="arena" default="0"/>
+  <arg name="gui" default="true"/>
+  <include file="$(find hero_genesis)/launch/genesis_bringup.launch">
+    <arg name="num_robots" value="$(arg num_robots)"/>
+    <arg name="arena" value="$(arg arena)"/>
+    <arg name="gui" value="$(arg gui)"/>
+  </include>
+</launch>

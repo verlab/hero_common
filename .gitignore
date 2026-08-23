@@ -1,4 +1,5 @@
 .vscode
 .cursor/
 .DS_Store
+.venv/
 docs/assembly/*.docx
