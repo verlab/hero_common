@@ -1,7 +1,7 @@
 {
   "source": "OpenAlex",
   "source_url": "https://openalex.org",
-  "generated_at": "2026-08-24T06:28:30.320995+00:00",
+  "generated_at": "2026-08-31T06:48:37.573502+00:00",
   "note": "OpenAlex for metadata; Semantic Scholar for citing lists when available. Not Google Scholar.",
   "seeds": [
     {
@@ -141,6 +141,21 @@
       "url": "https://www.semanticscholar.org/paper/14dfb4f4a11568d5288c83c87ff52dec0f51c5f9"
     },
     {
+      "id": "c2e6f5dd1e1cc4f1a224c1df18792975715b5877",
+      "doi": "10.3390/s20113308",
+      "title": "Local Bearing Estimation for a Swarm of Low-Cost Miniature Robots",
+      "year": 2020,
+      "venue": "Italian National Conference on Sensors",
+      "authors": [
+        "Zheyu Liu",
+        "C. West",
+        "B. Lennox",
+        "F. Arvin"
+      ],
+      "cited_by_count": 13,
+      "url": "https://www.semanticscholar.org/paper/c2e6f5dd1e1cc4f1a224c1df18792975715b5877"
+    },
+    {
       "id": "175c6218b8a782581a1f8f2556ed302c648ee7f0",
       "doi": "10.3390/a17010003",
       "title": "A Survey on Swarm Robotics for Area Coverage Problem",
@@ -153,21 +168,6 @@
       ],
       "cited_by_count": 12,
       "url": "https://www.semanticscholar.org/paper/175c6218b8a782581a1f8f2556ed302c648ee7f0"
-    },
-    {
-      "id": "c2e6f5dd1e1cc4f1a224c1df18792975715b5877",
-      "doi": "10.3390/s20113308",
-      "title": "Local Bearing Estimation for a Swarm of Low-Cost Miniature Robots",
-      "year": 2020,
-      "venue": "Italian National Conference on Sensors",
-      "authors": [
-        "Zheyu Liu",
-        "C. West",
-        "B. Lennox",
-        "F. Arvin"
-      ],
-      "cited_by_count": 12,
-      "url": "https://www.semanticscholar.org/paper/c2e6f5dd1e1cc4f1a224c1df18792975715b5877"
     },
     {
       "id": "620a45490106175d36eaa7430a2173be928fc0a8",
@@ -245,6 +245,22 @@
       "url": "https://www.semanticscholar.org/paper/83f71fefb9d9cf32267e3ac561cdda5db679ac0e"
     },
     {
+      "id": "87a105a1422d70b25e251cda2b7b95bc309aad57",
+      "doi": "10.1016/j.ohx.2026.e00747",
+      "title": "PlatROB: An open-source, modular, and low-cost hardware platform for mobile robotics and AI education",
+      "year": 2026,
+      "venue": "HardwareX",
+      "authors": [
+        "Jose Balbuena",
+        "Julio Sinche",
+        "Diego Quiroz",
+        "Diego Arce",
+        "Elizabeth Villota"
+      ],
+      "cited_by_count": 7,
+      "url": "https://www.semanticscholar.org/paper/87a105a1422d70b25e251cda2b7b95bc309aad57"
+    },
+    {
       "id": "4c65bb1f749aea14b2bfcff1653f6c697e5189f0",
       "doi": "10.1109/SII55687.2023.10039174",
       "title": "HeRoSwarm: Fully-Capable Miniature Swarm Robot Hardware Design With Open-Source ROS Support",
@@ -275,22 +291,6 @@
       ],
       "cited_by_count": 7,
       "url": "https://www.semanticscholar.org/paper/4391722a2829ef09851cccb20f2b9c2e23757812"
-    },
-    {
-      "id": "87a105a1422d70b25e251cda2b7b95bc309aad57",
-      "doi": "10.1016/j.ohx.2026.e00747",
-      "title": "PlatROB: An open-source, modular, and low-cost hardware platform for mobile robotics and AI education",
-      "year": 2026,
-      "venue": "HardwareX",
-      "authors": [
-        "Jose Balbuena",
-        "Julio Sinche",
-        "Diego Quiroz",
-        "Diego Arce",
-        "Elizabeth Villota"
-      ],
-      "cited_by_count": 6,
-      "url": "https://www.semanticscholar.org/paper/87a105a1422d70b25e251cda2b7b95bc309aad57"
     },
     {
       "id": "d875e2e52af8adbce1d8cc50e032d18262cc6f89",
