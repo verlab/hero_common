@@ -1,7 +1,7 @@
 {
   "source": "OpenAlex",
   "source_url": "https://openalex.org",
-  "generated_at": "2026-08-31T06:48:37.573502+00:00",
+  "generated_at": "2026-09-07T06:49:39.021293+00:00",
   "note": "OpenAlex for metadata; Semantic Scholar for citing lists when available. Not Google Scholar.",
   "seeds": [
     {
@@ -228,6 +228,22 @@
       "url": "https://www.semanticscholar.org/paper/c9a32b597bbf0ec14d23ac9611d4f3638ed59884"
     },
     {
+      "id": "87a105a1422d70b25e251cda2b7b95bc309aad57",
+      "doi": "10.1016/j.ohx.2026.e00747",
+      "title": "PlatROB: An open-source, modular, and low-cost hardware platform for mobile robotics and AI education",
+      "year": 2026,
+      "venue": "HardwareX",
+      "authors": [
+        "Jose Balbuena",
+        "Julio Sinche",
+        "Diego Quiroz",
+        "Diego Arce",
+        "Elizabeth Villota"
+      ],
+      "cited_by_count": 8,
+      "url": "https://www.semanticscholar.org/paper/87a105a1422d70b25e251cda2b7b95bc309aad57"
+    },
+    {
       "id": "83f71fefb9d9cf32267e3ac561cdda5db679ac0e",
       "doi": "10.48550/arXiv.2502.15937",
       "title": "Discovery and Deployment of Emergent Robot Swarm Behaviors via Representation Learning and Real2Sim2Real Transfer",
@@ -243,22 +259,6 @@
       ],
       "cited_by_count": 8,
       "url": "https://www.semanticscholar.org/paper/83f71fefb9d9cf32267e3ac561cdda5db679ac0e"
-    },
-    {
-      "id": "87a105a1422d70b25e251cda2b7b95bc309aad57",
-      "doi": "10.1016/j.ohx.2026.e00747",
-      "title": "PlatROB: An open-source, modular, and low-cost hardware platform for mobile robotics and AI education",
-      "year": 2026,
-      "venue": "HardwareX",
-      "authors": [
-        "Jose Balbuena",
-        "Julio Sinche",
-        "Diego Quiroz",
-        "Diego Arce",
-        "Elizabeth Villota"
-      ],
-      "cited_by_count": 7,
-      "url": "https://www.semanticscholar.org/paper/87a105a1422d70b25e251cda2b7b95bc309aad57"
     },
     {
       "id": "4c65bb1f749aea14b2bfcff1653f6c697e5189f0",
@@ -280,7 +280,7 @@
       "doi": "10.1007/978-3-030-60376-2",
       "title": "Swarm Intelligence: 12th International Conference, ANTS 2020, Barcelona, Spain, October 26–28, 2020, Proceedings",
       "year": 2020,
-      "venue": "ANTS Conference",
+      "venue": "Lecture Notes in Computer Science",
       "authors": [
         "Marco Dorigo",
         "Thomas Stützle",
@@ -435,7 +435,7 @@
       "year": 2018,
       "venue": "2018 Latin American Robotic Symposium, 2018 Brazilian Symposium on Robotics (SBR) and 2018 Workshop on Robotics in Education (WRE)",
       "authors": [
-        "Marco Vinícius Muniz Ferreira",
+        "M. V. Ferreira",
         "João Paulo da Silva Fonseca",
         "J. Tavares"
       ],
@@ -514,20 +514,6 @@
       "url": "https://www.semanticscholar.org/paper/604a7f22a7b4e1c58c632e6f6dcceaad4b714b9d"
     },
     {
-      "id": "0692e845d912890c5801a60b825395b8463395dd",
-      "doi": "10.48550/arXiv.2406.17490",
-      "title": "BricksRL: A Platform for Democratizing Robotics and Reinforcement Learning Research and Education with LEGO",
-      "year": 2024,
-      "venue": "Neural Information Processing Systems",
-      "authors": [
-        "Sebastian Dittert",
-        "Vincent Moens",
-        "G. D. Fabritiis"
-      ],
-      "cited_by_count": 1,
-      "url": "https://www.semanticscholar.org/paper/0692e845d912890c5801a60b825395b8463395dd"
-    },
-    {
       "id": "4b5e1b6ae0c496c96c39cd6befd7c750c61a7d46",
       "doi": "10.1109/LARS/SBR/WRE59448.2023.10333016",
       "title": "Attabot 2.0: An Open-Source Educational Robot for Mechatronics and Robotics Studies",
@@ -555,6 +541,21 @@
       "url": "https://www.semanticscholar.org/paper/58b362d1fd8f126b7aed3757c57ebf4dde40fb96"
     },
     {
+      "id": "496bfe189a0aa4cceafe7bff70b2485f41778fee",
+      "doi": "10.1016/j.robot.2026.105638",
+      "title": "Minimal Exposure Path problem for multi-agent Cyber-Physical Systems",
+      "year": 2026,
+      "venue": "Robotics Auton. Syst.",
+      "authors": [
+        "Armando Alves",
+        "Víctor C. da S. Campos",
+        "L. Santos",
+        "D. Macharet"
+      ],
+      "cited_by_count": 0,
+      "url": "https://www.semanticscholar.org/paper/496bfe189a0aa4cceafe7bff70b2485f41778fee"
+    },
+    {
       "id": "ca9d39903c11c818b290c876cc42083624fce6b4",
       "doi": null,
       "title": "SyncSBC: Decentralized Swarm Behavior Prediction for Synchronized Autonomous Control",
@@ -570,10 +571,10 @@
     },
     {
       "id": "b939dd0e1a33109d3a343f96d4c21a806b8909ad",
-      "doi": null,
+      "doi": "10.1109/lra.2026.3728338",
       "title": "Design and Flight of an Ion-propelled Micro Hovercraft Leveraging Ground Proximity Effects",
       "year": 2026,
-      "venue": "",
+      "venue": "IEEE Robotics and Automation Letters",
       "authors": [
         "C. Nelson",
         "Grant Nations",
@@ -614,28 +615,13 @@
       "url": "https://www.semanticscholar.org/paper/790a035b6ca7ebcc7452aa16481c74b81512a4bc"
     },
     {
-      "id": "496bfe189a0aa4cceafe7bff70b2485f41778fee",
-      "doi": "10.1016/j.robot.2026.105638",
-      "title": "Minimal Exposure Path problem for multi-agent Cyber-Physical Systems",
-      "year": 2026,
-      "venue": "Robotics and Autonomous Systems",
-      "authors": [
-        "A. A. Neto",
-        "Víctor C. da S. Campos",
-        "L. Santos",
-        "D. Macharet"
-      ],
-      "cited_by_count": 0,
-      "url": "https://www.semanticscholar.org/paper/496bfe189a0aa4cceafe7bff70b2485f41778fee"
-    },
-    {
       "id": "49ffe23a8a6e9ea57ae703e63cad18f65e5da031",
       "doi": "10.1109/CROS69211.2026.11565677",
       "title": "Communication Backbone Deployment with Connectivity Maintenance",
       "year": 2026,
       "venue": "2026 Brazilian Conference on Robotics (CROS)",
       "authors": [
-        "L. N. C. dos Santos",
+        "L. N. C. Dos Santos",
         "Caio C. G. Ribeiro",
         "D. Macharet"
       ],
@@ -773,6 +759,20 @@
       "url": "https://www.semanticscholar.org/paper/6619fa092a26361bc686301a3d182431d1a4de28"
     },
     {
+      "id": "0692e845d912890c5801a60b825395b8463395dd",
+      "doi": "10.48550/arXiv.2406.17490",
+      "title": "BricksRL: A Platform for Democratizing Robotics and Reinforcement Learning Research and Education with LEGO",
+      "year": 2024,
+      "venue": "Neural Information Processing Systems",
+      "authors": [
+        "Sebastian Dittert",
+        "Vincent Moens",
+        "G. D. Fabritiis"
+      ],
+      "cited_by_count": 0,
+      "url": "https://www.semanticscholar.org/paper/0692e845d912890c5801a60b825395b8463395dd"
+    },
+    {
       "id": "638619827d1512d6ea966b21420a9e3e87eb21e9",
       "doi": "10.48550/arXiv.2409.16851",
       "title": "Communication Backbone Reconfiguration with Connectivity Maintenance",
@@ -809,9 +809,9 @@
       "year": 2022,
       "venue": "Latin American Robotics Symposium",
       "authors": [
-        "Alysson Ribeiro Da Silva",
+        "Alysson Ribeiro da Silva",
         "Paulo A. F. Rezeck",
-        "G. S. Luz",
+        "Gabriel S. Luz",
         "Tiago de Rezende Alves",
         "D. Macharet",
         "Luiz Chaimowicz"
