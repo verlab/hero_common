@@ -1,7 +1,7 @@
 {
   "source": "OpenAlex",
   "source_url": "https://openalex.org",
-  "generated_at": "2026-09-07T06:49:39.021293+00:00",
+  "generated_at": "2026-09-14T06:50:25.533627+00:00",
   "note": "OpenAlex for metadata; Semantic Scholar for citing lists when available. Not Google Scholar.",
   "seeds": [
     {
@@ -78,7 +78,7 @@
       "role": "related",
       "cite_as": false,
       "openalex": "https://openalex.org/W3202854416",
-      "semantic_scholar_citations": 9
+      "semantic_scholar_citations": 10
     }
   ],
   "citing": [
@@ -141,21 +141,6 @@
       "url": "https://www.semanticscholar.org/paper/14dfb4f4a11568d5288c83c87ff52dec0f51c5f9"
     },
     {
-      "id": "c2e6f5dd1e1cc4f1a224c1df18792975715b5877",
-      "doi": "10.3390/s20113308",
-      "title": "Local Bearing Estimation for a Swarm of Low-Cost Miniature Robots",
-      "year": 2020,
-      "venue": "Italian National Conference on Sensors",
-      "authors": [
-        "Zheyu Liu",
-        "C. West",
-        "B. Lennox",
-        "F. Arvin"
-      ],
-      "cited_by_count": 13,
-      "url": "https://www.semanticscholar.org/paper/c2e6f5dd1e1cc4f1a224c1df18792975715b5877"
-    },
-    {
       "id": "175c6218b8a782581a1f8f2556ed302c648ee7f0",
       "doi": "10.3390/a17010003",
       "title": "A Survey on Swarm Robotics for Area Coverage Problem",
@@ -166,8 +151,23 @@
         "Ahmed T. Sadiq",
         "F. A. Raheem"
       ],
-      "cited_by_count": 12,
+      "cited_by_count": 14,
       "url": "https://www.semanticscholar.org/paper/175c6218b8a782581a1f8f2556ed302c648ee7f0"
+    },
+    {
+      "id": "c2e6f5dd1e1cc4f1a224c1df18792975715b5877",
+      "doi": "10.3390/s20113308",
+      "title": "Local Bearing Estimation for a Swarm of Low-Cost Miniature Robots",
+      "year": 2020,
+      "venue": "Italian National Conference on Sensors",
+      "authors": [
+        "Zhe-Yu Liu",
+        "C. West",
+        "B. Lennox",
+        "F. Arvin"
+      ],
+      "cited_by_count": 13,
+      "url": "https://www.semanticscholar.org/paper/c2e6f5dd1e1cc4f1a224c1df18792975715b5877"
     },
     {
       "id": "620a45490106175d36eaa7430a2173be928fc0a8",
@@ -183,13 +183,27 @@
       "url": "https://www.semanticscholar.org/paper/620a45490106175d36eaa7430a2173be928fc0a8"
     },
     {
+      "id": "c9a32b597bbf0ec14d23ac9611d4f3638ed59884",
+      "doi": "10.1109/IROS51168.2021.9635928",
+      "title": "Cooperative Object Transportation using Gibbs Random Fields",
+      "year": 2021,
+      "venue": "IEEE/RJS International Conference on Intelligent RObots and Systems",
+      "authors": [
+        "Paulo A. F. Rezeck",
+        "R. Assunção",
+        "Luiz Chaimowicz"
+      ],
+      "cited_by_count": 10,
+      "url": "https://www.semanticscholar.org/paper/c9a32b597bbf0ec14d23ac9611d4f3638ed59884"
+    },
+    {
       "id": "fb18eba2e5e31a1087e117b24884ddb0cafd76c4",
       "doi": "10.1002/cae.22377",
       "title": "Simulation for senior undergraduate education of robot engineering based on Webots",
       "year": 2020,
       "venue": "Computer Applications in Engineering Education",
       "authors": [
-        "Haosong Yue",
+        "Hao-Song Yue",
         "Jinyu Miao",
         "Jinqing Zhang",
         "Changbo Fan",
@@ -212,20 +226,6 @@
       ],
       "cited_by_count": 10,
       "url": "https://www.semanticscholar.org/paper/ec1fa5f9f3dd7df19f766532b7cf32f885e867ff"
-    },
-    {
-      "id": "c9a32b597bbf0ec14d23ac9611d4f3638ed59884",
-      "doi": "10.1109/IROS51168.2021.9635928",
-      "title": "Cooperative Object Transportation using Gibbs Random Fields",
-      "year": 2021,
-      "venue": "IEEE/RJS International Conference on Intelligent RObots and Systems",
-      "authors": [
-        "Paulo A. F. Rezeck",
-        "R. Assunção",
-        "Luiz Chaimowicz"
-      ],
-      "cited_by_count": 9,
-      "url": "https://www.semanticscholar.org/paper/c9a32b597bbf0ec14d23ac9611d4f3638ed59884"
     },
     {
       "id": "87a105a1422d70b25e251cda2b7b95bc309aad57",
@@ -378,8 +378,8 @@
       "authors": [
         "Fouad Chaouki Refis",
         "N. A. Mahammedi",
-        "C. A. Kerrache",
-        "Sahraoui Dhelim"
+        "Chaker Abdelaziz Kerrache",
+        "S. Dhelim"
       ],
       "cited_by_count": 3,
       "url": "https://www.semanticscholar.org/paper/50e21b96bc000195f2821ddcce4c12ce13c42312"
@@ -392,8 +392,8 @@
       "venue": "Latin American Robotics Symposium",
       "authors": [
         "Marcelo Saavedra Alcoba",
-        "B. D. Toconas",
-        "Fabio Richard Diaz Palacios"
+        "Brayan Durán Toconás",
+        "Fabio Diaz Palacios"
       ],
       "cited_by_count": 3,
       "url": "https://www.semanticscholar.org/paper/c36452b8c697c5165118c5495792257a66c85d08"
@@ -408,7 +408,7 @@
         "P. V. V. Paiva",
         "M. Batista",
         "Marcos V. Cruz",
-        "G. B. Filho",
+        "Germano Filho",
         "J. J. G. Ramos"
       ],
       "cited_by_count": 3,
@@ -436,8 +436,8 @@
       "venue": "2018 Latin American Robotic Symposium, 2018 Brazilian Symposium on Robotics (SBR) and 2018 Workshop on Robotics in Education (WRE)",
       "authors": [
         "M. V. Ferreira",
-        "João Paulo da Silva Fonseca",
-        "J. Tavares"
+        "J. P. Fonseca",
+        "J. J. P. Z. S. Tavares"
       ],
       "cited_by_count": 3,
       "url": "https://www.semanticscholar.org/paper/f2682543c290d0474fae04831bb6843fffe4b5bb"
@@ -495,7 +495,7 @@
       "venue": "International Journal of Management, Technology, and Social Sciences",
       "authors": [
         "Sudipto Chakraborty",
-        "P. S. Aithal"
+        "P. Aithal"
       ],
       "cited_by_count": 2,
       "url": "https://www.semanticscholar.org/paper/f2e15422ae7d3febbccb8b0953d6d418fee5b3ac"
@@ -520,9 +520,9 @@
       "year": 2023,
       "venue": "Latin American Robotics Symposium",
       "authors": [
-        "José Divino Ferreira Júnior",
+        "José Divino Ferreira",
         "João Paulo da Silva Fonseca",
-        "Jose J. P. Z. Tavares"
+        "José Jean-Paul Zanlucchi de Souza Tavares"
       ],
       "cited_by_count": 1,
       "url": "https://www.semanticscholar.org/paper/4b5e1b6ae0c496c96c39cd6befd7c750c61a7d46"
@@ -548,8 +548,8 @@
       "venue": "Robotics Auton. Syst.",
       "authors": [
         "Armando Alves",
-        "Víctor C. da S. Campos",
-        "L. Santos",
+        "Víctor Costa da Silva Campos",
+        "Leonardo H. M. C. dos Santos",
         "D. Macharet"
       ],
       "cited_by_count": 0,
@@ -606,7 +606,7 @@
       "doi": "10.1007/s10846-026-02382-0",
       "title": "Decentralized Emergent Behavior Design in Robotic Swarms Using Gibbs Random Fields",
       "year": 2026,
-      "venue": "J. Intell. Robotic Syst.",
+      "venue": "Journal of Intelligent and Robotic Systems",
       "authors": [
         "Paulo A. F. Rezeck",
         "Luiz Chaimowicz"
@@ -621,7 +621,7 @@
       "year": 2026,
       "venue": "2026 Brazilian Conference on Robotics (CROS)",
       "authors": [
-        "L. N. C. Dos Santos",
+        "Leonardo H. M. C. Dos Santos",
         "Caio C. G. Ribeiro",
         "D. Macharet"
       ],
@@ -635,9 +635,9 @@
       "year": 2025,
       "venue": "Latin American Robotics Symposium",
       "authors": [
-        "Marcelo Saavedra Alcoba",
-        "B. D. Toconas",
-        "Á. Prado"
+        "A. Saavedra",
+        "T. Brayan Duran",
+        "R. Alvaro Prado"
       ],
       "cited_by_count": 0,
       "url": "https://www.semanticscholar.org/paper/c35d929c7c630e7d06c96d5095563faa279c4b3e"
@@ -704,8 +704,7 @@
         "S. Kumar",
         "R. Vignesh",
         "P. Chandru",
-        "S. Wesley",
-        "Moses Samdoss"
+        "S. Wesley Moses Samdoss"
       ],
       "cited_by_count": 0,
       "url": "https://www.semanticscholar.org/paper/cbac20a5a4cc1193e4a481fd15f73e1340520354"
@@ -720,11 +719,11 @@
         "Julia G. Matos",
         "Dener V. Ribeiro",
         "Celso O. Barcelos",
-        "Raieni R. Da Cunha",
+        "Raieni R. da Cunha",
         "Pablo M. Paula",
         "Vitor O. Koch",
         "Osney N. Matos",
-        "M. M. Silva"
+        "M. Silva"
       ],
       "cited_by_count": 0,
       "url": "https://www.semanticscholar.org/paper/c1cb01821380a1423562832c96d2fa5040b02ce9"
@@ -765,9 +764,9 @@
       "year": 2024,
       "venue": "Neural Information Processing Systems",
       "authors": [
+        "G. de Fabritiis",
         "Sebastian Dittert",
-        "Vincent Moens",
-        "G. D. Fabritiis"
+        "Vincent Moens"
       ],
       "cited_by_count": 0,
       "url": "https://www.semanticscholar.org/paper/0692e845d912890c5801a60b825395b8463395dd"
@@ -797,7 +796,7 @@
         "Pawan Wadhwani",
         "Reshesh Kumar Pathak",
         "Mayur Bhosale",
-        "A. HelenVictoria"
+        "A. Victoria"
       ],
       "cited_by_count": 0,
       "url": "https://www.semanticscholar.org/paper/762451845d2b0fb1033680dde35ded8183a6467b"
