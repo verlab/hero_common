@@ -1,7 +1,7 @@
 {
   "source": "OpenAlex",
   "source_url": "https://openalex.org",
-  "generated_at": "2026-09-14T06:50:25.533627+00:00",
+  "generated_at": "2026-09-21T06:51:14.828466+00:00",
   "note": "OpenAlex for metadata; Semantic Scholar for citing lists when available. Not Google Scholar.",
   "seeds": [
     {
@@ -170,6 +170,22 @@
       "url": "https://www.semanticscholar.org/paper/c2e6f5dd1e1cc4f1a224c1df18792975715b5877"
     },
     {
+      "id": "fb18eba2e5e31a1087e117b24884ddb0cafd76c4",
+      "doi": "10.1002/cae.22377",
+      "title": "Simulation for senior undergraduate education of robot engineering based on Webots",
+      "year": 2020,
+      "venue": "Computer Applications in Engineering Education",
+      "authors": [
+        "Hao-Song Yue",
+        "Jinyu Miao",
+        "Jinqing Zhang",
+        "Changbo Fan",
+        "Dong Xu"
+      ],
+      "cited_by_count": 11,
+      "url": "https://www.semanticscholar.org/paper/fb18eba2e5e31a1087e117b24884ddb0cafd76c4"
+    },
+    {
       "id": "620a45490106175d36eaa7430a2173be928fc0a8",
       "doi": "10.1109/LRA.2022.3190638",
       "title": "Chemistry-Inspired Pattern Formation With Robotic Swarms",
@@ -195,22 +211,6 @@
       ],
       "cited_by_count": 10,
       "url": "https://www.semanticscholar.org/paper/c9a32b597bbf0ec14d23ac9611d4f3638ed59884"
-    },
-    {
-      "id": "fb18eba2e5e31a1087e117b24884ddb0cafd76c4",
-      "doi": "10.1002/cae.22377",
-      "title": "Simulation for senior undergraduate education of robot engineering based on Webots",
-      "year": 2020,
-      "venue": "Computer Applications in Engineering Education",
-      "authors": [
-        "Hao-Song Yue",
-        "Jinyu Miao",
-        "Jinqing Zhang",
-        "Changbo Fan",
-        "Dong Xu"
-      ],
-      "cited_by_count": 10,
-      "url": "https://www.semanticscholar.org/paper/fb18eba2e5e31a1087e117b24884ddb0cafd76c4"
     },
     {
       "id": "ec1fa5f9f3dd7df19f766532b7cf32f885e867ff",
@@ -310,6 +310,20 @@
       "url": "https://www.semanticscholar.org/paper/d875e2e52af8adbce1d8cc50e032d18262cc6f89"
     },
     {
+      "id": "c36452b8c697c5165118c5495792257a66c85d08",
+      "doi": "10.1109/LARS64411.2024.10786400",
+      "title": "CuyBot: A Compact and Low-Cost Tracked Robot with vSLAM for Ventilation Duct Inspection.",
+      "year": 2024,
+      "venue": "Latin American Robotics Symposium",
+      "authors": [
+        "Marcelo Saavedra Alcoba",
+        "Brayan Durán Toconás",
+        "Fabio Diaz Palacios"
+      ],
+      "cited_by_count": 4,
+      "url": "https://www.semanticscholar.org/paper/c36452b8c697c5165118c5495792257a66c85d08"
+    },
+    {
       "id": "84e5cd22551fbcc9c577c184d1acd91a9f79c0c5",
       "doi": "10.1109/ICCA62789.2024.10591921",
       "title": "Omnibot: A Scalable Vision-Based Robot Swarm Platform",
@@ -385,20 +399,6 @@
       "url": "https://www.semanticscholar.org/paper/50e21b96bc000195f2821ddcce4c12ce13c42312"
     },
     {
-      "id": "c36452b8c697c5165118c5495792257a66c85d08",
-      "doi": "10.1109/LARS64411.2024.10786400",
-      "title": "CuyBot: A Compact and Low-Cost Tracked Robot with vSLAM for Ventilation Duct Inspection.",
-      "year": 2024,
-      "venue": "Latin American Robotics Symposium",
-      "authors": [
-        "Marcelo Saavedra Alcoba",
-        "Brayan Durán Toconás",
-        "Fabio Diaz Palacios"
-      ],
-      "cited_by_count": 3,
-      "url": "https://www.semanticscholar.org/paper/c36452b8c697c5165118c5495792257a66c85d08"
-    },
-    {
       "id": "3a206c67019e5371cb1b88494bd4a892d33a00ae",
       "doi": "10.1109/LARS/SBR/WRE51543.2020.9307160",
       "title": "ROSANA: Robot for Social Interaction in Unstructured Dynamic Environments",
@@ -409,7 +409,7 @@
         "M. Batista",
         "Marcos V. Cruz",
         "Germano Filho",
-        "J. J. G. Ramos"
+        "J. Ramos"
       ],
       "cited_by_count": 3,
       "url": "https://www.semanticscholar.org/paper/3a206c67019e5371cb1b88494bd4a892d33a00ae"
@@ -571,8 +571,8 @@
     },
     {
       "id": "b939dd0e1a33109d3a343f96d4c21a806b8909ad",
-      "doi": "10.1109/lra.2026.3728338",
-      "title": "Design and Flight of an Ion-propelled Micro Hovercraft Leveraging Ground Proximity Effects",
+      "doi": "10.1109/LRA.2026.3728338",
+      "title": "Design and Flight of an Ion-Propelled Micro Hovercraft Leveraging Ground Proximity Effects",
       "year": 2026,
       "venue": "IEEE Robotics and Automation Letters",
       "authors": [
@@ -587,7 +587,7 @@
     {
       "id": "152e8e0e7ebd2ba44f134305d933d221fcac24f3",
       "doi": "10.1002/aisy.202501218",
-      "title": "Human-in-the-Loop Swarms: A Bionic Swarm Approach to Real-World Soil Mapping",
+      "title": "Human‐in‐the‐Loop Swarms: A Bionic Swarm Approach to Real‐World Soil Mapping",
       "year": 2026,
       "venue": "Advanced Intelligent Systems",
       "authors": [
@@ -621,7 +621,7 @@
       "year": 2026,
       "venue": "2026 Brazilian Conference on Robotics (CROS)",
       "authors": [
-        "Leonardo H. M. C. Dos Santos",
+        "Leonardo H. M. C. dos Santos",
         "Caio C. G. Ribeiro",
         "D. Macharet"
       ],
@@ -636,8 +636,8 @@
       "venue": "Latin American Robotics Symposium",
       "authors": [
         "A. Saavedra",
-        "T. Brayan Duran",
-        "R. Alvaro Prado"
+        "T. Duran",
+        "R. A. Prado"
       ],
       "cited_by_count": 0,
       "url": "https://www.semanticscholar.org/paper/c35d929c7c630e7d06c96d5095563faa279c4b3e"
@@ -686,9 +686,9 @@
         "Zhongrui You",
         "J. Maloney",
         "Bernat Romagosa",
-        "Binghui Zhao",
+        "Bing-Hui Zhao",
         "Zhigang Wang",
-        "Zhinan Zhang",
+        "Zhi-Nan Zhang",
         "Xuelong Li"
       ],
       "cited_by_count": 0,
