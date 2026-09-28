@@ -1,7 +1,7 @@
 {
   "source": "OpenAlex",
   "source_url": "https://openalex.org",
-  "generated_at": "2026-09-21T06:51:14.828466+00:00",
+  "generated_at": "2026-09-28T06:55:26.661720+00:00",
   "note": "OpenAlex for metadata; Semantic Scholar for citing lists when available. Not Google Scholar.",
   "seeds": [
     {
@@ -11,12 +11,12 @@
       "year": 2023,
       "venue": "Autonomous Robots",
       "authors": [
-        "Paulo Rezeck",
+        "Paulo Alfredo Frota Rezeck",
         "Héctor Azpúrua",
         "Mauricio FS Correa",
         "Luiz Chaimowicz"
       ],
-      "cited_by_count": 0,
+      "cited_by_count": 21,
       "url": "https://doi.org/10.1007/s10514-023-10100-0",
       "key": "hero2",
       "role": "platform",
@@ -31,7 +31,7 @@
       "year": 2017,
       "venue": null,
       "authors": [
-        "Paulo Rezeck",
+        "Paulo Alfredo Frota Rezeck",
         "Héctor Azpúrua",
         "Luiz Chaimowicz"
       ],
@@ -50,10 +50,10 @@
       "year": 2022,
       "venue": "IEEE Robotics and Automation Letters",
       "authors": [
-        "Paulo Rezeck",
+        "Paulo Alfredo Frota Rezeck",
         "Luiz Chaimowicz"
       ],
-      "cited_by_count": 1,
+      "cited_by_count": 19,
       "url": "https://doi.org/10.1109/lra.2022.3190638",
       "key": "chemistry",
       "role": "related",
@@ -68,7 +68,7 @@
       "year": 2021,
       "venue": "2021 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
       "authors": [
-        "Paulo Rezeck",
+        "Paulo Alfredo Frota Rezeck",
         "Renato Assunção",
         "Luiz Chaimowicz"
       ],
@@ -151,7 +151,7 @@
         "Ahmed T. Sadiq",
         "F. A. Raheem"
       ],
-      "cited_by_count": 14,
+      "cited_by_count": 15,
       "url": "https://www.semanticscholar.org/paper/175c6218b8a782581a1f8f2556ed302c648ee7f0"
     },
     {
@@ -269,7 +269,7 @@
       "authors": [
         "M. Starks",
         "A. Gupta",
-        "Sanjay Sarma Oruganti Venkata",
+        "S. V",
         "Ramviyas Parasuraman"
       ],
       "cited_by_count": 7,
@@ -282,12 +282,7 @@
       "year": 2020,
       "venue": "Lecture Notes in Computer Science",
       "authors": [
-        "Marco Dorigo",
-        "Thomas Stützle",
-        "C. Blum",
-        "Heiko Hamann",
-        "M. K. Heinrich",
-        "V. Strobel"
+        "A. Schumann"
       ],
       "cited_by_count": 7,
       "url": "https://www.semanticscholar.org/paper/4391722a2829ef09851cccb20f2b9c2e23757812"
@@ -331,7 +326,7 @@
       "venue": "2024 IEEE 18th International Conference on Control & Automation (ICCA)",
       "authors": [
         "Zhao Ma",
-        "Jiacheng Liang",
+        "Jia-Cheng Liang",
         "Hongyi Wang",
         "Shiliang Guo",
         "Peidong Huo",
@@ -382,6 +377,23 @@
       ],
       "cited_by_count": 4,
       "url": "https://www.semanticscholar.org/paper/b639ca4becb37dd6b91cb1dccc34a0a25046929d"
+    },
+    {
+      "id": "8e7debeaffc9e6172a107788b297dff78bba1ce8",
+      "doi": "10.48550/arXiv.2510.18085",
+      "title": "R2BC: Multi-Agent Imitation Learning from Single-Agent Demonstrations",
+      "year": 2025,
+      "venue": "arXiv.org",
+      "authors": [
+        "Connor Mattson",
+        "Varun Raveendra",
+        "Ellen R. Novoseller",
+        "Nicholas R. Waytowich",
+        "V. Lawhern",
+        "Daniel S. Brown"
+      ],
+      "cited_by_count": 3,
+      "url": "https://www.semanticscholar.org/paper/8e7debeaffc9e6172a107788b297dff78bba1ce8"
     },
     {
       "id": "50e21b96bc000195f2821ddcce4c12ce13c42312",
@@ -455,23 +467,6 @@
       ],
       "cited_by_count": 3,
       "url": "https://www.semanticscholar.org/paper/a1fb1e57836dc4848b4b28de30e8d0ad2fdf1e8f"
-    },
-    {
-      "id": "8e7debeaffc9e6172a107788b297dff78bba1ce8",
-      "doi": "10.48550/arXiv.2510.18085",
-      "title": "R2BC: Multi-Agent Imitation Learning from Single-Agent Demonstrations",
-      "year": 2025,
-      "venue": "arXiv.org",
-      "authors": [
-        "Connor Mattson",
-        "Varun Raveendra",
-        "Ellen R. Novoseller",
-        "Nicholas R. Waytowich",
-        "V. Lawhern",
-        "Daniel S. Brown"
-      ],
-      "cited_by_count": 2,
-      "url": "https://www.semanticscholar.org/paper/8e7debeaffc9e6172a107788b297dff78bba1ce8"
     },
     {
       "id": "e479ac64aabf54020975b4e561393c88185bd70c",
@@ -595,7 +590,7 @@
         "Mohammadali Rashidioun",
         "Nicholas Sahu",
         "Raaid Kabir",
-        "Ayodeji Aderibigbe",
+        "A. Aderibigbe",
         "O. Kolawole"
       ],
       "cited_by_count": 0,
@@ -687,7 +682,7 @@
         "J. Maloney",
         "Bernat Romagosa",
         "Bing-Hui Zhao",
-        "Zhigang Wang",
+        "Zhi-Gang Wang",
         "Zhi-Nan Zhang",
         "Xuelong Li"
       ],
