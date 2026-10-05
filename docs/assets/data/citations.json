@@ -1,7 +1,7 @@
 {
   "source": "OpenAlex",
   "source_url": "https://openalex.org",
-  "generated_at": "2026-09-28T06:55:26.661720+00:00",
+  "generated_at": "2026-10-05T07:00:15.213422+00:00",
   "note": "OpenAlex for metadata; Semantic Scholar for citing lists when available. Not Google Scholar.",
   "seeds": [
     {
@@ -94,7 +94,7 @@
         "Takuya Yoshioka",
         "Shyamnath Gollakota"
       ],
-      "cited_by_count": 23,
+      "cited_by_count": 24,
       "url": "https://www.semanticscholar.org/paper/b6ad4abba34870dc06d84c615fbe1c0c24a5d23c"
     },
     {
@@ -328,7 +328,7 @@
         "Zhao Ma",
         "Jia-Cheng Liang",
         "Hongyi Wang",
-        "Shiliang Guo",
+        "Shi-Liang Guo",
         "Peidong Huo",
         "Yin Zhang",
         "Shiyu Zhao"
@@ -380,10 +380,10 @@
     },
     {
       "id": "8e7debeaffc9e6172a107788b297dff78bba1ce8",
-      "doi": "10.48550/arXiv.2510.18085",
+      "doi": "10.1109/ICRA57385.2026.11697586",
       "title": "R2BC: Multi-Agent Imitation Learning from Single-Agent Demonstrations",
       "year": 2025,
-      "venue": "arXiv.org",
+      "venue": "IEEE International Conference on Robotics and Automation",
       "authors": [
         "Connor Mattson",
         "Varun Raveendra",
@@ -409,6 +409,19 @@
       ],
       "cited_by_count": 3,
       "url": "https://www.semanticscholar.org/paper/50e21b96bc000195f2821ddcce4c12ce13c42312"
+    },
+    {
+      "id": "f2e15422ae7d3febbccb8b0953d6d418fee5b3ac",
+      "doi": "10.47992/ijmts.2581.6012.0205",
+      "title": "A Smart IDE for Robotics Research",
+      "year": 2022,
+      "venue": "International Journal of Management, Technology, and Social Sciences",
+      "authors": [
+        "Sudipto Chakraborty",
+        "P. Aithal"
+      ],
+      "cited_by_count": 3,
+      "url": "https://www.semanticscholar.org/paper/f2e15422ae7d3febbccb8b0953d6d418fee5b3ac"
     },
     {
       "id": "3a206c67019e5371cb1b88494bd4a892d33a00ae",
@@ -483,19 +496,6 @@
       "url": "https://www.semanticscholar.org/paper/e479ac64aabf54020975b4e561393c88185bd70c"
     },
     {
-      "id": "f2e15422ae7d3febbccb8b0953d6d418fee5b3ac",
-      "doi": "10.47992/ijmts.2581.6012.0205",
-      "title": "A Smart IDE for Robotics Research",
-      "year": 2022,
-      "venue": "International Journal of Management, Technology, and Social Sciences",
-      "authors": [
-        "Sudipto Chakraborty",
-        "P. Aithal"
-      ],
-      "cited_by_count": 2,
-      "url": "https://www.semanticscholar.org/paper/f2e15422ae7d3febbccb8b0953d6d418fee5b3ac"
-    },
-    {
       "id": "604a7f22a7b4e1c58c632e6f6dcceaad4b714b9d",
       "doi": "10.1109/MECO49872.2020.9134247",
       "title": "Architecture of Swarm Robotics System Software Infrastructure",
@@ -507,6 +507,22 @@
       ],
       "cited_by_count": 2,
       "url": "https://www.semanticscholar.org/paper/604a7f22a7b4e1c58c632e6f6dcceaad4b714b9d"
+    },
+    {
+      "id": "90b3c30e5e019292320c36f8b5e494419ccb7dfb",
+      "doi": "10.1109/ICMLAS64557.2025.10968795",
+      "title": "Coordination Frameworks for IoT-Driven Swarm Robotics Communication",
+      "year": 2025,
+      "venue": "2025 International Conference on Machine Learning and Autonomous Systems (ICMLAS)",
+      "authors": [
+        "Ayush Kumar Agrawal",
+        "Jayendra Kumar",
+        "Avanish Kumar",
+        "Anumeha",
+        "Arvind R. Yadav"
+      ],
+      "cited_by_count": 1,
+      "url": "https://www.semanticscholar.org/paper/90b3c30e5e019292320c36f8b5e494419ccb7dfb"
     },
     {
       "id": "4b5e1b6ae0c496c96c39cd6befd7c750c61a7d46",
@@ -722,22 +738,6 @@
       ],
       "cited_by_count": 0,
       "url": "https://www.semanticscholar.org/paper/c1cb01821380a1423562832c96d2fa5040b02ce9"
-    },
-    {
-      "id": "90b3c30e5e019292320c36f8b5e494419ccb7dfb",
-      "doi": "10.1109/ICMLAS64557.2025.10968795",
-      "title": "Coordination Frameworks for IoT-Driven Swarm Robotics Communication",
-      "year": 2025,
-      "venue": "2025 International Conference on Machine Learning and Autonomous Systems (ICMLAS)",
-      "authors": [
-        "Ayush Kumar Agrawal",
-        "Jayendra Kumar",
-        "Avanish Kumar",
-        "Anumeha",
-        "Arvind R. Yadav"
-      ],
-      "cited_by_count": 0,
-      "url": "https://www.semanticscholar.org/paper/90b3c30e5e019292320c36f8b5e494419ccb7dfb"
     },
     {
       "id": "6619fa092a26361bc686301a3d182431d1a4de28",
