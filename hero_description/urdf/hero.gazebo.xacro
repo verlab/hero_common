@@ -1,15 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- ros_control plugin -->
-  <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <!--robotNamespace>/</robotNamespace-->
-      <legacyModeNS>true</legacyModeNS>
-      <controlPeriod>0.60</controlPeriod>
-    </plugin>
-  </gazebo>
-
   <!-- Differential drive controller plugin -->
   <gazebo>
     <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
