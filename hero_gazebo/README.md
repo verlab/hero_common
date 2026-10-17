@@ -29,6 +29,7 @@ To launch a pre-set environment, use this launch file:
 ```sh
 $ roslaunch hero_gazebo env_spawn.launch
 ```
+This environment spawns `hero_light.urdf`, which contains neither the IR sensor nor the IMU. The robot descriptions in `hero_description/robot` differ in their sensors: `hero.urdf` (IR and IMU), `hero_laser.urdf` (IR), `hero_imu.urdf` (IMU) and `hero_light.urdf` (none).
 
 
 
@@ -50,9 +51,10 @@ $ roslaunch hero_gazebo gazebo_bringup.launch
 ![system](../hero_resources/media/images/gazebo_1.png)
 ![system](../hero_resources/media/images/gazebo_2.png)
 
-- If you want to spawn another robot, just use the following command. It's important set the argument id for every robot that you spawn.
+- If you want to spawn another robot, use `spawn_model` of `gazebo_ros`. Every robot needs its own model name and namespace.
 ```sh
-$ roslaunch hero_gazebo hero_spawn.launch id:=1 y:=-0.8 x:=1.8
+$ rosrun gazebo_ros spawn_model -urdf -model hero_1 -robot_namespace hero_1 -x 1.8 -y -0.8 -z 0.03 \
+    -file $(rospack find hero_description)/robot/hero.urdf
 ```
 ![system](../hero_resources/media/images/gazebo_mul.png)
 ![system](../hero_resources/media/images/gazebo_3.png)
