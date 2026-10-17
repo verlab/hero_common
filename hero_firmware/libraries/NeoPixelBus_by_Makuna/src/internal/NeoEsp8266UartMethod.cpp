@@ -141,7 +141,7 @@ void NeoEsp8266UartInterruptContext::Detach(uint8_t uartNum)
 
 // The xtos_1int handler calls with param1 as the arg, param2 as a pointer
 // to an exception frame in memory.
-void IRAM_ATTR NeoEsp8266UartInterruptContext::Isr(void* param, [[maybe_unused]] void* exceptionFrame)
+void IRAM_ATTR NeoEsp8266UartInterruptContext::Isr(void* param,  void* exceptionFrame)
 {
     // make sure this is for us
     if (param == s_uartInteruptContext)

@@ -29,7 +29,13 @@ License along with NeoPixel.  If not, see
 -------------------------------------------------------------------------*/
 
 #pragma once
-
+#ifndef IRAM_ATTR
+  #ifdef ICACHE_RAM_ATTR
+    #define IRAM_ATTR ICACHE_RAM_ATTR
+  #else
+    #define IRAM_ATTR
+  #endif
+#endif
 #ifdef ARDUINO_ARCH_ESP8266
 #include "NeoEsp8266I2sMethodCore.h"
 
@@ -211,7 +217,7 @@ public:
         AllocateI2s(i2sBufferSize, i2sZeroesSize, is2BufMaxBlockSize, T_SPEED::IdleLevel);
     }
 
-    NeoEsp8266DmaMethodBase([[maybe_unused]] uint8_t pin, uint16_t pixelCount, size_t elementSize, size_t settingsSize) : 
+    NeoEsp8266DmaMethodBase( uint8_t pin, uint16_t pixelCount, size_t elementSize, size_t settingsSize) : 
         NeoEsp8266DmaMethodBase(pixelCount, elementSize, settingsSize)
     {
     }
@@ -271,7 +277,7 @@ public:
         return _sizeData;
     }
 
-    void applySettings([[maybe_unused]] const SettingsObject& settings)
+    void applySettings( const SettingsObject& settings)
     {
     }
 
