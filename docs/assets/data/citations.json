@@ -1,7 +1,7 @@
 {
   "source": "OpenAlex",
   "source_url": "https://openalex.org",
-  "generated_at": "2026-10-12T07:01:47.415839+00:00",
+  "generated_at": "2026-10-19T06:52:17.392248+00:00",
   "note": "OpenAlex for metadata; Semantic Scholar for citing lists when available. Not Google Scholar.",
   "seeds": [
     {
@@ -16,7 +16,7 @@
         "Mauricio FS Correa",
         "Luiz Chaimowicz"
       ],
-      "cited_by_count": 21,
+      "cited_by_count": 22,
       "url": "https://doi.org/10.1007/s10514-023-10100-0",
       "key": "hero2",
       "role": "platform",
@@ -58,8 +58,7 @@
       "key": "chemistry",
       "role": "related",
       "cite_as": false,
-      "openalex": "https://openalex.org/W4281653816",
-      "semantic_scholar_citations": 10
+      "openalex": "https://openalex.org/W4281653816"
     },
     {
       "id": "https://openalex.org/W3202854416",
@@ -72,7 +71,7 @@
         "Renato Assunção",
         "Luiz Chaimowicz"
       ],
-      "cited_by_count": 12,
+      "cited_by_count": 13,
       "url": "https://doi.org/10.1109/iros51168.2021.9635928",
       "key": "transport",
       "role": "related",
@@ -151,7 +150,7 @@
         "Ahmed T. Sadiq",
         "F. A. Raheem"
       ],
-      "cited_by_count": 16,
+      "cited_by_count": 17,
       "url": "https://www.semanticscholar.org/paper/175c6218b8a782581a1f8f2556ed302c648ee7f0"
     },
     {
@@ -182,7 +181,7 @@
         "Changbo Fan",
         "Dong Xu"
       ],
-      "cited_by_count": 11,
+      "cited_by_count": 12,
       "url": "https://www.semanticscholar.org/paper/fb18eba2e5e31a1087e117b24884ddb0cafd76c4"
     },
     {
