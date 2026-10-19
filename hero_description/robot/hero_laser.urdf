@@ -147,14 +147,6 @@
     <maxContacts>4</maxContacts>
     <selfCollide>0</selfCollide>
   </gazebo>
-  <!-- ros_control plugin -->
-  <gazebo>
-    <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
-      <!--robotNamespace>/</robotNamespace-->
-      <legacyModeNS>true</legacyModeNS>
-      <controlPeriod>0.60</controlPeriod>
-    </plugin>
-  </gazebo>
   <!-- Differential drive controller plugin -->
   <gazebo>
     <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
@@ -251,29 +243,43 @@
   <!-- Laser plugin -->
   <gazebo reference="laser_link">
     <sensor name="hero_laser_sensor" type="ray">
-      <pose>0 0 0.051 0 0 0</pose>
+      <!-- laser_joint already places laser_link at the height of the IR diodes
+           (about 0.06 m above the floor); the sensor adds no further offset. -->
+      <pose>0 0 0 0 0 0</pose>
       <visualize>false</visualize>
-      <update_rate>10</update_rate>
+      <!-- The firmware updates the IR ring at 5 Hz (rangeSensor.update(5)). -->
+      <update_rate>5</update_rate>
       <ray>
         <scan>
           <horizontal>
+            <!-- 16 values at 22.5 deg spacing with index 8 pointing forward, as
+                 published by the firmware (8 measured, 8 interpolated). Gazebo
+                 spaces the rays by (max_angle - min_angle) / (samples - 1);
+                 with max_angle = +pi the first and the last ray would coincide,
+                 so max_angle = pi - 2 pi / 16. -->
             <samples>16</samples>
             <resolution>1</resolution>
             <min_angle>-3.14159265359</min_angle>
-            <max_angle>3.14159265359</max_angle>
+            <max_angle>2.74889357189</max_angle>
           </horizontal>
         </scan>
+        <!-- Value range of the firmware: range_min (0.0368 m, robot radius) plus
+             the IR distance clamped to 0.01 m to 0.22 m. -->
         <range>
-          <min>0.037</min>
-          <max>0.50</max>
-          <resolution>0.01</resolution>
+          <min>0.0368</min>
+          <max>0.2568</max>
+          <resolution>0.004</resolution>
         </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.003</stddev>
+        </noise>
       </ray>
       <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_hero_laser">
         <topicName>laser</topicName>
         <frameName>laser_link</frameName>
-        <gaussianNoise>0.001</gaussianNoise>
-        <updateRate>10</updateRate>
+        <updateRate>5</updateRate>
       </plugin>
     </sensor>
   </gazebo>
