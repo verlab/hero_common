@@ -5,6 +5,12 @@
 <!-- =================================================================================== -->
 <robot name="target_box">
   <link name="target_link">
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://hero_gazebo/worlds/models/objects/cylinder/cylinder.stl" scale="1.0 1.0 1.0" />
+      </geometry>
+    </collision>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>

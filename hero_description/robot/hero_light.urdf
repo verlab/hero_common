@@ -147,14 +147,6 @@
     <maxContacts>4</maxContacts>
     <selfCollide>0</selfCollide>
   </gazebo>
-  <!-- ros_control plugin -->
-  <gazebo>
-    <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
-      <!--robotNamespace>/</robotNamespace-->
-      <legacyModeNS>true</legacyModeNS>
-      <controlPeriod>0.01</controlPeriod>
-    </plugin>
-  </gazebo>
   <!-- Differential drive controller plugin -->
   <gazebo>
     <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
