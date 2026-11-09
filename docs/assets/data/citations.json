@@ -1,7 +1,7 @@
 {
   "source": "OpenAlex",
   "source_url": "https://openalex.org",
-  "generated_at": "2026-11-02T06:34:04.758665+00:00",
+  "generated_at": "2026-11-09T06:34:45.320980+00:00",
   "note": "OpenAlex for metadata; Semantic Scholar for citing lists when available. Not Google Scholar.",
   "seeds": [
     {
@@ -16,7 +16,7 @@
         "Mauricio FS Correa",
         "Luiz Chaimowicz"
       ],
-      "cited_by_count": 22,
+      "cited_by_count": 25,
       "url": "https://doi.org/10.1007/s10514-023-10100-0",
       "key": "hero2",
       "role": "platform",
@@ -35,13 +35,12 @@
         "Héctor Azpúrua",
         "Luiz Chaimowicz"
       ],
-      "cited_by_count": 32,
+      "cited_by_count": 33,
       "url": "https://doi.org/10.1109/sbr-lars-r.2017.8215317",
       "key": "hero2017",
       "role": "platform",
       "cite_as": true,
-      "openalex": "https://openalex.org/W2775084240",
-      "semantic_scholar_citations": 32
+      "openalex": "https://openalex.org/W2775084240"
     },
     {
       "id": "https://openalex.org/W4281653816",
@@ -53,7 +52,7 @@
         "Paulo Alfredo Frota Rezeck",
         "Luiz Chaimowicz"
       ],
-      "cited_by_count": 19,
+      "cited_by_count": 20,
       "url": "https://doi.org/10.1109/lra.2022.3190638",
       "key": "chemistry",
       "role": "related",
@@ -72,7 +71,7 @@
         "Renato Assunção",
         "Luiz Chaimowicz"
       ],
-      "cited_by_count": 13,
+      "cited_by_count": 14,
       "url": "https://doi.org/10.1109/iros51168.2021.9635928",
       "key": "transport",
       "role": "related",
@@ -82,6 +81,36 @@
     }
   ],
   "citing": [
+    {
+      "id": "https://openalex.org/W4362653194",
+      "doi": "10.1109/access.2023.3264508",
+      "title": "Robotic Park: Multi-Agent Platform for Teaching Control and Robotics",
+      "year": 2023,
+      "venue": "IEEE Access",
+      "authors": [
+        "Francisco-José Mañas-Álvarez",
+        "María Guinaldo",
+        "Raquel Dormido",
+        "S. Dormido"
+      ],
+      "cited_by_count": 27,
+      "url": "https://doi.org/10.1109/access.2023.3264508"
+    },
+    {
+      "id": "https://openalex.org/W4221150571",
+      "doi": "10.1007/s10514-023-10100-0",
+      "title": "HeRo 2.0: a low-cost robot for swarm robotics research",
+      "year": 2023,
+      "venue": "Autonomous Robots",
+      "authors": [
+        "Paulo Alfredo Frota Rezeck",
+        "Héctor Azpúrua",
+        "Mauricio FS Correa",
+        "Luiz Chaimowicz"
+      ],
+      "cited_by_count": 25,
+      "url": "https://doi.org/10.1007/s10514-023-10100-0"
+    },
     {
       "id": "b6ad4abba34870dc06d84c615fbe1c0c24a5d23c",
       "doi": "10.1038/s41467-023-40869-8",
@@ -98,47 +127,30 @@
       "url": "https://www.semanticscholar.org/paper/b6ad4abba34870dc06d84c615fbe1c0c24a5d23c"
     },
     {
-      "id": "1b068d2ec5168ac44fb7f813b88b9bd874325ca5",
-      "doi": "10.3390/ELECTRONICS8020200",
+      "id": "https://openalex.org/W2913271794",
+      "doi": "10.3390/electronics8020200",
       "title": "Design of an Open Platform for Multi-Disciplinary Approach in Project-Based Learning of an EPICS Class",
       "year": 2019,
       "venue": "Electronics",
       "authors": [
-        "H. Ngo",
+        "Ha Quang Thinh Ngo",
         "Mai-Ha Phan"
       ],
-      "cited_by_count": 23,
-      "url": "https://www.semanticscholar.org/paper/1b068d2ec5168ac44fb7f813b88b9bd874325ca5"
+      "cited_by_count": 24,
+      "url": "http://dx.doi.org/10.3390/electronics8020200"
     },
     {
-      "id": "14dfb4f4a11568d5288c83c87ff52dec0f51c5f9",
-      "doi": "10.1109/ACCESS.2023.3264508",
-      "title": "Robotic Park: Multi-Agent Platform for Teaching Control and Robotics",
-      "year": 2023,
-      "venue": "IEEE Access",
-      "authors": [
-        "F. Mañas-Álvarez",
-        "M. Guinaldo",
-        "R. Dormido",
-        "S. Dormido"
-      ],
-      "cited_by_count": 22,
-      "url": "https://www.semanticscholar.org/paper/14dfb4f4a11568d5288c83c87ff52dec0f51c5f9"
-    },
-    {
-      "id": "d0aeebcb0d9c28e2300fe561f7fb22333e8db501",
-      "doi": "10.1007/s10514-023-10100-0",
-      "title": "HeRo 2.0: a low-cost robot for swarm robotics research",
+      "id": "https://openalex.org/W4281653816",
+      "doi": "10.1109/lra.2022.3190638",
+      "title": "Chemistry-Inspired Pattern Formation With Robotic Swarms",
       "year": 2022,
-      "venue": "Autonomous Robots",
+      "venue": "IEEE Robotics and Automation Letters",
       "authors": [
-        "Paulo A. F. Rezeck",
-        "Héctor Azpúrua",
-        "Maurício F. S. Corrêa",
-        "L. Chaimowicz"
+        "Paulo Alfredo Frota Rezeck",
+        "Luiz Chaimowicz"
       ],
-      "cited_by_count": 21,
-      "url": "https://www.semanticscholar.org/paper/d0aeebcb0d9c28e2300fe561f7fb22333e8db501"
+      "cited_by_count": 20,
+      "url": "https://doi.org/10.1109/lra.2022.3190638"
     },
     {
       "id": "175c6218b8a782581a1f8f2556ed302c648ee7f0",
@@ -151,39 +163,53 @@
         "Ahmed T. Sadiq",
         "F. A. Raheem"
       ],
-      "cited_by_count": 17,
+      "cited_by_count": 18,
       "url": "https://www.semanticscholar.org/paper/175c6218b8a782581a1f8f2556ed302c648ee7f0"
     },
     {
-      "id": "c2e6f5dd1e1cc4f1a224c1df18792975715b5877",
+      "id": "https://openalex.org/W3202854416",
+      "doi": "10.1109/iros51168.2021.9635928",
+      "title": "Cooperative Object Transportation using Gibbs Random Fields",
+      "year": 2021,
+      "venue": "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
+      "authors": [
+        "Paulo Alfredo Frota Rezeck",
+        "Renato Assunção",
+        "Luiz Chaimowicz"
+      ],
+      "cited_by_count": 14,
+      "url": "https://doi.org/10.1109/iros51168.2021.9635928"
+    },
+    {
+      "id": "https://openalex.org/W3033947719",
       "doi": "10.3390/s20113308",
       "title": "Local Bearing Estimation for a Swarm of Low-Cost Miniature Robots",
       "year": 2020,
-      "venue": "Italian National Conference on Sensors",
+      "venue": "Sensors",
       "authors": [
-        "Zhe-Yu Liu",
-        "C. West",
-        "B. Lennox",
-        "F. Arvin"
+        "Zheyu Liu",
+        "Craig West",
+        "Barry Lennox",
+        "Farshad Arvin"
       ],
-      "cited_by_count": 13,
-      "url": "https://www.semanticscholar.org/paper/c2e6f5dd1e1cc4f1a224c1df18792975715b5877"
+      "cited_by_count": 14,
+      "url": "http://dx.doi.org/10.3390/s20113308"
     },
     {
-      "id": "fb18eba2e5e31a1087e117b24884ddb0cafd76c4",
+      "id": "https://openalex.org/W3114849488",
       "doi": "10.1002/cae.22377",
       "title": "Simulation for senior undergraduate education of robot engineering based on Webots",
       "year": 2020,
       "venue": "Computer Applications in Engineering Education",
       "authors": [
-        "Hao-Song Yue",
+        "Haosong Yue",
         "Jinyu Miao",
-        "Jin-Qing Zhang",
-        "Chang-Bo Fan",
+        "Jinqing Zhang",
+        "Changbo Fan",
         "Dong Xu"
       ],
-      "cited_by_count": 12,
-      "url": "https://www.semanticscholar.org/paper/fb18eba2e5e31a1087e117b24884ddb0cafd76c4"
+      "cited_by_count": 13,
+      "url": "https://doi.org/10.1002/cae.22377"
     },
     {
       "id": "620a45490106175d36eaa7430a2173be928fc0a8",
@@ -199,51 +225,6 @@
       "url": "https://www.semanticscholar.org/paper/620a45490106175d36eaa7430a2173be928fc0a8"
     },
     {
-      "id": "c9a32b597bbf0ec14d23ac9611d4f3638ed59884",
-      "doi": "10.1109/IROS51168.2021.9635928",
-      "title": "Cooperative Object Transportation using Gibbs Random Fields",
-      "year": 2021,
-      "venue": "IEEE/RJS International Conference on Intelligent RObots and Systems",
-      "authors": [
-        "Paulo A. F. Rezeck",
-        "R. Assunção",
-        "L. Chaimowicz"
-      ],
-      "cited_by_count": 10,
-      "url": "https://www.semanticscholar.org/paper/c9a32b597bbf0ec14d23ac9611d4f3638ed59884"
-    },
-    {
-      "id": "ec1fa5f9f3dd7df19f766532b7cf32f885e867ff",
-      "doi": "10.1007/978-3-030-60376-2_19",
-      "title": "The Pi-puck Ecosystem: Hardware and Software Support for the e-puck and e-puck2",
-      "year": 2020,
-      "venue": "ANTS Conference",
-      "authors": [
-        "Jacob M. Allen",
-        "Russell Joyce",
-        "Alan G. Millard",
-        "Ian Gray"
-      ],
-      "cited_by_count": 10,
-      "url": "https://www.semanticscholar.org/paper/ec1fa5f9f3dd7df19f766532b7cf32f885e867ff"
-    },
-    {
-      "id": "87a105a1422d70b25e251cda2b7b95bc309aad57",
-      "doi": "10.1016/j.ohx.2026.e00747",
-      "title": "PlatROB: An open-source, modular, and low-cost hardware platform for mobile robotics and AI education",
-      "year": 2026,
-      "venue": "HardwareX",
-      "authors": [
-        "Jose Balbuena",
-        "Julio Sinche",
-        "Diego Quiroz",
-        "Diego Arce",
-        "Elizabeth Villota"
-      ],
-      "cited_by_count": 9,
-      "url": "https://www.semanticscholar.org/paper/87a105a1422d70b25e251cda2b7b95bc309aad57"
-    },
-    {
       "id": "83f71fefb9d9cf32267e3ac561cdda5db679ac0e",
       "doi": "10.48550/arXiv.2502.15937",
       "title": "Discovery and Deployment of Emergent Robot Swarm Behaviors via Representation Learning and Real2Sim2Real Transfer",
@@ -257,8 +238,23 @@
         "Daniel S. Drew",
         "Daniel S. Brown"
       ],
-      "cited_by_count": 9,
+      "cited_by_count": 10,
       "url": "https://www.semanticscholar.org/paper/83f71fefb9d9cf32267e3ac561cdda5db679ac0e"
+    },
+    {
+      "id": "https://openalex.org/W3093499528",
+      "doi": "10.1007/978-3-030-60376-2_19",
+      "title": "The Pi-puck Ecosystem: Hardware and Software Support for the e-puck and e-puck2",
+      "year": 2020,
+      "venue": "Lecture notes in computer science",
+      "authors": [
+        "Jacob M. Allen",
+        "Russell Joyce",
+        "Alan G. Millard",
+        "Ian Gray"
+      ],
+      "cited_by_count": 10,
+      "url": "https://doi.org/10.1007/978-3-030-60376-2_19"
     },
     {
       "id": "4c65bb1f749aea14b2bfcff1653f6c697e5189f0",
@@ -276,16 +272,74 @@
       "url": "https://www.semanticscholar.org/paper/4c65bb1f749aea14b2bfcff1653f6c697e5189f0"
     },
     {
-      "id": "4391722a2829ef09851cccb20f2b9c2e23757812",
-      "doi": "10.1007/978-3-030-60376-2",
-      "title": "Swarm Intelligence: 12th International Conference, ANTS 2020, Barcelona, Spain, October 26–28, 2020, Proceedings",
-      "year": 2020,
-      "venue": "Lecture Notes in Computer Science",
+      "id": "https://openalex.org/W2830933400",
+      "doi": "10.1109/dessert.2018.8409178",
+      "title": "Polygon for smart machine application",
+      "year": 2018,
+      "venue": "International Conference on Dependable Systems, Services and Technologies (DESSERT)",
       "authors": [
-        "A. Schumann"
+        "Anatolii Kargin",
+        "Oleksandr Ivaniuk",
+        "Georgii Galych",
+        "Artem Panchenko"
       ],
       "cited_by_count": 7,
-      "url": "https://www.semanticscholar.org/paper/4391722a2829ef09851cccb20f2b9c2e23757812"
+      "url": "https://doi.org/10.1109/dessert.2018.8409178"
+    },
+    {
+      "id": "https://openalex.org/W4414777367",
+      "doi": "10.3390/s25196115",
+      "title": "From Network Sensors to Intelligent Systems: A Decade-Long Review of Swarm Robotics Technologies",
+      "year": 2025,
+      "venue": "Sensors",
+      "authors": [
+        "Fouad Chaouki Refis",
+        "Nassim Ahmed Mahammedi",
+        "Chaker Abdelaziz Kerrache",
+        "Sahraoui Dhelim"
+      ],
+      "cited_by_count": 6,
+      "url": "https://doi.org/10.3390/s25196115"
+    },
+    {
+      "id": "https://openalex.org/W4283755777",
+      "doi": "10.47992/ijmts.2581.6012.0205",
+      "title": "A Smart IDE for Robotics Research",
+      "year": 2022,
+      "venue": "International Journal of Management Technology and Social Sciences",
+      "authors": [
+        "Sudip Chakraborty",
+        "P. S. Aithal"
+      ],
+      "cited_by_count": 6,
+      "url": "https://doi.org/10.47992/ijmts.2581.6012.0205"
+    },
+    {
+      "id": "https://openalex.org/W3042173416",
+      "doi": "10.1109/meco49872.2020.9134247",
+      "title": "Architecture of Swarm Robotics System Software Infrastructure",
+      "year": 2020,
+      "venue": "Mediterranean Conference on Embedded Computing (MECO)",
+      "authors": [
+        "Mikhail A. Efremov",
+        "Ivan I. Kholod"
+      ],
+      "cited_by_count": 6,
+      "url": "https://doi.org/10.1109/meco49872.2020.9134247"
+    },
+    {
+      "id": "https://openalex.org/W2889470151",
+      "doi": "10.1007/978-3-319-97085-1_19",
+      "title": "Teaching with Open-Source Robotic Manipulator",
+      "year": 2018,
+      "venue": "Advances in intelligent systems and computing",
+      "authors": [
+        "Luka Čehovin Zajc",
+        "Anže Rezelj",
+        "Danijel Skočaj"
+      ],
+      "cited_by_count": 6,
+      "url": "https://doi.org/10.1007/978-3-319-97085-1_19"
     },
     {
       "id": "8e7debeaffc9e6172a107788b297dff78bba1ce8",
@@ -305,21 +359,48 @@
       "url": "https://www.semanticscholar.org/paper/8e7debeaffc9e6172a107788b297dff78bba1ce8"
     },
     {
-      "id": "d875e2e52af8adbce1d8cc50e032d18262cc6f89",
-      "doi": "10.1145/3491101.3516387",
-      "title": "Calmbots: Exploring Possibilities of Multiple Insects with On-hand Devices and Flexible Controls as Creation Interfaces",
-      "year": 2022,
-      "venue": "CHI Extended Abstracts",
+      "id": "https://openalex.org/W3118663707",
+      "doi": "10.1109/lars/sbr/wre51543.2020.9307160",
+      "title": "ROSANA: Robot for Social Interaction in Unstructured Dynamic Environments",
+      "year": 2020,
+      "venue": "Latin American Robotics Symposium, Brazilian Symposium on Robotics and Workshop on Robotics in Education (LARS/SBR/WRE)",
       "authors": [
-        "Yuga Tsukuda",
-        "Daichi Tagami",
-        "Masaaki Sadasue",
-        "Shieru Suzuki",
-        "Jun-Li Lu",
-        "Yoichi Ochiai"
+        "Pedro Victor Vieira de Paiva",
+        "Murillo Rehder Batista",
+        "Marcos Vinicius Cruz",
+        "Germano Beraldo Filho",
+        "Josué J. G. Ramos"
       ],
       "cited_by_count": 5,
-      "url": "https://www.semanticscholar.org/paper/d875e2e52af8adbce1d8cc50e032d18262cc6f89"
+      "url": "https://doi.org/10.1109/lars/sbr/wre51543.2020.9307160"
+    },
+    {
+      "id": "https://openalex.org/W2963221756",
+      "doi": "10.1007/978-981-32-9563-6_23",
+      "title": "Neuronal Environmental Pattern Recognizer: Optical-by-Distance LSTM Model for Recognition of Navigation Patterns in Unknown Environments",
+      "year": 2019,
+      "venue": "Communications in computer and information science",
+      "authors": [
+        "Fredy Hernán Martínez Sarmiento",
+        "Edwar Jacinto",
+        "Holman Montiel Ariza"
+      ],
+      "cited_by_count": 5,
+      "url": "https://doi.org/10.1007/978-981-32-9563-6_23"
+    },
+    {
+      "id": "https://openalex.org/W2907893220",
+      "doi": "10.1109/lars/sbr/wre.2018.00049",
+      "title": "Attabot: Open Platform Inspired on Brazilian Ants for Swarm Robots",
+      "year": 2018,
+      "venue": "Latin American Robotics Symposium, Brazilian Symposium on Robotics and Workshop on Robotics in Education (LARS/SBR/WRE)",
+      "authors": [
+        "Marco Vinícius Muniz Ferreira",
+        "João Paulo da Silva Fonseca",
+        "José Jean-Paul Zanlucchi de Souza Tavares"
+      ],
+      "cited_by_count": 5,
+      "url": "https://doi.org/10.1109/lars/sbr/wre.2018.00049"
     },
     {
       "id": "c36452b8c697c5165118c5495792257a66c85d08",
@@ -354,132 +435,21 @@
       "url": "https://www.semanticscholar.org/paper/84e5cd22551fbcc9c577c184d1acd91a9f79c0c5"
     },
     {
-      "id": "fef6bf479db02f0805f92bfab5c525debd8752c1",
-      "doi": "10.23917/EMITOR.V19I2.7952",
-      "title": "Sistem Monitoring Keadaan Ruang Laboratorium Fakultas Komunikasi dan Informatika di Universitas Muhammadiyah Surakarta",
-      "year": 2019,
-      "venue": "Emitor: Jurnal Teknik Elektro",
-      "authors": [
-        "R. Pamungkas",
-        "Bana Handaga"
-      ],
-      "cited_by_count": 4,
-      "url": "https://www.semanticscholar.org/paper/fef6bf479db02f0805f92bfab5c525debd8752c1"
-    },
-    {
-      "id": "cd0689cc97d574e2264aa40f6c4954e9c61150e5",
-      "doi": "10.1109/DESSERT.2018.8409178",
-      "title": "Polygon for smart machine application",
-      "year": 2018,
-      "venue": "International Conference on Dependable Systems, Services and Technologies",
-      "authors": [
-        "A. Kargin",
-        "O. Ivaniuk",
-        "Georgii Galych",
-        "A. Panchenko"
-      ],
-      "cited_by_count": 4,
-      "url": "https://www.semanticscholar.org/paper/cd0689cc97d574e2264aa40f6c4954e9c61150e5"
-    },
-    {
-      "id": "b639ca4becb37dd6b91cb1dccc34a0a25046929d",
-      "doi": "10.1007/978-3-319-97085-1_19",
-      "title": "Teaching with Open-Source Robotic Manipulator",
-      "year": 2018,
-      "venue": "Robotics in Education",
-      "authors": [
-        "L. Č. Zajc",
-        "Anze Rezelj",
-        "D. Skočaj"
-      ],
-      "cited_by_count": 4,
-      "url": "https://www.semanticscholar.org/paper/b639ca4becb37dd6b91cb1dccc34a0a25046929d"
-    },
-    {
-      "id": "50e21b96bc000195f2821ddcce4c12ce13c42312",
-      "doi": "10.3390/s25196115",
-      "title": "From Network Sensors to Intelligent Systems: A Decade-Long Review of Swarm Robotics Technologies",
-      "year": 2025,
-      "venue": "Italian National Conference on Sensors",
-      "authors": [
-        "Fouad Chaouki Refis",
-        "N. A. Mahammedi",
-        "Chaker Abdelaziz Kerrache",
-        "S. Dhelim"
-      ],
-      "cited_by_count": 3,
-      "url": "https://www.semanticscholar.org/paper/50e21b96bc000195f2821ddcce4c12ce13c42312"
-    },
-    {
-      "id": "f2e15422ae7d3febbccb8b0953d6d418fee5b3ac",
-      "doi": "10.47992/ijmts.2581.6012.0205",
-      "title": "A Smart IDE for Robotics Research",
+      "id": "https://openalex.org/W4285247641",
+      "doi": "10.1007/978-3-031-05028-2_35",
+      "title": "Calmbots: Exploring Madagascar Cockroaches as Living Ubiquitous Interfaces",
       "year": 2022,
-      "venue": "International Journal of Management, Technology, and Social Sciences",
+      "venue": "Lecture notes in computer science",
       "authors": [
-        "Sudipto Chakraborty",
-        "P. Aithal"
+        "Yuga Tsukuda",
+        "Daichi Tagami",
+        "Masaaki Sadasue",
+        "Shieru Suzuki",
+        "Junli Lu",
+        "Yoichi Ochiai"
       ],
       "cited_by_count": 3,
-      "url": "https://www.semanticscholar.org/paper/f2e15422ae7d3febbccb8b0953d6d418fee5b3ac"
-    },
-    {
-      "id": "3a206c67019e5371cb1b88494bd4a892d33a00ae",
-      "doi": "10.1109/LARS/SBR/WRE51543.2020.9307160",
-      "title": "ROSANA: Robot for Social Interaction in Unstructured Dynamic Environments",
-      "year": 2020,
-      "venue": "Latin American Robotics Symposium",
-      "authors": [
-        "P. V. V. Paiva",
-        "M. Batista",
-        "Marcos V. Cruz",
-        "Germano Filho",
-        "J. Ramos"
-      ],
-      "cited_by_count": 3,
-      "url": "https://www.semanticscholar.org/paper/3a206c67019e5371cb1b88494bd4a892d33a00ae"
-    },
-    {
-      "id": "2aee1c20876021af13f46bf6bde61bd73760bd6d",
-      "doi": "10.1007/978-981-32-9563-6_23",
-      "title": "Neuronal Environmental Pattern Recognizer: Optical-by-Distance LSTM Model for Recognition of Navigation Patterns in Unknown Environments",
-      "year": 2019,
-      "venue": "International Conference on Data Mining and Big Data",
-      "authors": [
-        "Fredy H. Martínez",
-        "Edwar Jacinto",
-        "Holman Montiel"
-      ],
-      "cited_by_count": 3,
-      "url": "https://www.semanticscholar.org/paper/2aee1c20876021af13f46bf6bde61bd73760bd6d"
-    },
-    {
-      "id": "f2682543c290d0474fae04831bb6843fffe4b5bb",
-      "doi": "10.1109/LARS/SBR/WRE.2018.00049",
-      "title": "Attabot: Open Platform Inspired on Brazilian Ants for Swarm Robots",
-      "year": 2018,
-      "venue": "2018 Latin American Robotic Symposium, 2018 Brazilian Symposium on Robotics (SBR) and 2018 Workshop on Robotics in Education (WRE)",
-      "authors": [
-        "M. V. Ferreira",
-        "J. P. Fonseca",
-        "J. J. P. Z. S. Tavares"
-      ],
-      "cited_by_count": 3,
-      "url": "https://www.semanticscholar.org/paper/f2682543c290d0474fae04831bb6843fffe4b5bb"
-    },
-    {
-      "id": "a1fb1e57836dc4848b4b28de30e8d0ad2fdf1e8f",
-      "doi": "10.1007/978-3-030-14984-0_26",
-      "title": "P \\mathrm Φ SS: An Open-Source Experimental Setup for Real-World Implementation of Swarm Robotic Systems in Long-Term Scenarios",
-      "year": 2018,
-      "venue": "International Workshop on Modelling and Simulation for Autonomous Systems",
-      "authors": [
-        "F. Arvin",
-        "T. Krajník",
-        "A. E. Turgut"
-      ],
-      "cited_by_count": 3,
-      "url": "https://www.semanticscholar.org/paper/a1fb1e57836dc4848b4b28de30e8d0ad2fdf1e8f"
+      "url": "https://doi.org/10.1007/978-3-031-05028-2_35"
     },
     {
       "id": "e479ac64aabf54020975b4e561393c88185bd70c",
@@ -496,24 +466,64 @@
       "url": "https://www.semanticscholar.org/paper/e479ac64aabf54020975b4e561393c88185bd70c"
     },
     {
-      "id": "604a7f22a7b4e1c58c632e6f6dcceaad4b714b9d",
-      "doi": "10.1109/MECO49872.2020.9134247",
-      "title": "Architecture of Swarm Robotics System Software Infrastructure",
-      "year": 2020,
-      "venue": "Mediterranean Conference on Embedded Computing",
+      "id": "https://openalex.org/W4389332403",
+      "doi": "10.1109/lars/sbr/wre59448.2023.10333016",
+      "title": "Attabot 2.0: An Open-Source Educational Robot for Mechatronics and Robotics Studies",
+      "year": 2023,
+      "venue": "Latin American Robotics Symposium, Brazilian Symposium on Robotics and Workshop on Robotics in Education (LARS/SBR/WRE)",
       "authors": [
-        "M. A. Efremov",
-        "I. Kholod"
+        "José Divino Ferreira Júnior",
+        "João Paulo da Silva Fonseca",
+        "José Jean-Paul Zanlucchi de Souza Tavares"
       ],
       "cited_by_count": 2,
-      "url": "https://www.semanticscholar.org/paper/604a7f22a7b4e1c58c632e6f6dcceaad4b714b9d"
+      "url": "http://dx.doi.org/10.1109/lars/sbr/wre59448.2023.10333016"
     },
     {
-      "id": "90b3c30e5e019292320c36f8b5e494419ccb7dfb",
-      "doi": "10.1109/ICMLAS64557.2025.10968795",
+      "id": "https://openalex.org/W2945535401",
+      "doi": "10.23917/emitor.v19i2.7952",
+      "title": "Sistem Monitoring Keadaan Ruang Laboratorium Fakultas Komunikasi dan Informatika di Universitas Muhammadiyah Surakarta",
+      "year": 2019,
+      "venue": "Emitor Jurnal Teknik Elektro",
+      "authors": [
+        "Ragil Burhanudin Pamungkas",
+        "Bana Handaga"
+      ],
+      "cited_by_count": 2,
+      "url": "https://doi.org/10.23917/emitor.v19i2.7952"
+    },
+    {
+      "id": "https://openalex.org/W2921716332",
+      "doi": "10.1007/978-3-030-14984-0_26",
+      "title": "P$$\\mathrm {\\Phi }$$SS: An Open-Source Experimental Setup for Real-World Implementation of Swarm Robotic Systems in Long-Term Scenarios",
+      "year": 2019,
+      "venue": "Lecture notes in computer science",
+      "authors": [
+        "Farshad Arvin",
+        "Tomáš Krajník",
+        "Ali Emre Turgut"
+      ],
+      "cited_by_count": 2,
+      "url": "https://doi.org/10.1007/978-3-030-14984-0_26"
+    },
+    {
+      "id": "https://openalex.org/W2899468659",
+      "doi": "10.12677/airr.2018.74021",
+      "title": "Programming and Implementation of Educational Robot Based on Scratch and ROS",
+      "year": 2018,
+      "venue": "Artificial Intelligence and Robotics Research",
+      "authors": [
+        "瑞雷 张"
+      ],
+      "cited_by_count": 2,
+      "url": "https://doi.org/10.12677/airr.2018.74021"
+    },
+    {
+      "id": "https://openalex.org/W4409796532",
+      "doi": "10.1109/icmlas64557.2025.10968795",
       "title": "Coordination Frameworks for IoT-Driven Swarm Robotics Communication",
       "year": 2025,
-      "venue": "2025 International Conference on Machine Learning and Autonomous Systems (ICMLAS)",
+      "venue": "International Conference on Machine Learning and Autonomous Systems (ICMLAS)",
       "authors": [
         "Ayush Kumar Agrawal",
         "Jayendra Kumar",
@@ -522,7 +532,7 @@
         "Arvind R. Yadav"
       ],
       "cited_by_count": 1,
-      "url": "https://www.semanticscholar.org/paper/90b3c30e5e019292320c36f8b5e494419ccb7dfb"
+      "url": "https://doi.org/10.1109/icmlas64557.2025.10968795"
     },
     {
       "id": "0692e845d912890c5801a60b825395b8463395dd",
@@ -539,31 +549,34 @@
       "url": "https://www.semanticscholar.org/paper/0692e845d912890c5801a60b825395b8463395dd"
     },
     {
-      "id": "4b5e1b6ae0c496c96c39cd6befd7c750c61a7d46",
-      "doi": "10.1109/LARS/SBR/WRE59448.2023.10333016",
-      "title": "Attabot 2.0: An Open-Source Educational Robot for Mechatronics and Robotics Studies",
-      "year": 2023,
-      "venue": "Latin American Robotics Symposium",
-      "authors": [
-        "José Divino Ferreira",
-        "João Paulo da Silva Fonseca",
-        "José Jean-Paul Zanlucchi de Souza Tavares"
-      ],
-      "cited_by_count": 1,
-      "url": "https://www.semanticscholar.org/paper/4b5e1b6ae0c496c96c39cd6befd7c750c61a7d46"
-    },
-    {
-      "id": "58b362d1fd8f126b7aed3757c57ebf4dde40fb96",
-      "doi": "10.1109/COMSCI59259.2023.10315950",
+      "id": "https://openalex.org/W4388727141",
+      "doi": "10.1109/comsci59259.2023.10315950",
       "title": "Open Source Robotics Platform for Educational Purposes",
       "year": 2023,
-      "venue": "2023 International Scientific Conference on Computer Science (COMSCI)",
+      "venue": "International Scientific Conference on Computer Science (COMSCI)",
       "authors": [
-        "T. Hranov",
-        "N. Hinov"
+        "Tsveti Hristov Hranov",
+        "Nikolay Lyuboslavov Hinov"
       ],
       "cited_by_count": 1,
-      "url": "https://www.semanticscholar.org/paper/58b362d1fd8f126b7aed3757c57ebf4dde40fb96"
+      "url": "http://dx.doi.org/10.1109/comsci59259.2023.10315950"
+    },
+    {
+      "id": "https://openalex.org/W4313496308",
+      "doi": "10.1109/lars/sbr/wre56824.2022.9995823",
+      "title": "A DRL Approach for Object Transportation in Complex Environments",
+      "year": 2022,
+      "venue": "Latin American Robotics Symposium, Brazilian Symposium on Robotics and Workshop on Robotics in Education (LARS/SBR/WRE)",
+      "authors": [
+        "Alysson Ribeiro da Silva",
+        "Paulo Alfredo Frota Rezeck",
+        "Gabriel Santos Luz",
+        "Tiago de Rezende Alves",
+        "Douglas Guimarães Macharet",
+        "Luiz Chaimowicz"
+      ],
+      "cited_by_count": 1,
+      "url": "http://dx.doi.org/10.1109/lars/sbr/wre56824.2022.9995823"
     },
     {
       "id": "496bfe189a0aa4cceafe7bff70b2485f41778fee",
@@ -582,10 +595,10 @@
     },
     {
       "id": "ca9d39903c11c818b290c876cc42083624fce6b4",
-      "doi": null,
+      "doi": "10.48550/arXiv.2608.06587",
       "title": "SyncSBC: Decentralized Swarm Behavior Prediction for Synchronized Autonomous Control",
       "year": 2026,
-      "venue": "",
+      "venue": "arXiv.org",
       "authors": [
         "Varun Raveendra",
         "Connor Mattson",
@@ -640,18 +653,18 @@
       "url": "https://www.semanticscholar.org/paper/790a035b6ca7ebcc7452aa16481c74b81512a4bc"
     },
     {
-      "id": "49ffe23a8a6e9ea57ae703e63cad18f65e5da031",
-      "doi": "10.1109/CROS69211.2026.11565677",
+      "id": "https://openalex.org/W7165389309",
+      "doi": "10.1109/cros69211.2026.11565677",
       "title": "Communication Backbone Deployment with Connectivity Maintenance",
       "year": 2026,
-      "venue": "2026 Brazilian Conference on Robotics (CROS)",
+      "venue": "Brazilian Conference on Robotics (CROS)",
       "authors": [
         "Leonardo H. M. C. dos Santos",
         "Caio C. G. Ribeiro",
-        "D. Macharet"
+        "Douglas Guimarães Macharet"
       ],
       "cited_by_count": 0,
-      "url": "https://www.semanticscholar.org/paper/49ffe23a8a6e9ea57ae703e63cad18f65e5da031"
+      "url": "https://doi.org/10.1109/cros69211.2026.11565677"
     },
     {
       "id": "c35d929c7c630e7d06c96d5095563faa279c4b3e",
@@ -702,8 +715,8 @@
       "venue": "IEEE International Conference on Robotics and Automation",
       "authors": [
         "Shuai Liang",
-        "Songyi Zhu",
-        "Zhonghan Tang",
+        "Song-Yi Zhu",
+        "Zhong-Han Tang",
         "Chen-Hui Li",
         "Wenjie Wu",
         "Jialing Han",
@@ -714,7 +727,7 @@
         "Bing-Hui Zhao",
         "Zhi-Gang Wang",
         "Zhi-Nan Zhang",
-        "Xuelong Li"
+        "Xue-Long Li"
       ],
       "cited_by_count": 0,
       "url": "https://www.semanticscholar.org/paper/10de948cee6f450bca80f2277442193b7274df61"
@@ -735,23 +748,37 @@
       "url": "https://www.semanticscholar.org/paper/cbac20a5a4cc1193e4a481fd15f73e1340520354"
     },
     {
-      "id": "c1cb01821380a1423562832c96d2fa5040b02ce9",
-      "doi": "10.1109/LARS69345.2025.11273008",
+      "id": "https://openalex.org/W4417052621",
+      "doi": "10.1109/lars69345.2025.11273008",
       "title": "FPVcar: An Affordable Robotic Platform to Support Computer Vision Education, from Hardware Design to User-Friendly Programming",
       "year": 2025,
-      "venue": "Latin American Robotics Symposium",
+      "venue": "Latin American Robotics Symposium, Brazilian Symposium on Robotics and Workshop on Robotics in Education (LARS/SBR/WRE)",
       "authors": [
         "Julia G. Matos",
         "Dener V. Ribeiro",
         "Celso O. Barcelos",
-        "Raieni R. da Cunha",
+        "Raieni R. Da Cunha",
         "Pablo M. Paula",
         "Vitor O. Koch",
         "Osney N. Matos",
-        "M. Silva"
+        "Michel M. Silva"
       ],
       "cited_by_count": 0,
-      "url": "https://www.semanticscholar.org/paper/c1cb01821380a1423562832c96d2fa5040b02ce9"
+      "url": "https://doi.org/10.1109/lars69345.2025.11273008"
+    },
+    {
+      "id": "https://openalex.org/W7125610254",
+      "doi": "10.1109/saibot67519.2025.00012",
+      "title": "VeRa: An Open-Source Robotic Platform for Multi-Robot Educational Applications",
+      "year": 2025,
+      "venue": "IEEE Latin American School on Computational Intelligence and Robotics (SAIBOT)",
+      "authors": [
+        "Gonzales Abel",
+        "Saavedra Marcelo",
+        "Villanueva Tavira Jonathan"
+      ],
+      "cited_by_count": 0,
+      "url": "https://doi.org/10.1109/saibot67519.2025.00012"
     },
     {
       "id": "6619fa092a26361bc686301a3d182431d1a4de28",
@@ -767,65 +794,61 @@
       "url": "https://www.semanticscholar.org/paper/6619fa092a26361bc686301a3d182431d1a4de28"
     },
     {
-      "id": "638619827d1512d6ea966b21420a9e3e87eb21e9",
-      "doi": "10.48550/arXiv.2409.16851",
+      "id": "https://openalex.org/W4403784616",
+      "doi": "10.48550/arxiv.2409.16851",
       "title": "Communication Backbone Reconfiguration with Connectivity Maintenance",
       "year": 2024,
-      "venue": "arXiv.org",
+      "venue": "arXiv (Cornell University)",
       "authors": [
-        "L. Santos",
+        "Santos, Leonardo",
         "Caio C. G. Ribeiro",
-        "D. Macharet"
+        "Douglas Guimarães Macharet"
       ],
       "cited_by_count": 0,
-      "url": "https://www.semanticscholar.org/paper/638619827d1512d6ea966b21420a9e3e87eb21e9"
+      "url": "http://arxiv.org/abs/2409.16851"
     },
     {
-      "id": "762451845d2b0fb1033680dde35ded8183a6467b",
-      "doi": "10.1109/ICRAE56463.2022.10056169",
+      "id": "https://openalex.org/W4408696049",
+      "doi": "10.5753/sbrlars_estendido.2024.244499",
+      "title": "A Stochastic Approach to Generate Emergent Behaviors in Robotic Swarms",
+      "year": 2024,
+      "venue": null,
+      "authors": [
+        "Paulo Alfredo Frota Rezeck",
+        "Luiz Chaimowicz"
+      ],
+      "cited_by_count": 0,
+      "url": "https://doi.org/10.5753/sbrlars_estendido.2024.244499"
+    },
+    {
+      "id": "https://openalex.org/W4323645850",
+      "doi": "10.1109/icrae56463.2022.10056169",
       "title": "Zutu: A Platform for Localization and Navigation of Swarm Robots Using Virtual Grids",
       "year": 2022,
-      "venue": "International Conference Robotics and Automation Engineering",
+      "venue": "International Conference on Robotics and Automation Engineering (ICRAE)",
       "authors": [
         "Prateek",
         "Pawan Wadhwani",
         "Reshesh Kumar Pathak",
         "Mayur Bhosale",
-        "A. Victoria"
+        "A. Helen Victoria"
       ],
       "cited_by_count": 0,
-      "url": "https://www.semanticscholar.org/paper/762451845d2b0fb1033680dde35ded8183a6467b"
+      "url": "http://dx.doi.org/10.1109/icrae56463.2022.10056169"
     },
     {
-      "id": "095dbccca5873cd4f2fec219851370b4878a6548",
-      "doi": "10.1109/LARS/SBR/WRE56824.2022.9995823",
-      "title": "A DRL Approach for Object Transportation in Complex Environments",
-      "year": 2022,
-      "venue": "Latin American Robotics Symposium",
-      "authors": [
-        "Alysson Ribeiro da Silva",
-        "Paulo A. F. Rezeck",
-        "Gabriel S. Luz",
-        "Tiago de Rezende Alves",
-        "D. Macharet",
-        "L. Chaimowicz"
-      ],
-      "cited_by_count": 0,
-      "url": "https://www.semanticscholar.org/paper/095dbccca5873cd4f2fec219851370b4878a6548"
-    },
-    {
-      "id": "0e7900e53e21a34222a19bdfb344279385a507ae",
-      "doi": "10.1016/J.IFACOL.2020.12.2640",
+      "id": "https://openalex.org/W3153266866",
+      "doi": "10.1016/j.ifacol.2020.12.2640",
       "title": "ICS-Zooids - An Experimental Testbed for Cooperative Control Strategies",
       "year": 2020,
       "venue": "IFAC-PapersOnLine",
       "authors": [
-        "N. Rathakrishnan",
+        "Nirmal Rathakrishnan",
         "Patrick Göttsch",
-        "H. Werner"
+        "Herbert Werner"
       ],
       "cited_by_count": 0,
-      "url": "https://www.semanticscholar.org/paper/0e7900e53e21a34222a19bdfb344279385a507ae"
+      "url": "https://doi.org/10.1016/j.ifacol.2020.12.2640"
     }
   ]
 }
