@@ -25,6 +25,14 @@ License along with NeoPixel.  If not, see
 -------------------------------------------------------------------------*/
 
 #pragma once
+#ifndef IRAM_ATTR
+  #ifdef ICACHE_RAM_ATTR
+    #define IRAM_ATTR ICACHE_RAM_ATTR
+  #else
+    #define IRAM_ATTR
+  #endif
+#endif
+
 #ifdef ARDUINO_ARCH_ESP8266
 
 #include "Arduino.h"

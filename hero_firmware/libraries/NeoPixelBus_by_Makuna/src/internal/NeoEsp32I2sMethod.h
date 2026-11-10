@@ -218,7 +218,7 @@ public:
         return _sizeData;
     }
 
-    void applySettings([[maybe_unused]] const SettingsObject& settings)
+    void applySettings( const SettingsObject& settings)
     {
     }
 
