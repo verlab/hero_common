@@ -15,6 +15,7 @@ lead: Motors, PID gains, and IR distances are tuned over ROS services. The paper
 
 # Enter Configuration Mode
 To be able to access calibration mode, run launch file ```hero_confmode.launch``` instead of file ```hero_bringup.launch```.
+The calibration functions are ROS services offered by the robot. `hero_bringup.launch` uses `rosserial_server`, which registers only services that the robot calls, so `rosservice list` shows none of them. `hero_confmode.launch` uses `rosserial_python`, which also registers the services offered by the robot.
 ```sh
 $ roslaunch hero_bringup hero_confmode.launch
 ```
@@ -175,3 +176,35 @@ message: "PID Parameters has been succesfully recorded!"
 These values have a good response, so if you don't need to refine the controller, you can leave it as it is or try small variations.
 
 # IR Distance Sensor
+The firmware converts the intensity of each of the eight IR sensors into a distance. The model contains one constant per sensor (`alpha` in `hero_examples/scripts/hero_ir_calib.py`), which differs between the sensors, also within one robot. The calibration measures it at a known distance of 0.10 m and stores it in the EEPROM of the robot.
+
+## Calibration tool
+The parts are in `hero_resources/3d_parts/ir_calibration`:
+
+| File | Quantity | Purpose |
+|---|---|---|
+| `ircal_holder.stl` | 1 | Hub, 72 mm in diameter |
+| `ircal_rod.stl` | 8 | Spokes from the hub to the plates |
+| `ircal_plate.stl` | 8 | Plates, 114 mm x 50 mm, one in front of each sensor |
+| `ir_calibration_support.stl` | - | Alternative support of two parts that are glued together with cyanoacrylate glue |
+
+Print the plates in white filament. When assembled, the inner faces of the plates are 0.136 m from the center of the robot, that is 0.10 m in front of each sensor, the distance that `hero_ir_calib.py` assumes.
+
+## Procedure
+1. Check that the step-up converter outputs 5 V, and calibrate with the supply voltage used in operation.
+2. Place the tool on top of the robot so that the plates hang down in front of the sensors and each plate faces one sensor. The tool is wider than the e-hat and does not rest on it by itself: put a thin flat object, such as a card, on top of the robot and balance the tool on it, centered over the robot.
+3. Switch on only this robot and start the bridge with services:
+```sh
+$ roslaunch hero_bringup hero_confmode.launch
+```
+4. In a second terminal, run the calibration script with the namespace of the robot:
+```sh
+$ rosrun hero_examples hero_ir_calib.py hero_0
+```
+The script takes 100 scans and prints the mean and the standard deviation of the intensity and the constant `alpha` of every sensor. It then stores the constants in the robot.
+
+5. Check the result. With the robot still in the tool, every value of the scan should be close to 0.137 m (0.10 m plus the robot radius of 0.0368 m):
+```sh
+$ rostopic echo -n 1 /hero_0/laser
+```
+

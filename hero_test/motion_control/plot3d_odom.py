@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 """
 python plot3d_odom.py --file test2_2018-10-21-11-40-37.bag --time_min 2 --time_max 8

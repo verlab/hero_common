@@ -92,6 +92,12 @@ Seat the 1S Li-Po (paper: 3.7 V, 1800 mAh) in the cradle between A and B. Chassi
 
 Mouse-style quadrature encoders. Remove the detent spring so the shaft is smooth. Solder a JST-PH header. Cut shafts to length; wear glasses.
 
+To remove the detent spring:
+
+1. Bend open the tabs of the metal cover with round-nose pliers and lift the cover off the plastic body.
+2. Take out the detent spring, a thin metal plate with a bent ring that rests on the plastic body.
+3. Put the cover back on and bend the tabs closed. The cover has to sit on the black studs of the plastic body again; otherwise the encoder does not hold together. The shaft then turns without detents.
+
 <div class="figure-grid">
   <figure class="figure"><img src="{{ '/assets/img/build/image29.jpg' | relative_url }}" alt="Encoder spring"><figcaption>Drop the detent spring.</figcaption></figure>
   <figure class="figure"><img src="{{ '/assets/img/build/image26.jpg' | relative_url }}" alt="Encoder wiring"><figcaption>JST-PH on the pins.</figcaption></figure>
