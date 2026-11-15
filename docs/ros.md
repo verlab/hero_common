@@ -68,13 +68,9 @@ $ rostopic list
 /tf
 ```
 
-```sh
-$ rosservice list
-/hero_0/pid_calibration
-/hero_0/set_frequency
-/hero_0/set_odom
-/hero_0/set_pid_parameters
-```
+With `hero_bringup.launch` (`rosserial_server`), `rosservice list` shows no services of the robot. The services for calibration and configuration are available with `hero_confmode.launch`; see [Calibration]({{ '/calibration/' | relative_url }}).
+
+`/hero_N/laser` contains 16 values at 22.5° spacing, and index 8 points forward. Only the even indices are measurements of the eight IR sensors; the odd indices are interpolated from their neighbors. The firmware publishes the scan at about 5 Hz.
 
 Drive one robot from another terminal (set the id):
 
