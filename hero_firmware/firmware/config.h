@@ -104,9 +104,13 @@ const int real_pos_inter[8] = { 0, 2, 4, 14, 6, 12, 8, 10 }; /* Sort proximity s
 
 
 /* PID Control */
-#define DEFAULT_KP 1200                    /* Default proportional term */
-#define DEFAULT_KI 7.5                     /* Default integrative term */
-#define DEFAULT_KD 3.5                     /* Default derivative term */
+/* Default gains, used when no gains are stored in the EEPROM */
+#define VELOCITY_DEFAULT_KP 1200.0         /* Velocity control: proportional term */
+#define VELOCITY_DEFAULT_KI 2300.0         /* Velocity control: integrative term */
+#define VELOCITY_DEFAULT_KD 0.1            /* Velocity control: derivative term */
+#define POSITION_DEFAULT_KP 5.0            /* Position control: proportional term */
+#define POSITION_DEFAULT_KI 9.0            /* Position control: integrative term */
+#define POSITION_DEFAULT_KD 0.1            /* Position control: derivative term */
 #define OUTPUT_LIMIT 1000                  /* Max output limit */
 #define SAMPLE_TIME 50000                  /* Sample time in us*/
 #define SOME_OVERSHOOT_RULE_P 1.5          //3.2           /* Using some-overshot rule */

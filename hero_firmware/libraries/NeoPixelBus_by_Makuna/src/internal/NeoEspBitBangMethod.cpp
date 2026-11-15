@@ -23,7 +23,13 @@ You should have received a copy of the GNU Lesser General Public
 License along with NeoPixel.  If not, see
 <http://www.gnu.org/licenses/>.
 -------------------------------------------------------------------------*/
-
+#ifndef IRAM_ATTR
+  #ifdef ICACHE_RAM_ATTR
+    #define IRAM_ATTR ICACHE_RAM_ATTR
+  #else
+    #define IRAM_ATTR
+  #endif
+#endif
 #if defined(ARDUINO_ARCH_ESP8266) || defined(ARDUINO_ARCH_ESP32)
 
 #include <Arduino.h>

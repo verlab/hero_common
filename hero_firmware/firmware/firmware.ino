@@ -35,7 +35,7 @@
 #include "config.h"
 
 #include "LEDStatus.h"
-LEDStatus ledStatus(20);
+LEDStatus ledStatus(2);
 
 #include "WebConfig.h"
 WebConfig webConfig(4);
@@ -44,25 +44,25 @@ WebConfig webConfig(4);
 ROSHandle rosHandle(SYNC_RATE, 1);
 
 #include "RangeSensor.h"
-RangeSensor rangeSensor(10);
+RangeSensor rangeSensor(5);
 
 #include "WheelEncoder.h"
 WheelEncoder wheelEncoder(30);
 
 #include "IMUSensor.h"
-IMUSensor imuSensor(20);
+IMUSensor imuSensor(30);
 
 #include "Odometry.h"
 Odometry odometry(30);
 
 #include "MotorDriver.h"
-MotorDriver motorDriver(20);
+MotorDriver motorDriver(10);
 
 #include "PositionControl.h"
-PositionControl positionControl(20);
+PositionControl positionControl(50);
 
 #include "VelocityControl.h"
-VelocityControl velocityControl(20);
+VelocityControl velocityControl(50);
 
 #include "RandomWalk.h"
 RandomWalkDemo randomWalkDemo(5);
@@ -151,11 +151,11 @@ void loop() {
     case 17:  // Random Walk demo
       {
         // random walk controller update
-        randomWalkDemo.update(5);
+        randomWalkDemo.update();
         // led status update
-        ledStatus.update(2);
+        ledStatus.update();
         // velocity controller update
-        velocityControl.update(50);
+        velocityControl.update();
         delayMicroseconds(50000);
         break;
       }
@@ -170,14 +170,14 @@ void loop() {
       {
         if (rosHandle.connected()) {
           /* Get data from sensor and send it to ROS */
-          motorDriver.update(10);
-          imuSensor.update(30);
-          ledStatus.update(2);
-          rangeSensor.update(5);
-          odometry.update(30);
-          wheelEncoder.update(30);
-          positionControl.update(50);
-          velocityControl.update(50);
+          motorDriver.update();
+          imuSensor.update();
+          ledStatus.update();
+          rangeSensor.update();
+          odometry.update();
+          wheelEncoder.update();
+          positionControl.update();
+          velocityControl.update();
 
           rosHandle.sync();
         } else {

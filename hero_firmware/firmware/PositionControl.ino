@@ -31,7 +31,7 @@ PositionControl::PositionControl(unsigned long rate) {
   this->setRate(rate);
 
   /* Setup left Motor PID */
-  this->leftMotorPID = new PID (&this->leftMotorInput, &this->leftMotorOutput, &this->leftMotorSetpoint, 5.0, 9.0, 0.1, 0, REVERSE); /* Motor PID */
+  this->leftMotorPID = new PID (&this->leftMotorInput, &this->leftMotorOutput, &this->leftMotorSetpoint, POSITION_DEFAULT_KP, POSITION_DEFAULT_KI, POSITION_DEFAULT_KD, 0, REVERSE); /* Motor PID */
   this->leftMotorPID->SetMode(AUTOMATIC);
   this->leftMotorPID->SetOutputLimits(-output_lim, output_lim);       /* Max output limit for left motor */
   this->leftMotorPID->SetSampleTime(sample_time);                     /* 10 microseconds */
@@ -44,7 +44,7 @@ PositionControl::PositionControl(unsigned long rate) {
   this->leftMotorPIDTune->SetLookbackSec((int)TUNE_LOOK_BACK);              /* How far back are we looking to identify peaks */
 
   /* Setup right Motor PID */
-  this->rightMotorPID = new PID (&this->rightMotorInput, &this->rightMotorOutput, &this->rightMotorSetpoint, 5.0, 9.0, 0.1, 0, DIRECT); /* Motor PID */
+  this->rightMotorPID = new PID (&this->rightMotorInput, &this->rightMotorOutput, &this->rightMotorSetpoint, POSITION_DEFAULT_KP, POSITION_DEFAULT_KI, POSITION_DEFAULT_KD, 0, DIRECT); /* Motor PID */
   this->rightMotorPID->SetMode(AUTOMATIC);
   this->rightMotorPID->SetOutputLimits(-output_lim, output_lim);       /* Max output limit for left motor */
   this->rightMotorPID->SetSampleTime(sample_time);                     /* 10 microseconds */
